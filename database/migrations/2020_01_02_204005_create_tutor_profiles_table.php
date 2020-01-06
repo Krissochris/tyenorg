@@ -15,6 +15,14 @@ class CreateTutorProfilesTable extends Migration
     {
         Schema::create('tutor_profiles', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->string('photo')->nullable();
+            $table->string('facebook_url');
+            $table->string('website_url');
+            $table->string('linkedIn_url');
+            $table->string('youtube_url');
             $table->timestamps();
         });
     }

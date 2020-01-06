@@ -17,7 +17,6 @@ class CreateCourseCategoriesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('description');
-            $table->boolean('status')->default(1)->comment('Value 1 = Published, 0 = Unpublished');
             $table->timestamps();
         });
     }

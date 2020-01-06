@@ -17,9 +17,8 @@ class CreateCourseRegistrationsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('course_id');
-            $table->integer('badge_id');
+            $table->integer('batch_id');
             $table->integer('access_type')->unsigned();
-            $table->integer('course_rate')->unsigned()->nullable();
             $table->string('status');
             $table->timestamps();
         });

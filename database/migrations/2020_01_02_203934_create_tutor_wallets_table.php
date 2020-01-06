@@ -15,7 +15,9 @@ class CreateTutorWalletsTable extends Migration
     {
         Schema::create('tutor_wallets', function (Blueprint $table) {
             $table->increments('id');
-            $table->increments('amount');
+            $table->unsignedInteger('user_id');
+            $table->decimal('available_amount', 8, 2)->nullable();
+            $table->decimal('total_amount', 13, 2)->nullable();
             $table->timestamps();
         });
     }

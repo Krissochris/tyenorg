@@ -16,10 +16,11 @@ class CreateBlogsTable extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('class_type')->unsigned()->comment('The Blog class_type 1 = User, 2 = Tutor, 3 = Admin');
+            $table->string('title');
             $table->string('title');
             $table->string('body');
             $table->boolean('status')->default(1)->comment('The Blog status 1 = Published, 0 = Unpublished');
+            $table->unsignedInteger('views')->default(0);
             $table->timestamps();
         });
     }

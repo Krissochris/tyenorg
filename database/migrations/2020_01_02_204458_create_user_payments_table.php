@@ -16,7 +16,7 @@ class CreateUserPaymentsTable extends Migration
         Schema::create('user_payments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('payment_type');
+            $table->string('payment_purpose');
             $table->string('medium_of_payment');
             $table->decimal('amount',8,2);
             $table->timestamps();

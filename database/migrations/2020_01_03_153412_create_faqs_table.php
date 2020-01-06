@@ -17,8 +17,8 @@ class CreateFaqsTable extends Migration
             $table->increments('id');
             $table->string('question');
             $table->string('answer');
-            $table->string('status');
-            $table->integer('order')->unsigned();
+            $table->string('status')->default(1);
+            $table->integer('order')->unsigned()->default(0);
             $table->timestamps();
         });
     }
