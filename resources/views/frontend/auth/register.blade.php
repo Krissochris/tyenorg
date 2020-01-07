@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('frontend.layouts.header')
 
 @section('content')
     <div class="container">
@@ -87,7 +87,6 @@
                 </div>
                 <hr><br>
             </div>
-            @include('shared.sidebar')
         </div>
     </div>
 @endsection
