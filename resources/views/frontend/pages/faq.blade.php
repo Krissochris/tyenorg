@@ -1,7 +1,7 @@
 @extends('frontend.layouts.header')
 @section('content')
     <!-- Page Content -->
-    <div class="container" id="top-page">
+    <div class="container">
 
         <!-- Page Heading/Breadcrumbs -->
         <h1 class="mt-4 mb-3">FAQ
@@ -10,7 +10,7 @@
 
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index.html">Home</a>
+                <a href="/">Home</a>
             </li>
             <li class="breadcrumb-item active">FAQ</li>
         </ol>

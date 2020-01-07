@@ -24,4 +24,10 @@ class PagesController extends Controller
     public function courses(){
         return view('frontend.pages.courses');
     }
+    public function dashboard(){
+        return view('dashboard.pages.index');
+    }
+    public function teach(){
+        return view('frontend.pages.teach-on-tyen');
+    }
 }

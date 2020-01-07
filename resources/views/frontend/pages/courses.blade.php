@@ -1,7 +1,7 @@
 @extends('frontend.layouts.header')
 @section('content')
     <!-- Page Content -->
-    <div class="container" id="top-page">
+    <div class="container">
 
         <div class="row">
 
