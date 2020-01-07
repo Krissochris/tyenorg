@@ -17,7 +17,6 @@ class CreateBlogsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('title');
-            $table->string('title');
             $table->string('body');
             $table->boolean('status')->default(1)->comment('The Blog status 1 = Published, 0 = Unpublished');
             $table->unsignedInteger('views')->default(0);
