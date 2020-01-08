@@ -32,9 +32,10 @@
 
                 @else
                     <li class="nav-item">
-                        <a class="nav-link text-truncate" href="#">Teach on Tyen</a>
+                        <a class="nav-link text-light" href="{{route('tutor')}}">Tutor</a>
                     </li>
-                    <li class="nav-item"><a href="#" title="Shopping Cart" class="nav-link"><i class="fa fa-shopping-cart fa-lg"></i></a></li>
+                    <li class="nav-item"><a href="#" title="Shopping Cart" class="nav-link text-light"><i class="fa fa-shopping-cart fa-lg"></i></a></li>
+                    <li class="nav-item"><a href="#" title="Whishlist" class="nav-link text-light"><i class="fa fa-heart fa-lg"></i></a></li>
                     <li class="nav-item dropdown">
                         <a href="#" class="dropdown-toggle nav-link text-light" data-toggle="dropdown" role="button" aria-expanded="false">
                             <img src="images/images.png" alt="avatar" width="20" height="20" class="rounded-circle"> &nbsp {{ Auth::user()->username }} <span class="caret"></span>

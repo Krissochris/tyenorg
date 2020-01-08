@@ -4,7 +4,7 @@
     <div class="container">
 
         <!-- Page Heading/Breadcrumbs -->
-        <h1 class="mt-4 mb-3">Course
+        <h1 class="mt-4 mb-3">My Courses
             <small>Catalog</small>
         </h1>
 
@@ -23,17 +23,21 @@
                 <div class="container col-md-10">
                     <div class="row">
 
+
                         <div class="col-lg-3 col-md-3 mb-3">
                             <div class="card h-100">
                                 <a href="#"><img class="card-img-top" src="images/cover.jpeg" alt=""></a>
                                 <div class="card-body">
-                                    <h5 class="card-title">
-                                        <a href="#">JavaScript Master</a>
-                                    </h5>
                                     <p class="card-text">Some text!</p>
                                 </div>
                                 <div class="card-footer">
                                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                    <div class="float-right">
+                                        <a href="#"><i class="fa fa-eye text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-facebook-square text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-twitter text-dark"></i></a>
+                                        <a href="#"><i class="fa fa-share-alt text-dark"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -42,13 +46,16 @@
                             <div class="card h-100">
                                 <a href="#"><img class="card-img-top" src="images/cover.jpeg" alt=""></a>
                                 <div class="card-body">
-                                    <h5 class="card-title">
-                                        <a href="#">JavaScript Master</a>
-                                    </h5>
                                     <p class="card-text">Some text!</p>
                                 </div>
                                 <div class="card-footer">
                                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                    <div class="float-right">
+                                        <a href="#"><i class="fa fa-eye text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-facebook-square text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-twitter text-dark"></i></a>
+                                        <a href="#"><i class="fa fa-share-alt text-dark"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -57,28 +64,16 @@
                             <div class="card h-100">
                                 <a href="#"><img class="card-img-top" src="images/cover.jpeg" alt=""></a>
                                 <div class="card-body">
-                                    <h5 class="card-title">
-                                        <a href="#">JavaScript Master</a>
-                                    </h5>
                                     <p class="card-text">Some text!</p>
                                 </div>
                                 <div class="card-footer">
                                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-3 mb-3">
-                            <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="images/cover.jpeg" alt=""></a>
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <a href="#">JavaScript Master</a>
-                                    </h5>
-                                    <p class="card-text">Some text!</p>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                    <div class="float-right">
+                                        <a href="#"><i class="fa fa-eye text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-facebook-square text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-twitter text-dark"></i></a>
+                                        <a href="#"><i class="fa fa-share-alt text-dark"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -87,13 +82,16 @@
                             <div class="card h-100">
                                 <a href="#"><img class="card-img-top" src="images/cover%20(1).jpg" alt=""></a>
                                 <div class="card-body">
-                                    <h5 class="card-title">
-                                        <a href="#">PHP From Scratch</a>
-                                    </h5>
                                     <p class="card-text">Some text!</p>
                                 </div>
                                 <div class="card-footer">
                                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                    <div class="float-right">
+                                        <a href="#"><i class="fa fa-eye text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-facebook-square text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-twitter text-dark"></i></a>
+                                        <a href="#"><i class="fa fa-share-alt text-dark"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -102,13 +100,16 @@
                             <div class="card h-100">
                                 <a href="#"><img class="card-img-top" src="images/cover%20(1).jpg" alt=""></a>
                                 <div class="card-body">
-                                    <h5 class="card-title">
-                                        <a href="#">PHP From Scratch</a>
-                                    </h5>
                                     <p class="card-text">Some text!</p>
                                 </div>
                                 <div class="card-footer">
                                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                    <div class="float-right">
+                                        <a href="#"><i class="fa fa-eye text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-facebook-square text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-twitter text-dark"></i></a>
+                                        <a href="#"><i class="fa fa-share-alt text-dark"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -117,13 +118,16 @@
                             <div class="card h-100">
                                 <a href="#"><img class="card-img-top" src="images/cover%20(2).jpg" alt=""></a>
                                 <div class="card-body">
-                                    <h5 class="card-title">
-                                        <a href="#">Bootstrap it All</a>
-                                    </h5>
                                     <p class="card-text">Some text!</p>
                                 </div>
                                 <div class="card-footer">
                                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                    <div class="float-right">
+                                        <a href="#"><i class="fa fa-eye text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-facebook-square text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-twitter text-dark"></i></a>
+                                        <a href="#"><i class="fa fa-share-alt text-dark"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -132,13 +136,34 @@
                             <div class="card h-100">
                                 <a href="#"><img class="card-img-top" src="images/cover%20(2).jpg" alt=""></a>
                                 <div class="card-body">
-                                    <h5 class="card-title">
-                                        <a href="#">Bootstrap it All</a>
-                                    </h5>
                                     <p class="card-text">Some text!</p>
                                 </div>
                                 <div class="card-footer">
                                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                    <div class="float-right">
+                                        <a href="#"><i class="fa fa-eye text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-facebook-square text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-twitter text-dark"></i></a>
+                                        <a href="#"><i class="fa fa-share-alt text-dark"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 mb-3">
+                            <div class="card h-100">
+                                <a href="#"><img class="card-img-top" src="images/cover%20(1).jpg" alt=""></a>
+                                <div class="card-body">
+                                    <p class="card-text">Some text!</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                    <div class="float-right">
+                                        <a href="#"><i class="fa fa-eye text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-facebook-square text-dark"></i></a>
+                                        <a href="#"><i class="fab fa-twitter text-dark"></i></a>
+                                        <a href="#"><i class="fa fa-share-alt text-dark"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -155,22 +180,22 @@
         <!-- Pagination -->
         <ul class="pagination justify-content-center">
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
+                <a class="page-link text-dark" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Previous</span>
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="#">1</a>
+                <a class="page-link text-dark" href="#">1</a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="#">2</a>
+                <a class="page-link text-dark" href="#">2</a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="#">3</a>
+                <a class="page-link text-dark" href="#">3</a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
+                <a class="page-link text-dark" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
                 </a>

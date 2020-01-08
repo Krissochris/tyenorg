@@ -8,21 +8,22 @@
         <div class="carousel-inner" role="listbox">
             <!-- Slide One - Set the background image for this slide in the line below -->
             <div class="carousel-item active" style="background-image: url('images/cover (1).jpg')">
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption">
                     <h2>First Slide</h2>
                     <p>This is a description for the first slide.</p>
                 </div>
             </div>
             <!-- Slide Two - Set the background image for this slide in the line below -->
             <div class="carousel-item" style="background-image: url('images/cover (2).jpg')">
-                <div class="carousel-caption d-none d-md-block">
+{{--                <div class="carousel-caption d-none d-md-block">--}}
+                <div class="carousel-caption">
                     <h2>Second Slide</h2>
                     <p>This is a description for the second slide.</p>
                 </div>
             </div>
             <!-- Slide Three - Set the background image for this slide in the line below -->
             <div class="carousel-item" style="background-image: url('images/cover.jpeg')">
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption ">
                     <h2>Third Slide</h2>
                     <p>This is a description for the third slide.</p>
                 </div>
@@ -37,9 +38,14 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <div class="row bg-dark">
-        <a href="categories.html" class="btn btn-outline-primary btn-group-lg col-lg-4 col-sm-12 py-3 font-weight-bold" style="border-color: transparent; color: white"> 1,000 Online Courses</a>
-        <a href="#" class="btn btn-outline-primary btn-group-lg col-lg-4 col-sm-12 py-3 font-weight-bold" style="border-color: transparent; color: white"> Qualified Instructors</a>
-        <a href="#" class="btn btn-outline-primary btn-group-lg col-lg-4 col-sm-12 py-3 font-weight-bold" style="border-color: transparent; color: white"> Life Time Access</a>
+    <div class="bg-dark">
+        <div class="container">
+            <div class="row">
+                <a href="categories.html" class="btn btn-outline-primary btn-group-lg col-lg-4 col-sm-12 py-3 font-weight-bold" style="border-color: transparent; color: white"> 1,000 Online Courses</a>
+                <a href="#" class="btn btn-outline-primary btn-group-lg col-lg-4 col-sm-12 py-3 font-weight-bold" style="border-color: transparent; color: white"> Qualified Instructors</a>
+                <a href="#" class="btn btn-outline-primary btn-group-lg col-lg-4 col-sm-12 py-3 font-weight-bold" style="border-color: transparent; color: white"> Life Time Access</a>
+            </div>
+        </div>
     </div>
+
 </header>

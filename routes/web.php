@@ -81,3 +81,5 @@ Route::get('/admin', 'PagesController@dashboard');
 
 Route::get('/my-courses', 'UsersController@mycourses')->name('my-courses');
 Route::get('/purchase-history', 'UsersController@mypurchases')->name('purchase-history');
+Route::get('/my-courses', 'UsersController@tutor_courses')->name('tutor-courses');
+Route::get('/data-tables', 'UsersController@tutortable')->name('tutor-table');
