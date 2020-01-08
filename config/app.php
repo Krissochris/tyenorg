@@ -177,6 +177,17 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        //Repository
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        Konekt\Concord\ConcordServiceProvider::class,
+
+
+        // Package Providers
+        GriffonTech\User\Providers\UserServiceProvider::class,
+        GriffonTech\Shop\Providers\ShopServiceProvider::class,
+        GriffonTech\User\Providers\UserServiceProvider::class,
+
     ],
 
     /*
