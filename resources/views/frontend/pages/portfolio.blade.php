@@ -1,7 +1,7 @@
 @extends('frontend.layouts.header')
 @section('content')
     <!-- Page Content -->
-    <div class="container" id="top-page">
+    <div class="container">
 
         <!-- Page Heading/Breadcrumbs -->
         <h1 class="mt-4 mb-3">Portfolio

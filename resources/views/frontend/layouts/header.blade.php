@@ -20,10 +20,9 @@
 
 </head>
 
-<body>
+<body id="top-page">
 @include('frontend.shared.navbar')
 @yield('content')
-
 @include('frontend.layouts.footer')
 </body>
 </html>

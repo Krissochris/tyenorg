@@ -74,3 +74,12 @@ Route::get('/blog', 'PagesController@blog');
 Route::get('/portfolio', 'PagesController@portfolio');
 Route::get('/faq', 'PagesController@faq');
 Route::get('/courses', 'PagesController@courses');
+Route::get('/teach-on-tyen', 'PagesController@teach')->name('teach');
+Route::get('/admin', 'PagesController@dashboard');
+
+//For Logged in Users
+
+Route::get('/my-courses', 'UsersController@mycourses')->name('my-courses');
+Route::get('/purchase-history', 'UsersController@mypurchases')->name('purchase-history');
+Route::get('/my-courses', 'UsersController@tutor_courses')->name('tutor-courses');
+Route::get('/data-tables', 'UsersController@tutortable')->name('tutor-table');
