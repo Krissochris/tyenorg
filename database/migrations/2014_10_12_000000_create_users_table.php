@@ -18,12 +18,15 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone_number', 15)->nullable();
             $table->string('photo');
             $table->boolean('is_pro_user')->default(0);
             $table->tinyInteger('status')->default(1)->comment('The user login status 1 => active , 0 => inactive');
+            $table->boolean('subscribed_to_news_letter')->default(0);
+            $table->boolean('is_verified')->default(0);
+            $table->string('token')->nullable();
+            $table->text('notes')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
