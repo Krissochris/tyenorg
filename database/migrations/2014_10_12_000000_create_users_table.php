@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone_number', 15)->nullable();
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->boolean('is_pro_user')->default(0);
             $table->tinyInteger('status')->default(1)->comment('The user login status 1 => active , 0 => inactive');
             $table->rememberToken();
