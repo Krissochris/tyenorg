@@ -1,0 +1,27 @@
+{
+    "name": "tyen/laravel-user",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Omebe Johnbosco",
+            "email": "johnboscoomebe@yahoo.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "GriffonTech\\User\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GriffonTech\\User\\Providers\\UserServiceProvider"
+            ],
+            "aliases": {
+                //"Bouncer": "Webkul\\User\\Facades\\Bouncer"
+            }
+        }
+    },
+    "minimum-stability": "dev"
+}
