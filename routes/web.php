@@ -79,7 +79,7 @@ Route::get('/admin', 'PagesController@dashboard');
 
 //For Logged in Users
 
-Route::get('/my-courses', 'UsersController@mycourses')->name('my-courses');
+Route::get('/my-courses', 'UsersController@mycourses')->name('my_courses');
 Route::get('/purchase-history', 'UsersController@mypurchases')->name('purchase-history');
-Route::get('/my-courses', 'UsersController@tutor_courses')->name('tutor-courses');
+Route::get('/tutor_courses', 'UsersController@tutor_courses')->name('tutor-courses');
 Route::get('/data-tables', 'UsersController@tutortable')->name('tutor-table');

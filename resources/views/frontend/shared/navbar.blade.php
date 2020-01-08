@@ -32,7 +32,7 @@
 
                 @else
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="{{route('tutor')}}">Tutor</a>
+                        <a class="nav-link text-light" href="{{route('tutor-courses')}}">Tutor</a>
                     </li>
                     <li class="nav-item"><a href="#" title="Shopping Cart" class="nav-link text-light"><i class="fa fa-shopping-cart fa-lg"></i></a></li>
                     <li class="nav-item"><a href="#" title="Whishlist" class="nav-link text-light"><i class="fa fa-heart fa-lg"></i></a></li>
@@ -42,7 +42,7 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li class="dropdown-item"><a href="{{route('my-courses')}}" class="text-decoration-none text-dark">My Courses</a></li>
+                            <li class="dropdown-item"><a href="{{route('my_courses')}}" class="text-decoration-none text-dark">My Courses</a></li>
                             <li class="dropdown-item"><a href="/#" class="text-decoration-none text-dark">Notifications</a></li>
                             <li class="dropdown-item"><a href="{{route('purchase-history')}}" class="text-decoration-none text-dark">Purchase history</a></li>
                             <li class="dropdown-item"><a href="/#" class="text-decoration-none text-dark">Profile</a></li>
