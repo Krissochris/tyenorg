@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\Customer\Mail;
+namespace GriffonTech\User\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;

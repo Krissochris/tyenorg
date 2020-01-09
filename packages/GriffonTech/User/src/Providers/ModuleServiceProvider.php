@@ -3,10 +3,11 @@
 namespace GriffonTech\User\Providers;
 
 use Konekt\Concord\BaseModuleServiceProvider;
+use \GriffonTech\User\Models\User;
 
 class ModuleServiceProvider extends BaseModuleServiceProvider
 {
     protected $models = [
-        \GriffonTech\User\Models\User::class,
+        User::class,
     ];
 }

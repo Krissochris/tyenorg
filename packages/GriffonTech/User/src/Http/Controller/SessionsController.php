@@ -51,8 +51,9 @@ class SessionController extends Controller {
             'password' => 'required'
         ]);
 
+
         if (! auth()->guard('user')->attempt(request(['email', 'password']))) {
-            session()->flash('error', trans('user::app.user.login-form.invalid-creds'));
+            session()->flash('error', trans('shop::app.user.login-form.invalid-creds'));
 
             return redirect()->back();
         }
@@ -60,7 +61,7 @@ class SessionController extends Controller {
         if (auth()->guard('user')->user()->status == 0) {
             auth()->guard('user')->logout();
 
-            session()->flash('warning', trans('user::app.user.login-form.not-activated'));
+            session()->flash('warning', trans('shop::app.user.login-form.not-activated'));
 
             return redirect()->back();
         }

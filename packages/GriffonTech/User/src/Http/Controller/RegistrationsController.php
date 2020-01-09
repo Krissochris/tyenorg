@@ -3,8 +3,8 @@ namespace GriffonTech\User\Http\Controllers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
-use Webkul\Customer\Mail\RegistrationEmail;
-use Webkul\Customer\Mail\VerificationEmail;
+use GriffonTech\User\Mail\RegistrationEmail;
+use GriffonTech\User\Mail\VerificationEmail;
 use GriffonTech\User\Repositories\UserRepository;
 
 
@@ -59,9 +59,9 @@ class RegistrationController extends Controller {
     public function create()
     {
         $this->validate(request(), [
-            'first_name' => 'string|required',
-            'last_name' => 'string|required',
-            'email' => 'email|required|unique:customers,email',
+            'name' => 'string|required',
+            'username' => 'string|required|unique:users,username',
+            'email' => 'email|required|unique:users,email',
             'password' => 'confirmed|min:6|required',
         ]);
 
@@ -105,7 +105,6 @@ class RegistrationController extends Controller {
                 } catch (\Exception $e) {
                     session()->flash('info', trans('shop::app.user.signup-form.success-verify-email-unsent'));
                 }
-
 
                 session()->flash('success', trans('shop::app.user.signup-form.success'));
             }

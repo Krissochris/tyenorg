@@ -17,7 +17,7 @@ class User extends Authenticatable implements UserContract
      * @var array
      */
     protected $fillable = [
-        'full_name', 'username', 'email', 'password',
+        'name', 'username', 'email', 'password',
     ];
 
     /**

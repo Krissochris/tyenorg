@@ -1,5 +1,5 @@
 <?php
-namespace GriffonTech\User\Middleware;
+namespace GriffonTech\User\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
