@@ -58,7 +58,7 @@ class CourseController extends Controller {
      */
     public function show()
     {
-
+        return view($this->_config['view']);
     }
 
 
