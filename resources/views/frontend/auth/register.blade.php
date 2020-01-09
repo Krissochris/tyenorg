@@ -79,7 +79,8 @@
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary">
                                         Register
-                                    </button>
+                                    </button> &nbsp;
+                                    <a href="{{route('login')}}">Or Login here</a>
                                 </div>
                             </div>
                         </form>

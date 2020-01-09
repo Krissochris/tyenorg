@@ -94,6 +94,9 @@
             </div>
         </div>
         <!-- /.row -->
+        <div style="margin: 15px auto"><h2 class="font-weight-lighter">Become an instructor today</h2></div>
+        <p style="margin: 15px auto">Join our online learning marketplace.</p>
+        <a href="{{route('tutor-courses')}}"><button class="btn btn-primary btn-lg">Get started</button></a>
         <hr>
     </div>
 @endsection
