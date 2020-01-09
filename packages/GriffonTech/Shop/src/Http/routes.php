@@ -77,6 +77,14 @@ Route::group(['middleware' => ['web']], function(){
                 Route::get('my-courses/learning', 'GriffonTech\User\Http\Controllers\CourseController@index')->defaults('_config', [
                     'view' => 'shop::users.account.course.index'
                 ])->name('user.course.index');
+
+                Route::get('my-courses/show', 'GriffonTech\User\Http\Controllers\CourseController@show')->defaults('_config', [
+                    'view' => 'shop::users.account.course.show'
+                ])->name('user.course.show');
+
+                Route::get('purchases', 'GriffonTech\User\Http\Controllers\PurchasesController@index')->defaults('_config', [
+                    'view' => 'shop::users.account.purchases.index'
+                ])->name('user.purchases.index');
             });
         });
     });
