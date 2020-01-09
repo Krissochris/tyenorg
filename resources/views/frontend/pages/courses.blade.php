@@ -6,15 +6,19 @@
         <div class="row">
 
             <div class="col-lg-3">
-
-                <h1 class="my-4">Courses</h1>
-                <div class="list-group">
-                    <a href="#" class="list-group-item">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
-                    <a href="#" class="list-group-item">Category 4</a>
-                    <a href="#" class="list-group-item">Category 5</a>
-                    <a href="#" class="list-group-item">Category 6</a>
+        <hr>
+                <div class="card">
+                    <div class="card-header"><h4 class="font-weight-normal">Categories</h4></div>
+                    <div class="card-body">
+                        <div class="list-group-flush">
+                            <a href="#" class="list-group-item-action">Category 1</a><hr>
+                            <a href="#" class="list-group-item-action">Category 2</a><hr>
+                            <a href="#" class="list-group-item-action">Category 3</a><hr>
+                            <a href="#" class="list-group-item-action">Category 4</a><hr>
+                            <a href="#" class="list-group-item-action">Category 5</a><hr>
+                            <a href="#" class="list-group-item-action">Category 6</a>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -29,7 +33,7 @@
 
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a href="#"><img class="card-img-top" src="images/cover.jpeg" alt=""></a>
+                            <a href="{{route('course-preview')}}"><img class="card-img-top" src="images/cover.jpeg" alt=""></a>
                             <div class="card-body">
                                 <h4 class="card-title">
                                     <a href="#">Item One</a>
