@@ -30,4 +30,7 @@ class PagesController extends Controller
     public function teach(){
         return view('frontend.pages.teach-on-tyen');
     }
+    public function course_preview(){
+        return view('frontend.pages.course-preview');
+    }
 }

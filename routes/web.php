@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
-Route::get('/index', 'PagesController@index');
+Route::get('/index', 'PagesController@index')->name('index');
 Route::get('/about-us', 'PagesController@about');
 Route::get('/contact-us', 'PagesController@contact');
 Route::get('/blog', 'PagesController@blog');
@@ -76,10 +76,12 @@ Route::get('/faq', 'PagesController@faq');
 Route::get('/courses', 'PagesController@courses');
 Route::get('/teach-on-tyen', 'PagesController@teach')->name('teach');
 Route::get('/admin', 'PagesController@dashboard');
+Route::get('/course-preview', 'PagesController@course_preview')->name('course-preview');
 
 //For Logged in Users
 
 Route::get('/my-courses', 'UsersController@mycourses')->name('my-courses');
 Route::get('/purchase-history', 'UsersController@mypurchases')->name('purchase-history');
-Route::get('/my-courses', 'UsersController@tutor_courses')->name('tutor-courses');
+Route::get('/tutor-courses', 'UsersController@tutor_courses')->name('tutor-courses');
 Route::get('/data-tables', 'UsersController@tutortable')->name('tutor-table');
+Route::get('/user-profile', 'UsersController@profile')->name('profile');

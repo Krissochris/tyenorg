@@ -25,17 +25,17 @@ class UsersController extends Controller
     {
         return view('frontend.pages.users.purchase-history');
     }
-    public function tutor()
-    {
-        return view('dashboard.tutors.courses');
-    }
     public function tutor_courses()
     {
-        return view('dashboard.tutors.courses');
+        return view('dashboard.pages.tutors.courses');
     }
     public function tutortable()
     {
-        return view('dashboard.tutors.tabledata');
+        return view('dashboard.pages.tutors.tabledata');
+    }
+    public function profile()
+    {
+        return view('frontend.pages.users.profile');
     }
 
 }
