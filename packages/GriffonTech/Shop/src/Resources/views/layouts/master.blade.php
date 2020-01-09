@@ -43,6 +43,9 @@
 @if(Session::has('info'))
     <p class="alert alert-info">{{ Session::get('info') }}</p>
 @endif
+@if(Session::has('error'))
+    <p class="alert alert-danger">{{ Session::get('error') }}</p>
+@endif
 
 @yield('content')
 

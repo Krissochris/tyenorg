@@ -18,7 +18,7 @@ Route::group(['middleware' => ['web']], function(){
 
         // Login form store
         Route::post('login', 'GriffonTech\User\Http\Controllers\SessionController@create')->defaults('_config', [
-            'redirect' => 'user.profile.index'
+            'redirect' => 'user.course.index'
         ])->name('user.session.create');
 
         // Registration Routes
@@ -54,7 +54,7 @@ Route::group(['middleware' => ['web']], function(){
                 ])->name('user.account.index');
 
                 //Customer Profile Show
-                Route::get('profile', 'GriffonTech\User\Http\Controllers\CustomerController@index')->defaults('_config', [
+                Route::get('profile', 'GriffonTech\User\Http\Controllers\UserController@index')->defaults('_config', [
                     'view' => 'shop::users.account.profile.index'
                 ])->name('user.profile.index');
 
@@ -72,6 +72,11 @@ Route::group(['middleware' => ['web']], function(){
                 Route::post('profile/destroy', 'GriffonTech\User\Http\Controllers\CustomerController@destroy')->defaults('_config', [
                     'redirect' => 'user.profile.index'
                 ])->name('user.profile.destroy');
+
+                //User Course Show
+                Route::get('my-courses/learning', 'GriffonTech\User\Http\Controllers\CourseController@index')->defaults('_config', [
+                    'view' => 'shop::users.account.course.index'
+                ])->name('user.course.index');
             });
         });
     });

@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header">User Login</div>
                     <div class="card-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('user.session.create') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
