@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\Core\Providers;
+namespace GriffonTech\Core\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
