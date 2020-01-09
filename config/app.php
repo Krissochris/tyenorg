@@ -186,8 +186,8 @@ return [
         // Package Providers
         GriffonTech\User\Providers\UserServiceProvider::class,
         GriffonTech\Shop\Providers\ShopServiceProvider::class,
-        GriffonTech\User\Providers\UserServiceProvider::class,
         GriffonTech\Core\Providers\CoreServiceProvider::class,
+        GriffonTech\Course\Providers\CourseServiceProvider::class,
 
     ],
 

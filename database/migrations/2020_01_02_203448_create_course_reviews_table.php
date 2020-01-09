@@ -15,10 +15,10 @@ class CreateCourseReviewsTable extends Migration
     {
         Schema::create('course_reviews', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('course_id')->unsigned();
-            $table->integer('batch_id')->unsigned();
-            $table->string('body');
+            $table->integer('user_id')->unsigned()->index();
+            $table->integer('course_id')->unsigned()->index();
+            $table->integer('course_batch_id')->unsigned()->index();
+            $table->text('text');
             $table->tinyInteger('rating');
             $table->integer('status')->unsigned();
             $table->timestamps();
