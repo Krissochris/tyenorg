@@ -45,7 +45,7 @@
                             <li class="dropdown-item"><a href="{{route('my_courses')}}" class="text-decoration-none text-dark">My Courses</a></li>
                             <li class="dropdown-item"><a href="/#" class="text-decoration-none text-dark">Notifications</a></li>
                             <li class="dropdown-item"><a href="{{route('purchase-history')}}" class="text-decoration-none text-dark">Purchase history</a></li>
-                            <li class="dropdown-item"><a href="/#" class="text-decoration-none text-dark">Profile</a></li>
+                            <li class="dropdown-item"><a href="{{route('profile')}}" class="text-decoration-none text-dark">Profile</a></li>
                             <div class="dropdown-divider"></div>
                             <li class="dropdown-item">
                                 <a href="{{ route('logout') }}" class="text-decoration-none text-dark"
