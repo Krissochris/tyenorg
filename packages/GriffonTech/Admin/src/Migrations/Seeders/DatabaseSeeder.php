@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(\GriffonTech\Core\Database\Seeders\DatabaseSeeder::class);
+        $this->call(\GriffonTech\Course\Database\Seeders\DatabaseSeeder::class);
     }
 }

@@ -11,5 +11,7 @@ return [
 
         \GriffonTech\User\Providers\ModuleServiceProvider::class,
         \GriffonTech\Course\Providers\ModuleServiceProvider::class,
+        \GriffonTech\Core\Providers\ModuleServiceProvider::class,
+        \GriffonTech\Tutor\Providers\ModuleServiceProvider::class,
     ]
 ];
