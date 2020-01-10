@@ -35,7 +35,7 @@
 
                 @auth('user')
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="{{route('tutor-courses')}}">Tutor</a>
+                        <a class="nav-link text-light" href="{{route('tutor.courses.index')}}">Tutor</a>
                     </li>
                 <li class="nav-item"><a href="#" title="Shopping Cart" class="nav-link text-light"><i class="fa fa-shopping-cart fa-lg"></i></a></li>
                 <li class="nav-item"><a href="#" title="Whishlist" class="nav-link text-light"><i class="fa fa-heart fa-lg"></i></a></li>

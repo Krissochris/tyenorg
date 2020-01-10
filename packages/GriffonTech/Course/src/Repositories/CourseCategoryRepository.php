@@ -21,4 +21,9 @@ class CourseCategoryRepository extends Repository {
     {
         return 'GriffonTech\Course\Contracts\CourseCategory';
     }
+
+    public function getList($keyColumn = 'id', $valueColumn = 'name')
+    {
+        return $this->model->pluck($valueColumn, $keyColumn);
+    }
 }
