@@ -152,7 +152,7 @@
 
                         <div class="col-lg-3 col-md-3 mb-3">
                             <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="images/cover%20(1).jpg" alt=""></a>
+                                <a href="#"><img class="card-img-top" src="{{ asset('images/cover%20(1).jpg')}}" alt=""></a>
                                 <div class="card-body">
                                     <p class="card-text">Some text!</p>
                                 </div>
