@@ -82,6 +82,14 @@ Route::get('/course-preview', 'PagesController@course_preview')->name('course-pr
 
 Route::get('/my-courses', 'UsersController@mycourses')->name('my-courses');
 Route::get('/purchase-history', 'UsersController@mypurchases')->name('purchase-history');
-Route::get('/tutor-courses', 'UsersController@tutor_courses')->name('tutor-courses');
 Route::get('/data-tables', 'UsersController@tutortable')->name('tutor-table');
 Route::get('/user-profile', 'UsersController@profile')->name('profile');
+
+
+//For Looged in Tutors
+Route::get('/tutor-profile', 'UsersController@tutor_profile')->name('tutor-profile');
+Route::get('/tutor-courses', 'UsersController@tutor_courses')->name('tutor-courses');
+Route::get('/create-course', 'UsersController@create_course')->name('create-course');
+Route::get('/messages', 'UsersController@messages')->name('messages');
+Route::get('/tutor-review', 'UsersController@tutor_review')->name('tutor-review');
+Route::get('/tutor-dashboard', 'UsersController@tutor_dashboard')->name('tutor-dashboard');

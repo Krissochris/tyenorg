@@ -37,5 +37,25 @@ class UsersController extends Controller
     {
         return view('frontend.pages.users.profile');
     }
+    public function tutor_profile()
+    {
+        return view('dashboard.pages.tutors.tutor-profile');
+    }
+    public function create_course()
+    {
+        return view('dashboard.pages.tutors.create-course');
+    }
+public function messages()
+    {
+        return view('dashboard.pages.tutors.messages');
+    }
+public function tutor_review()
+    {
+        return view('dashboard.pages.tutors.review');
+    }
+public function tutor_dashboard()
+    {
+        return view('dashboard.pages.tutors.dashboard');
+    }
 
 }

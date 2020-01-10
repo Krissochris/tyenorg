@@ -32,13 +32,13 @@
 
                 @else
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="{{route('tutor-courses')}}">Tutor</a>
+                        <a class="nav-link text-light" href="{{route('tutor-dashboard')}}">Tutor</a>
                     </li>
                     <li class="nav-item"><a href="#" title="Shopping Cart" class="nav-link text-light"><i class="fa fa-shopping-cart fa-lg"></i></a></li>
                     <li class="nav-item"><a href="#" title="Whishlist" class="nav-link text-light"><i class="fa fa-heart fa-lg"></i></a></li>
                     <li class="nav-item dropdown">
                         <a href="#" class="dropdown-toggle nav-link text-light" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <img src="images/images.png" alt="avatar" width="20" height="20" class="rounded-circle"> &nbsp {{ Auth::user()->username }} <span class="caret"></span>
+                            <img src="{{ asset('images/images.png')}}" alt="avatar" width="20" height="20" class="rounded-circle"> &nbsp {{ Auth::user()->username }} <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
@@ -46,7 +46,7 @@
                             <li class="dropdown-item"><a href="/#" class="text-decoration-none text-dark">Notifications</a></li>
                             <li class="dropdown-item"><a href="{{route('purchase-history')}}" class="text-decoration-none text-dark">Purchase history</a></li>
                             <li class="dropdown-item"><a href="{{route('profile')}}" class="text-decoration-none text-dark">Profile</a></li>
-                            <div class="dropdown-divider"></div>
+                            <li class="dropdown-divider"></li>
                             <li class="dropdown-item">
                                 <a href="{{ route('logout') }}" class="text-decoration-none text-dark"
                                    onclick="event.preventDefault();
