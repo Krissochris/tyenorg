@@ -80,9 +80,10 @@ Route::get('/course-preview', 'PagesController@course_preview')->name('course-pr
 
 //For Logged in Users
 
-Route::get('/my-courses', 'UsersController@mycourses')->name('my-courses');
-Route::get('/purchase-history', 'UsersController@mypurchases')->name('purchase-history');
-Route::get('/data-tables', 'UsersController@tutortable')->name('tutor-table');
+Route::get('/my-courses', 'UsersController@mycourses')->name('my_courses');
+Route::get('/purchase-history', 'UsersController@mypurchases')->name('purchase-history');Route::get('/tutor-courses', 'UsersController@tutor_courses')->name('tutor-courses');
+
+Route::get('/dat-tables', 'UsersController@tutortable')->name('tutor-table');
 Route::get('/user-profile', 'UsersController@profile')->name('profile');
 
 

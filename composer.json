@@ -1,5 +1,5 @@
 {
-    "name": "laravel/laravel",
+    "name": "tyen/tyen",
     "type": "project",
     "description": "The Laravel Framework.",
     "keywords": [
@@ -9,10 +9,15 @@
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
+        "astrotomic/laravel-translatable": "^11.0.0",
+        "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "~6.0",
+        "konekt/concord": "^1.2",
         "laravel-frontend-presets/material-dashboard": "^1.0",
         "laravel/framework": "5.7.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "prettus/l5-repository": "2.6.32"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -32,9 +37,21 @@
             "dont-discover": []
         }
     },
+
+    "replace": {
+        "tyen/laravel-user": "v0.1.0"
+    },
+
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "GriffonTech\\User\\": "packages/GriffonTech/User/src",
+            "GriffonTech\\Admin\\": "packages/GriffonTech/Admin/src",
+            "GriffonTech\\Course\\": "packages/GriffonTech/Course/src",
+            "GriffonTech\\CourseCategory\\": "packages/GriffonTech/CourseCategory/src",
+            "GriffonTech\\Tutor\\": "packages/GriffonTech/Tutor/src",
+            "GriffonTech\\Shop\\": "packages/GriffonTech/Shop/src",
+            "GriffonTech\\Core\\": "packages/GriffonTech/Core/src"
         },
         "classmap": [
             "database/seeds",
