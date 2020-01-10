@@ -12,7 +12,7 @@
             <li class="breadcrumb-item active">Course Details</li>
         </ol>
         <div class="container">
-            <div class="row bg-dark">
+            <div class="row bg-dark" style="padding: 20px 0">
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-img">

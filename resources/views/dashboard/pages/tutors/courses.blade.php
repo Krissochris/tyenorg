@@ -13,7 +13,7 @@
             </ol>
             <div class="row">
                 <div class="col-md-12">
-                    <a href="#">
+                    <a href="{{route('create-course')}}">
                         <button class="btn btn-dark float-right">
                             <i class="fa fa-book-medical"></i>
                             Add Course
