@@ -8,7 +8,7 @@ use GriffonTech\Course\Contracts\CourseCategory as CourseCategoryContract;
 class CourseCategory extends Model implements CourseCategoryContract
 {
     protected $fillable = [
-        'name'
+        'name', 'url_key'
     ];
 
     public function courses()

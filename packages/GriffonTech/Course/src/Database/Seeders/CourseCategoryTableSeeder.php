@@ -11,7 +11,7 @@ class CourseCategoryTableSeeder extends Seeder
     {
         DB::table('course_categories')->delete();
 
-        DB::table('course_categories')->insert([
+        $courseCategories = [
             [
                 'id' => 1,
                 'name' => 'Office Productivity',
@@ -32,16 +32,14 @@ class CourseCategoryTableSeeder extends Seeder
             ],
             [
                 'id' => 4,
-                'name' => 'Personal Development',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => 5,
                 'name' => 'Spiritual Development',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-        ]);
+        ];
+        $courseCategoriesRepository = app('GriffonTech\Course\Repositories\CourseCategoryRepository');
+        foreach($courseCategories as $category) {
+            $courseCategoriesRepository->create($category);
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace GriffonTech\User\Http\Controllers;
 use GriffonTech\Course\Repositories\CourseRegistrationRepository;
 use GriffonTech\Course\Repositories\CourseRepository;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
  * Course controller for the user courses basically for the tasks of users which will be
@@ -56,9 +57,21 @@ class CourseController extends Controller {
     /**
      * This is used to view a course
      */
-    public function show()
+    public function show($slug)
     {
-        return view($this->_config['view']);
+        try {
+            $course = $this->courseRepository->findBySlugOrFail($slug);
+
+        } catch (ModelNotFoundException $exception) {
+            // handle the error
+        }
+        if (isset($course)) {
+            $courseRegistration = $this->courseRegistrationRepository->findOneWhere([
+                'course_id' => $course->id,
+                'user_id' => auth('user')->user()->id
+            ]);
+        }
+        return view($this->_config['view'], compact('course', 'courseRegistration'));
     }
 
 

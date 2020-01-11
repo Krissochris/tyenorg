@@ -1,18 +1,18 @@
 <?php
 
-namespace GriffonTech\Course\Http\Controllers;
+namespace GriffonTech\Shop\Http\Controllers;
 
 use GriffonTech\Course\Repositories\CourseCategoryRepository;
 use GriffonTech\Course\Repositories\CourseRepository;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
- * Course controller for the user courses basically for the tasks of users which will be
- * done after customer authentication.
+ * Course Category controller
  *
  * @author    Johnbosco Omebe <johnboscoomebe@thegriffontechnology.com>
  * @copyright 2020 Griffon Technologies Nig (http://www.thegriffontechnologies.com)
  */
-class CourseController extends Controller
+class CourseCategoryController extends Controller
 {
     /**
      * Contains route related configuration
@@ -21,12 +21,7 @@ class CourseController extends Controller
      */
     protected $_config;
 
-    /**
-     * CustomerRepository object
-     *
-     * @var Object
-     */
-    protected $courseRepository;
+
 
     /**
      * courseCategoryRepository object
@@ -36,35 +31,30 @@ class CourseController extends Controller
     protected $courseCategoryRepository;
 
     public function __construct(
-        CourseRepository $courseRepository,
         CourseCategoryRepository $courseCategoryRepository
     )
     {
         $this->_config = request('_config');
 
-        $this->courseRepository = $courseRepository;
 
         $this->courseCategoryRepository = $courseCategoryRepository;
     }
 
 
-    public function index()
+    public function show($slug)
     {
-        $courseCategories = $this->courseCategoryRepository->all(['id', 'name', 'url_key']);
+        try {
 
-        $courses = $this->courseRepository->all();
-        return view($this->_config['view'], compact('courseCategories', 'courses'));
+            $category = $this->courseCategoryRepository->findBySlugOrFail($slug);
+
+            $courses = $this->courseCategoryRepository->findCourses($category->id);
+        } catch (ModelNotFoundException $exception) {
+            //handle the error
+        }
+
+        return view($this->_config['view'], compact( 'courses', 'category'));
     }
 
-    public function show()
-    {
-
-    }
-
-    public function create()
-    {
-
-    }
 
 
 }

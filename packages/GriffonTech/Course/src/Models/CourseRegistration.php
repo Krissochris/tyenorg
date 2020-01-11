@@ -17,4 +17,9 @@ class CourseRegistration extends Model implements CourseRegistrationContract
         return $this->belongsTo(CourseProxy::modelClass(), 'course_id', 'id');
     }
 
+    public function course_batch()
+    {
+        return $this->belongsTo(CourseBatchProxy::modelClass(), 'batch_id', 'id');
+    }
+
 }
