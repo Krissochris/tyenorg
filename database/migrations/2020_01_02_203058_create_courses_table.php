@@ -15,16 +15,19 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('description');
+            $table->string('name');
+            $table->string('url_key');
+            $table->string('summary');
+            $table->string('learning_url')->nullable();
+            $table->text('description')->nullable();
             $table->integer('course_category_id')->unsigned();
             $table->integer('tutor_id')->unsigned();
             $table->integer('total_no_of_users_in_batch')->unsigned();
             $table->integer('total_no_of_referrals_needed')->unsigned();
             $table->decimal('price', 8, 2);
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->string('video_url')->nullable();
-            $table->string('status');
+            $table->string('status')->default(1);
             $table->timestamps();
         });
     }

@@ -17,12 +17,14 @@ class CreateTutorProfilesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('title')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone', 15)->nullable();
             $table->text('description')->nullable();
             $table->string('photo')->nullable();
-            $table->string('facebook_url');
-            $table->string('website_url');
-            $table->string('linkedIn_url');
-            $table->string('youtube_url');
+            $table->string('facebook_url')->nullable();
+            $table->string('website_url')->nullable();
+            $table->string('linkedIn_url')->nullable();
+            $table->string('twitter_url')->nullable();
             $table->timestamps();
         });
     }

@@ -59,9 +59,9 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::resource('user', 'UserController', ['except' => ['show']]);
-	Route::resource('tutor', 'UserController', ['except' => ['show']]);
-	Route::resource('admin', 'UserController', ['except' => ['show']]);
+	//Route::resource('user', 'UserController', ['except' => ['show']]);
+	//Route::resource('tutor', 'UserController', ['except' => ['show']]);
+	//Route::resource('admin', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
@@ -85,7 +85,6 @@ Route::get('/purchase-history', 'UsersController@mypurchases')->name('purchase-h
 
 Route::get('/dat-tables', 'UsersController@tutortable')->name('tutor-table');
 Route::get('/user-profile', 'UsersController@profile')->name('profile');
-
 //For Looged in Tutors
 Route::get('/tutor-profile', 'UsersController@tutor_profile')->name('tutor-profile');
 Route::get('/tutor-courses', 'UsersController@tutor_courses')->name('tutor-courses');
@@ -93,3 +92,4 @@ Route::get('/create-course', 'UsersController@create_course')->name('create-cour
 Route::get('/messages', 'UsersController@messages')->name('messages');
 Route::get('/tutor-review', 'UsersController@tutor_review')->name('tutor-review');
 Route::get('/tutor-dashboard', 'UsersController@tutor_dashboard')->name('tutor-dashboard');
+

@@ -2,6 +2,7 @@
 
 namespace GriffonTech\Course\Models;
 
+use GriffonTech\User\Models\UserProxy;
 use Illuminate\Database\Eloquent\Model;
 use GriffonTech\Course\Contracts\CourseReview as CourseReviewContract;
 
@@ -17,9 +18,14 @@ class CourseReview extends Model implements CourseReviewContract
         return $this->belongsTo(CourseProxy::modelClass(), 'course_id', 'id');
     }
 
-    public function course_batch_id()
+    public function course_batch()
     {
-        return $this->belongsTo(CourseProxy::modelClass(), 'course_batch_id', 'id');
+        return $this->belongsTo(CourseBatchProxy::modelClass(), 'course_batch_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(UserProxy::modelClass(), 'user_id', 'id');
     }
 
 }
