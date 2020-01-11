@@ -25,12 +25,12 @@ class CourseRegistrationRepository extends Repository
 
     public function getUserCourses($user_id)
     {
-        return $this->model->with([
-            'course',
-            ])
+        $courses_ids = $this->model
+            ->query()
             ->where('user_id', $user_id)
-            ->latest()
-            ->get();
+            ->pluck('course_id')
+            ->toArray();
+        return app(CourseRepository::class)->findWhereIn('id', $courses_ids);
     }
 
 }
