@@ -2,6 +2,7 @@
 
 namespace GriffonTech\Tutor\Http\Controllers;
 use GriffonTech\Tutor\Repositories\TutorProfileRepository;
+use Illuminate\Http\Request;
 
 /**
  * Tutor controller for the tutor basically for the tasks of users which will be
@@ -29,20 +30,45 @@ class TutorController extends Controller
 
     public function __construct(TutorProfileRepository $tutorProfileRepository)
     {
+        $this->middleware('user');
+
         $this->_config = request('_config');
 
-        $this->$tutorProfileRepository = $tutorProfileRepository;
+        $this->tutorProfileRepository = $tutorProfileRepository;
     }
 
 
-    public function show()
+    public function edit()
     {
-        return view($this->_config['view']);
+        $tutor = $this->tutorProfileRepository->firstOrCreate(['user_id' => auth('user')->user()->id]);
+
+        return view($this->_config['view'], compact('tutor'));
     }
 
-    public function update()
-    {
 
+
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'description' => 'required',
+        ]);
+
+        $data = $request->input();
+
+        $tutorProfile = $this->tutorProfileRepository->findOneByField('user_id', auth('user')->user()->id);
+
+        $tutorProfile = $tutorProfile->update($data);
+
+        if ($tutorProfile) {
+            session()->flash('success', 'Your profile was successfully updated!');
+        } else {
+            session()->flash('error', 'Your profile could not be updated. Please try again');
+        }
+        return redirect()->route($this->_config['redirect']);
     }
     
 }

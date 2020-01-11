@@ -32,7 +32,7 @@ class CourseRepository extends Repository
      */
     public function findBySlugOrFail($slug, $columns = null)
     {
-        $course = $this->model->findOneWhere([
+        $course = $this->findOneWhere([
             'url_key' => $slug,
         ]);
 
@@ -43,6 +43,14 @@ class CourseRepository extends Repository
         }
 
         return $course;
+    }
+
+    public function findTutorCourses($tutor_id, $columns = '*')
+    {
+        return $this->model->query()
+            ->select($columns)
+            ->where('tutor_id', $tutor_id)
+            ->get();
     }
 
     public function create(array $attributes)

@@ -4,6 +4,7 @@ namespace GriffonTech\Tutor\Http\Controllers;
 use GriffonTech\Course\Repositories\CourseCategoryRepository;
 use GriffonTech\Course\Repositories\CourseRepository;
 use GriffonTech\Course\Repositories\CourseBatchRepository;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 
@@ -63,34 +64,39 @@ class CourseController extends Controller
 
     public function index()
     {
-        return view($this->_config['view']);
+        $courses = $this->courseRepository->findTutorCourses(auth('user')->user()->id);
+        return view($this->_config['view'])->with(compact('courses'));
     }
 
 
     public function create()
     {
-        $courseCategoriesList = $this->courseCategoryRepository->getList();
-        return view($this->_config['view'])->with(compact('courseCategoriesList'));
+        $categories = $this->courseCategoryRepository->getList()->prepend('--Select Category--' ,'');
+        return view($this->_config['view'])->with(compact('categories'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required',
+            'course_category_id' => 'required',
+            'summary' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'tutor_no_users_in_batch' => 'required',
-            'total_no_referrals_needed' => 'required',
+            'total_no_of_users_in_batch' => 'required',
+            'total_no_of_referrals_needed' => 'required',
         ]);
 
         $data = $request->input();
 
+
         $data['tutor_id'] = auth('user')->user()->id;
+
 
         $course = $this->courseRepository->create($data);
 
         if ($course) {
-            if ($request->input('number_of_batch') > 0) {
+            if ((int)$request->input('number_of_batch') > 0) {
                 $this->courseBatchRepository->createBatches($request->input('number_of_batch'), $course);
             }
             session()->flash('success', 'Your course was successfully created');
@@ -111,18 +117,61 @@ class CourseController extends Controller
         return view($this->_config['view'])->with(compact('course'));
     }
 
-    public function edit()
+    public function edit($slug)
     {
-
-        return view($this->_config['view']);
+        try {
+            $course = $this->courseRepository->findBySlugOrFail($slug);
+        } catch (ModelNotFoundException $modelNotFoundException) {
+            // handle error
+        }
+        $categories = $this->courseCategoryRepository->getList()->prepend('--Select Category--' ,'');
+        return view($this->_config['view'])->with(compact('categories', 'course'));
     }
 
-    public function update()
+    public function update(Request $request, $slug)
     {
+        $request->validate([
+            'name' => 'required',
+            'course_category_id' => 'required',
+            'summary' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'total_no_of_referrals_needed' => 'required',
+        ]);
 
+        try {
+            $course = $this->courseRepository->findBySlugOrFail($slug);
+
+        } catch (ModelNotFoundException $modelNotFoundException) {
+
+            session()->flash('error', 'Course does not exist!');
+            return redirect()->route($this->_config['redirect']);
+        }
+        $course =  $course->update($request->input());
+
+        if ($course) {
+            session()->flash('success', 'Course was successfully updated!');
+        } else {
+            session()->flash('error', 'Course could not be successfully updated!');
+        }
+        return redirect()->route($this->_config['redirect']);
     }
 
+
+    /**
+     *
+     */
     public function destroy()
+    {
+
+    }
+
+    public function review()
+    {
+
+    }
+
+    public function course_batch()
     {
 
     }

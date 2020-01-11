@@ -17,7 +17,9 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('url_key');
-            $table->string('description');
+            $table->string('summary');
+            $table->string('learning_url')->nullable();
+            $table->text('description')->nullable();
             $table->integer('course_category_id')->unsigned();
             $table->integer('tutor_id')->unsigned();
             $table->integer('total_no_of_users_in_batch')->unsigned();

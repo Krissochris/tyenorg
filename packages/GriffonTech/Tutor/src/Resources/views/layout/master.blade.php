@@ -27,7 +27,49 @@
 @include('tutor::layout.header.index')
 <div id="wrapper">
     @include('tutor::layout.sidebar.index')
-    @yield('content')
+
+    <div id="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{route('tutor-courses')}}" style="text-decoration: none">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Add Course</li>
+            </ol>
+
+            @if(Session::has('success'))
+                <p class="alert alert-success">{{ Session::get('success') }}</p>
+            @endif
+
+            @if(Session::has('warning'))
+                <p class="alert alert-warning">{{ Session::get('warning') }}</p>
+            @endif
+
+            @if(Session::has('info'))
+                <p class="alert alert-info">{{ Session::get('info') }}</p>
+            @endif
+            @if(Session::has('error'))
+                <p class="alert alert-danger">{{ Session::get('error') }}</p>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @yield('content')
+
+        </div>
+
+    </div>
+
+
 </div>
 <!-- /#wrapper -->
 @include('tutor::layout.footer.index')

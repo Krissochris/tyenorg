@@ -12,7 +12,7 @@ Route::group(['middleware' => ['web']], function() {
             'view' => 'tutor::tutor.course.create',
         ])->name('tutor.courses.create');
 
-        Route::get('courses/view', 'GriffonTech\Tutor\Http\Controllers\CourseController@show')->defaults('_config', [
+        Route::get('courses/view/{slug}', 'GriffonTech\Tutor\Http\Controllers\CourseController@show')->defaults('_config', [
             'view' => 'tutor::tutor.course.view',
         ])->name('tutor.courses.view');
 
@@ -24,7 +24,7 @@ Route::group(['middleware' => ['web']], function() {
             'redirect' => 'tutor.courses.index',
         ])->name('tutor.courses.create');
 
-        Route::post('courses/edit/{slug}', 'GriffonTech\Tutor\Http\Controllers\CourseController@show')->defaults('_config', [
+        Route::post('courses/edit/{slug}', 'GriffonTech\Tutor\Http\Controllers\CourseController@update')->defaults('_config', [
             'redirect' => 'tutor.courses.index',
         ])->name('tutor.courses.edit');
 
@@ -36,19 +36,19 @@ Route::group(['middleware' => ['web']], function() {
 
 
         // Tutor profile
-        Route::get('profile/edit', 'GriffonTech\Tutor\Http\Controllers\ProfileController@index')->defaults('_config', [
+        Route::get('profile/edit', 'GriffonTech\Tutor\Http\Controllers\TutorController@edit')->defaults('_config', [
             'view' => 'tutor::tutor.profile.edit',
         ])->name('tutor.profile.edit');
 
-        Route::post('profile/edit', 'GriffonTech\Tutor\Http\Controllers\ProfileController@show')->defaults('_config', [
+        Route::post('profile/edit', 'GriffonTech\Tutor\Http\Controllers\TutorController@update')->defaults('_config', [
             'redirect' => 'tutor.profile.edit',
-        ])->name('tutor.courses.edit');
+        ])->name('tutor.profile.edit');
 
 
         // tutor Reviews
         Route::get('reviews', 'GriffonTech\Tutor\Http\Controllers\ReviewController@index')->defaults('_config', [
             'view' => 'tutor::tutor.review.index',
-        ])->name('tutor.index.index');
+        ])->name('tutor.review.index');
     });
 
 });

@@ -22,4 +22,12 @@ class CourseReviewRepository extends Repository
     {
         return 'GriffonTech\Course\Contracts\CourseReview';
     }
+
+    public function findCoursesReviews($courses_ids)
+    {
+        return $this->model->with(['course:id,name', 'course_batch', 'user:id,name'])
+            ->whereIn('course_id', $courses_ids)
+            ->latest()
+            ->get();
+    }
 }

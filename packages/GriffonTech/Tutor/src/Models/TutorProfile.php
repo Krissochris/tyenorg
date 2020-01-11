@@ -7,5 +7,10 @@ use \GriffonTech\Tutor\Contracts\TutorProfile as TutorContract;
 
 class TutorProfile extends Model implements TutorContract
 {
-    protected $fillable = [];
+
+    protected $fillable = [
+        'user_id', 'title', 'description', 'photo','phone','email',
+        'facebook_url', 'website_url', 'linkedIn_url', 'youtube_url',
+    ];
+
 }
