@@ -20,10 +20,18 @@ class Course extends Model implements CourseContract
         return $this->belongsTo(CourseCategoryProxy::modelClass(), 'course_category_id', 'id');
     }
 
-
+    public function course_batches()
+    {
+        return $this->hasMany(CourseBatchProxy::modelClass(), 'course_id', 'id');
+    }
 
     public function tutor()
     {
         return $this->belongsTo(UserProxy::modelClass(), 'tutor_id', 'id');
+    }
+
+    public function course_registrations()
+    {
+        return $this->hasMany(CourseRegistrationProxy::modelClass(), 'course_id', 'id');
     }
 }

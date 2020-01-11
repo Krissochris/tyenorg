@@ -78,7 +78,7 @@ Route::group(['middleware' => ['web']], function(){
                     'view' => 'shop::users.account.course.index'
                 ])->name('user.course.index');
 
-                Route::get('my-courses/show', 'GriffonTech\User\Http\Controllers\CourseController@show')->defaults('_config', [
+                Route::get('my-courses/show/{slug}', 'GriffonTech\User\Http\Controllers\CourseController@show')->defaults('_config', [
                     'view' => 'shop::users.account.course.show'
                 ])->name('user.course.show');
 

@@ -2,6 +2,8 @@
 namespace GriffonTech\User\Models;
 
 
+use GriffonTech\Tutor\Models\TutorProfile;
+use GriffonTech\Tutor\Models\TutorProfileProxy;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -37,4 +39,9 @@ class User extends Authenticatable implements UserContract
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function tutor_profile()
+    {
+        return $this->hasOne(TutorProfileProxy::modelClass(), 'user_id', 'id');
+    }
 }
