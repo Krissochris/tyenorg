@@ -188,6 +188,7 @@ return [
         GriffonTech\Shop\Providers\ShopServiceProvider::class,
         GriffonTech\Core\Providers\CoreServiceProvider::class,
         GriffonTech\Course\Providers\CourseServiceProvider::class,
+        GriffonTech\Admin\Providers\AdminServiceProvider::class,
 
     ],
 
