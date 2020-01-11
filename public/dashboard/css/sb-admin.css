@@ -10912,3 +10912,6 @@ body.sidebar-toggled footer.sticky-footer {
     width: calc(100% - 90px);
   }
 }
+
+.grow { transition: all .1s ease-in-out; }
+.grow:hover { transform: scale(1.3); }
