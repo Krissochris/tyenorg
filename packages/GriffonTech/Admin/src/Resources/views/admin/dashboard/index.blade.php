@@ -10,7 +10,7 @@
                     <div class="card-body-icon">
                         <i class="fas fa-fw fa-award"></i>
                     </div>
-                    <div class="mr-5">286 Courses!</div>
+                    <div class="mr-5"> {{ $courses_total }} {{ str_plural('Course', $courses_total) }}!</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="{{ route('admin.courses.index') }}">
                     <span class="float-left">View Details</span>
@@ -26,7 +26,7 @@
                     <div class="card-body-icon">
                         <i class="fas fa-fw fa-users"></i>
                     </div>
-                    <div class="mr-5">507 Users!</div>
+                    <div class="mr-5">{{ $users_total }} {{ str_plural('User', $users_total) }}!</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="{{ route('admin.users.index') }}">
                     <span class="float-left">View Details</span>
@@ -42,7 +42,7 @@
                     <div class="card-body-icon">
                         <i class="fas fa-fw fa-chalkboard-teacher"></i>
                     </div>
-                    <div class="mr-5">53 Tutors!</div>
+                    <div class="mr-5">{{ $tutors_total }} {{ str_plural('Tutor', $tutors_total) }}!</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="{{ route('admin.tutors.index') }}">
                     <span class="float-left">View Details</span>
@@ -58,7 +58,7 @@
                     <div class="card-body-icon">
                         <i class="fas fa-fw fa-star"></i>
                     </div>
-                    <div class="mr-5">143 Reviews!</div>
+                    <div class="mr-5">{{ $reviews_total }} {{ str_plural('Review', $reviews_total) }}!</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="{{ route('admin.reviews.index') }}">
                     <span class="float-left">View Details</span>
@@ -82,6 +82,7 @@
     </div>
 
     <!-- DataTables Example -->
+{{--
     <div class="card mb-3">
         <div class="card-header">
             <i class="fas fa-table"></i>
@@ -572,5 +573,6 @@
         </div>
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
     </div>
+--}}
 
 @endsection

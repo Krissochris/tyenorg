@@ -33,7 +33,7 @@
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="{{route('admin.admins.dashboard')}}" style="text-decoration: none">Dashboard</a>
+                    <a href="{{route('admin.dashboard.index')}}" style="text-decoration: none">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item active">My-Courses</li>
             </ol>
