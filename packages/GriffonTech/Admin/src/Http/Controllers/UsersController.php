@@ -4,19 +4,29 @@
 namespace GriffonTech\Admin\Http\Controllers;
 
 
+use GriffonTech\User\Contracts\User;
+use GriffonTech\User\Repositories\UserRepository;
+use Illuminate\Http\Request;
+
 class UsersController extends Controller
 {
 
     protected $_config;
 
-    public function __construct()
+    protected $userRepository;
+
+    public function __construct(UserRepository $userRepository)
     {
         $this->_config = request('_config');
+
+        $this->userRepository = $userRepository;
+
     }
 
     public function index()
     {
-        return view($this->_config['view']);
+        $users = $this->userRepository->paginate(30);
+        return view($this->_config['view'])->with(compact('users'));
     }
 
     public function create()
@@ -24,18 +34,28 @@ class UsersController extends Controller
         return view($this->_config['view']);
     }
 
-    public function show()
+    public function show(User $user)
     {
-        return view($this->_config['view']);
+        return view($this->_config['view'], compact('user'));
     }
-    public function edit()
+    public function edit(User $user)
     {
-        return view($this->_config['view']);
+        return view($this->_config['view'], compact('user'));
     }
 
-    public function update()
+    public function update(Request $request, User $user)
     {
-        return view($this->_config['view']);
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $userUpdated = $user->update($request->input());
+        if ($userUpdated) {
+            session()->flash('success', 'User was successfully updated!');
+        } else {
+            session()->flash('error', 'User could not be updated. Please try again.');
+        }
+        return redirect()->route($this->_config['redirect'], $user->id);
     }
 
     public function store()

@@ -4,19 +4,29 @@
 namespace GriffonTech\Admin\Http\Controllers;
 
 
+use GriffonTech\Tutor\Repositories\TutorProfileRepository;
+
 class TutorsController extends Controller
 {
 
     protected $_config;
 
-    public function __construct()
+    protected $tutorProfileRepository;
+
+    public function __construct(
+        TutorProfileRepository $tutorProfileRepository
+    )
     {
         $this->_config = request('_config');
+
+        $this->tutorProfileRepository = $tutorProfileRepository;
     }
 
     public function index()
     {
-        return view($this->_config['view']);
+        $tutors = $this->tutorProfileRepository->with(['user:id,name'])
+            ->paginate(15,['id','title','user_id']);
+        return view($this->_config['view'], compact('tutors'));
     }
 
     public function create()

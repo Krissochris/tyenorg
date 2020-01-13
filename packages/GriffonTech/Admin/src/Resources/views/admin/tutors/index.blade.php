@@ -12,11 +12,11 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
                         <thead class="thead-dark">
                         <tr>
                             <th>S/N</th>
-                            <th>Username</th>
+                            <th> Name </th>
                             <th>Title</th>
                             <th>Course(s)</th>
                             <th>Registered</th>
@@ -24,164 +24,24 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($tutors as $tutor)
                         <tr>
-                            <td>1</td>
-                            <td>Andrew</td>
-                            <td>Web Developer</td>
+                            <td> {{ $tutor->user->id }}</td>
+                            <td> {{ $tutor->user->name }} </td>
+                            <td> {{ $tutor->title }} </td>
                             <td>14</td>
                             <td>2009/10/09</td>
                             <td>
-                                <a href="{{route('admin.tutors.show')}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                                <a href="{{route('admin.tutors.edit')}}"><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
+                                <a href="{{route('admin.tutors.show', $tutor->id)}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
+                                <a href="{{route('admin.tutors.edit', $tutor->id)}}"><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
                                 <a href="#"><i class="fa fa-eye-slash text-dark grow" title="lock"></i></a>&nbsp;&nbsp;
                                 <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Kingston</td>
-                            <td>Graphic Designer</td>
-                            <td>12</td>
-                            <td>2012/10/13</td>
-                            <td>
-                                <a href="{{route('admin.users.show')}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                                <a href="{{route('admin.users.edit')}}"><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-eye-slash text-dark grow" title="lock"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Andrew</td>
-                            <td>Web Developer</td>
-                            <td>14</td>
-                            <td>2009/10/09</td>
-                            <td>
-                                <a href="{{route('admin.tutors.show')}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                                <a href="{{route('admin.tutors.edit')}}"><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-eye-slash text-dark grow" title="lock"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Kingston</td>
-                            <td>Graphic Designer</td>
-                            <td>12</td>
-                            <td>2012/10/13</td>
-                            <td>
-                                <a href="{{route('admin.users.show')}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                                <a href="{{route('admin.users.edit')}}"><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-eye-slash text-dark grow" title="lock"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Andrew</td>
-                            <td>Web Developer</td>
-                            <td>14</td>
-                            <td>2009/10/09</td>
-                            <td>
-                                <a href="{{route('admin.tutors.show')}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                                <a href="{{route('admin.tutors.edit')}}"><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-eye-slash text-dark grow" title="lock"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Kingston</td>
-                            <td>Graphic Designer</td>
-                            <td>12</td>
-                            <td>2012/10/13</td>
-                            <td>
-                                <a href="{{route('admin.users.show')}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                                <a href="{{route('admin.users.edit')}}"><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-eye-slash text-dark grow" title="lock"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Andrew</td>
-                            <td>Web Developer</td>
-                            <td>14</td>
-                            <td>2009/10/09</td>
-                            <td>
-                                <a href="{{route('admin.tutors.show')}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                                <a href="{{route('admin.tutors.edit')}}"><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-eye-slash text-dark grow" title="lock"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Kingston</td>
-                            <td>Graphic Designer</td>
-                            <td>12</td>
-                            <td>2012/10/13</td>
-                            <td>
-                                <a href="{{route('admin.users.show')}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                                <a href="{{route('admin.users.edit')}}"><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-eye-slash text-dark grow" title="lock"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Andrew</td>
-                            <td>Web Developer</td>
-                            <td>14</td>
-                            <td>2009/10/09</td>
-                            <td>
-                                <a href="{{route('admin.tutors.show')}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                                <a href="{{route('admin.tutors.edit')}}"><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-eye-slash text-dark grow" title="lock"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Kingston</td>
-                            <td>Graphic Designer</td>
-                            <td>12</td>
-                            <td>2012/10/13</td>
-                            <td>
-                                <a href="{{route('admin.users.show')}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                                <a href="{{route('admin.users.edit')}}"><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-eye-slash text-dark grow" title="lock"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Andrew</td>
-                            <td>Web Developer</td>
-                            <td>14</td>
-                            <td>2009/10/09</td>
-                            <td>
-                                <a href="{{route('admin.tutors.show')}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                                <a href="{{route('admin.tutors.edit')}}"><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-eye-slash text-dark grow" title="lock"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Kingston</td>
-                            <td>Graphic Designer</td>
-                            <td>12</td>
-                            <td>2012/10/13</td>
-                            <td>
-                                <a href="{{route('admin.users.show')}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                                <a href="{{route('admin.users.edit')}}"><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-eye-slash text-dark grow" title="lock"></i></a>&nbsp;&nbsp;
-                                <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                            </td>
-                        </tr>
+                        @endforeach
                         </tbody>
                     </table>
+                    {{ $tutors->links() }}
                 </div>
             </div>
         </div>

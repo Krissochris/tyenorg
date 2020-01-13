@@ -34,32 +34,36 @@
                             <tbody>
                             <tr>
                                 <td>Full Name:</td>
-                                <td>Agbafor Olisa Emmanuel</td>
+                                <td> {{ $user->name }}</td>
                             </tr>
                             <tr>
                                 <td>Username:</td>
-                                <td>Agbafolisa</td>
+                                <td> {{ $user->username }}</td>
                             </tr>
                             <tr>
                                 <td>Email:</td>
-                                <td>agbafolisa@gmail.com</td>
+                                <td> {{ $user->email }} </td>
+                            </tr>
+                            <tr>
+                                <td>Phone Number:</td>
+                                <td> {{ $user->phone_number }} </td>
+                            </tr>
+                            <tr>
+                                <td>Is pro user:</td>
+                                <td> {{ ($user->is_pro_user) ? 'Yes' : 'No' }} </td>
+                            </tr>
+                            <tr>
+                                <td>Status:</td>
+                                <td> {{ ($user->status) ? 'active' : 'unactive' }} </td>
                             </tr>
                             <tr>
                                 <td>Registered:</td>
-                                <td>2019-08-12 08:54:23 AM</td>
+                                <td> {{ $user->created_at }}</td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer">
-                        <div class="float-right">
-                            Social links: &nbsp;&nbsp;&nbsp;
-                            <a href="#"><i class="fab fa-facebook-square fa-lg text-dark grow"></i></a>&nbsp;&nbsp;
-                            <a href="#"><i class="fab fa-twitter fa-lg text-dark grow"></i></a>&nbsp;&nbsp;
-                            <a href="#"><i class="fab fa-instagram fa-lg text-dark grow"></i></a>&nbsp;&nbsp;
-                            <a href="#"><i class="fab fa-linkedin fa-lg text-dark grow"></i></a>&nbsp;&nbsp;&nbsp;
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

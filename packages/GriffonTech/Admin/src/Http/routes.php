@@ -50,15 +50,15 @@ Route::group(['middleware' => ['web']], function (){
                 'redirect' => 'admin.users.index'
             ])->name('admin.users.create');
 
-            Route::get('users/edit', 'GriffonTech\Admin\Http\Controllers\UsersController@edit')->defaults('_config', [
+            Route::get('users/edit/{user}', 'GriffonTech\Admin\Http\Controllers\UsersController@edit')->defaults('_config', [
                 'view' => 'admin::admin.users.edit'
             ])->name('admin.users.edit');
 
-            Route::post('users/edit', 'GriffonTech\Admin\Http\Controllers\UsersController@update')->defaults('_config', [
-                'redirect' => 'admin.users.index'
-            ])->name('admin.users.show');
+            Route::post('users/edit/{user}', 'GriffonTech\Admin\Http\Controllers\UsersController@update')->defaults('_config', [
+                'redirect' => 'admin.users.edit'
+            ])->name('admin.users.edit');
 
-            Route::get('users/show', 'GriffonTech\Admin\Http\Controllers\UsersController@show')->defaults('_config', [
+            Route::get('users/show/{user}', 'GriffonTech\Admin\Http\Controllers\UsersController@show')->defaults('_config', [
                 'view' => 'admin::admin.users.show'
             ])->name('admin.users.show');
 
@@ -76,15 +76,15 @@ Route::group(['middleware' => ['web']], function (){
                 'redirect' => 'admin.tutors.index'
             ])->name('admin.tutors.create');
 
-            Route::get('tutors/edit', 'GriffonTech\Admin\Http\Controllers\TutorsController@edit')->defaults('_config', [
+            Route::get('tutors/edit/{tutor}', 'GriffonTech\Admin\Http\Controllers\TutorsController@edit')->defaults('_config', [
                 'view' => 'admin::admin.tutors.edit'
             ])->name('admin.tutors.edit');
 
-            Route::post('tutors/edit', 'GriffonTech\Admin\Http\Controllers\TutorsController@update')->defaults('_config', [
+            Route::post('tutors/edit/{tutor}', 'GriffonTech\Admin\Http\Controllers\TutorsController@update')->defaults('_config', [
                 'redirect' => 'admin.tutors.index'
             ])->name('admin.tutors.show');
 
-            Route::get('tutors/show', 'GriffonTech\Admin\Http\Controllers\TutorsController@show')->defaults('_config', [
+            Route::get('tutors/show/{tutor}', 'GriffonTech\Admin\Http\Controllers\TutorsController@show')->defaults('_config', [
                 'view' => 'admin::admin.tutors.show'
             ])->name('admin.tutors.show');
 
@@ -243,6 +243,6 @@ Route::group(['middleware' => ['web']], function (){
                 'view' => 'admin::admin.messages.show'
             ])->name('admin.messages.show');
         });
-        
+
     });
 });

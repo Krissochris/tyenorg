@@ -18,7 +18,7 @@ class CreateTutorProfilesTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('title')->nullable();
             $table->string('email')->nullable();
-            $table->string('phone', 15)->nullable();
+            $table->string('phone', 40)->nullable();
             $table->text('description')->nullable();
             $table->string('photo')->nullable();
             $table->string('facebook_url')->nullable();
