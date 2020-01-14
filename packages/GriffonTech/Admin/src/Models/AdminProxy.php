@@ -1,7 +1,7 @@
 <?php
 
 
-namespace GriffonTech\Admin\Model;
+namespace GriffonTech\Admin\Models;
 
 use Konekt\Concord\Proxies\ModelProxy;
 

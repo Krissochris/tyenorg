@@ -22,6 +22,11 @@
             <span>Admins</span></a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.categories.index')}}">
+            <i class="fas fa-fw fa-award"></i>
+            <span>Categories</span></a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="{{route('admin.courses.index')}}">
             <i class="fas fa-fw fa-award"></i>
             <span>Courses</span></a>

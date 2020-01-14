@@ -76,15 +76,15 @@ Route::group(['middleware' => ['web']], function (){
                 'redirect' => 'admin.tutors.index'
             ])->name('admin.tutors.create');
 
-            Route::get('tutors/edit/{tutor}', 'GriffonTech\Admin\Http\Controllers\TutorsController@edit')->defaults('_config', [
+            Route::get('tutors/edit/{id}', 'GriffonTech\Admin\Http\Controllers\TutorsController@edit')->defaults('_config', [
                 'view' => 'admin::admin.tutors.edit'
             ])->name('admin.tutors.edit');
 
-            Route::post('tutors/edit/{tutor}', 'GriffonTech\Admin\Http\Controllers\TutorsController@update')->defaults('_config', [
-                'redirect' => 'admin.tutors.index'
-            ])->name('admin.tutors.show');
+            Route::post('tutors/edit/{id}', 'GriffonTech\Admin\Http\Controllers\TutorsController@update')->defaults('_config', [
+                'redirect' => 'admin.tutors.edit'
+            ])->name('admin.tutors.edit');
 
-            Route::get('tutors/show/{tutor}', 'GriffonTech\Admin\Http\Controllers\TutorsController@show')->defaults('_config', [
+            Route::get('tutors/show/{id}', 'GriffonTech\Admin\Http\Controllers\TutorsController@show')->defaults('_config', [
                 'view' => 'admin::admin.tutors.show'
             ])->name('admin.tutors.show');
 
@@ -102,17 +102,50 @@ Route::group(['middleware' => ['web']], function (){
                 'redirect' => 'admin.admins.index'
             ])->name('admin.admins.create');
 
-            Route::get('admins/edit', 'GriffonTech\Admin\Http\Controllers\AdminsController@edit')->defaults('_config', [
+            Route::get('admins/edit/{id}', 'GriffonTech\Admin\Http\Controllers\AdminsController@edit')->defaults('_config', [
                 'view' => 'admin::admin.admins.edit'
             ])->name('admin.admins.edit');
 
-            Route::post('admins/edit', 'GriffonTech\Admin\Http\Controllers\AdminsController@update')->defaults('_config', [
-                'redirect' => 'admin.admins.index'
-            ])->name('admin.admins.show');
+            Route::post('admins/edit/{id}', 'GriffonTech\Admin\Http\Controllers\AdminsController@update')->defaults('_config', [
+                'redirect' => 'admin.admins.edit'
+            ])->name('admin.admins.edit');
 
-            Route::get('admins/show', 'GriffonTech\Admin\Http\Controllers\AdminsController@show')->defaults('_config', [
+            Route::get('admins/show/{id}', 'GriffonTech\Admin\Http\Controllers\AdminsController@show')->defaults('_config', [
                 'view' => 'admin::admin.admins.show'
             ])->name('admin.admins.show');
+
+
+            // Course Categories
+            Route::get('categories/index', 'GriffonTech\Admin\Http\Controllers\CategoriesController@index')->defaults('_config', [
+                'view' => 'admin::admin.categories.index'
+            ])->name('admin.categories.index');
+
+
+            Route::get('categories/create', 'GriffonTech\Admin\Http\Controllers\CategoriesController@create')->defaults('_config', [
+                'view' => 'admin::admin.categories.create'
+            ])->name('admin.categories.create');
+
+
+            Route::post('categories/create', 'GriffonTech\Admin\Http\Controllers\CategoriesController@store')->defaults('_config', [
+                'redirect' => 'admin.categories.index'
+            ])->name('admin.categories.create');
+
+
+            Route::get('categories/edit/{id}', 'GriffonTech\Admin\Http\Controllers\CategoriesController@edit')->defaults('_config', [
+                'view' => 'admin::admin.categories.edit'
+            ])->name('admin.categories.edit');
+
+
+            Route::post('categories/edit/{id}', 'GriffonTech\Admin\Http\Controllers\CategoriesController@update')->defaults('_config', [
+                'redirect' => 'admin.categories.index'
+            ])->name('admin.categories.edit');
+
+
+            Route::get('categories/show/{id}', 'GriffonTech\Admin\Http\Controllers\CategoriesController@show')->defaults('_config', [
+                'view' => 'admin::admin.categories.show'
+            ])->name('admin.categories.show');
+
+
 
             // Courses
             Route::get('courses/index', 'GriffonTech\Admin\Http\Controllers\CoursesController@index')->defaults('_config', [
@@ -138,6 +171,7 @@ Route::group(['middleware' => ['web']], function (){
             Route::get('courses/show', 'GriffonTech\Admin\Http\Controllers\CoursesController@show')->defaults('_config', [
                 'view' => 'admin::admin.courses.show'
             ])->name('admin.courses.show');
+
 
 
             // Blogs

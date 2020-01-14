@@ -1,6 +1,6 @@
 <?php
 
-namespace GriffonTech\Admin\Model;
+namespace GriffonTech\Admin\Models;
 
 use \GriffonTech\Admin\Contracts\Admin as AdminContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;

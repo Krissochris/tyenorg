@@ -82,7 +82,7 @@ return [
 
         'admins' => [
             'driver' => 'eloquent',
-            'model' => GriffonTech\Admin\Model\Admin::class,
+            'model' => GriffonTech\Admin\Models\Admin::class,
         ]
 
         // 'users' => [

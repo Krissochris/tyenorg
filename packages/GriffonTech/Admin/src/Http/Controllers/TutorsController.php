@@ -4,7 +4,9 @@
 namespace GriffonTech\Admin\Http\Controllers;
 
 
+use GriffonTech\Tutor\Contracts\TutorProfile;
 use GriffonTech\Tutor\Repositories\TutorProfileRepository;
+use Illuminate\Http\Request;
 
 class TutorsController extends Controller
 {
@@ -25,7 +27,7 @@ class TutorsController extends Controller
     public function index()
     {
         $tutors = $this->tutorProfileRepository->with(['user:id,name'])
-            ->paginate(15,['id','title','user_id']);
+            ->paginate(15,['id','title','user_id', 'created_at']);
         return view($this->_config['view'], compact('tutors'));
     }
 
@@ -34,18 +36,35 @@ class TutorsController extends Controller
         return view($this->_config['view']);
     }
 
-    public function show()
+
+    public function show( $id)
     {
-        return view($this->_config['view']);
-    }
-    public function edit()
-    {
-        return view($this->_config['view']);
+        $tutor = $this->tutorProfileRepository->with(['user:id,name'])
+            ->findOneWhere(['id' => $id]);
+        return view($this->_config['view'], compact('tutor'));
     }
 
-    public function update()
+
+    public function edit($id)
     {
-        return view($this->_config['view']);
+        $tutor = $this->tutorProfileRepository->findOrFail($id);
+        return view($this->_config['view'], compact('tutor'));
+    }
+
+
+
+    public function update(Request $request, $id)
+    {
+        $tutor = $this->tutorProfileRepository->findOrFail($id);
+
+        $tutorUpdated = $tutor->update($request->input());
+
+        if ($tutorUpdated) {
+            session()->flash('success', 'Tutor profile was successfully updated!');
+        } else {
+            session()->flash('error', 'Tutor profile could not be updated!');
+        }
+        return redirect()->route($this->_config['redirect'], $tutor->id);
     }
 
     public function store()
