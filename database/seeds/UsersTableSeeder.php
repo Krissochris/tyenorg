@@ -33,7 +33,7 @@ class UsersTableSeeder extends Seeder
                 factory(\GriffonTech\Blog\Models\Blog::class)->create([
                     'user_id' => $user->id
                 ])->each(function($blog) use ($user) {
-                    factory(\GriffonTech\Blog\Models\BlogComment::class, rand(1, 5))->create([
+                    factory(\GriffonTech\Blog\Models\BlogComment::class, rand(1, 3))->create([
                         'blog_id' => $blog->id,
                         'user_id' => $user->id,
                     ]);

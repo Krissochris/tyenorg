@@ -38,7 +38,7 @@ $factory->define(\GriffonTech\User\Models\User::class, function (Faker $faker) {
 
 $factory->define(\GriffonTech\Tutor\Models\TutorProfile::class, function(Faker $faker){
     return [
-        'title' => $faker->titleMale,
+        'title' => $faker->jobTitle,
         'phone' => $faker->phoneNumber,
         'description' => $faker->sentence(5)
     ];
