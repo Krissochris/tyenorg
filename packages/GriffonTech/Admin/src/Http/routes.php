@@ -237,29 +237,35 @@ Route::group(['middleware' => ['web']], function (){
 
 
             // Reviews
-            Route::get('reviews/index', 'GriffonTech\Admin\Http\Controllers\ReviewsController@index')->defaults('_config', [
+            Route::get('reviews/index', 'GriffonTech\Course\Http\Controllers\ReviewsController@index')->defaults('_config', [
                 'view' => 'admin::admin.reviews.index'
             ])->name('admin.reviews.index');
 
-            Route::get('reviews/create', 'GriffonTech\Admin\Http\Controllers\ReviewsController@create')->defaults('_config', [
+            Route::get('reviews/create', 'GriffonTech\Course\Http\Controllers\ReviewsController@create')->defaults('_config', [
                 'view' => 'admin::admin.reviews.create'
             ])->name('admin.reviews.create');
 
-            Route::post('reviews/create', 'GriffonTech\Admin\Http\Controllers\ReviewsController@store')->defaults('_config', [
+            Route::post('reviews/create', 'GriffonTech\Course\Http\Controllers\ReviewsController@store')->defaults('_config', [
                 'redirect' => 'admin.reviews.index'
             ])->name('admin.reviews.create');
 
-            Route::get('reviews/edit', 'GriffonTech\Admin\Http\Controllers\ReviewsController@edit')->defaults('_config', [
+            Route::get('reviews/edit/{id}', 'GriffonTech\Course\Http\Controllers\ReviewsController@edit')->defaults('_config', [
                 'view' => 'admin::admin.reviews.edit'
             ])->name('admin.reviews.edit');
 
-            Route::post('reviews/edit', 'GriffonTech\Admin\Http\Controllers\ReviewsController@update')->defaults('_config', [
-                'redirect' => 'admin.reviews.index'
-            ])->name('admin.reviews.show');
+            Route::post('reviews/edit/{id}', 'GriffonTech\Course\Http\Controllers\ReviewsController@update')->defaults('_config', [
+                'redirect' => 'admin.reviews.edit'
+            ])->name('admin.reviews.edit');
 
             Route::get('reviews/show', 'GriffonTech\Admin\Http\Controllers\ReviewsController@show')->defaults('_config', [
                 'view' => 'admin::admin.reviews.show'
             ])->name('admin.reviews.show');
+
+            Route::get('reviews/get_course_batches/{id}', 'GriffonTech\Course\Http\Controllers\ReviewsController@getCourseBatches')->defaults('_config', [
+                'view' => 'admin::admin.reviews.course_batches'
+            ])->name('admin.reviews.get_course_batches');
+
+
 
 
             // Messages

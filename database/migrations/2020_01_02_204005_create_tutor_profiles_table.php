@@ -25,6 +25,7 @@ class CreateTutorProfilesTable extends Migration
             $table->string('website_url')->nullable();
             $table->string('linkedIn_url')->nullable();
             $table->string('twitter_url')->nullable();
+            $table->string('youtube_url')->nullable();
             $table->timestamps();
         });
     }

@@ -19,8 +19,8 @@ class CreateCourseReviewsTable extends Migration
             $table->integer('course_id')->unsigned()->index();
             $table->integer('course_batch_id')->unsigned()->index();
             $table->text('text');
-            $table->tinyInteger('rating');
-            $table->integer('status')->unsigned();
+            $table->tinyInteger('rating')->default(0);
+            $table->integer('status')->unsigned()->default(1);
             $table->timestamps();
         });
     }

@@ -9,7 +9,7 @@ use GriffonTech\Course\Contracts\CourseReview as CourseReviewContract;
 class CourseReview extends Model implements CourseReviewContract
 {
     protected $fillable = [
-        'user_id', 'course_id', 'course_batch_id', 'text', 'rating',
+        'user_id', 'course_id', 'course_batch_id', 'review', 'rating',
         'status'
     ];
 
