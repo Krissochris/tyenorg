@@ -11,7 +11,7 @@ class Course extends Model implements CourseContract
     protected $fillable = [
         'name', 'description', 'tutor_id', 'url_key', 'summary',
         'total_no_of_users_in_batch', 'total_no_of_referrals_needed', 'course_category_id',
-        'photo', 'price', 'status','learning_url','video_url'
+        'photo', 'price', 'status','learning_url','video_url', 'type'
     ];
 
 

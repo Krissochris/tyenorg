@@ -14,6 +14,16 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
  */
 class CourseRepository extends Repository
 {
+    CONST FREE = 'free';
+    CONST PRO_USER_FREE = 'pro_user_free';
+    CONST PRO_MEMBER_PAID = 'po_member_paid';
+
+    CONST TYPE = [
+        CourseRepository::FREE => 'Free Course',
+        CourseRepository::PRO_USER_FREE => 'Pro User Free',
+        CourseRepository::PRO_MEMBER_PAID => 'Pro User paid'
+    ];
+
     /**
      * Specify Model class name
      *

@@ -53,7 +53,8 @@
             "GriffonTech\\CourseCategory\\": "packages/GriffonTech/CourseCategory/src",
             "GriffonTech\\Tutor\\": "packages/GriffonTech/Tutor/src",
             "GriffonTech\\Shop\\": "packages/GriffonTech/Shop/src",
-            "GriffonTech\\Core\\": "packages/GriffonTech/Core/src"
+            "GriffonTech\\Core\\": "packages/GriffonTech/Core/src",
+            "GriffonTech\\Blog\\": "packages/GriffonTech/Blog/src"
         },
         "classmap": [
             "database/seeds",

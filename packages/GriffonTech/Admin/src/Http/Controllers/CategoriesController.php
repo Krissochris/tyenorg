@@ -91,14 +91,19 @@ class CategoriesController extends Controller
         } else {
             session()->flash('error', 'Category could not be updated. Please try again.');
         }
-        return redirect()->route($this->_config['redirect']);
+        return redirect()->route($this->_config['redirect'], $id);
     }
 
 
 
-    public function destroy()
+    public function destroy($id)
     {
-
-        return view($this->_config['view']);
+        $categoryDeleted = $this->courseCategoryRepository->delete($id);
+        if ($categoryDeleted) {
+            session()->flash('success', 'Category was successfully deleted!');
+        } else {
+            session()->flash('error', 'Category could not be deleted. Please try again later.');
+        }
+        return redirect()->route($this->_config['redirect']);
     }
 }

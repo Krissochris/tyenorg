@@ -29,7 +29,18 @@
                                 <td>
                                     <a href="{{route('admin.categories.show', $category->id)}}">view</a>&nbsp;&nbsp;
                                     <a href="{{route('admin.categories.edit', $category->id)}}"> edit </a>&nbsp;&nbsp;
-                                    <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
+                                    <a href="#"
+                                       onclick="event.preventDefault();
+                                               var response = confirm('Are you sure you want to delete this category ?');
+                                               if (response) {
+                                               document.getElementById('{{ $category->id }}').submit(); }"
+                                            ><i class="fa fa-trash text-danger grow" title="delete"></i>
+                                    </a>
+                                    <form id="{{ $category['id'] }}" action="{{ route('admin.categories.delete', $category['id']) }}" method="POST" style="display: none;">
+                                        <input type="hidden" name="_method" value="delete">
+                                        @csrf
+                                    </form>
+
                                 </td>
                             </tr>
                         @endforeach

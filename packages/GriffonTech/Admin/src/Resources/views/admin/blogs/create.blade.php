@@ -3,7 +3,6 @@
 @section("content")
 
     <div class="container">
-        <form action="">
             <div class="col-sm-11">
                 <div class="card">
                     <div class="card-header">
@@ -11,10 +10,11 @@
                         <a href="{{route('admin.blogs.index')}}" class="btn btn-dark float-right">Go Back</a>
                     </div>
                     <div class="card-body">
+                        {!! Form::open(['route' => 'admin.blogs.create']) !!}
                         <div class="row">
                             <div class="form-group col-sm-6">
-                                <label for="slug">Slug</label>
-                                <input type="text" class="form-control" id="slug" name="slug" value="{{old('slug')}}" title="This field is used to index your blog" placeholder="Blog Slug" required>
+                                <label for="slug"> User </label>
+                                {!! Form::select('user_id', $users, null, ['class'=> 'form-control']) !!}
                             </div>
                             <div class="col-sm-6">
                                 <label for="customFile">Blog Image</label>
@@ -24,21 +24,23 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" class="form-control" id="title" name="title" value="{{old('title')}}" placeholder="Title" required>
+                            {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Title']) !!}
                         </div>
+
                         <div class="form-group">
                             <label for="body">Blog body</label>
-                            <textarea name="body" id="body" cols="30" rows="10" class="form-control">{{old('body')}}</textarea>
+                            {!! Form::textarea('body', null, ['class' => 'form-control', 'placeholder' => 'Blog body...']) !!}
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <input type="submit" class="btn btn-dark" name="submit" value="Create Blog">
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-dark" name="submit" value="Create Blog">
+                        </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
-        </form>
         <hr>
     </div>
 

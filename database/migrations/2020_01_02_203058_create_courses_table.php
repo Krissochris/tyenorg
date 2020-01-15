@@ -23,10 +23,11 @@ class CreateCoursesTable extends Migration
             $table->integer('course_category_id')->unsigned();
             $table->integer('tutor_id')->unsigned();
             $table->integer('total_no_of_users_in_batch')->unsigned();
-            $table->integer('total_no_of_referrals_needed')->unsigned();
-            $table->decimal('price', 8, 2);
+            $table->integer('total_no_of_referrals_needed')->unsigned()->nullable();
+            $table->decimal('price', 8, 2)->nullable();
             $table->string('photo')->nullable();
             $table->string('video_url')->nullable();
+            $table->string('type', 30);
             $table->string('status')->default(1);
             $table->timestamps();
         });

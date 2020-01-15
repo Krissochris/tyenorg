@@ -11,176 +11,39 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead class="thead-dark">
                     <tr>
                         <th>S/N</th>
                         <th>Title</th>
-                        <th>Blog</th>
+                        <th>Author </th>
                         <th>Comments</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Andrew Show</td>
-                        <td> Lorem ipsum dolor sit amet...</td>
-                        <td>45</td>
-                        <td>
-                            <a href="{{route('admin.blogs.show')}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                            <a href="{{route('admin.blogs.edit')}}"><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                            <a href="#"><i class="fa fa-eye-slash text-dark grow" title="unpublish"></i></a>&nbsp;&nbsp;
-                            <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Andrew Show</td>
-                        <td> Lorem ipsum dolor sit amet...</td>
-                        <td>32</td>
-                        <td>
-                            <a href=""><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-eye-slash text-dark grow" title="unpublish"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Andrew Show</td>
-                        <td> Lorem ipsum dolor sit amet...</td>
-                        <td>71</td>
-                        <td>
-                            <a href=""><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-eye-slash text-dark grow" title="unpublish"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Andrew Show</td>
-                        <td> Lorem ipsum dolor sit amet...</td>
-                        <td>32</td>
-                        <td>
-                            <a href=""><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-eye-slash text-dark grow" title="unpublish"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Andrew Show</td>
-                        <td> Lorem ipsum dolor sit amet...</td>
-                        <td>32</td>
-                        <td>
-                            <a href=""><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-eye-slash text-dark grow" title="unpublish"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Andrew Show</td>
-                        <td> Lorem ipsum dolor sit amet...</td>
-                        <td>
-                            <strong class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</strong>
-                        </td>
-                        <td>
-                            <a href=""><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-eye-slash text-dark grow" title="unpublish"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Andrew Show</td>
-                        <td> Lorem ipsum dolor sit amet...</td>
-                        <td>32</td>
-                        <td>
-                            <a href=""><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-eye-slash text-dark grow" title="unpublish"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Andrew Show</td>
-                        <td> Lorem ipsum dolor sit amet...</td>
-                        <td>
-                            <strong class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</strong>
-                        </td>
-                        <td>
-                            <a href=""><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-eye-slash text-dark grow" title="unpublish"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Andrew Show</td>
-                        <td> Lorem ipsum dolor sit amet...</td>
-                        <td>
-                            <strong class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</strong>
-                        </td>
-                        <td>
-                            <a href=""><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-eye-slash text-dark grow" title="unpublish"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Andrew Show</td>
-                        <td> Lorem ipsum dolor sit amet...</td>
-                        <td>
-                            <strong class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</strong>
-                        </td>
-                        <td>
-                            <a href=""><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-eye-slash text-dark grow" title="unpublish"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Andrew Show</td>
-                        <td> Lorem ipsum dolor sit amet...</td>
-                        <td>
-                            <strong class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</strong>
-                        </td>
-                        <td>
-                            <a href=""><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-eye-slash text-dark grow" title="unpublish"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Andrew Show</td>
-                        <td> Lorem ipsum dolor sit amet...</td>
-                        <td>
-                            <strong class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</strong>
-                        </td>
-                        <td>
-                            <a href=""><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-eye-slash text-dark grow" title="unpublish"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-trash text-danger grow" title="delete"></i></a>
-                        </td>
-                    </tr>
+                    @foreach($blogs as $blog)
+                        <tr>
+                            <td>{{ $blog->id }}</td>
+                            <td> {{ $blog->title }}</td>
+                            <td> {{ $blog->user->name }} </td>
+                            <td> {{ $blog->comments->count() }}</td>
+                            <td>
+                                <a href="{{route('admin.blogs.show', $blog->id)}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;
+                                <a href="{{route('admin.blogs.edit', $blog->id)}}"><i class="fa fa-edit grow" title="edit"></i></a>&nbsp;&nbsp;
+{{--
+                                <a href="#"><i class="fa fa-eye-slash text-dark grow" title="unpublish"></i></a>&nbsp;&nbsp;
+--}}
+                                <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
+
                     </tbody>
                 </table>
             </div>
+
+            {{ $blogs->links() }}
         </div>
     </div>
 @endsection

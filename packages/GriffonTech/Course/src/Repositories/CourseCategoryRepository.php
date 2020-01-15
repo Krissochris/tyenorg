@@ -55,4 +55,12 @@ class CourseCategoryRepository extends Repository {
 
         return $courses;
     }
+
+    public function delete($id)
+    {
+        if ($this->model->courses()->count()) {
+            return false;
+        }
+        return parent::delete($id);
+    }
 }

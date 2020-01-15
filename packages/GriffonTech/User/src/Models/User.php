@@ -2,6 +2,7 @@
 namespace GriffonTech\User\Models;
 
 
+use GriffonTech\Blog\Models\BlogProxy;
 use GriffonTech\Tutor\Models\TutorProfile;
 use GriffonTech\Tutor\Models\TutorProfileProxy;
 use Illuminate\Notifications\Notifiable;
@@ -43,5 +44,10 @@ class User extends Authenticatable implements UserContract
     public function tutor_profile()
     {
         return $this->hasOne(TutorProfileProxy::modelClass(), 'user_id', 'id');
+    }
+
+    public function blogs()
+    {
+        return $this->hasMany(BlogProxy::modelClass(), 'user_id', 'id');
     }
 }

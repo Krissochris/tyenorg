@@ -137,7 +137,7 @@ Route::group(['middleware' => ['web']], function (){
 
 
             Route::post('categories/edit/{id}', 'GriffonTech\Admin\Http\Controllers\CategoriesController@update')->defaults('_config', [
-                'redirect' => 'admin.categories.index'
+                'redirect' => 'admin.categories.edit'
             ])->name('admin.categories.edit');
 
 
@@ -145,12 +145,17 @@ Route::group(['middleware' => ['web']], function (){
                 'view' => 'admin::admin.categories.show'
             ])->name('admin.categories.show');
 
+            Route::delete('categories/delete/{id}', 'GriffonTech\Admin\Http\Controllers\CategoriesController@destroy')->defaults('_config', [
+                'redirect' => 'admin.categories.index'
+            ])->name('admin.categories.delete');
+
 
 
             // Courses
             Route::get('courses/index', 'GriffonTech\Admin\Http\Controllers\CoursesController@index')->defaults('_config', [
                 'view' => 'admin::admin.courses.index'
             ])->name('admin.courses.index');
+
 
             Route::get('courses/create', 'GriffonTech\Admin\Http\Controllers\CoursesController@create')->defaults('_config', [
                 'view' => 'admin::admin.courses.create'
@@ -160,70 +165,75 @@ Route::group(['middleware' => ['web']], function (){
                 'redirect' => 'admin.courses.index'
             ])->name('admin.courses.create');
 
-            Route::get('courses/edit', 'GriffonTech\Admin\Http\Controllers\CoursesController@edit')->defaults('_config', [
+            Route::get('courses/edit/{id}', 'GriffonTech\Admin\Http\Controllers\CoursesController@edit')->defaults('_config', [
                 'view' => 'admin::admin.courses.edit'
             ])->name('admin.courses.edit');
 
-            Route::post('courses/edit', 'GriffonTech\Admin\Http\Controllers\CoursesController@update')->defaults('_config', [
-                'redirect' => 'admin.courses.index'
-            ])->name('admin.courses.show');
+            Route::post('courses/edit/{id}', 'GriffonTech\Admin\Http\Controllers\CoursesController@update')->defaults('_config', [
+                'redirect' => 'admin.courses.edit'
+            ])->name('admin.courses.edit');
 
-            Route::get('courses/show', 'GriffonTech\Admin\Http\Controllers\CoursesController@show')->defaults('_config', [
+            Route::get('courses/show/{id}', 'GriffonTech\Admin\Http\Controllers\CoursesController@show')->defaults('_config', [
                 'view' => 'admin::admin.courses.show'
             ])->name('admin.courses.show');
 
+            Route::get('courses/delete/{id}', 'GriffonTech\Admin\Http\Controllers\CoursesController@destroy')->defaults('_config', [
+                'redirect' => 'admin.courses.index'
+            ])->name('admin.courses.delete');
 
 
             // Blogs
-            Route::get('blogs/index', 'GriffonTech\Admin\Http\Controllers\BlogsController@index')->defaults('_config', [
+            Route::get('blogs/index', 'GriffonTech\Blog\Http\Controllers\BlogController@index')->defaults('_config', [
                 'view' => 'admin::admin.blogs.index'
             ])->name('admin.blogs.index');
 
-            Route::get('blogs/create', 'GriffonTech\Admin\Http\Controllers\BlogsController@create')->defaults('_config', [
+            Route::get('blogs/create', 'GriffonTech\Blog\Http\Controllers\BlogController@create')->defaults('_config', [
                 'view' => 'admin::admin.blogs.create'
             ])->name('admin.blogs.create');
 
-            Route::post('blogs/create', 'GriffonTech\Admin\Http\Controllers\BlogsController@store')->defaults('_config', [
+            Route::post('blogs/create', 'GriffonTech\Blog\Http\Controllers\BlogController@store')->defaults('_config', [
                 'redirect' => 'admin.blogs.index'
             ])->name('admin.blogs.create');
 
-            Route::get('blogs/edit', 'GriffonTech\Admin\Http\Controllers\BlogsController@edit')->defaults('_config', [
+            Route::get('blogs/edit/{id}', 'GriffonTech\Blog\Http\Controllers\BlogController@edit')->defaults('_config', [
                 'view' => 'admin::admin.blogs.edit'
             ])->name('admin.blogs.edit');
 
-            Route::post('blogs/edit', 'GriffonTech\Admin\Http\Controllers\BlogsController@update')->defaults('_config', [
-                'redirect' => 'admin.blogs.index'
+            Route::post('blogs/edit/{id}', 'GriffonTech\Blog\Http\Controllers\BlogController@update')->defaults('_config', [
+                'redirect' => 'admin.blogs.edit'
             ])->name('admin.blogs.show');
 
-            Route::get('blogs/show', 'GriffonTech\Admin\Http\Controllers\BlogsController@show')->defaults('_config', [
+            Route::get('blogs/show/{id}', 'GriffonTech\Blog\Http\Controllers\BlogController@show')->defaults('_config', [
                 'view' => 'admin::admin.blogs.show'
             ])->name('admin.blogs.show');
 
 
             // Blog Comments
-            Route::get('blogs/comments/index', 'GriffonTech\Admin\Http\Controllers\BlogCommentsController@index')->defaults('_config', [
+            Route::get('blogs/comments/index', 'GriffonTech\Blog\Http\Controllers\BlogCommentController@index')->defaults('_config', [
                 'view' => 'admin::admin.blogs.comments.index'
             ])->name('admin.blogs.comments.index');
 
-            Route::get('blogs/comments/create', 'GriffonTech\Admin\Http\Controllers\BlogCommentsController@create')->defaults('_config', [
+            Route::get('blogs/comments/create', 'GriffonTech\Blog\Http\Controllers\BlogCommentController@create')->defaults('_config', [
                 'view' => 'admin::admin.blogs.comments.create'
             ])->name('admin.blogs.comments.create');
 
-            Route::post('blogs/comments/create', 'GriffonTech\Admin\Http\Controllers\BlogCommentsController@store')->defaults('_config', [
+            Route::post('blogs/comments/create', 'GriffonTech\Blog\Http\Controllers\BlogCommentController@store')->defaults('_config', [
                 'redirect' => 'admin.blogs.index'
-            ])->name('admin.blogs.create');
+            ])->name('admin.blogs.comments.create');
 
-            Route::get('blogs/comments/edit', 'GriffonTech\Admin\Http\Controllers\BlogCommentsController@edit')->defaults('_config', [
+            Route::get('blogs/comments/edit/{id}', 'GriffonTech\Blog\Http\Controllers\BlogCommentController@edit')->defaults('_config', [
                 'view' => 'admin::admin.blogs.comments.edit'
             ])->name('admin.blogs.comments.edit');
 
-            Route::post('blogs/comments/edit', 'GriffonTech\Admin\Http\Controllers\BlogCommentsController@update')->defaults('_config', [
-                'redirect' => 'admin.blogs.comments.index'
-            ])->name('admin.blogs.comments.show');
+            Route::post('blogs/comments/edit/{id}', 'GriffonTech\Blog\Http\Controllers\BlogCommentController@update')->defaults('_config', [
+                'redirect' => 'admin.blogs.comments.edit'
+            ])->name('admin.blogs.comments.edit');
 
-            Route::get('blogs/comments/show', 'GriffonTech\Admin\Http\Controllers\BlogCommentsController@show')->defaults('_config', [
-                'view' => 'admin::admin.blogs.comments.show'
-            ])->name('admin.blogs.comments.show');
+            Route::delete('blogs/comments/delete/{id}', 'GriffonTech\Blog\Http\Controllers\BlogCommentController@destroy')->defaults('_config', [
+                'redirect' => 'admin.blogs.comments.index'
+            ])->name('admin.blogs.comments.delete');
+
+
 
 
             // Reviews

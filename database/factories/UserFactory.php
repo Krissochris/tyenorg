@@ -43,3 +43,20 @@ $factory->define(\GriffonTech\Tutor\Models\TutorProfile::class, function(Faker $
         'description' => $faker->sentence(5)
     ];
 });
+
+$factory->define(\GriffonTech\Blog\Models\Blog::class, function(Faker $faker){
+    $data = [
+        'title' => $faker->sentence(2),
+        'body' => $faker->sentence(40)
+    ];
+    $data['url_key'] = str_slug($data['title']);
+
+    return $data;
+});
+
+$factory->define(\GriffonTech\Blog\Models\BlogComment::class, function(Faker $faker){
+    $data = [
+        'comment' => $faker->sentence(20)
+    ];
+    return $data;
+});
