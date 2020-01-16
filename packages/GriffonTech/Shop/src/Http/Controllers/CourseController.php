@@ -7,7 +7,7 @@ use GriffonTech\Course\Repositories\CourseCategoryRepository;
 use GriffonTech\Course\Repositories\CourseRegistrationRepository;
 use GriffonTech\Course\Repositories\CourseRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
+use GriffonTech\Course\Facades\CourseRegistration;
 /**
  * Course controller
  *
@@ -100,7 +100,7 @@ class CourseController extends Controller
         try {
             $course = $this->courseRepository->findBySlugOrFail($slug);
         } catch (ModelNotFoundException $exception) {
-            // redirect with an error message
+            abort(404);
         }
 
         // check if the user is register to the course
@@ -112,34 +112,30 @@ class CourseController extends Controller
         if ($courseRegistered) {
             return redirect()->route('courses.show', $course->url_key);
         }
-        // add the user to the course
-        // check if
-        if (isset($course)) {
-            // check if the course has a batch
-            $course_batch = $course->course_batches()
-                ->where('entry_status', 1)
-                ->first();
-            $course_batch->no_of_users += 1;
-            if ($course_batch->no_of_users == $course_batch->maximum_number_of_users) {
-                $course_batch->_entry_status = 0;
-            }
-            $course_batch->update();
 
-            if ($course_batch) {
-
-                $courseRegistration = $this->courseRegistrationRepository->create([
-                    'user_id' => auth('user')->user()->id,
-                    'course_id' => $course->id,
-                    'batch_id' => $course_batch->id
-                ]);
-
-                if ($courseRegistration) {
-                    session()->flash('success', 'You have successfully registered for this course!');
-                }
-            }
+        $courseRegistration = CourseRegistration::registerStudent($course->id, auth('user')->user()->id);
+        if ($courseRegistration) {
+            session()->flash('success', 'You have successfully registered for this course!');
         }
         return back();
     }
 
+    public function checkout($slug)
+    {
+        try {
+            $course = $this->courseRepository->findBySlugOrFail($slug);
+        } catch (ModelNotFoundException $exception) {
+            abort(404);
+        }
+        request()->session()->put('payment', [
+            'amount' => $course->price,
+            'user_id' => auth('user')->user()->id,
+            'item_no' => $course->id,
+            'purpose' => 'Purchase of '.$course->name,
+            'purchase_type' => 'course'
+        ]);
+
+        return view($this->_config['view'], compact('course'));
+    }
 
 }

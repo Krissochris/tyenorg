@@ -27,63 +27,28 @@
                     <tr>
                         <th>S/N</th>
                         <th>Item</th>
+                        <th>Medium</th>
                         <th>Amount</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>PHP from Scratch</td>
-                        <td>$10.99</td>
-                        <td class="text-right">
-                            <a href="#">
-                                <i class="fa fa-eye text-dark"></i>
-                            </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="#">
-                                <i class="fa fa-trash text-danger"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>JavaScript</td>
-                        <td>$9.99</td>
-                        <td class="text-right">
-                            <a href="#">
-                                <i class="fa fa-eye text-dark"></i>
-                            </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="#">
-                                <i class="fa fa-trash text-danger"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Bootstrap it All</td>
-                        <td>$10.99</td>
-                        <td class="text-right">
-                            <a href="#">
-                                <i class="fa fa-eye text-dark"></i>
-                            </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="#">
-                                <i class="fa fa-trash text-danger"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Web Dev Boot Camp</td>
-                        <td>$10.99</td>
-                        <td class="text-right">
-                            <a href="#">
-                                <i class="fa fa-eye text-dark"></i>
-                            </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="#">
-                                <i class="fa fa-trash text-danger"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach($userPayments as $userPayment)
+                        <tr>
+                            <td>{{ $userPayment->id }}</td>
+                            <td> {{ $userPayment->payment_purpose }} </td>
+                            <td> {{ $userPayment->medium_of_payment }} </td>
+                            <td>$ {{ $userPayment->amount }}</td>
+                            <td class="text-right">
+                                <a href="#">
+                                    <i class="fa fa-eye text-dark"></i>
+                                </a> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="#">
+                                    <i class="fa fa-trash text-danger"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

@@ -16,7 +16,7 @@ class CourseRepository extends Repository
 {
     CONST FREE = 'free';
     CONST PRO_USER_FREE = 'pro_user_free';
-    CONST PRO_MEMBER_PAID = 'po_member_paid';
+    CONST PRO_MEMBER_PAID = 'pro_user_paid';
 
     CONST TYPE = [
         CourseRepository::FREE => 'Free Course',

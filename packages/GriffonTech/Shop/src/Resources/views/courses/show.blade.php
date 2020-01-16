@@ -32,13 +32,39 @@
                         <div>
                             <span class="bg-warning text-dark" style="border-radius: 4px 4px 0 0; padding: 0px 10px"> Rating...</span>
                             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+
+                            <p class="text-light">
+                                @switch($course->type)
+                                @case('free')
+                                {{ __('Free') }}
+                                @break
+                                @case('pro_user_free')
+                                {{ __('Pro user free') }}
+                                @break
+                                @case('pro_user_paid')
+                                ${{ $course->price }}
+                                @break
+                                @default
+                                {{''}}
+                                @endswitch
+                            </p>
                         </div>
                         <small class="text-light">Created By: <span class="text-muted"> {{ $course->tutor->name }} </span></small>
                         <div class="float-right">
                             @if (isset(auth('user')->user()->id) && isset($courseRegistered) )
                                 <a class="btn btn-primary" href="{{ route('user.course.show', $course->url_key) }}"> View Course</a>
                             @else
+                                @switch($course->type)
+                                @case('free')
+                                @case('pro_user_free')
                                 <a class="btn btn-primary" href="{{ route('courses.join', $course->url_key) }}">Join Course</a>
+                                @break
+                                @case('pro_user_paid')
+                                <a class="btn btn-primary" href="{{ route('courses.checkout', $course->url_key) }}">Purchase Course</a>
+                                @break
+                                @default
+                                {{''}}
+                                @endswitch
                             @endif
                         </div>
                     </div>
@@ -50,14 +76,7 @@
                     <div class="card">
                         <div class="card-header"> Description </div>
                         <div class="card-body">
-                            <ul>
-                                <li>Make REAL web applications using cutting-edge technologies</li>
-                                <li>Write your own browser-based game</li>
-                                <li>Create complex HTML forms with validations</li>
-                                <li>Make REAL web applications using cutting-edge technologies</li>
-                                <li>Write your own browser-based game</li>
-                                <li>Create complex HTML forms with validations</li>
-                            </ul>
+                            {!! $course->description !!}
                         </div>
                     </div>
                     <hr>

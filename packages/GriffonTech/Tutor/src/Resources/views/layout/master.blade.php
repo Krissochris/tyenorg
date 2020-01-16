@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('dashboard/css/sb-admin.css')}}" rel="stylesheet">
+    <script src="{{ asset('dashboard/vendor/jquery/jquery.min.js')}}"></script>
 
 </head>
 

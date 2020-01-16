@@ -3,6 +3,8 @@
 namespace GriffonTech\User\Http\Controllers;
 
 
+use GriffonTech\User\Repositories\UserPaymentRepository;
+
 class PurchasesController extends Controller
 {
 
@@ -18,18 +20,26 @@ class PurchasesController extends Controller
      *
      * @var Object
      */
-    protected $purchaseRepository;
+    protected $userPaymentRepository;
 
 
-    public function __construct()
+    public function __construct(
+        UserPaymentRepository $userPaymentRepository
+    )
     {
         $this->_config = request('_config');
+
+        $this->userPaymentRepository = $userPaymentRepository;
     }
 
 
     public function index()
     {
-        return view($this->_config['view']);
+
+        $userPayments = $this->userPaymentRepository
+            ->findWhere(['user_id' => auth('user')->user()->id]);
+
+        return view($this->_config['view'], compact('userPayments'));
     }
 
 }

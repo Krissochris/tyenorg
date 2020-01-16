@@ -18,10 +18,26 @@
                     <div class="col-lg-3 col-md-3 mb-3">
                         <div class="card h-100">
                             <a href="{{ route('tutor.courses.edit', $course->url_key) }}">
-                                <img class="card-img-top" src="{{ asset('images/cover.jpeg') }}" alt="">
+                                <img class="card-img-top" src="{{ $course->photo }}" alt="{{ $course->name }}">
                             </a>
+
                             <div class="card-footer">
                                 <p class="card-text"> {{ $course->name }} </p>
+                                <div>
+                                    @switch($course->type)
+                                    @case('free')
+                                    {{ __('Free') }}
+                                    @break
+                                    @case('pro_user_free')
+                                    {{ __('Pro user free') }}
+                                    @break
+                                    @case('pro_user_paid')
+                                    ${{ $course->price }}
+                                        @break
+                                    @default
+                                        {{''}}
+                                    @endswitch
+                                </div>
 
                                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                 <div class="float-right">

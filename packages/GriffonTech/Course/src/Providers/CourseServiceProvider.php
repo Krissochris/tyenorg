@@ -2,9 +2,11 @@
 
 namespace GriffonTech\Course\Providers;
 
+use GriffonTech\Course\CourseRegistration;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Foundation\AliasLoader;
+use GriffonTech\Course\CourseRegistration as CourseRegistrationFacade;
 
 class CourseServiceProvider extends ServiceProvider
 {
@@ -30,6 +32,12 @@ class CourseServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $loader = AliasLoader::getInstance();
+        $loader->alias('CourseRegistration', CourseRegistrationFacade::class);
+
+        $this->app->singleton('CourseRegistration', function () {
+            return $this->app->make(CourseRegistration::class);
+        });
     }
 
 }

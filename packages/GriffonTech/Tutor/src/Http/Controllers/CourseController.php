@@ -6,6 +6,7 @@ use GriffonTech\Course\Repositories\CourseRepository;
 use GriffonTech\Course\Repositories\CourseBatchRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 /**
@@ -71,8 +72,9 @@ class CourseController extends Controller
 
     public function create()
     {
+        $courseTypes = CourseRepository::TYPE;
         $categories = $this->courseCategoryRepository->getList()->prepend('--Select Category--' ,'');
-        return view($this->_config['view'])->with(compact('categories'));
+        return view($this->_config['view'])->with(compact('categories', 'courseTypes'));
     }
 
     public function store(Request $request)
@@ -82,16 +84,31 @@ class CourseController extends Controller
             'course_category_id' => 'required',
             'summary' => 'required',
             'description' => 'required',
-            'price' => 'required',
             'total_no_of_users_in_batch' => 'required',
-            'total_no_of_referrals_needed' => 'required',
+            'photo' => 'required|mimes:jpeg,png,jpg,gif,svg|max:1048'
         ]);
 
         $data = $request->input();
 
-
         $data['tutor_id'] = auth('user')->user()->id;
 
+        // process the image
+        $image = $request->file('photo');
+
+        if ($image) {
+            $input = null;
+            $input['photo_name'] = time().'.'.$image->getClientOriginalExtension();
+            $input['photo_url_part'] = 'storage/images/courses/';
+            try {
+                $input['photo_url'] = asset($input['photo_url_part']) .'/'. $input['photo_name'];
+                $image->storeAs('public/images/courses/', $input['photo_name']);
+
+                $data['photo'] =$input['photo_url'];
+            } catch ( \Exception $exception) {
+
+                session()->flash('error', $exception->getMessage());
+            }
+        }
 
         $course = $this->courseRepository->create($data);
 
@@ -124,8 +141,9 @@ class CourseController extends Controller
         } catch (ModelNotFoundException $modelNotFoundException) {
             // handle error
         }
+        $courseTypes = CourseRepository::TYPE;
         $categories = $this->courseCategoryRepository->getList()->prepend('--Select Category--' ,'');
-        return view($this->_config['view'])->with(compact('categories', 'course'));
+        return view($this->_config['view'])->with(compact('categories', 'course', 'courseTypes'));
     }
 
     public function update(Request $request, $slug)
@@ -135,8 +153,7 @@ class CourseController extends Controller
             'course_category_id' => 'required',
             'summary' => 'required',
             'description' => 'required',
-            'price' => 'required',
-            'total_no_of_referrals_needed' => 'required',
+            'photo' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:1048'
         ]);
 
         try {
@@ -146,6 +163,24 @@ class CourseController extends Controller
 
             session()->flash('error', 'Course does not exist!');
             return redirect()->route($this->_config['redirect']);
+        }
+        if ($request->file('photo')) {
+            $image = $request->file('photo');
+            $input = null;
+            $input['photo_name'] = time().'.'.$image->getClientOriginalExtension();
+            $input['photo_url_part'] = 'storage/images/courses';
+            try {
+                $input['photo_url'] = asset($input['photo_url_part']) .'/'. $input['photo_name'];
+                $image->storeAs('public/images/courses/', $input['photo_name']);
+                if ($course->photo) {
+                    Storage::delete($course->photo);
+                }
+
+                $course->forceFill(['photo' => $input['photo_url']]);
+            } catch ( \Exception $exception) {
+
+               session()->flash('error', $exception->getMessage());
+            }
         }
         $course =  $course->update($request->input());
 

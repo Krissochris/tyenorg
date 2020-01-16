@@ -28,17 +28,31 @@
                 @foreach($courses as $course)
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a href="{{ route('courses.show', $course->url_key) }}"><img class="card-img-top" src="{{ asset("images/cover.jpeg") }}" alt=""></a>
+                            <a href="{{ route('courses.show', $course->url_key) }}">
+                                <img class="card-img-top" src="{{ $course->photo }}" alt="{{ $course->name }}">
+                            </a>
                             <div class="card-body">
                                 <h6 class="card-title">
                                     <a href="{{ route('courses.show', $course->url_key) }}"> {{ $course->name }}</a>
                                 </h6>
                                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
 
-                                <p>${{ $course->price }}</p>
-                                <p class="card-text">{{ $course->summary }} </p>
+                                <div class="float-right">
+                                    @switch($course->type)
+                                    @case('free')
+                                    {{ __('Free') }}
+                                    @break
+                                    @case('pro_user_free')
+                                    {{ __('Pro user free') }}
+                                    @break
+                                    @case('pro_user_paid')
+                                    ${{ $course->price }}
+                                    @break
+                                    @default
+                                    {{''}}
+                                    @endswitch
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 @endforeach

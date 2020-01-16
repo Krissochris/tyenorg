@@ -29,10 +29,32 @@ class UsersController extends Controller
         return view($this->_config['view'])->with(compact('users'));
     }
 
+
     public function create()
     {
         return view($this->_config['view']);
     }
+
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'string|required',
+            'username' => 'string|required',
+            'email' => 'string|required',
+            'password' => 'confirmed|required|min:6'
+        ]);
+
+        $user = $this->userRepository->create($request->input());
+
+        if ($user) {
+            session()->flash('success', 'User was successfully created!');
+        } else {
+            session()->flash('error', 'User could not be created. Please try again');
+        }
+        return redirect()->route($this->_config['redirect']);
+    }
+
 
     public function show(User $user)
     {
@@ -58,10 +80,7 @@ class UsersController extends Controller
         return redirect()->route($this->_config['redirect'], $user->id);
     }
 
-    public function store()
-    {
-        return view($this->_config['view']);
-    }
+
 
     public function destroy()
     {
