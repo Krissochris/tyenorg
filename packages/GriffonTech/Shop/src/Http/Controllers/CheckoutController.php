@@ -21,6 +21,7 @@ class CheckoutController extends Controller
 
         } else if ($payment_method === 'rave_pay') {
 
+            return redirect()->route('payment.rave_pay');
         }
     }
 }

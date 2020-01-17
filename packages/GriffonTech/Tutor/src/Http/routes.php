@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['web']], function() {
+Route::group(['middleware' => ['web', 'user']], function() {
 
     Route::prefix('tutor')->group(function(){
 
@@ -30,6 +30,26 @@ Route::group(['middleware' => ['web']], function() {
         Route::post('courses/edit/{slug}', 'GriffonTech\Tutor\Http\Controllers\CourseController@update')->defaults('_config', [
             'redirect' => 'tutor.courses.index',
         ])->name('tutor.courses.edit');
+
+        Route::get('courses/{course_id}/course_batch/index', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@index')->defaults('_config', [
+            'view' => 'tutor::tutor.course.course_batch.index',
+        ])->name('tutor.courses.course_batch.index');
+
+        Route::get('courses/{course_id}/course_batch/create', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@create')->defaults('_config', [
+            'view' => 'tutor::tutor.course.course_batch.create',
+        ])->name('tutor.courses.course_batch.create');
+
+        Route::post('courses/{course_id}/course_batch/create', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@store')->defaults('_config', [
+            'redirect' => 'tutor.courses.course_batch.index',
+        ])->name('tutor.courses.course_batch.create');
+
+        Route::get('courses/course_batch/edit/{id}', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@edit')->defaults('_config', [
+            'view' => 'tutor::tutor.course.course_batch.edit',
+        ])->name('tutor.courses.course_batch.edit');
+
+        Route::post('courses/course_batch/edit/{id}', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@update')->defaults('_config', [
+            'redirect' => 'tutor.courses.course_batch.edit',
+        ])->name('tutor.courses.course_batch.create');
 
 
         // Dashboard view

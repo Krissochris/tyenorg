@@ -39,11 +39,14 @@
                                     @endswitch
                                 </div>
 
+{{--
                                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+--}}
                                 <div class="float-right">
-                                    <a href="{{ route('tutor.courses.edit', [ 'slug' => $course->url_key]) }}"><i class="fa fa-edit text-dark"></i></a>
-                                    <a href="#"><i class="fab fa-facebook-square text-dark"></i></a>
-                                    <a href="#"><i class="fab fa-twitter text-dark"></i></a>
+                                    <a href="{{ route('tutor.courses.edit', [ 'slug' => $course->url_key]) }}">edit</a>
+                                    <a href="{{ route('tutor.courses.course_batch.index', $course->id) }}">course batch </a>
+                                    <a class="text-danger" href="">delete</a>
+
                                 </div>
                             </div>
                         </div>

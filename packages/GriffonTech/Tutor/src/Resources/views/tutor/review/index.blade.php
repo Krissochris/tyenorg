@@ -27,7 +27,7 @@
                             @foreach($reviews as $review)
                                 <tr>
                                    <td> {{ $review->user->name }} </td>
-                                   <td> {{ $review->text }} </td>
+                                   <td> {{ $review->review }} </td>
                                    <td> {{ $review->rating }} </td>
                                    <td> {{ $review->course->name }} </td>
                                    <td> {{ $review->course_batch->id }} </td>

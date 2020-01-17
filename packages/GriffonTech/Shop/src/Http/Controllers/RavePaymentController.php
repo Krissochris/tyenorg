@@ -9,7 +9,7 @@ class RavePaymentController extends Controller
 
     public function __construct()
     {
-        $this->_publicKey = null;
+        $this->_publicKey = 'FLWPUBK_TEST-3009a70205553a445c3d826adfa87982-X';
     }
 
 
@@ -28,7 +28,7 @@ class RavePaymentController extends Controller
         $customer_email = auth('user')->user()->email;
         $amount = $payment_details['amount'];
         $currency = "USD";
-        $txref = "rave-123"; // ensure you generate unique references per transaction.
+        $txref = "rave-12345"; // ensure you generate unique references per transaction.
         $PBFPubKey = $this->_publicKey; // get your public key from the dashboard.
 
         $redirect_url = route('payment.rave_pay.status');
@@ -53,6 +53,7 @@ class RavePaymentController extends Controller
             ],
         ));
 
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         $response = curl_exec($curl);
         $err = curl_error($curl);
 
@@ -74,6 +75,9 @@ class RavePaymentController extends Controller
 
     public function getPaymentStatus()
     {
-
+        // verify the amount paid
+        // verify every other details here
+        // then proceed with the request processing
+        dd(request()->input());
     }
 }

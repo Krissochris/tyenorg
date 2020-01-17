@@ -21,11 +21,7 @@
             <i class="fas fa-fw fa-chalkboard-teacher"></i>
             <span>Courses</span></a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{route('tutor.courses.index')}}">
-            <i class="fas fa-fw fa-chalkboard-teacher"></i>
-            <span>Course Batches</span></a>
-    </li>
+
     <li class="nav-item">
         <a class="nav-link" href="#">
             <i class="fas fa-fw fa-award"></i>
