@@ -12,33 +12,32 @@
         </div>
     </div>
     <hr>
-    <div class="container col-md-11">
+    <div class="container">
             <div class="row">
                 @foreach($courses as $course)
                     <div class="col-lg-3 col-md-3 mb-3">
-                        <div class="card h-100">
-                            <a href="{{ route('tutor.courses.edit', $course->url_key) }}">
-                                <img class="card-img-top" src="{{ $course->photo }}" alt="{{ $course->name }}">
-                            </a>
+                        <div class="card">
+                            <div class="card-img-top">
+                                <img class="img-fluid" style="max-height: 120px; width: 100%" src="{{ $course->photo }}" alt="{{ $course->name }}">
+                            </div>
 
-                            <div class="card-footer">
-                                <p class="card-text"> {{ $course->name }} </p>
-                                <div>
+                            <div class="card-body">
+                                <div class="float-right" style="font-weight: 400">
                                     @switch($course->type)
-                                    @case('free')
-                                    {{ __('Free') }}
-                                    @break
-                                    @case('pro_user_free')
-                                    {{ __('Pro user free') }}
-                                    @break
-                                    @case('pro_user_paid')
-                                    ${{ $course->price }}
+                                        @case('free')
+                                        {{ __('Free') }}
                                         @break
-                                    @default
+                                        @case('pro_user_free')
+                                        {{ __('Pro user free') }}
+                                        @break
+                                        @case('pro_user_paid')
+                                        ${{ $course->price }}
+                                        @break
+                                        @default
                                         {{''}}
                                     @endswitch
                                 </div>
-
+                                <p class="font-weight-bold"> {{ $course->name }} </p>
 {{--
                                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
 --}}

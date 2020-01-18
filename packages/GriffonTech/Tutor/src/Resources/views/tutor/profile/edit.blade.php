@@ -27,6 +27,13 @@
                                     <h4>Personal Details</h4>
                                 </div>
                                 <div class="card-body">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2"> Title </label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+
                                     <table class="table table-hover table-bordered table-striped">
                                         <thead class="thead-dark">
                                         <tr>

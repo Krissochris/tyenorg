@@ -12,7 +12,7 @@
         </div>
     </div>
     <hr>
-    <div class="container row">
+    <div class="row">
         <div class="col-sm-12">
             <table class="table table-hover table-bordered table-striped">
                 <thead class="thead-dark">

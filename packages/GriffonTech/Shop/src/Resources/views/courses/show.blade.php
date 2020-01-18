@@ -21,7 +21,7 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-img">
-                            <img src="{{ asset('images/cover.jpeg') }}" class="card-img" alt="Course Image">
+                            <img src="{{ $course->photo }}" class="card-img" alt="Course Image">
                         </div>
                     </div>
                 </div>

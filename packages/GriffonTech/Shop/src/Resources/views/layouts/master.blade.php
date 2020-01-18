@@ -49,5 +49,6 @@
 
 @yield('content')
 
+@include('shop::layouts.footer.index')
 </body>
 </html>

@@ -49,7 +49,7 @@ Route::group(['middleware' => ['web', 'user']], function() {
 
         Route::post('courses/course_batch/edit/{id}', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@update')->defaults('_config', [
             'redirect' => 'tutor.courses.course_batch.edit',
-        ])->name('tutor.courses.course_batch.create');
+        ])->name('tutor.courses.course_batch.edit');
 
 
         // Dashboard view
