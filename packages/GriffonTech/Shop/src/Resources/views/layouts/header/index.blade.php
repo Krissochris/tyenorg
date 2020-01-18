@@ -50,6 +50,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-item"><a href="{{ route('user.course.index') }}" class="text-decoration-none text-dark">My Courses</a></li>
                             <li class="dropdown-item"><a href="{{ route('user.profile.index') }}" class="text-decoration-none text-dark">Profile</a></li>
+                            <li class="dropdown-item"><a href="{{ route('user.referral.show') }}" class="text-decoration-none text-dark">Referral</a></li>
                             <li class="dropdown-item"><a href="/#" class="text-decoration-none text-dark">Notifications</a></li>
                             <li class="dropdown-item"><a href="{{route('user.purchases.index')}}" class="text-decoration-none text-dark">Purchase history</a></li>
                             <li class="dropdown-divider"></li>

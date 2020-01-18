@@ -15,9 +15,10 @@ class CreateUserReferralsTable extends Migration
     {
         Schema::create('user_referrals', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id')->unique();
             $table->decimal('referral_bonus', 8, 2)->nullable();
-            $table->integer('total_referral')->unsigned();
-            $table->integer('available_referral')->unsigned();
+            $table->integer('total_referral')->unsigned()->default(0);
+            $table->integer('available_referral')->unsigned()->default(0);
             $table->timestamps();
         });
     }

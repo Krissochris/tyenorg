@@ -85,6 +85,11 @@ Route::group(['middleware' => ['web']], function(){
                 Route::get('purchases', 'GriffonTech\User\Http\Controllers\PurchasesController@index')->defaults('_config', [
                     'view' => 'shop::users.account.purchases.index'
                 ])->name('user.purchases.index');
+
+                Route::get('referral', 'GriffonTech\User\Http\Controllers\ReferralController@show')->defaults('_config', [
+                    'view' => 'shop::users.account.referral.show'
+                ])->name('user.referral.show');
+
             });
         });
     });

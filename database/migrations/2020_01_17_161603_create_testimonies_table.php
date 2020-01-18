@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserReferralTable extends Migration
+class CreateTestimoniesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateUserReferralTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_referral', function (Blueprint $table) {
+        Schema::create('testimonies', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->text('testimony');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateUserReferralTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_referral');
+        Schema::dropIfExists('testimonies');
     }
 }

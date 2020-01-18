@@ -76,8 +76,6 @@ class RegistrationController extends Controller {
             $data['is_verified'] = 1;
         }*/
 
-        //$data['customer_group_id'] = $this->userGroupRepository->findOneWhere(['code' => 'general'])->id;
-
         $verificationData['email'] = $data['email'];
         $verificationData['token'] = md5(uniqid(rand(), true));
         $data['token'] = $verificationData['token'];
