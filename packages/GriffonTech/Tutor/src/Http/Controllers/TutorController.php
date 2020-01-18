@@ -70,5 +70,5 @@ class TutorController extends Controller
         }
         return redirect()->route($this->_config['redirect']);
     }
-    
+
 }

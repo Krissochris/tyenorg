@@ -22,7 +22,7 @@
                             </div>
 
                             <div class="card-body">
-                                <div class="float-right" style="font-weight: 400">
+                                <div class="float-right text-danger font-weight-bold" style="font-weight: 400">
                                     @switch($course->type)
                                         @case('free')
                                         {{ __('Free') }}
@@ -42,9 +42,9 @@
                                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
 --}}
                                 <div class="float-right">
-                                    <a href="{{ route('tutor.courses.edit', [ 'slug' => $course->url_key]) }}">edit</a>
-                                    <a href="{{ route('tutor.courses.course_batch.index', $course->id) }}">course batch </a>
-                                    <a class="text-danger" href="">delete</a>
+                                    <a href="{{ route('tutor.courses.edit', [ 'slug' => $course->url_key]) }}">Edit</a>
+                                    <a href="{{ route('tutor.courses.course_batch.index', $course->id) }}">Batch </a>
+                                    <a class="text-danger" href="">Delete</a>
 
                                 </div>
                             </div>
