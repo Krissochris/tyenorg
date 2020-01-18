@@ -144,7 +144,7 @@ class PayPalPaymentController extends Controller
                 'amount' => $payment_details['amount']
             ]);
 
-            if ($payment_details['purchase_type'] === 'course') {
+            if ($payment_details['purchase_type'] === 'course_purchase') {
                 CourseRegistration::registerStudent($payment_details['item_no'], $payment_details['user_id']);
             }
             session()->flash('success','Payment success');

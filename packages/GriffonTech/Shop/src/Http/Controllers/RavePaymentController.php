@@ -2,14 +2,31 @@
 
 namespace GriffonTech\Shop\Http\Controllers;
 
+use App\RavePayment;
+use GriffonTech\Course\Facades\CourseRegistration;
+use GriffonTech\User\Repositories\UserPaymentRepository;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
+
 class RavePaymentController extends Controller
 {
 
     protected $_publicKey;
 
-    public function __construct()
+    protected $_secretKey;
+
+    protected $userPaymentRepository;
+
+    public function __construct(
+        UserPaymentRepository $userPaymentRepository
+    )
     {
         $this->_publicKey = 'FLWPUBK_TEST-3009a70205553a445c3d826adfa87982-X';
+
+        $this->_secretKey = '';
+
+        $this->userPaymentRepository = $userPaymentRepository;
     }
 
 
@@ -23,13 +40,24 @@ class RavePaymentController extends Controller
         }
         $payment_details = request()->session()->get('payment');
 
-        $curl = curl_init();
+        $postData = [
+            'amount'=>$payment_details['amount'],
+            'customer_email'=>$payment_details['customer_email'],
+            'currency'=> $payment_details['currency'],
+            'txref'=> Str::uuid(),
+            'PBFPubKey'=> $this->_publicKey,
+            'redirect_url'=>route('payment.rave_pay.status'),
+        ];
 
-        $customer_email = auth('user')->user()->email;
-        $amount = $payment_details['amount'];
-        $currency = "USD";
-        $txref = "rave-12345"; // ensure you generate unique references per transaction.
-        $PBFPubKey = $this->_publicKey; // get your public key from the dashboard.
+        if ($payment_details['purchase_type'] == 'course_purchase') {
+            $postData['meta'] = [
+                json_encode(['purchase_type' => $payment_details['purchase_type'],
+                    'course_id' => $payment_details['item_no']
+                ])
+            ];
+        }
+
+        $curl = curl_init();
 
         $redirect_url = route('payment.rave_pay.status');
         //$payment_plan = "pass the plan id"; // this is only required for recurring payments.
@@ -38,15 +66,7 @@ class RavePaymentController extends Controller
             CURLOPT_URL => "https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/hosted/pay",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => json_encode([
-                'amount'=>$amount,
-                'customer_email'=>$customer_email,
-                'currency'=>$currency,
-                'txref'=>$txref,
-                'PBFPubKey'=>$PBFPubKey,
-                'redirect_url'=>$redirect_url,
-                //'payment_plan'=>$payment_plan
-            ]),
+            CURLOPT_POSTFIELDS => json_encode($postData),
             CURLOPT_HTTPHEADER => [
                 "content-type: application/json",
                 "cache-control: no-cache"
@@ -73,11 +93,55 @@ class RavePaymentController extends Controller
     }
 
 
+    /**
+     * The payment status page
+     */
     public function getPaymentStatus()
     {
-        // verify the amount paid
-        // verify every other details here
-        // then proceed with the request processing
-        dd(request()->input());
+        $payment_details = request()->session()->get('payment');
+        Session::forget('payment');
+
+        $txref = request()->get('txref');
+        if (isset($txref) && !empty($txref)) {
+            $resp = json_decode(request()->input('resp'), true);
+
+            $amount = $payment_details["amount"];
+            $currency = $payment_details["currency"];
+
+            $paymentStatus = $resp['data']['data']['status'];
+            $chargeResponsecode = $resp['tx']['chargeResponseCode'];
+            $chargeAmount = $resp['tx']['amount'];
+            $chargeCurrency = $resp['tx']['currency'];
+
+            // save the transaction in the database
+
+            if ( ($paymentStatus == 'successful') && ($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($chargeAmount == $amount)  && ($chargeCurrency == $currency)) {
+
+                //record the payment detail
+                $this->userPaymentRepository->create([
+                    'user_id' => $payment_details['user_id'],
+                    'payment_purpose' => $payment_details['purpose'],
+                    'medium_of_payment' => 'rave_payment',
+                    'amount' => $payment_details['amount']
+                ]);
+
+                if ($payment_details['purchase_type'] === 'course_purchase') {
+                    CourseRegistration::registerStudent($payment_details['item_no'], $payment_details['user_id']);
+                }
+
+                return redirect()->route('payment.success');
+                // transaction was successful...
+                // please check other things like whether you already gave value for this ref
+                // if the email matches the customer who owns the product etc
+                //Give Value and return to Success page
+            } else {
+                //Dont Give Value and return to Failure page
+                session()->flash('error', 'Payment failed');
+            }
+        }
+        else {
+            session()->flash('error', 'Payment failed');
+        }
+        return redirect('/');
     }
 }
