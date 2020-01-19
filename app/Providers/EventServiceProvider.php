@@ -8,6 +8,7 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use GriffonTech\User\Repositories\UserRepository;
 use GriffonTech\User\Repositories\ReferralRepository;
+use GriffonTech\User\Repositories\UserReferralRepository;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -35,16 +36,27 @@ class EventServiceProvider extends ServiceProvider
         Event::listen('customer.registration.after', function ($newUser) {
             $referral_email = urldecode(request()->cookie('ref'));
 
-            $userRepository = $this->app->make(UserRepository::class);
-            $referralRepository = $this->app->make(ReferralRepository::class);
+            try {
+                $userRepository = $this->app->make(UserRepository::class);
+                $referralRepository = $this->app->make(ReferralRepository::class);
+                $userReferralRepository = $this->app->make(UserReferralRepository::class);
 
-            $referral_user = $userRepository->findOneByField('email', $referral_email, ['id', 'email']);
-            if ($referral_user) {
-                $referralRepository->create([
-                    'referral_id' => $referral_user->id,
-                    'referred_id' => $newUser->id
-                ]);
+                $referral_user = $userRepository->findOneByField('email', $referral_email, ['id', 'email']);
+                if ($referral_user) {
+                    $referralRepository->create([
+                        'referral_id' => $referral_user->id,
+                        'referred_id' => $newUser->id
+                    ]);
+
+                    $userReferral = $userReferralRepository->firstOrCreate([
+                        'user_id' => $referral_user->id
+                    ]);
+                    $userReferral->update(['total_referral' =>(int) $userReferral->total_referral + 1 ]);
+                }
+            } catch (\Exception $exception) {
+                // sub due error
             }
+
         });
     }
 }

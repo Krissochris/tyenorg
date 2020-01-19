@@ -64,6 +64,9 @@ class FileManager {
 
     public function delete($file_path, $directory)
     {
+        if (!$file_path) {
+            return true;
+        }
         $env = env('FILESYSTEM_DRIVER');
 
         $photo_name =  (last(explode('/',$file_path)));
