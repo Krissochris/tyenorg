@@ -56,7 +56,8 @@
             "GriffonTech\\Tutor\\": "packages/GriffonTech/Tutor/src",
             "GriffonTech\\Shop\\": "packages/GriffonTech/Shop/src",
             "GriffonTech\\Core\\": "packages/GriffonTech/Core/src",
-            "GriffonTech\\Blog\\": "packages/GriffonTech/Blog/src"
+            "GriffonTech\\Blog\\": "packages/GriffonTech/Blog/src",
+            "GriffonTech\\Payment\\": "packages/GriffonTech/Payment/src"
         },
         "classmap": [
             "database/seeds",

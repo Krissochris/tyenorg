@@ -1,6 +1,6 @@
 <?php
 
-namespace GriffonTech\Shop\Http\Controllers;
+namespace GriffonTech\Payment\Http\Controllers;
 
 use App\User;
 use GriffonTech\User\Repositories\UserPaymentRepository;
@@ -147,6 +147,8 @@ class PayPalPaymentController extends Controller
             if ($payment_details['purchase_type'] === 'course_purchase') {
                 CourseRegistration::registerStudent($payment_details['item_no'], $payment_details['user_id']);
             }
+
+
             session()->flash('success','Payment success');
             return redirect('/');
         }

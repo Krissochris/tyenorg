@@ -2,17 +2,6 @@
 
 @section('content')
 <!-- Page Content -->
-<div class="container">
-
-    <!-- Page Heading/Breadcrumbs -->
-    <br>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="/">Home</a>
-        </li>
-        <li class="breadcrumb-item active">Course Details</li>
-    </ol>
-
     @if(isset($course))
         <div class="container">
             <div class="row bg-dark" style="padding: 20px 0;">

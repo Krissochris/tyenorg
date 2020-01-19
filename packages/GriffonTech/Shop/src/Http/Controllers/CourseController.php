@@ -131,8 +131,12 @@ class CourseController extends Controller
             'amount' => $course->price,
             'user_id' => auth('user')->user()->id,
             'item_no' => $course->id,
+            'customer_name' => auth('user')->user()->name,
+            'customer_email' => auth('user')->user()->email,
+            'customer_phone_number' => auth('user')->user()->phone_number,
             'purpose' => 'Purchase of '.$course->name,
-            'purchase_type' => 'course'
+            'purchase_type' => 'course_purchase',
+            'currency' => "USD"
         ]);
 
         return view($this->_config['view'], compact('course'));

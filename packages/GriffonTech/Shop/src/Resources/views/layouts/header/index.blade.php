@@ -13,7 +13,6 @@
                 <ul class="nav navbar-nav">
                     <li class="nav-item"> <a href="{{ route("courses.index") }}" class="nav-link text-white-90">Explore Our Courses</a></li>
                     <li class="nav-item"> <a href="/about-us" class="nav-link text-white-90">About-us</a></li>
-                    <li class="nav-item"> <a href="/portfolio" class="nav-link text-white-90">Portfolio</a></li>
                     <li class="nav-item"> <a href="/blog" class="nav-link text-white-90">Blog</a></li>
                     <li class="nav-item"> <a href="/faq" class="nav-link text-white-90">FAQ's</a></li>
                 </ul>
@@ -40,8 +39,8 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" href="{{route('tutor.courses.index')}}">Tutor</a>
                     </li>
-                <li class="nav-item"><a href="#" title="Shopping Cart" class="nav-link text-light"><i class="fa fa-shopping-cart fa-lg"></i></a></li>
-                <li class="nav-item"><a href="#" title="Whishlist" class="nav-link text-light"><i class="fa fa-heart fa-lg"></i></a></li>
+                {{--<li class="nav-item"><a href="#" title="Shopping Cart" class="nav-link text-light"><i class="fa fa-shopping-cart fa-lg"></i></a></li>
+                <li class="nav-item"><a href="#" title="Whishlist" class="nav-link text-light"><i class="fa fa-heart fa-lg"></i></a></li>--}}
                 <li class="nav-item dropdown">
                         <a href="#" class="dropdown-toggle nav-link text-light" data-toggle="dropdown" role="button" aria-expanded="false">
                             <img src="{{ asset('images/images.png') }}" alt="avatar" width="20" height="20" class="rounded-circle"> &nbsp {{ auth('user')->user()->username }} <span class="caret"></span>

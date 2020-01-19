@@ -1,5 +1,5 @@
 @if (isset($tutor))
-    <div class="container col-md-10 bg-dark">
+    <div class="col-md-10 bg-dark">
         <hr>
         <div class="row">
             <div class="col-md-3">

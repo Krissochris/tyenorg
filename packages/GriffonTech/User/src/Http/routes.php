@@ -10,6 +10,24 @@ Route::group(['middleware' => ['web']], function(){
 
 
     Route::prefix('user')->group(function() {
+
+        Route::get('/forgot-password', 'GriffonTech\User\Http\Controllers\ForgotPasswordController@create')->defaults('_config', [
+            'view' => 'shop::user.signup.forgot-password'
+        ])->name('user.forgot-password.create');
+
+        // Forgot Password Form Store
+        Route::post('/forgot-password', 'Webkul\Customer\Http\Controllers\ForgotPasswordController@store')->name('customer.forgot-password.store');
+
+        // Reset Password Form Show
+        Route::get('/reset-password/{token}', 'Webkul\Customer\Http\Controllers\ResetPasswordController@create')->defaults('_config', [
+            'view' => 'shop::customers.signup.reset-password'
+        ])->name('customer.reset-password.create');
+
+        // Reset Password Form Store
+        Route::post('/reset-password', 'Webkul\Customer\Http\Controllers\ResetPasswordController@store')->defaults('_config', [
+            'redirect' => 'customer.profile.index'
+        ])->name('customer.reset-password.store');
+
         // Login Routes
         // Login form show
         Route::get('login', 'GriffonTech\User\Http\Controllers\SessionController@show')->defaults('_config', [

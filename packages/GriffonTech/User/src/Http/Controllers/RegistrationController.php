@@ -70,11 +70,11 @@ class RegistrationController extends Controller {
         $data['password'] = bcrypt($data['password']);
 
         // Activate this later
-        /*if (core()->getConfigData('customer.settings.email.verification')) {
+        if (/*core()->getConfigData('customer.settings.email.verification')*/ true) {
             $data['is_verified'] = 0;
         } else {
             $data['is_verified'] = 1;
-        }*/
+        }
 
         $verificationData['email'] = $data['email'];
         $verificationData['token'] = md5(uniqid(rand(), true));
@@ -87,7 +87,7 @@ class RegistrationController extends Controller {
         Event::fire('customer.registration.after', $user);
 
         if ($user) {
-            if (/*core()->getConfigData('customer.settings.email.verification')*/false) {
+            if (false) {
                 try {
                     Mail::queue(new VerificationEmail($verificationData));
 
@@ -101,6 +101,7 @@ class RegistrationController extends Controller {
 
                     session()->flash('success', trans('shop::app.user.signup-form.success-verify')); //customer registered successfully
                 } catch (\Exception $e) {
+                    dd($e->getMessage());
                     session()->flash('info', trans('shop::app.user.signup-form.success-verify-email-unsent'));
                 }
 
