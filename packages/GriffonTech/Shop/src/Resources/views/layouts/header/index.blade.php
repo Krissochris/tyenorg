@@ -13,7 +13,7 @@
                 <ul class="nav navbar-nav">
                     <li class="nav-item"> <a href="{{ route("courses.index") }}" class="nav-link text-white-90">Explore Our Courses</a></li>
                     <li class="nav-item"> <a href="/about-us" class="nav-link text-white-90">About-us</a></li>
-                    <li class="nav-item"> <a href="/blog" class="nav-link text-white-90">Blog</a></li>
+                    <li class="nav-item"> <a href="{{route('blog.posts.index')}}" class="nav-link text-white-90">Blog</a></li>
                     <li class="nav-item"> <a href="/faq" class="nav-link text-white-90">FAQ's</a></li>
                 </ul>
 
@@ -47,19 +47,19 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li class="dropdown-item"><a href="{{ route('user.course.index') }}" class="text-decoration-none text-dark">My Courses</a></li>
-                            <li class="dropdown-item"><a href="{{ route('user.profile.index') }}" class="text-decoration-none text-dark">Profile</a></li>
-                            <li class="dropdown-item"><a href="{{ route('user.referral.show') }}" class="text-decoration-none text-dark">Referral</a></li>
-                            <li class="dropdown-item"><a href="/#" class="text-decoration-none text-dark">Notifications</a></li>
-                            <li class="dropdown-item"><a href="{{route('user.purchases.index')}}" class="text-decoration-none text-dark">Purchase history</a></li>
-                            <li class="dropdown-item"><a href="#" class="text-decoration-none text-dark">My Blog</a></li>
-                            <li class="dropdown-item"><a href="#" class="text-decoration-none text-dark">Testimonials</a></li>
+                            <a href="{{ route('user.course.index') }}" class="text-decoration-none text-dark"><li class="dropdown-item">My Courses</li></a>
+                            <a href="{{ route('user.profile.index') }}" class="text-decoration-none text-dark"><li class="dropdown-item">Profile</li></a>
+                            <a href="{{ route('user.referral.show') }}" class="text-decoration-none text-dark"><li class="dropdown-item">Referral</li></a>
+                            <a href="/#" class="text-decoration-none text-dark"><li class="dropdown-item">Notifications</li></a>
+                            <a href="{{route('user.purchases.index')}}" class="text-decoration-none text-dark"><li class="dropdown-item">Purchase history</li></a>
+                            <a href="{{route('user.blog.index')}}" class="text-decoration-none text-dark"><li class="dropdown-item">My Blog</li></a>
+                            <a href="#" class="text-decoration-none text-dark"><li class="dropdown-item">Testimonials</li></a>
                             <li class="dropdown-divider"></li>
-                            <li class="dropdown-item">
-                                <a href="{{ route('user.session.destroy') }}" class="text-decoration-none text-dark">
+                            <a href="{{ route('user.session.destroy') }}" class="text-decoration-none text-dark"><li class="dropdown-item">
                                     Logout
-                                </a>
-                            </li>
+                                </li>
+                            </a>
+
                         </ul>
                     </li>
                 @endauth

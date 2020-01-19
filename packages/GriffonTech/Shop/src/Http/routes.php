@@ -110,8 +110,18 @@ Route::group(['middleware' => ['web']], function(){
                 ])->name('user.referral.show');
 
                 //User Blog Show
+                Route::get('blog', 'GriffonTech\User\Http\Controllers\BlogController@index')->defaults('_config', [
+                    'view' => 'shop::user.account.blog.index'
+                ])->name('user.blog.index');
 
+                //All Blog Show
+                Route::get('blog-posts', 'GriffonTech\Shop\Http\Controllers\BlogController@index')->defaults('_config', [
+                    'view' => 'shop::blogs.index'
+                ])->name('blog.posts.index');
 
+                Route::get('blog-posts/show/{slug}', 'GriffonTech\Shop\Http\Controllers\BlogController@show')->defaults('_config', [
+                    'view' => 'shop::blogs.show'
+                ])->name('blog.posts.show');
             });
         });
     });

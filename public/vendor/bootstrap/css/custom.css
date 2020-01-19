@@ -24,4 +24,10 @@ body {
 .grow { transition: all .1s ease-in-out; }
 .grow:hover { transform: scale(1.3); }
 
-
+.badge-notify{
+    background: #d91542;
+    color: white;
+    position:relative;
+    top: -12px;
+    left: -5px;
+}
