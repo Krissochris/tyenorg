@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use \GriffonTech\User\Contracts\User as UserContract;
+use GriffonTech\User\Notifications\CustomerResetPassword;
 
 class User extends Authenticatable implements UserContract
 {
@@ -49,5 +50,17 @@ class User extends Authenticatable implements UserContract
     public function blogs()
     {
         return $this->hasMany(BlogProxy::modelClass(), 'user_id', 'id');
+    }
+
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new CustomerResetPassword($token));
     }
 }

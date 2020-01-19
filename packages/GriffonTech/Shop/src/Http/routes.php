@@ -10,10 +10,29 @@ Route::group(['middleware' => ['web']], function(){
 
 
     Route::prefix('user')->group(function() {
+
+        Route::get('/forgot-password', 'GriffonTech\User\Http\Controllers\ForgotPasswordController@create')->defaults('_config', [
+            'view' => 'shop::user.signup.forgot-password'
+        ])->name('user.forgot-password.create');
+
+        // Forgot Password Form Store
+        Route::post('/forgot-password', 'GriffonTech\User\Http\Controllers\ForgotPasswordController@store')->name('customer.forgot-password.store');
+
+        // Reset Password Form Show
+        Route::get('/reset-password/{token}', 'GriffonTech\User\Http\Controllers\ResetPasswordController@create')->defaults('_config', [
+            'view' => 'shop::user.signup.reset-password'
+        ])->name('user.reset-password.create');
+
+        // Reset Password Form Store
+        Route::post('/reset-password', 'GriffonTech\User\Http\Controllers\ResetPasswordController@store')->defaults('_config', [
+            'redirect' => 'user.profile.index'
+        ])->name('user.reset-password.store');
+
+
         // Login Routes
         // Login form show
         Route::get('login', 'GriffonTech\User\Http\Controllers\SessionController@show')->defaults('_config', [
-            'view' => 'shop::users.session.index',
+            'view' => 'shop::user.session.index',
         ])->name('user.session.index');
 
         // Login form store
@@ -24,7 +43,7 @@ Route::group(['middleware' => ['web']], function(){
         // Registration Routes
         //registration form show
         Route::get('register', 'GriffonTech\User\Http\Controllers\RegistrationController@show')->defaults('_config', [
-            'view' => 'shop::users.signup.index'
+            'view' => 'shop::user.signup.index'
         ])->name('user.register.index');
 
         //registration form store
@@ -50,17 +69,17 @@ Route::group(['middleware' => ['web']], function(){
             Route::prefix('account')->group(function(){
                 //Customer Dashboard Route
                 Route::get('index', 'GriffonTech\User\Http\Controllers\AccountController@index')->defaults('_config', [
-                    'view' => 'shop::users.account.index'
+                    'view' => 'shop::user.account.index'
                 ])->name('user.account.index');
 
                 //Customer Profile Show
                 Route::get('profile', 'GriffonTech\User\Http\Controllers\UserController@index')->defaults('_config', [
-                    'view' => 'shop::users.account.profile.index'
+                    'view' => 'shop::user.account.profile.index'
                 ])->name('user.profile.index');
 
                 //Customer Profile Edit Form Show
                 Route::get('profile/edit', 'GriffonTech\User\Http\Controllers\UserController@edit')->defaults('_config', [
-                    'view' => 'shop::users.account.profile.edit'
+                    'view' => 'shop::user.account.profile.edit'
                 ])->name('user.profile.edit');
 
                 //Customer Profile Edit Form Store
@@ -75,37 +94,23 @@ Route::group(['middleware' => ['web']], function(){
 
                 //User Course Show
                 Route::get('my-courses/learning', 'GriffonTech\User\Http\Controllers\CourseController@index')->defaults('_config', [
-                    'view' => 'shop::users.account.course.index'
+                    'view' => 'shop::user.account.course.index'
                 ])->name('user.course.index');
 
                 Route::get('my-courses/show/{slug}', 'GriffonTech\User\Http\Controllers\CourseController@show')->defaults('_config', [
-                    'view' => 'shop::users.account.course.show'
+                    'view' => 'shop::user.account.course.show'
                 ])->name('user.course.show');
 
                 Route::get('purchases', 'GriffonTech\User\Http\Controllers\PurchasesController@index')->defaults('_config', [
-                    'view' => 'shop::users.account.purchases.index'
+                    'view' => 'shop::user.account.purchases.index'
                 ])->name('user.purchases.index');
 
                 Route::get('referral', 'GriffonTech\User\Http\Controllers\ReferralController@show')->defaults('_config', [
-                    'view' => 'shop::users.account.referral.show'
+                    'view' => 'shop::user.account.referral.show'
                 ])->name('user.referral.show');
 
             });
         });
     });
-
-    Route::post('/payment/process', 'GriffonTech\Shop\Http\Controllers\CheckoutController@process')->name('payment.process');
-
-    Route::get('/payment/paypal', 'GriffonTech\Shop\Http\Controllers\PayPalPaymentController@process')->name('payment.pay_pal');
-
-    Route::get('/payment/paypal/status', 'GriffonTech\Shop\Http\Controllers\PayPalPaymentController@getPaymentStatus')->name('payment.pay_pal.status');
-
-    Route::get('/payment/rave_pay', 'GriffonTech\Shop\Http\Controllers\RavePaymentController@process')->name('payment.rave_pay');
-
-    Route::post('/payment/rave_pay/status', 'GriffonTech\Shop\Http\Controllers\RavePaymentController@getPaymentStatus')->name('payment.rave_pay.status');
-
-    Route::get('/payment/success', function() {
-       return view("shop::payment.success");
-    })->name('payment.success');
 
 });

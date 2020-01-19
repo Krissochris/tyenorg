@@ -1,7 +1,7 @@
 <?php
 return [
-    'cashondelivery' => [
-        'code' => 'cashondelivery',
+    'rave_payment_standard' => [
+        'code' => 'rave_payment_standard',
         'title' => 'Cash On Delivery',
         'description' => 'shop::app.checkout.onepage.cash-desc',
         'class' => 'Webkul\Payment\Payment\CashOnDelivery',
@@ -9,8 +9,8 @@ return [
         'sort' => 1
     ],
 
-    'moneytransfer' => [
-        'code' => 'moneytransfer',
+    'coin_payment' => [
+        'code' => 'coin_payment',
         'title' => 'Money Transfer',
         'description' => 'shop::app.checkout.onepage.money-desc',
         'class' => 'Webkul\Payment\Payment\MoneyTransfer',

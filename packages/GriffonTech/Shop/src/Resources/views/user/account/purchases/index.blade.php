@@ -21,7 +21,7 @@
         <div class="col-lg-12">
             <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
             </div>
-            <div class="container col-md-10">
+            <div class="container col-md-12">
                 <table class="table table-hover table-striped table-bordered">
                     <thead class="thead-dark">
                     <tr>
@@ -29,6 +29,7 @@
                         <th>Item</th>
                         <th>Medium</th>
                         <th>Amount</th>
+                        <th> Created </th>
                         <th></th>
                     </tr>
                     </thead>
@@ -39,6 +40,7 @@
                             <td> {{ $userPayment->payment_purpose }} </td>
                             <td> {{ $userPayment->medium_of_payment }} </td>
                             <td>$ {{ $userPayment->amount }}</td>
+                            <td>{{ $userPayment->created_at }}</td>
                             <td class="text-right">
                                 <a href="#">
                                     <i class="fa fa-eye text-dark"></i>
