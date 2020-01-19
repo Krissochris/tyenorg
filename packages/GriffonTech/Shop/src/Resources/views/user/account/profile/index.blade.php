@@ -33,32 +33,42 @@
                         <h4>Personal Details</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-hover table-bordered table-striped">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th>Field</th>
-                                <th>Value</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Full Name:</td>
-                                <td>Agbafor Olisa Emmanuel</td>
-                            </tr>
-                            <tr>
-                                <td>Username:</td>
-                                <td>Agbafolisa</td>
-                            </tr>
-                            <tr>
-                                <td>Email:</td>
-                                <td>agbafolisa@gmail.com</td>
-                            </tr>
-                            <tr>
-                                <td>Phone:</td>
-                                <td>+234 7058 337 306</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="form-group row">
+                            <label class="col-sm-2">Full Name: </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="Full Name"
+                                       name="name"
+                                       value="Dickson Igwe">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2">Username: </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="Username"
+                                       name="username"
+                                       value="Dickson">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2">Email: </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="Email"
+                                       name="email"
+                                       value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2">Phone: </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="Phone Number"
+                                       name="phone"
+                                       value="">
+                            </div>
+                        </div>
+
                     </div>
                     <div class="card-footer">
                         <div class="float-right">

@@ -109,6 +109,9 @@ Route::group(['middleware' => ['web']], function(){
                     'view' => 'shop::user.account.referral.show'
                 ])->name('user.referral.show');
 
+                //User Blog Show
+
+
             });
         });
     });

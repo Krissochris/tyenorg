@@ -21,7 +21,7 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-img">
-                            <img src="{{ $course->photo }}" class="card-img" alt="Course Image">
+                            <img src="{{ $course->photo }}" class="img-fluid" style="max-height: 200px; width: 100%" alt="Course Image">
                         </div>
                     </div>
                 </div>
@@ -71,8 +71,17 @@
                 </div>
             </div>
             <hr>
-            <div class="row">
-                <div class="col-md-12">
+            <div class="clearfix">
+                <div class="float-right col-sm-4">
+                    <video width="320" height="240" controls class="embed-responsive">
+                        <source src="movie.mp4" type="video/mp4">
+                        <source src="movie.ogg" type="video/ogg">
+                        Your browser does not support the video tag.
+                    </video>
+                    <hr>
+                </div >
+
+                <div class="col-md-8">
                     <div class="card">
                         <div class="card-header"> Description </div>
                         <div class="card-body">
@@ -82,12 +91,12 @@
                     <hr>
                 </div>
 
-            </div>
             <?php if ($course->tutor->tutor_profile) { $tutor = $course->tutor->tutor_profile; $tutor->name = $course->tutor->name;  } else {
                 $tutor['name'] = $course->tutor->name;
             }
             ?>
             @include("shop::partials.courses.tutor_detail", ['tutor' => $tutor ])
+            </div>
             <hr>
 
 {{--
