@@ -6,6 +6,7 @@ namespace GriffonTech\User\Http\Controllers;
 
 use GriffonTech\Blog\Repositories\BlogRepository;
 use Illuminate\Http\Request;
+use GriffonTech\Core\Helpers\FileManager;
 
 class BlogController extends Controller
 {
@@ -19,6 +20,7 @@ class BlogController extends Controller
 
     protected $blogRepository;
 
+
     public function __construct(
         BlogRepository $blogRepository
     )
@@ -27,6 +29,7 @@ class BlogController extends Controller
 
         $this->blogRepository = $blogRepository;
     }
+
 
     public function index()
     {
@@ -46,10 +49,28 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-
+            'title' => 'required|string',
+            'body' => 'required|string',
+            'photo' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:1048',
         ]);
 
-        $blog = $this->blogRepository->create($request->input());
+        $data = $request->input();
+
+        $data['user_id'] = auth('user')->user()->id;
+
+        $image = $request->file('photo');
+
+        if ($image) {
+
+            if ($fileUploaded = (new FileManager())->upload($image, 'blogs')) {
+
+                $data['photo'] = $fileUploaded;
+
+            } else {
+                session()->flash('error', 'Photo could not be uploaded');
+            }
+        }
+        $blog = $this->blogRepository->create($data);
 
         if ($blog) {
             session()->flash('success', 'Blog post was successfully created');

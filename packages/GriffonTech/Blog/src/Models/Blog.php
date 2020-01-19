@@ -8,8 +8,8 @@ use GriffonTech\Blog\Contracts\Blog as BlogContract;
 
 class Blog extends Model implements BlogContract {
 
-    protected $fillable = ['user_id', 'title', 'body',
-        'status', 'views'];
+    protected $fillable = ['user_id', 'title', 'body', 'url_key',
+        'status', 'photo'];
 
 
     public function user()

@@ -109,21 +109,47 @@ Route::group(['middleware' => ['web']], function(){
                     'view' => 'shop::user.account.referral.show'
                 ])->name('user.referral.show');
 
-                //User Blog Show
-                Route::get('blog', 'GriffonTech\User\Http\Controllers\BlogController@index')->defaults('_config', [
+
+                //User Blog
+                Route::get('blog/index', 'GriffonTech\User\Http\Controllers\BlogController@index')->defaults('_config', [
                     'view' => 'shop::user.account.blog.index'
                 ])->name('user.blog.index');
 
-                //All Blog Show
-                Route::get('blog-posts', 'GriffonTech\Shop\Http\Controllers\BlogController@index')->defaults('_config', [
-                    'view' => 'shop::blogs.index'
-                ])->name('blog.posts.index');
+                Route::get('blog/create', 'GriffonTech\User\Http\Controllers\BlogController@create')->defaults('_config', [
+                    'view' => 'shop::user.account.blog.create'
+                ])->name('user.blog.create');
 
-                Route::get('blog-posts/show/{slug}', 'GriffonTech\Shop\Http\Controllers\BlogController@show')->defaults('_config', [
-                    'view' => 'shop::blogs.show'
-                ])->name('blog.posts.show');
+                Route::post('blog/create', 'GriffonTech\User\Http\Controllers\BlogController@store')->defaults('_config', [
+                    'redirect' => 'user.blog.index'
+                ])->name('user.blog.create');
+
+                Route::get('blog/edit/{slug}', 'GriffonTech\User\Http\Controllers\BlogController@edit')->defaults('_config', [
+                    'view' => 'shop::user.account.blog.edit'
+                ])->name('user.blog.edit');
+
+                Route::post('blog/edit/{slug}', 'GriffonTech\User\Http\Controllers\BlogController@update')->defaults('_config', [
+                    'redirect' => 'user.blog.index'
+                ])->name('user.blog.edit');
+
+                Route::delete('blog/edit/{slug}', 'GriffonTech\User\Http\Controllers\BlogController@destroy')->defaults('_config', [
+                    'redirect' => 'user.blog.index'
+                ])->name('user.blog.delete');
+
             });
         });
+
     });
 
+    //All Blog Show
+    Route::get('blog', 'GriffonTech\Shop\Http\Controllers\BlogController@index')->defaults('_config', [
+        'view' => 'shop::blogs.index'
+    ])->name('blog.posts.index');
+
+    Route::get('blog/{slug}', 'GriffonTech\Shop\Http\Controllers\BlogController@show')->defaults('_config', [
+        'view' => 'shop::blogs.show'
+    ])->name('blog.posts.show');
+
+    Route::get('faqs', 'GriffonTech\Shop\Http\Controllers\FaqController@index')->defaults('_config', [
+        'view' => 'shop::faqs.index'
+    ])->name('faqs.index');
 });

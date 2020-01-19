@@ -14,7 +14,7 @@
                     <li class="nav-item"> <a href="{{ route("courses.index") }}" class="nav-link text-white-90">Explore Our Courses</a></li>
                     <li class="nav-item"> <a href="/about-us" class="nav-link text-white-90">About-us</a></li>
                     <li class="nav-item"> <a href="{{route('blog.posts.index')}}" class="nav-link text-white-90">Blog</a></li>
-                    <li class="nav-item"> <a href="/faq" class="nav-link text-white-90">FAQ's</a></li>
+                    <li class="nav-item"> <a href="{{ route('faqs.index') }}" class="nav-link text-white-90">FAQ's</a></li>
                 </ul>
 
             </div>
