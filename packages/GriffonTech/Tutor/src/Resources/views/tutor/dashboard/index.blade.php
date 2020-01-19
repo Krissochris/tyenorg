@@ -22,7 +22,7 @@
             <div class="card text-white bg-warning o-hidden h-100">
                 <div class="card-body">
                     <div class="card-body-icon">
-                        <i class="fas fa-fw fa-messages"></i>
+                        <i class="fas fa-fw fa-star"></i>
                     </div>
                     <div class="mr-5">{{ $totalReviews }} {{ str_plural('Review', $totalReviews) }}!</div>
                 </div>
@@ -38,7 +38,7 @@
             <div class="card text-white bg-success o-hidden h-100">
                 <div class="card-body">
                     <div class="card-body-icon">
-                        <i class="fas fa-fw fa-money"></i>
+                        <i class="fas fa-fw fa-piggy-bank"></i>
                     </div>
                     <div class="mr-5">0.00 USD</div>
                 </div>

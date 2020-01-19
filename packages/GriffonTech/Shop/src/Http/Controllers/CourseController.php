@@ -74,9 +74,60 @@ class CourseController extends Controller
     {
         $courseCategories = $this->courseCategoryRepository->all(['id', 'name', 'url_key']);
 
-        $courses = $this->courseRepository->all();
-        return view($this->_config['view'], compact('courseCategories', 'courses'));
+        // get free courses
+        if (auth('user')->guest() || (auth('user')->check() && !auth('user')->user()->is_pro_user)) {
+            if (request()->input('category_slug')) {
+                $category_slug = request()->input('category_slug');
+                try {
+                    $category = $this->courseCategoryRepository->findBySlugOrFail($category_slug);
+                    $courses = $this->courseRepository->getModel()
+                        ->query()
+                        ->where([
+                            ['type', CourseRepository::FREE],
+                            ['course_category_id', $category->id]
+                        ])->paginate(20);
+                } catch (ModelNotFoundException $exception) {
+                    $courses = $this->courseRepository->getModel()
+                        ->query()
+                        ->where('type', CourseRepository::FREE)
+                        ->paginate(20);
+                }
+            } else {
+                $courses = $this->courseRepository->getModel()
+                    ->query()
+                    ->where('type', CourseRepository::FREE)
+                    ->paginate(20);
+            }
+
+        } else if (auth('user')->check() && auth('user')->user()->is_pro_user) {
+            if (request()->input('category_slug')) {
+                $category_slug = request()->input('category_slug');
+                try {
+                    $category = $this->courseCategoryRepository->findBySlugOrFail($category_slug);
+                    $courses = $this->courseRepository->getModel()
+                        ->query()
+                        ->where([
+                            ['course_category_id', $category->id]
+                        ])->paginate(20);
+                } catch (ModelNotFoundException $exception) {
+                    $courses = $this->courseRepository
+                        ->paginate(20);
+                }
+            } else {
+                $courses = $this->courseRepository
+                    ->paginate(20);
+            }
+        }
+
+        // if the user is pro member // get all course
+
+        // if the category_slug is set
+        return view($this->_config['view'])->with(compact('courses', 'courseCategories'));
     }
+
+
+
+
 
     public function show($slug)
     {

@@ -2,13 +2,14 @@
 
 @section('content')
 <!-- Page Content -->
+<br><br>
     @if(isset($course))
         <div class="container">
             <div class="row bg-dark" style="padding: 20px 0;">
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-img">
-                            <img src="{{ asset("images/cover.jpeg") }}" class="card-img" alt="Course Image">
+                            <img src="{{ $course->photo }}" class="card-img" alt="Course Image">
                         </div>
                     </div>
                 </div>
@@ -27,27 +28,34 @@
                 </div>
             </div>
             <hr>
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
+            <div class="clearfix">
+                <div class="float-right col-sm-4">
+                    <video width="320" height="240" controls class="embed-responsive">
+                        <source src="movie.mp4" type="video/mp4">
+                        <source src="movie.ogg" type="video/ogg">
+                        Your browser does not support the video tag.
+                    </video>
+                    <br>
+                </div >
+                <div class="col-sm-8">
                     <div class="card">
                         <div class="card-header"> Course Batch </div>
                         <div class="card-body">
                             <ul class="list-group col-lg-12">
-                                <li class="list-group-item"> course learning link : <a href="#">{{ $course->learning_url }} </a> </li>
-                                <li class="list-group-item"> No of Users : {{ $courseRegistration->course_batch->no_of_users }}  </li>
-                                <li class="list-group-item"> Maximum Number of Users : {{ $courseRegistration->course_batch->maximum_number_of_users }}  </li>
-                                <li class="list-group-item"> Is Taken : {{ ($courseRegistration->course_batch->is_taken) ? 'Yes' : 'No' }} </li>
-                                <li class="list-group-item"> Course Completed on: {{ ($courseRegistration->course_batch->time_completed) ? $courseRegistration->course_batch->time_completed : 'Not Yet' }} </li>
+                                <li class="list-group-item"> <i class="fa fa-link"></i> - course learning link : <a href="#" class="font-weight-bold text-decoration-none">{{ $course->learning_url }} </a> </li>
+                                <li class="list-group-item"> <i class="fa fa-users"></i> - No of Users : <span class="text-danger font-weight-bold">{{ $courseRegistration->course_batch->no_of_users }}</span>  </li>
+                                <li class="list-group-item"> <i class="fa fa-users-cog"></i> - Maximum Number of Users : <span class="text-danger font-weight-bold">{{ $courseRegistration->course_batch->maximum_number_of_users }}</span>  </li>
+                                <li class="list-group-item"> <i class="fa fa-tasks"></i> - Is Taken : <span class="text-danger font-weight-bold">{{ ($courseRegistration->course_batch->is_taken) ? 'Yes' : 'No' }} </span></li>
+                                <li class="list-group-item"> <i class="fa fa-clock"></i> - Course Completed on : <span class="text-danger font-weight-bold">{{ ($courseRegistration->course_batch->time_completed) ? $courseRegistration->course_batch->time_completed : 'Not Yet' }}</span> </li>
                             </ul>
                         </div>
                     </div>
-                    <hr>
+                    <br>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-8">
                     <div class="card">
-                        <div class="card-header"> Course Details </div>
+                        <div class="card-header font-weight-bold"> Course Details </div>
                         <div class="card-body">
                             <ul>
                                 <li>Make REAL web applications using cutting-edge technologies</li>
@@ -59,16 +67,15 @@
                             </ul>
                         </div>
                     </div>
-                    <hr>
+                    <br>
                 </div>
-            </div>
 
             <?php if ($course->tutor->tutor_profile) { $tutor = $course->tutor->tutor_profile; $tutor->name = $course->tutor->name;  } else {
                 $tutor['name'] = $course->tutor->name;
             }
             ?>
             @include("shop::partials.courses.tutor_detail", ['tutor' => $tutor])
-            <hr>
+            <br>
 
 {{--
             @include("shop::partials.courses.related_courses")

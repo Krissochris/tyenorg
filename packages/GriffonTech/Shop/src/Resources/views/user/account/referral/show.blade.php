@@ -4,15 +4,14 @@
 @section('content')
         <!-- Page Content -->
 <div class="container">
-
-
+    <br>
     <div class="container row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
                     <h4> Referral Details </h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body table-responsive">
                     <table class="table table-hover table-bordered table-striped">
                         <thead class="thead-dark">
                         <tr>
@@ -23,19 +22,23 @@
                         <tbody>
                         <tr>
                             <td>Referral Bonus:</td>
-                            <td> {{ ($user_referral->referral_bonus) ? $user_referral->referral_bonus : '0.00' }}</td>
+                            <td class="text-danger font-weight-bold"> {{ ($user_referral->referral_bonus) ? $user_referral->referral_bonus : '0.00' }}</td>
                         </tr>
                         <tr>
                             <td>Total Referrals :</td>
-                            <td> {{ $user_referral->total_referral }}</td>
+                            <td class="text-danger font-weight-bold"> {{ $user_referral->total_referral }}</td>
                         </tr>
                         <tr>
                             <td>Available Referral :</td>
-                            <td> {{ $user_referral->available_referral }}</td>
+                            <td class="text-danger font-weight-bold"> {{ $user_referral->available_referral }}</td>
                         </tr>
                         <tr>
                             <td>Referral Code :</td>
-                            <td> {{ url()->route('user.register.index', ['ref' => auth('user')->user()->email ]) }} </td>
+                            <td class="text-primary font-weight-bold"> {{ url()->route('user.register.index', ['ref' => auth('user')->user()->email ]) }}
+                                <div class="float-right">
+                                    <a href="#"><i class="fa fa-share-alt text-dark"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -44,8 +47,8 @@
             </div>
 
         </div>
-        <hr>
     </div>
+    <br>
 </div>
 <!-- /.container -->
 @endsection

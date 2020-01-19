@@ -18,10 +18,9 @@
     </ol>
 
     <div class="row">
-        <div class="col-lg-12">
             <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
             </div>
-            <div class="container col-md-12">
+            <div class="col-md-12 table-responsive">
                 <table class="table table-hover table-striped table-bordered">
                     <thead class="thead-dark">
                     <tr>
@@ -39,25 +38,19 @@
                             <td>{{ $userPayment->id }}</td>
                             <td> {{ $userPayment->payment_purpose }} </td>
                             <td> {{ $userPayment->medium_of_payment }} </td>
-                            <td>$ {{ $userPayment->amount }}</td>
+                            <td class="font-weight-bold text-danger">$ {{ $userPayment->amount }}</td>
                             <td>{{ $userPayment->created_at }}</td>
                             <td class="text-right">
-                                <a href="#">
-                                    <i class="fa fa-eye text-dark"></i>
-                                </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="#">
-                                    <i class="fa fa-trash text-danger"></i>
-                                </a>
+                                <a href="#" class="text-primary text-decoration-none font-weight-bold">View</a> &nbsp; | &nbsp;
+                                <a href="#" class="text-danger text-decoration-none font-weight-bold">Delete</a>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
             </div>
-        </div>
     </div>
-</div>
-<hr>
+</div><br>
 <!-- /.container -->
 
 @endsection

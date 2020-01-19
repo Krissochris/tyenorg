@@ -48,20 +48,6 @@
 @endif
 
 
-<div class="container">
-
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">My Courses
-        <small>Catalog</small>
-    </h1>
-
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="/">Home</a>
-        </li>
-        <li class="breadcrumb-item active">My-Courses</li>
-    </ol>
-</div>
 @yield('content')
 
 @include('shop::layouts.footer.index')
