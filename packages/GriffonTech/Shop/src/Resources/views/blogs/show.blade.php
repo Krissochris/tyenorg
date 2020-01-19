@@ -5,7 +5,6 @@
     <br>
    <div class="container">
 <div class="clearfix">
-    <a href="{{route('blog.posts.index')}}" class="btn btn-dark float-right">Go Back</a>
 </div>
        <br>
        <div class="row">
