@@ -20,11 +20,7 @@
     <div class="row">
             <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
             </div>
-<<<<<<< HEAD:packages/GriffonTech/Shop/src/Resources/views/user/account/purchases/index.blade.php
-            <div class="container col-md-12">
-=======
             <div class="col-md-12 table-responsive">
->>>>>>> frontouch:packages/GriffonTech/Shop/src/Resources/views/users/account/purchases/index.blade.php
                 <table class="table table-hover table-striped table-bordered">
                     <thead class="thead-dark">
                     <tr>
@@ -42,12 +38,8 @@
                             <td>{{ $userPayment->id }}</td>
                             <td> {{ $userPayment->payment_purpose }} </td>
                             <td> {{ $userPayment->medium_of_payment }} </td>
-<<<<<<< HEAD:packages/GriffonTech/Shop/src/Resources/views/user/account/purchases/index.blade.php
-                            <td>$ {{ $userPayment->amount }}</td>
-                            <td>{{ $userPayment->created_at }}</td>
-=======
                             <td class="font-weight-bold text-danger">$ {{ $userPayment->amount }}</td>
->>>>>>> frontouch:packages/GriffonTech/Shop/src/Resources/views/users/account/purchases/index.blade.php
+                            <td>{{ $userPayment->created_at }}</td>
                             <td class="text-right">
                                 <a href="#" class="text-primary text-decoration-none font-weight-bold">View</a> &nbsp; | &nbsp;
                                 <a href="#" class="text-danger text-decoration-none font-weight-bold">Delete</a>

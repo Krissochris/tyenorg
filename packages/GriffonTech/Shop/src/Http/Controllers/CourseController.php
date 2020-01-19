@@ -122,6 +122,7 @@ class CourseController extends Controller
         // if the user is pro member // get all course
 
         // if the category_slug is set
+        return view($this->_config['view'])->with(compact('courses', 'courseCategories'));
     }
 
 

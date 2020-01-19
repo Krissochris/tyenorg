@@ -2,6 +2,7 @@
 
 @section('content')
 <!-- Page Content -->
+<br><br>
     @if(isset($course))
         <div class="container">
             <div class="row bg-dark" style="padding: 20px 0;">
