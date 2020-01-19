@@ -292,6 +292,32 @@ Route::group(['middleware' => ['web']], function (){
             ])->name('admin.testimonies.delete');
 
 
+            // Frequently Asked Questions
+            Route::get('faqs/index', 'GriffonTech\Faq\Http\Controllers\FaqsController@index')->defaults('_config', [
+                'view' => 'admin::admin.faqs.index'
+            ])->name('admin.faqs.index');
+
+            Route::get('faqs/create', 'GriffonTech\Faq\Http\Controllers\FaqsController@create')->defaults('_config', [
+                'view' => 'admin::admin.faqs.create'
+            ])->name('admin.faqs.create');
+
+            Route::post('faqs/create', 'GriffonTech\Faq\Http\Controllers\FaqsController@store')->defaults('_config', [
+                'redirect' => 'admin.faqs.create'
+            ])->name('admin.faqs.create');
+
+            Route::get('faqs/edit/{id}', 'GriffonTech\Faq\Http\Controllers\FaqsController@edit')->defaults('_config', [
+                'view' => 'admin::admin.faqs.edit'
+            ])->name('admin.faqs.edit');
+
+            Route::post('faqs/edit/{id}', 'GriffonTech\Faq\Http\Controllers\FaqsController@update')->defaults('_config', [
+                'redirect' => 'admin.faqs.index'
+            ])->name('admin.faqs.edit');
+
+            Route::delete('faqs/delete/{id}', 'GriffonTech\Faq\Http\Controllers\FaqsController@destroy')->defaults('_config', [
+                'redirect' => 'admin.faqs.index'
+            ])->name('admin.faqs.delete');
+
+
 
 
             // Messages
