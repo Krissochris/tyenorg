@@ -29,7 +29,6 @@ class FileManager {
         try {
 
             $env = env('FILESYSTEM_DRIVER');
-            dd($env);
 
             if ($env === 'local') {
 
@@ -42,7 +41,6 @@ class FileManager {
                 $input['photo_url'] .= Storage::disk('s3')->putFileAs('/'.$input['photo_url_part'], $file,$input['photo_name'], 'public');
             }
         } catch ( \Exception $exception) {
-            dd($exception->getMessage());
             return false;
         }
 
@@ -66,6 +64,9 @@ class FileManager {
 
     public function delete($file_path, $directory)
     {
+        if (!$file_path) {
+            return true;
+        }
         $env = env('FILESYSTEM_DRIVER');
 
         $photo_name =  (last(explode('/',$file_path)));
