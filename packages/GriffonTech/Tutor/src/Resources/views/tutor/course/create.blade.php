@@ -34,6 +34,11 @@
                                     {!! Form::text('learning_url', null, ['class' => 'form-control', 'placeholder' => 'Learning Url']) !!}
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="name"> Number of Batch </label>
+                                    {!! Form::text('number_of_batch', null, ['class' => 'form-control', 'placeholder' => 'Number of Batch']) !!}
+                                </div>
+
                                 <div id="payment_options" style="display: none;">
                                     <div class="form-group">
                                         <label for="total_no_of_referrals_needed">Total Number of Referrals Needed</label>

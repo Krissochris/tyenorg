@@ -7,7 +7,7 @@ use GriffonTech\Course\Repositories\CourseBatchRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use GriffonTech\Core\Helpers\FileManager;
 
 /**
  * Course Controller
@@ -85,7 +85,7 @@ class CourseController extends Controller
             'summary' => 'required',
             'description' => 'required',
             'total_no_of_users_in_batch' => 'required',
-            'photo' => 'required|mimes:jpeg,png,jpg,gif,svg|max:1048'
+            'photo' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:1048'
         ]);
 
         $data = $request->input();
@@ -96,17 +96,13 @@ class CourseController extends Controller
         $image = $request->file('photo');
 
         if ($image) {
-            $input = null;
-            $input['photo_name'] = time().'.'.$image->getClientOriginalExtension();
-            $input['photo_url_part'] = 'storage/images/courses/';
-            try {
-                $input['photo_url'] = asset($input['photo_url_part']) .'/'. $input['photo_name'];
-                $image->storeAs('public/images/courses/', $input['photo_name']);
 
-                $data['photo'] =$input['photo_url'];
-            } catch ( \Exception $exception) {
+            if ($fileUploaded = (new FileManager())->upload($image, 'courses')) {
 
-                session()->flash('error', $exception->getMessage());
+                $data['photo'] = $fileUploaded;
+
+            } else {
+                session()->flash('error', 'Photo could not be uploaded');
             }
         }
 
@@ -166,7 +162,15 @@ class CourseController extends Controller
         }
         if ($request->file('photo')) {
             $image = $request->file('photo');
-            $input = null;
+
+            if ($updated = (new FileManager())->update($image, $course->photo, 'courses')) {
+
+                $course->forceFill(['photo' => $updated]);
+            } else {
+                session()->flash('error', 'Photo could not be updated.');
+            }
+
+            /*$input = null;
             $input['photo_name'] = time().'.'.$image->getClientOriginalExtension();
             $input['photo_url_part'] = 'storage/images/courses';
             try {
@@ -180,7 +184,7 @@ class CourseController extends Controller
             } catch ( \Exception $exception) {
 
                session()->flash('error', $exception->getMessage());
-            }
+            }*/
         }
         $course =  $course->update($request->input());
 
