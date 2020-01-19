@@ -74,7 +74,7 @@ class CreateRavePaymentsTable extends Migration
             $table->string('paymentpage')->nullable();
             $table->string('raveref')->nullable();
             $table->string('amountsettledforthistransaction')->nullable();
-            $table->json('card')->nullable();
+            $table->string('card')->nullable();
             $table->timestamps();
         });
     }
