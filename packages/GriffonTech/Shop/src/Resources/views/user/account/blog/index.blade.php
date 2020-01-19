@@ -38,7 +38,7 @@
                             <td>{{ (($blog->status === 1) ? 'Published' : 'Unpublished')}}</td>
                             <td>{{$blog->created_at}}</td>
                             <td>
-                                <a href="#" class="text-decoration-none font-weight-bold">View</a>
+                                <a href="{{route('blog.posts.show', $blog->url_key)}}" class="text-decoration-none font-weight-bold">View</a>
                             </td>
                         </tr>
 
