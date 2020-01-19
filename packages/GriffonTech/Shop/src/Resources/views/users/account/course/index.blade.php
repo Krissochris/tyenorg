@@ -20,8 +20,6 @@
 
             <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
             </div>
-
-            <div class="container col-md-10">
                 <div class="row">
 
                     @if(isset($courses))
@@ -29,9 +27,9 @@
                         @foreach($courses as $course)
                             <div class="col-lg-3 col-md-3 mb-3">
                                 <div class="card h-100">
-                                    <a href="{{ route('user.course.show', $course->url_key) }}"><img class="card-img-top" src="{{ asset('images/cover.jpeg') }}"  alt=""></a>
+                                    <a href="{{ route('user.course.show', $course->url_key) }}"><img class="img-fluid" style="max-height: 150px; width: 100%" src="{{ $course->photo}}"  alt=""></a>
                                     <div class="card-body">
-                                        <a href="{{ route('user.course.show', $course->url_key) }}" class="card-text"> {{ $course->name }} </a>
+                                        <a href="{{ route('user.course.show', $course->url_key) }}" class="text-decoration-none font-weight-bold"> {{ $course->name }} </a>
                                     </div>
                                     <div class="card-footer">
                                         <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -51,7 +49,6 @@
 
                 </div>
                 <!-- /.row -->
-            </div>
 
         </div>
         <!-- /.col-lg-9 -->

@@ -11,7 +11,7 @@
             <h1 class="my-4">Categories</h1>
             <div class="list-group">
                 @foreach($courseCategories as $category)
-                <a href="{{ route('categories.show', $category->url_key) }}" class="list-group-item">{{ $category->name }} </a>
+                <a href="{{ route('courses.index', ['category_slug' => $category->url_key]) }}" class="list-group-item text-decoration-none">{{ $category->name }} </a>
                 @endforeach
             </div>
 
@@ -29,15 +29,15 @@
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
                             <a href="{{ route('courses.show', $course->url_key) }}">
-                                <img class="card-img-top" src="{{ $course->photo }}" alt="{{ $course->name }}">
+                                <img class="img-fluid" style="max-height: 150px; width: 100%" src="{{ $course->photo }}" alt="{{ $course->name }}">
                             </a>
                             <div class="card-body">
                                 <h6 class="card-title">
-                                    <a href="{{ route('courses.show', $course->url_key) }}"> {{ $course->name }}</a>
+                                    <a href="{{ route('courses.show', $course->url_key) }}" class="font-weight-bold text-decoration-none"> {{ $course->name }}</a>
                                 </h6>
                                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
 
-                                <div class="float-right">
+                                <div class="float-right text-danger font-weight-bold">
                                     @switch($course->type)
                                     @case('free')
                                     {{ __('Free') }}
