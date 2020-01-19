@@ -266,6 +266,32 @@ Route::group(['middleware' => ['web']], function (){
             ])->name('admin.reviews.get_course_batches');
 
 
+            // Testimonies
+            Route::get('testimonies/index', 'GriffonTech\Testimony\Http\Controllers\TestimoniesController@index')->defaults('_config', [
+                'view' => 'admin::admin.testimonies.index'
+            ])->name('admin.testimonies.index');
+
+            Route::get('testimonies/create', 'GriffonTech\Testimony\Http\Controllers\TestimoniesController@create')->defaults('_config', [
+                'view' => 'admin::admin.testimonies.create'
+            ])->name('admin.testimonies.create');
+
+            Route::post('testimonies/create', 'GriffonTech\Testimony\Http\Controllers\TestimoniesController@store')->defaults('_config', [
+                'redirect' => 'admin.testimonies.index'
+            ])->name('admin.testimonies.create');
+
+            Route::get('testimonies/edit/{id}', 'GriffonTech\Testimony\Http\Controllers\TestimoniesController@edit')->defaults('_config', [
+                'view' => 'admin::admin.testimonies.edit'
+            ])->name('admin.testimonies.edit');
+
+            Route::post('testimonies/edit/{id}', 'GriffonTech\Testimony\Http\Controllers\TestimoniesController@update')->defaults('_config', [
+                'redirect' => 'admin.testimonies.index'
+            ])->name('admin.testimonies.edit');
+
+            Route::delete('testimonies/delete/{id}', 'GriffonTech\Testimony\Http\Controllers\TestimoniesController@destroy')->defaults('_config', [
+                'redirect' => 'admin.testimonies.index'
+            ])->name('admin.testimonies.delete');
+
+
 
 
             // Messages

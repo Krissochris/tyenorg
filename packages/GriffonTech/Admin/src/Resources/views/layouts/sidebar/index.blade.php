@@ -42,6 +42,11 @@
             <span>Reviews</span></a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="{{route('admin.testimonies.index')}}">
+            <i class="fas fa-fw fa-star"></i>
+            <span>Testimonies</span></a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="{{route('admin.messages.index')}}">
             <i class="fas fa-fw fa-envelope-open-text"></i>
             <span>Messages</span></a>
