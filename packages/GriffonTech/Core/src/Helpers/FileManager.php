@@ -29,6 +29,7 @@ class FileManager {
         try {
 
             $env = env('FILESYSTEM_DRIVER');
+            dd($env);
 
             if ($env === 'local') {
 
