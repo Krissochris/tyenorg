@@ -16,35 +16,36 @@
             </li>
             <li class="breadcrumb-item active">My-Blog Posts</li>
         </ol>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th>S/N</th>
+                    <th>Photo</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th> Created </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php $sn = 1; ?>
+                    @foreach($blogs as $blog)
+                        <tr>
+                            <td>{{$sn++}}</td>
+                            <td><img src="{{$blog->photo}}" class="img-fluid" width="70px" height="50px" alt=""></td>
+                            <td>{!! (strlen($blog->title) > 30) ? substr($blog->title, 0, 30)."<b> (&hellip;)</b>" : $blog->title !!}</td>
+                            <td>{{ (($blog->status === 1) ? 'Published' : 'Unpublished')}}</td>
+                            <td>{{$blog->created_at}}</td>
+                            <td>
+                                <a href="#" class="text-decoration-none font-weight-bold">View</a>
+                            </td>
+                        </tr>
 
-        <div class="card mb-4">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <a href="/posts/{{$post->id}}">
-                            <img class="img-fluid rounded" src="/storage/cover_images/{{$post->cover_image}}" alt="Article Image">
-                        </a>
-                    </div>
-                    <div class="col-lg-6">
-                        <h3 class="card-title text-success">{{$post->title}}</h3>
-                        <p class="card-text"> {!! (strlen($post->body) > 200) ? substr($post->body, 0, 200)."<b> (&hellip;)</b>  <hr> " : $post->body !!} <a href="/posts/{{$post->id}}" class="btn btn-success">Read More &rarr;</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer">
-                Written by <a href="#" class="text-primary">{{$post->user->name}} </a>:<br>
-                <span class="text-primary"> {{$post->created_at->format("l jS \of F Y h:i:s A") }}</span>
-                <div class="float-right">
-                    <a href=""><i class="fa fa-thumbs-up fa-lg grow" style="color: green" ></i><span class="badge bg-info text-white">7</span></a> &nbsp;
-                    <a href=""><i class="fa fa-thumbs-down fa-lg grow" style="color: green" ></i><span class="badge bg-info text-white">7</span></a>&nbsp;
-                    <a href=""><i class="fa fa-comments fa-lg grow" style="color: green" ></i><span class="badge bg-info text-white">7</span></a>&nbsp;
-                    <a href=""><i class="fab fa-facebook fa-lg grow" ></i></a>&nbsp;
-                    <a href=""><i class="fab fa-twitter fa-lg grow" ></i></a>&nbsp;
-                    <a href=""><i class="fab fa-instagram fa-lg grow" ></i></a>
-                </div>
-            </div>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
-
 
     </div><br>
 @endsection
