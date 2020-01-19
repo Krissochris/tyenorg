@@ -10,7 +10,7 @@
                         <a href="{{route('admin.courses.index')}}" class="btn btn-dark float-right">Go Back</a>
                     </div>
                     <div class="card-body">
-                        {!! Form::model($course, ['route' => ['admin.courses.edit', $course->id] ]) !!}
+                        {!! Form::model($course, ['route' => ['admin.courses.edit', $course->id],'enctype' => 'multipart/form-data' ]) !!}
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">

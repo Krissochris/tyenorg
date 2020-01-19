@@ -10,7 +10,7 @@
                         <a href="{{route('admin.courses.index')}}" class="btn btn-dark float-right">Go Back</a>
                     </div>
                     <div class="card-body">
-                        {!! Form::open(['route' => 'admin.courses.create']) !!}
+                        {!! Form::open(['route' => 'admin.courses.create', 'enctype' => 'multipart/form-data']) !!}
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -36,6 +36,11 @@
                                 <div class="form-group">
                                     <label for="name"> Learning Link </label>
                                     {!! Form::text('learning_url', null, ['class' => 'form-control', 'placeholder' => 'Learning Url']) !!}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="name"> Number of Batch </label>
+                                    {!! Form::text('number_of_batch', null, ['class' => 'form-control', 'placeholder' => 'Number of Batch']) !!}
                                 </div>
 
                                 <div id="payment_options" style="display: none;">

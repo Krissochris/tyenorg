@@ -16,6 +16,7 @@
                             <th> Name </th>
                             <th>Teacher </th>
                             <th> Type </th>
+                            <th> Image</th>
                             <th>Created On</th>
                             <th>Last Modified On
                             <th></th>
@@ -28,6 +29,7 @@
                                 <td> {{ $course->name }} </td>
                                 <td> {{ $course->tutor->name }} </td>
                                 <td> {{ $course->type }} </td>
+                                <td><img src="{{ $course->photo }}" alt="course image" width="70" height="70"> </td>
                                 <td> {{ $course->created_at }} </td>
                                 <td> {{ $course->updated_at }} </td>
                                 <td>
