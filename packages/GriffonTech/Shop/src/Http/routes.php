@@ -110,7 +110,9 @@ Route::group(['middleware' => ['web']], function(){
                 ])->name('user.referral.show');
 
                 //User Blog Show
-
+                Route::get('blog', 'GriffonTech\User\Http\Controllers\BlogController@index')->defaults('_config', [
+                    'view' => 'shop::user.account.blog.index'
+                ])->name('user.blog.index');
 
             });
         });

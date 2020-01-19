@@ -52,7 +52,7 @@
                             <li class="dropdown-item"><a href="{{ route('user.referral.show') }}" class="text-decoration-none text-dark">Referral</a></li>
                             <li class="dropdown-item"><a href="/#" class="text-decoration-none text-dark">Notifications</a></li>
                             <li class="dropdown-item"><a href="{{route('user.purchases.index')}}" class="text-decoration-none text-dark">Purchase history</a></li>
-                            <li class="dropdown-item"><a href="#" class="text-decoration-none text-dark">My Blog</a></li>
+                            <li class="dropdown-item"><a href="{{route('user.blog.index')}}" class="text-decoration-none text-dark">My Blog</a></li>
                             <li class="dropdown-item"><a href="#" class="text-decoration-none text-dark">Testimonials</a></li>
                             <li class="dropdown-divider"></li>
                             <li class="dropdown-item">
