@@ -41,6 +41,7 @@ class FileManager {
                 $input['photo_url'] .= Storage::disk('s3')->putFileAs('/'.$input['photo_url_part'], $file,$input['photo_name'], 'public');
             }
         } catch ( \Exception $exception) {
+            dd($exception->getMessage());
             return false;
         }
 
