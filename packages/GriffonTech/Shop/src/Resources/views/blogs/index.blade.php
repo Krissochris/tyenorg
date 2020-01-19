@@ -8,19 +8,14 @@
         @if(count($blogs) > 0)
             <div class="row">
                 @foreach($blogs as $blog)
-                    <div class="col-sm-6">
+                    <div class="col-sm-8">
                         <div class="card mb-4">
                             <h4 class="card-header text-dark">{!! (strlen($blog->title) > 40) ? substr($blog->title, 0, 40)."<b> (&hellip;)</b> " : $blog->title !!}</h4>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <a href="#">
-                                            <img class="card-img-top" src="{{$blog->photo}}" alt="Article Image">
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
 
-                                        <p class="card-text"> {!! (strlen($blog->body) > 120) ? substr($blog->body, 0, 120)."<b> (&hellip;)</b>  <br> " : $blog->body !!} <a href="{{route('blog.posts.show', $blog->url_key)}}" class="btn btn-dark btn-sm">Read More &rarr;</a></p>
+                                        <p class="card-text"> {!! (strlen($blog->body) > 400) ? substr($blog->body, 0, 400)."<b> (&hellip;)</b>  <br> " : $blog->body !!} <a href="{{route('blog.posts.show', $blog->url_key)}}" class="btn btn-dark btn-sm">Read More &rarr;</a></p>
                                     </div>
                                 </div>
                             </div>

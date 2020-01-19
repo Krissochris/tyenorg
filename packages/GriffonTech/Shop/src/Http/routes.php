@@ -115,6 +115,7 @@ Route::group(['middleware' => ['web']], function(){
                     'view' => 'shop::user.account.blog.index'
                 ])->name('user.blog.index');
 
+
                 Route::get('blog/create', 'GriffonTech\User\Http\Controllers\BlogController@create')->defaults('_config', [
                     'view' => 'shop::user.account.blog.create'
                 ])->name('user.blog.create');
@@ -152,4 +153,5 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('faqs', 'GriffonTech\Shop\Http\Controllers\FaqController@index')->defaults('_config', [
         'view' => 'shop::faqs.index'
     ])->name('faqs.index');
+
 });

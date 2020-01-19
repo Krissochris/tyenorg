@@ -5,7 +5,6 @@
     <br>
    <div class="container">
 <div class="clearfix">
-    <a href="{{route('blog.posts.index')}}" class="btn btn-dark float-right">Go Back</a>
 </div>
        <br>
        <div class="row">
@@ -15,7 +14,7 @@
                <div class="card">
                    <div class="img-thumbnail"><img style="width: 100%" src="{{$blog->photo}}"></div>
                    <div class="card-body">
-                       <h6 class="text-dark">{{$blog->title}}</h6>
+                       <h5 class="text-dark font-weight-bold">{{$blog->title}}</h5>
                        {!!$blog->body!!}
                        <hr>
                        <div class="float-left text-dark font-weight-bold order-sm-1">
