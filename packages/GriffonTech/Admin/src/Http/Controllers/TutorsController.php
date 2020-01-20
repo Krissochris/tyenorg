@@ -28,6 +28,7 @@ class TutorsController extends Controller
     {
         $tutors = $this->tutorProfileRepository->with(['user:id,name'])
             ->paginate(15,['id','title','user_id', 'created_at']);
+
         return view($this->_config['view'], compact('tutors'));
     }
 

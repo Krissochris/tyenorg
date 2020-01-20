@@ -7,9 +7,8 @@
                 <i class="fas fa-table"></i> Tutors
                 <div class=" float-right">
 {{--
-                    <a href="#" class="btn btn-danger">Locked Tutors</a>
---}}
                     <a href="{{route('admin.tutors.create')}}" class="btn btn-dark"><i class="fa fa-user-plus"></i> Add Tutor</a>
+--}}
                 </div>
             </div>
             <div class="card-body">
@@ -20,7 +19,10 @@
                             <th>S/N</th>
                             <th> Name </th>
                             <th>Title</th>
+                            <th> Status </th>
+{{--
                             <th>Course(s)</th>
+--}}
                             <th>Registered</th>
                             <th></th>
                         </tr>
@@ -31,7 +33,9 @@
                             <td> {{ $tutor->user->id }}</td>
                             <td> {{ $tutor->user->name }} </td>
                             <td> {{ $tutor->title }} </td>
+{{--
                             <td>14</td>
+--}}
                             <td> {{ $tutor->created_at }} </td>
                             <td>
                                 <a href="{{route('admin.tutors.show', $tutor->id)}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;

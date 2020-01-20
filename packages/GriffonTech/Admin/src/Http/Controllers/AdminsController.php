@@ -39,6 +39,29 @@ class AdminsController extends Controller
         return view($this->_config['view']);
     }
 
+
+    public function store(Request $request)
+    {
+        $this->validate($request,[
+            'name' => 'string|required',
+            'username' => 'string|required|unique:admins,username',
+            'email' => 'email|required|unique:admins,email',
+            'password' => 'confirmed|min:6|required',
+        ]);
+
+        $data = $request->input();
+        $data['password'] = bcrypt($data['password']);
+        $admin = $this->adminRepository->create($data);
+
+        if ($admin) {
+            session()->flash('success', 'Admin was successfully created');
+        } else {
+            session()->flash('error', 'Admin could not be created. Try again');
+        }
+        return redirect()->route($this->_config['redirect']);
+    }
+
+
     public function show($id)
     {
         $admin = $this->adminRepository->findOrFail($id);
@@ -68,12 +91,6 @@ class AdminsController extends Controller
             session()->flash('error', 'Admin record could not be updated!');
         }
         return redirect()->route($this->_config['redirect'], $id);
-    }
-
-
-    public function store()
-    {
-        return view($this->_config['view']);
     }
 
 
