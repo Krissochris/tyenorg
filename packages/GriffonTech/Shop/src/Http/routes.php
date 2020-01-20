@@ -135,6 +135,18 @@ Route::group(['middleware' => ['web']], function(){
                     'redirect' => 'user.blog.index'
                 ])->name('user.blog.delete');
 
+
+                // Course Review
+                Route::post('course_review/create', 'GriffonTech\User\Http\Controllers\CourseReviewController@store')->defaults('_config', [
+                ])->name('user.course_review.create');
+
+                Route::post('course_review/edit/{id}', 'GriffonTech\User\Http\Controllers\CourseReviewController@update')->defaults('_config', [
+                ])->name('user.course_review.edit');
+
+                Route::delete('course_review/delete/{id}', 'GriffonTech\User\Http\Controllers\CourseReviewController@destroy')->defaults('_config', [
+                ])->name('user.course_review.delete');
+
+
             });
         });
 

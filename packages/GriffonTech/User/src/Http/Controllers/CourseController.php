@@ -3,6 +3,7 @@
 namespace GriffonTech\User\Http\Controllers;
 use GriffonTech\Course\Repositories\CourseRegistrationRepository;
 use GriffonTech\Course\Repositories\CourseRepository;
+use GriffonTech\Course\Repositories\CourseReviewRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
@@ -31,10 +32,13 @@ class CourseController extends Controller {
 
     protected $courseRegistrationRepository;
 
+    protected $courseReviewRepository;
+
 
     public function __construct(
         CourseRepository $courseRepository,
-        CourseRegistrationRepository $courseRegistrationRepository
+        CourseRegistrationRepository $courseRegistrationRepository,
+        CourseReviewRepository $courseReviewRepository
     )
     {
         $this->middleware('user');
@@ -44,6 +48,8 @@ class CourseController extends Controller {
         $this->courseRepository = $courseRepository;
 
         $this->courseRegistrationRepository = $courseRegistrationRepository;
+
+        $this->courseReviewRepository = $courseReviewRepository;
 
     }
 
@@ -63,15 +69,28 @@ class CourseController extends Controller {
             $course = $this->courseRepository->findBySlugOrFail($slug);
 
         } catch (ModelNotFoundException $exception) {
-            // handle the error
+            abort(404);
         }
-        if (isset($course)) {
-            $courseRegistration = $this->courseRegistrationRepository->findOneWhere([
-                'course_id' => $course->id,
-                'user_id' => auth('user')->user()->id
-            ]);
+        $courseRegistration = $this->courseRegistrationRepository
+            ->with(['course_batch'])
+            ->findOneWhere([
+            'course_id' => $course->id,
+            'user_id' => auth('user')->user()->id
+        ]);
+        if (!$courseRegistration) {
+            return back();
         }
-        return view($this->_config['view'], compact('course', 'courseRegistration'));
+        if (isset($courseRegistration->course_batch->id)) {
+
+            $course_review = $this->courseReviewRepository
+                ->findOneWhere([
+                    'course_id' => $course->id,
+                    'user_id' => $courseRegistration->user_id,
+                    'course_batch_id' => $courseRegistration->course_batch->id
+                ]);
+        }
+
+        return view($this->_config['view'], compact('course', 'courseRegistration', 'course_review'));
     }
 
 

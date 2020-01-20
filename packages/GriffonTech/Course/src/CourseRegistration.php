@@ -39,7 +39,11 @@ class CourseRegistration
             ->first();
 
         if (!$course_batch) {
-            return false;
+            $course_batch = $this->courseBatchRepository->create([
+                'course_id' => $course->id,
+                'tutor_id' => $course->tutor_id,
+                'maximum_number_of_users' => $course->total_no_of_users_in_batch,
+            ]);
         }
 
         $course_batch->no_of_users += 1;
