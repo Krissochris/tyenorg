@@ -135,15 +135,23 @@ class CourseController extends Controller
             $course = $this->courseRepository->findBySlugOrFail($slug);
 
         } catch (ModelNotFoundException $exception) {
-            // handle the error
+            abort(404);
         }
+
         if (isset(auth('user')->user()->id)) {
-            if (isset($course)) {
-                $courseRegistered = $this->courseRegistrationRepository->findOneByField('course_id', $course->id, ['course_id']);
+            $courseRegistered = $this->courseRegistrationRepository
+                ->findWhere([
+                    'user_id' => auth('user')->user()->id,
+                    'course_id' => $course->id,
+                ],['user_id', 'course_id'])->first();
+            if ($courseRegistered) {
+                $course->is_registered = true;
+            } else {
+                $course->is_registered = false;
             }
         }
 
-        return view($this->_config['view'])->with(compact('course', 'courseRegistered'));
+        return view($this->_config['view'])->with(compact('course'));
     }
 
     public function join($slug)

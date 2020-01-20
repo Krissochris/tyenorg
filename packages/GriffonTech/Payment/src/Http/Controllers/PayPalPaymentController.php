@@ -146,11 +146,18 @@ class PayPalPaymentController extends Controller
 
             if ($payment_details['purchase_type'] === 'course_purchase') {
                 CourseRegistration::registerStudent($payment_details['item_no'], $payment_details['user_id']);
+
+            } elseif ($payment_details['purchase_type'] === 'pro_user_package_purchase') {
+
+                $proUserHandler =  app('GriffonTech\User\Helpers\ProUserHandler');
+
+                $proUserHandler->becomeProUser($payment_details['user_id']);
+
+                session()->flash('success', 'Account was successfully upgraded to pro user.');
             }
 
+            return redirect()->route('payment.success');
 
-            session()->flash('success','Payment success');
-            return redirect('/');
         }
         session()->flash('error', 'Payment failed');
         return redirect('/');

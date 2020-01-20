@@ -3,7 +3,7 @@
 namespace GriffonTech\Payment\Http\Controllers;
 
 use Kevupton\LaravelCoinpayments\Exceptions\CoinPaymentsResponseError;
-
+use GriffonTech\Payment\Facades\Coinpayments;
 class CoinPaymentController extends Controller
 {
 
@@ -26,7 +26,7 @@ class CoinPaymentController extends Controller
         $req['ipn_url'] = url('/api/ipn');
 
         try {
-            $transaction = \Coinpayments::createTransactionSimple($req['amount'], $req['currency1'], $req['currency2'], $req);
+            $transaction = Coinpayments::createTransactionSimple($req['amount'], $req['currency1'], $req['currency2'], $req);
             if ($transaction) {
                 // record deposit request // continue
                 // return redirect to make deposit

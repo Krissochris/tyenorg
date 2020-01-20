@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace GriffonTech\Payment\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Kevupton\LaravelCoinpayments\Models\Ipn;

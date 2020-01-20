@@ -35,6 +35,10 @@ class SessionController extends Controller {
         if (auth()->guard('user')->check()) {
             return redirect()->route('user.profile.index');
         } else {
+            if (strpos(url()->previous(), 'courses') !== false) {
+                $intendedUrl = url()->previous();
+                session()->put('url.intended', $intendedUrl);
+            }
             return view($this->_config['view']);
         }
     }

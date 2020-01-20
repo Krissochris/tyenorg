@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fas fa-table"></i> Tutors
+                <i class="fas fa-table"></i> Admins
                 <div class=" float-right">
                     <a href="{{route('admin.admins.create')}}" class="btn btn-dark"><i class="fa fa-user-plus"></i> Add Admin </a>
                 </div>
@@ -17,6 +17,7 @@
                             <th>S/N</th>
                             <th> Name </th>
                             <th> Username </th>
+                            <th> Status </th>
                             <th>Registered</th>
                             <th></th>
                         </tr>
@@ -27,6 +28,7 @@
                                 <td> {{ $admin->id }}</td>
                                 <td> {{ $admin->name }} </td>
                                 <td> {{ $admin->username }} </td>
+                                <td> {{ $admin->status }} </td>
                                 <td> {{ $admin->created_at }} </td>
                                 <td>
                                     <a href="{{route('admin.admins.show', $admin->id)}}"><i class="fa fa-eye grow" title="view"></i></a>&nbsp;&nbsp;

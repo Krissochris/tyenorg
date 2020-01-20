@@ -63,4 +63,9 @@ class User extends Authenticatable implements UserContract
     {
         $this->notify(new CustomerResetPassword($token));
     }
+
+    public function makeProUser()
+    {
+        return $this->update(['is_pro_user' => 1]);
+    }
 }

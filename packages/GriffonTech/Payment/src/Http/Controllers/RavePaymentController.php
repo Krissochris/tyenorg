@@ -1,6 +1,6 @@
 <?php
 
-namespace GriffonTech\Shop\Http\Controllers;
+namespace GriffonTech\Payment\Http\Controllers;
 
 use App\RavePayment;
 use GriffonTech\Course\Facades\CourseRegistration;
@@ -8,7 +8,7 @@ use GriffonTech\User\Repositories\UserPaymentRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
-
+use GriffonTech\User\Helpers\ProUserHandler;
 class RavePaymentController extends Controller
 {
 
@@ -127,6 +127,13 @@ class RavePaymentController extends Controller
 
                 if ($payment_details['purchase_type'] === 'course_purchase') {
                     CourseRegistration::registerStudent($payment_details['item_no'], $payment_details['user_id']);
+
+                } elseif ($payment_details['purchase_type'] === 'pro_user_package_purchase') {
+                    $proUserHandler =  app('GriffonTech\User\Helpers\ProUserHandler');
+
+                    $proUserHandler->becomeProUser($payment_details['user_id']);
+
+                    session()->flash('success', 'Account was successfully upgraded to pro user.');
                 }
 
                 return redirect()->route('payment.success');

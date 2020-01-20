@@ -30,7 +30,6 @@
                         <div class="card-title text-light"><h2>{{ $course->name }} </h2></div>
                         <h6 class="text-light"> {{ $course->summary }} </h6>
                         <div>
-                            <span class="bg-warning text-dark" style="border-radius: 4px 4px 0 0; padding: 0px 10px"> Rating...</span>
                             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
 
                             <p class="text-light">
@@ -49,9 +48,9 @@
                                 @endswitch
                             </p>
                         </div>
-                        <small class="text-light">Created By: <span class="text-muted"> {{ $course->tutor->name }} </span></small>
+                        <small class="text-light">Created By: <span class="text-light"> {{ $course->tutor->name }} </span></small>
                         <div class="float-right">
-                            @if (isset(auth('user')->user()->id) && isset($courseRegistered) )
+                            @if (isset(auth('user')->user()->id) && (isset($course->is_registered) && $course->is_registered === true) )
                                 <a class="btn btn-primary" href="{{ route('user.course.show', $course->url_key) }}"> View Course</a>
                             @else
                                 @switch($course->type)

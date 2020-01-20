@@ -150,6 +150,24 @@ Route::group(['middleware' => ['web']], function(){
                     'redirect' => 'user.account.testimonies.index'
                 ])->name('user.testimonies.delete');
 
+                // Course Review
+                Route::post('course_review/create', 'GriffonTech\User\Http\Controllers\CourseReviewController@store')->defaults('_config', [
+                ])->name('user.course_review.create');
+
+                Route::post('course_review/edit/{id}', 'GriffonTech\User\Http\Controllers\CourseReviewController@update')->defaults('_config', [
+                ])->name('user.course_review.edit');
+
+                Route::delete('course_review/delete/{id}', 'GriffonTech\User\Http\Controllers\CourseReviewController@destroy')->defaults('_config', [
+                ])->name('user.course_review.delete');
+
+
+                Route::get('become_a_pro_user', 'GriffonTech\User\Http\Controllers\BecomeProUserController@index')->defaults('_config', [
+                    'view' => 'shop::pro_user.index'
+                ])->name('user.pro_user');
+
+                Route::post('become_a_pro_user/process', 'GriffonTech\User\Http\Controllers\BecomeProUserController@create')->defaults('_config', [
+                ])->name('user.pro_user.process');
+
             });
         });
 
