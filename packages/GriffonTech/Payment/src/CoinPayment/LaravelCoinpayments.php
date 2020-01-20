@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CoinPayment;
+namespace GriffonTech\Payment\CoinPayment;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -12,11 +12,11 @@ use Kevupton\LaravelCoinpayments\Exceptions\IpnIncompleteException;
 use Kevupton\LaravelCoinpayments\Models\CallbackAddress;
 use Kevupton\LaravelCoinpayments\Models\Conversion;
 use Kevupton\LaravelCoinpayments\Models\Deposit;
-use App\CoinPaymentIpn as Ipn;
-use Kevupton\LaravelCoinpayments\Models\Log;
+use GriffonTech\Payment\Models\CoinPaymentIpn as Ipn;
+use GriffonTech\Payment\Models\CoinPaymentLog as Log;
 use Kevupton\LaravelCoinpayments\Models\MassWithdrawal;
 use Kevupton\LaravelCoinpayments\Models\Model;
-use App\CoinPaymentTransaction as Transaction;
+use GriffonTech\Payment\Models\CoinPaymentTransaction as Transaction;
 use Kevupton\LaravelCoinpayments\Models\Transfer;
 use Kevupton\LaravelCoinpayments\Models\Withdrawal;
 use Kevupton\LaravelCoinpayments\Coinpayments;
@@ -69,12 +69,12 @@ class LaravelCoinpayments extends Coinpayments
 
         $has_error = $receipt->hasError();
 
-        cp_log([
+        /*cp_log([
             'request'  => $receipt->getRequest(),
             'response' => $receipt->getResponse(),
         ], $has_error ? 'API_CALL_ERROR' : 'API_CALL',
             $has_error ? Log::LEVEL_ERROR : Log::LEVEL_ALL
-        );
+        );*/
 
         if ($has_error) {
             throw new CoinPaymentsResponseError($receipt->getError());
@@ -93,7 +93,7 @@ class LaravelCoinpayments extends Coinpayments
                 $data['amount1'] = $req['amount'];
                 // the currency2 coinpayments returned to us
                 $data['amount2'] = $data['amount'];
-                return $data;
+                dd($data);
                 return Transaction::create($data);
             case CoinpaymentsCommand::CREATE_WITHDRAWAL:
                 return $this->saveWithdrawal($receipt->getResponse()['result'], $receipt->getRequest());

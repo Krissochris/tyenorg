@@ -190,7 +190,8 @@ return [
         GriffonTech\Course\Providers\CourseServiceProvider::class,
         GriffonTech\Tutor\Providers\TutorServiceProvider::class,
         GriffonTech\Admin\Providers\AdminServiceProvider::class,
-        GriffonTech\Payment\Providers\CoinPaymentProvider::class,
+        GriffonTech\Payment\Providers\CoinPaymentServiceProvider::class,
+        GriffonTech\Payment\Providers\PaymentServiceProvider::class,
 
     ],
 

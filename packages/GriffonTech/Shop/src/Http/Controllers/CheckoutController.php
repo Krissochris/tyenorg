@@ -18,10 +18,13 @@ class CheckoutController extends Controller
             return redirect()->route('payment.pay_pal');
 
         } elseif ($payment_method === 'coin_payment') {
-
+            return redirect()->route('payment.coin_payment');
         } else if ($payment_method === 'rave_pay') {
 
             return redirect()->route('payment.rave_pay');
+        } else {
+            session()->flash('error', 'Invalid payment method selected.');
+            return back();
         }
     }
 }

@@ -41,8 +41,7 @@
                             <td class="font-weight-bold text-danger">$ {{ $userPayment->amount }}</td>
                             <td>{{ $userPayment->created_at }}</td>
                             <td class="text-right">
-                                <a href="#" class="text-primary text-decoration-none font-weight-bold">View</a> &nbsp; | &nbsp;
-                                <a href="#" class="text-danger text-decoration-none font-weight-bold">Delete</a>
+                                <a href="#" class="text-primary text-decoration-none font-weight-bold">View</a>
                             </td>
                         </tr>
                     @endforeach

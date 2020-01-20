@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace GriffonTech\Payment\Models;
 
 use Kevupton\LaravelCoinpayments\Models\Transaction;
 

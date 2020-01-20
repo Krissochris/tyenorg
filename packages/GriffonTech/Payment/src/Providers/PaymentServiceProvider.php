@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\Payment\Providers;
+namespace GriffonTech\Payment\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
@@ -17,6 +17,8 @@ class PaymentServiceProvider extends ServiceProvider
     public function boot()
     {
         include __DIR__ . '/../Http/helpers.php';
+
+        $this->loadRoutesFrom(__DIR__ . '/../Http/routes.php');
     }
 
     /**

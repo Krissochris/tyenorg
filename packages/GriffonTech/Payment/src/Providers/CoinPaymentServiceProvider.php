@@ -2,13 +2,13 @@
 
 namespace GriffonTech\Payment\Providers;
 
-use App\CoinPayment\LaravelCoinpayments;
+use GriffonTech\Payment\CoinPayment\LaravelCoinpayments;
 use Kevupton\LaravelCoinpayments\Providers\LaravelCoinpaymentsServiceProvider;
 use Kevupton\LaravelCoinpayments\Models\Transaction;
 use Kevupton\LaravelCoinpayments\Observables\TransactionObservable;
 use Kevupton\LaravelCoinpayments\Controllers\CoinpaymentsController;
 
-class CoinPaymentProvider extends LaravelCoinpaymentsServiceProvider
+class CoinPaymentServiceProvider extends LaravelCoinpaymentsServiceProvider
 {
     const SINGLETON = 'coinpayments';
 
@@ -20,8 +20,6 @@ class CoinPaymentProvider extends LaravelCoinpaymentsServiceProvider
     public function boot()
     {
         Transaction::observe(new TransactionObservable());
-
-        $this->loadRoutesFrom(__DIR__ . '/../Http/routes.php');
     }
 
     /**

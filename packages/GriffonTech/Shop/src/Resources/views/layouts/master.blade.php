@@ -23,32 +23,48 @@
 <body>
 @include('shop::layouts.header.index')
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+<div class="">
+    <div class="container">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        @if(Session::has('success'))
+            <p class="alert alert-success">{{ Session::get('success') }}</p>
+        @endif
+
+        @if(Session::has('warning'))
+            <p class="alert alert-warning">{{ Session::get('warning') }}</p>
+        @endif
+
+        @if(Session::has('info'))
+            <p class="alert alert-info">{{ Session::get('info') }}</p>
+        @endif
+        @if(Session::has('error'))
+            <p class="alert alert-danger">{{ Session::get('error') }}</p>
+        @endif
     </div>
-@endif
-@if(Session::has('success'))
-    <p class="alert alert-success">{{ Session::get('success') }}</p>
-@endif
 
-@if(Session::has('warning'))
-    <p class="alert alert-warning">{{ Session::get('warning') }}</p>
-@endif
+    @auth('user')
+    @if(!auth('user')->user()->is_pro_user)
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a class="float-right btn btn-success" href="{{ route('user.pro_user') }}"> <i class="fas fa-flash"></i> Upgrade to Pro User</a>
 
-@if(Session::has('info'))
-    <p class="alert alert-info">{{ Session::get('info') }}</p>
-@endif
-@if(Session::has('error'))
-    <p class="alert alert-danger">{{ Session::get('error') }}</p>
-@endif
+                </div>
+            </div>
+        </div>
+    @endif
+    @endauth
 
-
-@yield('content')
+    @yield('content')
+</div>
 
 @include('shop::layouts.footer.index')
 </body>

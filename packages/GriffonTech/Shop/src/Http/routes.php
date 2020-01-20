@@ -147,6 +147,13 @@ Route::group(['middleware' => ['web']], function(){
                 ])->name('user.course_review.delete');
 
 
+                Route::get('become_a_pro_user', 'GriffonTech\User\Http\Controllers\BecomeProUserController@index')->defaults('_config', [
+                    'view' => 'shop::pro_user.index'
+                ])->name('user.pro_user');
+
+                Route::post('become_a_pro_user/process', 'GriffonTech\User\Http\Controllers\BecomeProUserController@create')->defaults('_config', [
+                ])->name('user.pro_user.process');
+
             });
         });
 
