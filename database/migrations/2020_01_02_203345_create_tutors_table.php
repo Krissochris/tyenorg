@@ -21,6 +21,7 @@ class CreateTutorsTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('photo');
+            $table->unsignedTinyInteger('status')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
