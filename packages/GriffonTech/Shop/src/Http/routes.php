@@ -132,7 +132,7 @@ Route::group(['middleware' => ['web']], function(){
                     'redirect' => 'user.blog.index'
                 ])->name('user.blog.edit');
 
-                Route::delete('blog/edit/{slug}', 'GriffonTech\User\Http\Controllers\BlogController@destroy')->defaults('_config', [
+                Route::delete('blog/delete/{slug}', 'GriffonTech\User\Http\Controllers\BlogController@destroy')->defaults('_config', [
                     'redirect' => 'user.blog.index'
                 ])->name('user.blog.delete');
 

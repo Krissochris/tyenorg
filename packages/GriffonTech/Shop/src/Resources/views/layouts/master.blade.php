@@ -24,7 +24,7 @@
 @include('shop::layouts.header.index')
 
 <div class="">
-    <div class="container">
+    <div class="container mt-4">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

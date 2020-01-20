@@ -34,7 +34,16 @@
                             <td>{{$blog->created_at}}</td>
                             <td>
                                 <a href="{{route('user.blog.edit', $blog->url_key)}}" class="text-decoration-none font-weight-bold">Edit</a> |
-                                <a href="{{route('blog.posts.show', $blog->url_key)}}" class="text-decoration-none font-weight-bold text-danger">Delete</a>
+                                <a href="#"
+                                   onclick="event.preventDefault();
+                                           var response = confirm('Are you sure you want to delete this blog?');
+                                           if (response) {
+                                           document.getElementById('{{ $blog->url_key }}').submit(); }"
+                                   class="text-decoration-none font-weight-bold text-danger">Delete</a>
+                                <form id="{{ $blog->url_key }}" action="{{ route('user.blog.delete', $blog->url_key) }}" method="POST" style="display: none;">
+                                    <input type="hidden" name="_method" value="delete">
+                                    @csrf
+                                </form>
                             </td>
                         </tr>
 

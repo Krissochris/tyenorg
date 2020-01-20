@@ -86,10 +86,69 @@ class BlogController extends Controller
         try {
             $blog = $this->blogRepository->findBySlugOrFail($slug);
         } catch (ModelNotFoundException $modelNotFoundException) {
-            // handle error
+            abort(404);
         }
 
         return view($this->_config['view'])->with(compact( 'blog'));
     }
 
+    public function update(Request $request, $slug)
+    {
+        $this->validate($request, [
+            'title' => 'required|string',
+            'body' => 'required|string',
+            'photo' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:1048',
+        ]);
+
+        try {
+            $blog = $this->blogRepository->findBySlugOrFail($slug);
+        } catch (ModelNotFoundException $modelNotFoundException) {
+            abort(404);
+        }
+        if (!$blog->user_id == auth('user')->user()->id){
+            return back();
+        }
+        $image = $request->file('photo');
+        $blog->fill($request->input());
+        if ($image) {
+            if ($fileUploaded = (new FileManager())->update($image, $blog->photo, 'blogs')) {
+                $blog->fill(['photo'=> $fileUploaded]);
+            } else {
+                session()->flash('error', 'Photo could not be uploaded');
+            }
+        }
+        $blogUpdated = $blog->update();
+        if ($blogUpdated) {
+            session()->flash('success', 'Blog post was successfully updated');
+        } else {
+        session()->flash('error', 'Blog post could not be updated');
+        }
+
+        return redirect()->route($this->_config['redirect']);
+    }
+
+
+    public function destroy($slug)
+    {
+        try {
+            $blog = $this->blogRepository->findBySlugOrFail($slug);
+        } catch (ModelNotFoundException $modelNotFoundException) {
+            abort(404);
+        }
+        if (!$blog->user_id == auth('user')->user()->id){
+            return back();
+        }
+
+        // delete the blog feature image
+        (new FileManager())->delete($blog->photo, 'blogs');
+        $blogDeleted = $blog->delete();
+
+        if ($blogDeleted) {
+            session()->flash('success', 'Blog post was successfully updated');
+        } else {
+            session()->flash('error', 'Blog post could not be updated');
+        }
+
+        return redirect()->route($this->_config['redirect']);
+    }
 }
