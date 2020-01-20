@@ -49,6 +49,32 @@
         </div>
     </div>
     <br>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>S/N</th>
+                <th>Username</th>
+                <th>Is Pro User</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {{--@foreach($userPayments as $userPayment)--}}
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="text-right">
+                    <a href="#" class="text-primary text-decoration-none font-weight-bold">View Profile</a>
+                </td>
+            </tr>
+            {{--@endforeach--}}
+            </tbody>
+        </table>
+    </div>
 </div>
 <!-- /.container -->
 @endsection

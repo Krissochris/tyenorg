@@ -10,18 +10,14 @@
             <small>Catalogue</small>
         </h1>
 
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="/">Home</a>
-            </li>
-            <li class="breadcrumb-item active">My-Blog Posts</li>
-        </ol>
+        <div class="float-right mb-4">
+                <a href="{{route('user.blog.create')}}" class="btn btn-dark"><i class="fa fa-file-medical"></i> Create Blog</a>
+        </div>
         <div class="table-responsive">
             <table class="table table-hover table-striped table-bordered">
                 <thead class="thead-dark">
                 <tr>
                     <th>S/N</th>
-                    <th>Photo</th>
                     <th>Title</th>
                     <th>Status</th>
                     <th> Created </th>
@@ -33,12 +29,12 @@
                     @foreach($blogs as $blog)
                         <tr>
                             <td>{{$sn++}}</td>
-                            <td><img src="{{$blog->photo}}" class="img-fluid" width="70px" height="50px" alt=""></td>
-                            <td>{!! (strlen($blog->title) > 30) ? substr($blog->title, 0, 30)."<b> (&hellip;)</b>" : $blog->title !!}</td>
+                            <td><a href="{{route('blog.posts.show', $blog->url_key)}}">{{$blog->title}}</a></td>
                             <td>{{ (($blog->status === 1) ? 'Published' : 'Unpublished')}}</td>
                             <td>{{$blog->created_at}}</td>
                             <td>
-                                <a href="{{route('blog.posts.show', $blog->url_key)}}" class="text-decoration-none font-weight-bold">View</a>
+                                <a href="{{route('user.blog.edit', $blog->url_key)}}" class="text-decoration-none font-weight-bold">Edit</a> |
+                                <a href="{{route('blog.posts.show', $blog->url_key)}}" class="text-decoration-none font-weight-bold text-danger">Delete</a>
                             </td>
                         </tr>
 

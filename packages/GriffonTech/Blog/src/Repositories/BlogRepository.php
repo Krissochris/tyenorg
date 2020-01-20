@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class BlogRepository extends Repository
 {
 
+    CONST PUBLISHED = 1;
+    CONST UNPUBLISHED = 0;
+
+    CONST STATUS = [
+        BlogRepository::PUBLISHED => 'Published',
+        BlogRepository::UNPUBLISHED => 'UnPublished'
+    ];
+
     public function model()
     {
         return 'GriffonTech\Blog\Contracts\Blog';

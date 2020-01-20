@@ -115,6 +115,7 @@ Route::group(['middleware' => ['web']], function(){
                     'view' => 'shop::user.account.blog.index'
                 ])->name('user.blog.index');
 
+
                 Route::get('blog/create', 'GriffonTech\User\Http\Controllers\BlogController@create')->defaults('_config', [
                     'view' => 'shop::user.account.blog.create'
                 ])->name('user.blog.create');
@@ -135,6 +136,20 @@ Route::group(['middleware' => ['web']], function(){
                     'redirect' => 'user.blog.index'
                 ])->name('user.blog.delete');
 
+
+                //User Testimonies
+                Route::get('testimonies/index', 'GriffonTech\User\Http\Controllers\TestimonyController@index')->defaults('_config', [
+                    'view' => 'shop::user.account.testimonies.index'
+                ])->name('user.testimonies.index');
+
+                Route::post('testimonies/index', 'GriffonTech\User\Http\Controllers\TestimonyController@store')->defaults('_config', [
+                    'redirect' => 'user.account.testimonies.index'
+                ])->name('user.testimonies.create');
+
+                Route::delete('testimonies/delete/{id}', 'GriffonTech\User\Http\Controllers\TestimonyController@destroy')->defaults('_config', [
+                    'redirect' => 'user.account.testimonies.index'
+                ])->name('user.testimonies.delete');
+
             });
         });
 
@@ -152,4 +167,5 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('faqs', 'GriffonTech\Shop\Http\Controllers\FaqController@index')->defaults('_config', [
         'view' => 'shop::faqs.index'
     ])->name('faqs.index');
+
 });
