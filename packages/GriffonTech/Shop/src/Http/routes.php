@@ -136,6 +136,20 @@ Route::group(['middleware' => ['web']], function(){
                     'redirect' => 'user.blog.index'
                 ])->name('user.blog.delete');
 
+
+                //User Testimonies
+                Route::get('testimonies/index', 'GriffonTech\User\Http\Controllers\TestimonyController@index')->defaults('_config', [
+                    'view' => 'shop::user.account.testimonies.index'
+                ])->name('user.testimonies.index');
+
+                Route::post('testimonies/index', 'GriffonTech\User\Http\Controllers\TestimonyController@store')->defaults('_config', [
+                    'redirect' => 'user.account.testimonies.index'
+                ])->name('user.testimonies.create');
+
+                Route::delete('testimonies/delete/{id}', 'GriffonTech\User\Http\Controllers\TestimonyController@destroy')->defaults('_config', [
+                    'redirect' => 'user.account.testimonies.index'
+                ])->name('user.testimonies.delete');
+
             });
         });
 

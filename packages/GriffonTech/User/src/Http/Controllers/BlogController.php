@@ -5,6 +5,7 @@ namespace GriffonTech\User\Http\Controllers;
 
 
 use GriffonTech\Blog\Repositories\BlogRepository;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use GriffonTech\Core\Helpers\FileManager;
 
@@ -78,6 +79,17 @@ class BlogController extends Controller
             session()->flash('error', 'Blog post could not be created');
         }
         return redirect()->route($this->_config['redirect']);
+    }
+
+    public function edit($slug)
+    {
+        try {
+            $blog = $this->blogRepository->findBySlugOrFail($slug);
+        } catch (ModelNotFoundException $modelNotFoundException) {
+            // handle error
+        }
+
+        return view($this->_config['view'])->with(compact( 'blog'));
     }
 
 }

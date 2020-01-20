@@ -50,10 +50,10 @@
                             <a href="{{ route('user.course.index') }}" class="text-decoration-none text-dark"><li class="dropdown-item">My Courses</li></a>
                             <a href="{{ route('user.profile.index') }}" class="text-decoration-none text-dark"><li class="dropdown-item">Profile</li></a>
                             <a href="{{ route('user.referral.show') }}" class="text-decoration-none text-dark"><li class="dropdown-item">Referral</li></a>
-                            <a href="/#" class="text-decoration-none text-dark"><li class="dropdown-item">Notifications</li></a>
+                            <a href="#" class="text-decoration-none text-dark"><li class="dropdown-item">Notifications</li></a>
                             <a href="{{route('user.purchases.index')}}" class="text-decoration-none text-dark"><li class="dropdown-item">Purchase history</li></a>
                             <a href="{{route('user.blog.index')}}" class="text-decoration-none text-dark"><li class="dropdown-item">My Blog</li></a>
-                            <a href="#" class="text-decoration-none text-dark"><li class="dropdown-item">Testimonials</li></a>
+                            <a href="{{route('user.testimonies.index')}}" class="text-decoration-none text-dark"><li class="dropdown-item">Testimonies</li></a>
                             <li class="dropdown-divider"></li>
                             <a href="{{ route('user.session.destroy') }}" class="text-decoration-none text-dark"><li class="dropdown-item">
                                     Logout

@@ -33,7 +33,7 @@
                             <td>{{ (($blog->status === 1) ? 'Published' : 'Unpublished')}}</td>
                             <td>{{$blog->created_at}}</td>
                             <td>
-                                <a href="{{route('blog.posts.show', $blog->url_key)}}" class="text-decoration-none font-weight-bold">Edit</a> |
+                                <a href="{{route('user.blog.edit', $blog->url_key)}}" class="text-decoration-none font-weight-bold">Edit</a> |
                                 <a href="{{route('blog.posts.show', $blog->url_key)}}" class="text-decoration-none font-weight-bold text-danger">Delete</a>
                             </td>
                         </tr>
