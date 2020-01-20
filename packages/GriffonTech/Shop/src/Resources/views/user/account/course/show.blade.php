@@ -21,8 +21,8 @@
                             <span class="bg-warning text-dark" style="border-radius: 0 8px 8px 0; padding: 2px 10px"> Rating...</span>
                             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                         </div>
-                        <small class="text-light">Created By: <span class="text-muted">Anderson Mike </span></small>
-                        <small class="text-light">Purchased On: <span class="text-muted"> {{ $courseRegistration->created_at }} </span></small>
+                        <small class="text-light">Created By: <span class="text-primary">Anderson Mike </span></small> &nbsp;&nbsp;
+                        <small class="text-light">Purchased On: <span class="text-primary"> {{ $courseRegistration->created_at }} </span></small>
 
                     </div>
                 </div>
@@ -57,14 +57,7 @@
                     <div class="card">
                         <div class="card-header font-weight-bold"> Course Details </div>
                         <div class="card-body">
-                            <ul>
-                                <li>Make REAL web applications using cutting-edge technologies</li>
-                                <li>Write your own browser-based game</li>
-                                <li>Create complex HTML forms with validations</li>
-                                <li>Make REAL web applications using cutting-edge technologies</li>
-                                <li>Write your own browser-based game</li>
-                                <li>Create complex HTML forms with validations</li>
-                            </ul>
+                            {!! $course->description !!}
                         </div>
                     </div>
                     <br>

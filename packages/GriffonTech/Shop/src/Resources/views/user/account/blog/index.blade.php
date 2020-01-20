@@ -11,7 +11,7 @@
         </h1>
 
         <div class="float-right mb-4">
-                <a href="" class="btn btn-dark"><i class="fa fa-file-medical"></i> Create Blog</a>
+                <a href="{{route('user.blog.create')}}" class="btn btn-dark"><i class="fa fa-file-medical"></i> Create Blog</a>
         </div>
         <div class="table-responsive">
             <table class="table table-hover table-striped table-bordered">

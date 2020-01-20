@@ -10,7 +10,7 @@
                 @foreach($blogs as $blog)
                     <div class="col-sm-8">
                         <div class="card mb-4">
-                            <h4 class="card-header text-dark">{!! (strlen($blog->title) > 40) ? substr($blog->title, 0, 40)."<b> (&hellip;)</b> " : $blog->title !!}</h4>
+                            <h4 class="card-header text-dark">{{$blog->title}}</h4>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-lg-12">
