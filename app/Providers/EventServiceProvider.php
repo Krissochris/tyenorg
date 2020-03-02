@@ -44,12 +44,12 @@ class EventServiceProvider extends ServiceProvider
                 $referral_user = $userRepository->findOneByField('email', $referral_email, ['id', 'email']);
                 if ($referral_user) {
                     $referralRepository->create([
-                        'referral_id' => $referral_user->id,
-                        'referred_id' => $newUser->id
+                        'referral_user_id' => $referral_user->id,
+                        'referred_user_id' => $newUser->id
                     ]);
 
                     $userReferral = $userReferralRepository->firstOrCreate([
-                        'user_id' => $referral_user->id
+                        'user_id' => $newUser->id
                     ]);
                     $userReferral->update(['total_referral' =>(int) $userReferral->total_referral + 1 ]);
                 }
