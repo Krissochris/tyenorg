@@ -10,13 +10,18 @@ class TutorProfile extends Model implements TutorContract
 {
 
     protected $fillable = [
-        'user_id', 'title', 'description', 'photo','phone','email',
+        'user_id', 'title', 'description', 'photo','phone_number','email',
         'facebook_url', 'website_url', 'linkedIn_url', 'youtube_url',
     ];
 
     public function user()
     {
         return $this->belongsTo(UserProxy::modelClass(), 'user_id', 'id');
+    }
+
+    public function tutor_application_courses()
+    {
+        return $this->hasMany(TutorCourseProxy::modelClass(), 'tutor_id', 'id');
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace GriffonTech\Course\Models;
 
+use GriffonTech\Tutor\Models\TutorProfileProxy;
 use GriffonTech\User\Models\UserProxy;
 use Illuminate\Database\Eloquent\Model;
 use GriffonTech\Course\Contracts\Course as CourseContract;
@@ -27,7 +28,7 @@ class Course extends Model implements CourseContract
 
     public function tutor()
     {
-        return $this->belongsTo(UserProxy::modelClass(), 'tutor_id', 'id');
+        return $this->belongsTo(TutorProfileProxy::modelClass(), 'tutor_id', 'id');
     }
 
     public function course_registrations()

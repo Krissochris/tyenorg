@@ -132,7 +132,9 @@ class CourseController extends Controller
     public function show($slug)
     {
         try {
-            $course = $this->courseRepository->findBySlugOrFail($slug);
+            $course = $this->courseRepository
+                ->with(['tutor'])
+                ->findBySlugOrFail($slug);
 
         } catch (ModelNotFoundException $exception) {
             abort(404);

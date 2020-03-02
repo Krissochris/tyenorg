@@ -1,15 +1,18 @@
 @extends("admin::layouts.master")
 
 @section("content")
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class=" float-right mb-3">
-                    <a href="{{route('admin.categories.create')}}" class="btn btn-dark"> Add Category</a>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5> Course Categories </h5>
                 </div>
+                <div class="ibox-content table-responsive">
+                    <div class=" float-right mb-3">
+                        <a href="{{route('admin.categories.create')}}" class="btn btn-dark"> Add Category</a>
+                    </div>
 
-                <div class="table-responsive">
-                    <table class="table table-bordered" {{--id="dataTable"--}} width="100%" cellspacing="0">
+                    <table class="table table-hover no-margins">
                         <thead class="thead-dark">
                         <tr>
                             <th>S/N</th>
@@ -31,10 +34,10 @@
                                     <a href="{{route('admin.categories.edit', $category->id)}}"> edit </a>&nbsp;&nbsp;
                                     <a href="#"
                                        onclick="event.preventDefault();
-                                               var response = confirm('Are you sure you want to delete this category ?');
-                                               if (response) {
-                                               document.getElementById('{{ $category->id }}').submit(); }"
-                                            ><i class="fa fa-trash text-danger grow" title="delete"></i>
+                                           var response = confirm('Are you sure you want to delete this category ?');
+                                           if (response) {
+                                           document.getElementById('{{ $category->id }}').submit(); }"
+                                    ><i class="fa fa-trash text-danger grow" title="delete"></i>
                                     </a>
                                     <form id="{{ $category['id'] }}" action="{{ route('admin.categories.delete', $category['id']) }}" method="POST" style="display: none;">
                                         <input type="hidden" name="_method" value="delete">
@@ -49,11 +52,11 @@
                     </table>
 
                     {{ $categories->links() }}
-
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
+
 
 @endsection

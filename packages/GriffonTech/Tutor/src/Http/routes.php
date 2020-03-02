@@ -4,6 +4,22 @@ Route::group(['middleware' => ['web', 'user']], function() {
 
     Route::prefix('tutor')->group(function(){
 
+        Route::get('application', 'GriffonTech\Tutor\Http\Controllers\TutorApplicationsController@create')
+            ->defaults('_config', [
+                'view' => 'tutor::tutor.application.create'
+            ])->name('tutor.applications.create');
+
+        Route::post('application/save', 'GriffonTech\Tutor\Http\Controllers\TutorApplicationController@save')
+            ->defaults('_config', [
+                'redirect' => 'tutor.applications.create'
+            ])->name('tutor.applications.save');
+
+        Route::post('application/submit', 'GriffonTech\Tutor\Http\Controllers\TutorApplicationController@submit')
+            ->defaults('_config', [
+                'redirect' => 'tutor.applications.create'
+            ])->name('tutor.applications.submit');
+
+
         Route::get('courses', 'GriffonTech\Tutor\Http\Controllers\CourseController@index')->defaults('_config', [
             'view' => 'tutor::tutor.course.index',
         ])->name('tutor.courses.index');

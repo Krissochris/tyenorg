@@ -5,7 +5,7 @@ Route::group(['middleware' => ['web']], function(){
 
     //Store front home
     Route::get('/', 'GriffonTech\Shop\Http\Controllers\HomeController@index')->defaults('_config', [
-        'view' => 'shop::home.index'
+        'view' => 'shop::homepage.index'
     ])->name('user.home.index');
 
 
@@ -65,6 +65,45 @@ Route::group(['middleware' => ['web']], function(){
             Route::get('logout', 'GriffonTech\User\Http\Controllers\SessionController@destroy')->defaults('_config', [
                 'redirect' => 'user.session.index'
             ])->name('user.session.destroy');
+
+            Route::get('tutor_application/create', 'GriffonTech\User\Http\Controllers\TutorApplicationController@create')->defaults('_config', [
+                'view' => 'shop::user.tutor_application.create'
+            ])->name('user.tutor_application.create');
+
+            Route::get('tutor_application/create', 'GriffonTech\User\Http\Controllers\TutorApplicationController@create')->defaults('_config', [
+                'view' => 'shop::user.tutor_application.create'
+            ])->name('user.tutor_application.create');
+
+            Route::post('tutor_application/create', 'GriffonTech\User\Http\Controllers\TutorApplicationController@store')->defaults('_config', [
+                'redirect' => 'user.tutor_application.create'
+            ])->name('user.tutor_application.create');
+
+            Route::get('tutor_application/add_courses', 'GriffonTech\User\Http\Controllers\TutorApplicationController@addCourses')->defaults('_config', [
+                'view' => 'shop::user.tutor_application.add_courses'
+            ])->name('user.tutor_application.add_courses');
+
+            Route::post('tutor_application/add_courses', 'GriffonTech\User\Http\Controllers\TutorApplicationController@processAddCourses')->defaults('_config', [
+                'redirect' => 'user.tutor_application.add_courses'
+            ])->name('user.tutor_application.add_courses');
+
+            Route::delete('tutor_application/delete_course/{tutor_course_id}', 'GriffonTech\User\Http\Controllers\TutorApplicationController@deleteCourse')
+                ->name('user.tutor_application.delete_course');
+
+            Route::get('tutor_application/preview', 'GriffonTech\User\Http\Controllers\TutorApplicationController@preview')->defaults('_config', [
+                'view' => 'shop::user.tutor_application.preview'
+            ])->name('user.tutor_application.preview');
+
+            Route::post('tutor_application/submit', 'GriffonTech\User\Http\Controllers\TutorApplicationController@submitApplication')->defaults('_config', [
+                'redirect' => 'user.tutor_application.create'
+            ])->name('user.tutor_application.submit');
+
+
+            Route::get('tutor_application/get_new_course_form', 'GriffonTech\User\Http\Controllers\TutorApplicationController@getNewCourseForm')->defaults('_config', [
+                'view' => 'shop::user.tutor_application.include.new_course_form'
+            ])->name('user.tutor_application.new_course_form');
+
+
+
 
             Route::prefix('account')->group(function(){
                 //Customer Dashboard Route
@@ -142,12 +181,12 @@ Route::group(['middleware' => ['web']], function(){
                     'view' => 'shop::user.account.testimonies.index'
                 ])->name('user.testimonies.index');
 
-                Route::post('testimonies/index', 'GriffonTech\User\Http\Controllers\TestimonyController@store')->defaults('_config', [
-                    'redirect' => 'user.account.testimonies.index'
+                Route::post('testimonies/create', 'GriffonTech\User\Http\Controllers\TestimonyController@store')->defaults('_config', [
+                    'redirect' => 'user.testimonies.index'
                 ])->name('user.testimonies.create');
 
                 Route::delete('testimonies/delete/{id}', 'GriffonTech\User\Http\Controllers\TestimonyController@destroy')->defaults('_config', [
-                    'redirect' => 'user.account.testimonies.index'
+                    'redirect' => 'user.testimonies.index'
                 ])->name('user.testimonies.delete');
 
                 // Course Review

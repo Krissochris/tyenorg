@@ -1,70 +1,95 @@
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
-    <div class="container">
-        <a class="navbar-brand" href="/">{{ config('app.name', 'TYEN') }}</a>
-        <button class="navbar-toggler navbar-toggler-right"
-                type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <div class="col-lg-6 h-100 text-left text-lg-left my-auto">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item"> <a href="{{ route("courses.index") }}" class="nav-link text-white-90">Explore Our Courses</a></li>
-                    <li class="nav-item"> <a href="/about-us" class="nav-link text-white-90">About-us</a></li>
-                    <li class="nav-item"> <a href="{{route('blog.posts.index')}}" class="nav-link text-white-90">Blog</a></li>
-                    <li class="nav-item"> <a href="{{ route('faqs.index') }}" class="nav-link text-white-90">FAQ's</a></li>
-                </ul>
-
+<header class="header_area">
+    <!-- Top Header Area Start -->
+    <div class="top_header_area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md">
+                    <!--  Top Quote Area Start -->
+                    <div class="top_quote">
+                        <p>Welcome to TYEN LMS Platform</p>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="login_language_area d-flex align-items-center float-right">
+                        <!-- Login Register Area Start -->
+                        <div class="login_register">
+                            <a href="{{ route('user.session.index') }}"><i class="fa fa-lock" aria-hidden="true"></i> Login/Register</a>
+                        </div>
+                        <!-- Language Area Start -->
+                        <div class="language_area">
+                            <div class="dropdown">
+                                <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" id="lag" type="button" class="btn btn-default dropdown-toggle"><i class="fa fa-globe" aria-hidden="true"></i> Language</button>
+                                <ul aria-labelledby="lag" class="dropdown-menu">
+                                    <li><a href="#">English</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <ul class="navbar-nav ml-auto">
-
-                <!-- Authentication Links -->
-                @guest('user')
-                    <li class="nav-item">
-                        <a class="nav-link text-truncate" href="{{route('teach')}}">Teach on Tyen</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="{{ route('user.session.index') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="{{ route('user.register.index') }}">Register</a>
-                    </li>
-
-                @endguest
-
-
-                @auth('user')
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="{{route('tutor.courses.index')}}">Tutor</a>
-                    </li>
-                {{--<li class="nav-item"><a href="#" title="Shopping Cart" class="nav-link text-light"><i class="fa fa-shopping-cart fa-lg"></i></a></li>
-                <li class="nav-item"><a href="#" title="Whishlist" class="nav-link text-light"><i class="fa fa-heart fa-lg"></i></a></li>--}}
-                <li class="nav-item dropdown">
-                        <a href="#" class="dropdown-toggle nav-link text-light" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <img src="{{ asset('images/images.png') }}" alt="avatar" width="20" height="20" class="rounded-circle"> &nbsp {{ auth('user')->user()->username }} <span class="caret"></span>
-                        </a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            <a href="{{ route('user.course.index') }}" class="text-decoration-none text-dark"><li class="dropdown-item">My Courses</li></a>
-                            <a href="{{ route('user.profile.index') }}" class="text-decoration-none text-dark"><li class="dropdown-item">Profile</li></a>
-                            <a href="{{ route('user.referral.show') }}" class="text-decoration-none text-dark"><li class="dropdown-item">Referral</li></a>
-                            <a href="#" class="text-decoration-none text-dark"><li class="dropdown-item">Notifications</li></a>
-                            <a href="{{route('user.purchases.index')}}" class="text-decoration-none text-dark"><li class="dropdown-item">Purchase history</li></a>
-                            <a href="{{route('user.blog.index')}}" class="text-decoration-none text-dark"><li class="dropdown-item">My Blog</li></a>
-                            <a href="{{route('user.testimonies.index')}}" class="text-decoration-none text-dark"><li class="dropdown-item">Testimonies</li></a>
-                            <li class="dropdown-divider"></li>
-                            <a href="{{ route('user.session.destroy') }}" class="text-decoration-none text-dark"><li class="dropdown-item">
-                                    Logout
-                                </li>
-                            </a>
-
-                        </ul>
-                    </li>
-                @endauth
-
-            </ul>
         </div>
     </div>
-</nav>
+
+    <!-- Main Header Area Start -->
+    <div class="main_header_area animated">
+        <div class="classy-nav-container breakpoint-off">
+            <div class="container">
+                <!-- Classy Menu -->
+                <nav class="classy-navbar justify-content-between" id="educampNav">
+
+                    <!-- Logo -->
+                    <a class="nav-brand" href="/"><img src="{{ asset('lms/img/core-img/tyen-learn-logo.png') }}" alt="Logo"></a>
+
+                    <!-- Navbar Toggler -->
+                    <div class="classy-navbar-toggler">
+                        <span class="navbarToggler"><span></span><span></span><span></span></span>
+                    </div>
+
+                    <!-- Menu -->
+                    <div class="classy-menu">
+
+                        <!-- close btn -->
+                        <div class="classycloseIcon">
+                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                        </div>
+
+                        <!-- Nav Start -->
+                        <div class="classynav">
+                            <ul>
+                                <li><a href="{{ route("courses.index") }}">Explore Courses</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="{{route('blog.posts.index')}}">Blog</a></li>
+                                <li><a href="{{ route('faqs.index') }}">Faqs</a></li>
+                                @guest('user')
+                                <li><a href="{{ route('user.session.index') }}">Login</a></li>
+                                <li><a href="{{ route('user.register.index') }}">Register</a></li>
+                                @endguest
+
+                                @auth('user')
+                                        @if(auth('user')->user()->tutor_id)
+                                            <li><a href="{{route('tutor.courses.index')}}">Tutor Account </a></li>
+                                        @else
+                                            <li><a href="{{route('user.tutor_application.create')}}">Become A Tutor</a></li>
+                                        @endif
+                                        <li><a href="#">{{ auth('user')->user()->username }}</a>
+                                            <ul class="dropdown">
+                                                <li><a href="{{ route('user.course.index') }}">My Courses</a></li>
+                                                <li><a href="{{ route('user.profile.index') }}">Profile</a></li>
+                                                <li><a href="{{ route('user.referral.show') }}">Referrals</a></li>
+                                                <li><a href="#">Notifications</a></li>
+                                                <li><a href="{{route('user.purchases.index')}}">Purchase History</a></li>
+                                                <li><a href="{{route('user.blog.index')}}">My Blog</a></li>
+                                                <li><a href="{{route('user.testimonies.index')}}">Testimonies</a></li>
+                                            </ul>
+                                        </li>
+                                            <li><a href="{{ route('user.session.destroy') }}"> <i class="fa fa-power-off"></i> Log Out</a></li>
+                                    @endauth
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

@@ -32,7 +32,7 @@ class ReferralController extends Controller
     public function show()
     {
         $referrals = $this->referralRepository->findWhere([
-            'referral_id' => auth('user')->user()->id
+            'referral_user_id' => auth('user')->user()->id
         ]);
 
         $user_referral = $this->userReferralRepository->firstOrCreate([

@@ -26,8 +26,10 @@ class TutorsController extends Controller
 
     public function index()
     {
-        $tutors = $this->tutorProfileRepository->with(['user:id,name'])
-            ->paginate(15,['id','title','user_id', 'created_at']);
+        $tutors = $this->tutorProfileRepository
+            ->getModel()
+            ->where('status', '!=', 0)
+            ->paginate(15);
 
         return view($this->_config['view'], compact('tutors'));
     }

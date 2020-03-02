@@ -40,6 +40,8 @@ class CoursesController extends Controller
         $this->tutorProfileRepository = $tutorProfileRepository;
 
         $this->courseCategoryRepository = $courseCategoryRepository;
+
+        $this->courseBatchRepository = $courseBatchRepository;
     }
 
 
@@ -170,8 +172,43 @@ class CoursesController extends Controller
 
 
 
-    public function destroy()
+    public function destroy($id)
     {
-        return view($this->_config['view']);
+        // remove the course
+        // remove the course batches
+        // check if the course has any completed batches and stop
+        $course_batches = $this->courseBatchRepository->findWhere([
+            'course_id' => $id
+        ]);
+
+        if ($course_batches->count()) {
+            $completed_first_batch = $course_batches->first(function($course_batch, $key) {
+                return $course_batch->status == 2;
+            });
+        }
+        if (isset($completed_first_batch) && $completed_first_batch) {
+            session()->flash('error', 'You can not delete a course with completed batch(s).');
+
+            return redirect()->route($this->_config['redirect']);
+        }
+
+        if ($course_batches->count()) {
+            $registered_batch = $course_batches->first(function($course_batch, $key) {
+               return $course_batch->no_of_users > 0;
+            });
+        }
+        if (isset($registered_batch) && $registered_batch) {
+            session()->flash('error', 'You can\'t delete a course which students has registered to.');
+
+            return redirect()->route($this->_config['redirect']);
+        }
+
+        if ($this->courseRepository->delete($id)) {
+            session()->flash('success', 'Course was successfully deleted!.');
+        } else {
+            session()->flash('error', 'Course could not be deleted.');
+        }
+        return redirect()->route($this->_config['redirect']);
     }
+
 }

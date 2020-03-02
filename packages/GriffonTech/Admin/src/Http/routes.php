@@ -88,6 +88,22 @@ Route::group(['middleware' => ['web']], function (){
                 'view' => 'admin::admin.tutors.show'
             ])->name('admin.tutors.show');
 
+            // Tutor Application Submission
+            Route::get('tutor_application_submissions/index', 'GriffonTech\Admin\Http\Controllers\TutorApplicationSubmissionsController@index')->defaults('_config', [
+                'view' => 'admin::admin.tutor_application_submissions.index'
+            ])->name('admin.tutor_application_submissions.index');
+
+            Route::get('tutor_application_submissions/show/{id}', 'GriffonTech\Admin\Http\Controllers\TutorApplicationSubmissionsController@show')->defaults('_config', [
+                'view' => 'admin::admin.tutor_application_submissions.show'
+            ])->name('admin.tutor_application_submissions.show');
+
+            Route::post('tutor_application_submissions/approve/{id}', 'GriffonTech\Admin\Http\Controllers\TutorApplicationSubmissionsController@approve')->defaults('_config', [
+                'redirect' => 'admin.tutor_application_submissions.index'
+            ])->name('admin.tutor_application_submissions.approve');
+
+            Route::post('tutor_application_submissions/reject/{id}', 'GriffonTech\Admin\Http\Controllers\TutorApplicationSubmissionsController@reject')->defaults('_config', [
+                'redirect' => 'admin.tutor_application_submissions.index'
+            ])->name('admin.tutor_application_submissions.reject');
 
             // Admins
             Route::get('admins/index', 'GriffonTech\Admin\Http\Controllers\AdminsController@index')->defaults('_config', [
@@ -161,25 +177,32 @@ Route::group(['middleware' => ['web']], function (){
                 'view' => 'admin::admin.courses.create'
             ])->name('admin.courses.create');
 
+
             Route::post('courses/create', 'GriffonTech\Admin\Http\Controllers\CoursesController@store')->defaults('_config', [
                 'redirect' => 'admin.courses.index'
             ])->name('admin.courses.create');
+
 
             Route::get('courses/edit/{id}', 'GriffonTech\Admin\Http\Controllers\CoursesController@edit')->defaults('_config', [
                 'view' => 'admin::admin.courses.edit'
             ])->name('admin.courses.edit');
 
+
             Route::post('courses/edit/{id}', 'GriffonTech\Admin\Http\Controllers\CoursesController@update')->defaults('_config', [
                 'redirect' => 'admin.courses.edit'
             ])->name('admin.courses.edit');
+
 
             Route::get('courses/show/{id}', 'GriffonTech\Admin\Http\Controllers\CoursesController@show')->defaults('_config', [
                 'view' => 'admin::admin.courses.show'
             ])->name('admin.courses.show');
 
-            Route::get('courses/delete/{id}', 'GriffonTech\Admin\Http\Controllers\CoursesController@destroy')->defaults('_config', [
+
+            Route::delete('courses/delete/{id}', 'GriffonTech\Admin\Http\Controllers\CoursesController@destroy')->defaults('_config', [
                 'redirect' => 'admin.courses.index'
             ])->name('admin.courses.delete');
+
+
 
 
             // Blogs

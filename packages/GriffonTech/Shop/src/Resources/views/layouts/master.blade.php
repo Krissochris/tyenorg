@@ -2,70 +2,57 @@
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>TYEN</title>
+    <!-- Title -->
+    <title>TYEN - LMS Template for Courses &amp; Education</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('vendor/simple-line-icons/css/simple-line-icons.css')}}" rel="stylesheet" type="text/css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('lms/img/core-img/favicon.ico') }}">
 
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('vendor/bootstrap/css/custom.css')}}" rel="stylesheet">
+    <!-- ===================== All CSS Files ===================== -->
+
+    <!-- Style css -->
+    <link rel="stylesheet" href="{{ asset('lms/style.css') }}">
+
+    <!-- Responsive css -->
+    <link rel="stylesheet" href="{{ asset('lms/css/responsive.css') }}">
 
 </head>
 
 <body>
-@include('shop::layouts.header.index')
+<!-- Preloader -->
+<div id="preloader"></div>
 
-<div class="">
-    <div class="container mt-4">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        @if(Session::has('success'))
-            <p class="alert alert-success">{{ Session::get('success') }}</p>
-        @endif
+<!-- Header Area Start -->
+@include("shop::layouts.header.index")
+<!--  ===================== Header Area End ===================== -->
 
-        @if(Session::has('warning'))
-            <p class="alert alert-warning">{{ Session::get('warning') }}</p>
-        @endif
+@yield('content')
 
-        @if(Session::has('info'))
-            <p class="alert alert-info">{{ Session::get('info') }}</p>
-        @endif
-        @if(Session::has('error'))
-            <p class="alert alert-danger">{{ Session::get('error') }}</p>
-        @endif
-    </div>
+<!-- ===================== Footer Area Start ===================== -->
+@include("shop::layouts.footer.index")
+<!-- ===================== Footer Area End ===================== -->
 
-    @auth('user')
-    @if(!auth('user')->user()->is_pro_user)
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <a class="float-right btn btn-success" href="{{ route('user.pro_user') }}"> <i class="fas fa-flash"></i> Upgrade to Pro User</a>
+<!-- ===================== All jQuery Plugins ===================== -->
 
-                </div>
-            </div>
-        </div>
-    @endif
-    @endauth
+<!-- jQuery (necessary for all JavaScript plugins) -->
+<script src="{{ asset('lms/js/jquery-2.2.4.min.js') }}"></script>
+<!-- Popper js -->
+<script src="{{ asset('lms/js/popper.min.js') }}"></script>
+<!-- Bootstrap js -->
+<script src="{{ asset('lms/js/bootstrap.min.js') }}"></script>
+<!-- Plugins js -->
+<script src="{{ asset('lms/js/plugins.js') }}"></script>
+<!-- Classy Nav js -->
+<script src="{{ asset('lms/js/classy-nav.js') }}"></script>
+<!-- Active js -->
+<script src="{{ asset('lms/js/active.js') }}"></script>
 
-    @yield('content')
-</div>
-
-@include('shop::layouts.footer.index')
 </body>
+
 </html>

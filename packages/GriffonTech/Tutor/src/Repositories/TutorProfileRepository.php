@@ -25,9 +25,8 @@ class TutorProfileRepository extends Repository
 
     public function getList($key = 'id', $value = 'name')
     {
-        $tutors_user_ids = $this->pluck('user_id')->toArray();
-
-        return $this->app->make(UserRepository::class)->findWhereIn('id', $tutors_user_ids)
-            ->pluck($value, $key)->prepend('--Select Tutor--', '')->toArray();
+        return $this->findWhere(['status' => 1])
+            ->pluck($value, $key)
+            ->toArray();
     }
 }

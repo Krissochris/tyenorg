@@ -5,7 +5,7 @@ namespace GriffonTech\User\Http\Controllers;
 
 
 use GriffonTech\Testimony\Repositories\TestimonyRepository;
-use http\Env\Request;
+use Illuminate\Http\Request;
 
 class TestimonyController extends Controller
 {
@@ -41,12 +41,30 @@ class TestimonyController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'testimony' => 'required'
+        ]);
 
+        $postData = $request->all();
+        $postData['user_id'] = auth('user')->user()->id;
+
+        $testimony = $this->testimonyRepository->create($postData);
+        if ($testimony) {
+            session()->flash('success', 'Thank you for testifying for us.');
+        } else {
+            session()->flash('error', 'Your testimony was not registered. Please try again later.');
+        }
+        return redirect()->route($this->_config['redirect']);
     }
 
     public function destroy($id)
     {
-
+        if ($this->testimonyRepository->delete($id)) {
+            session()->flash('success', 'Testimony was successfully deleted!');
+        } else {
+            session()->flash('error', 'Testimony could not be deleted.Please try again later.');
+        }
+        return redirect()->route($this->_config['redirect']);
     }
 
 }

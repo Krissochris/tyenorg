@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_verified')->default(0);
             $table->string('token')->nullable();
             $table->text('notes')->nullable();
+            $table->unsignedInteger('tutor_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

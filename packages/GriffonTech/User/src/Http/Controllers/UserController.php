@@ -58,9 +58,9 @@ class UserController extends Controller {
      */
     public function index()
     {
-        $customer = $this->userRepository->find(auth()->guard('user')->user()->id);
+        $user = $this->userRepository->find(auth()->guard('user')->user()->id);
 
-        return view($this->_config['view'], compact('customer'));
+        return view($this->_config['view'], compact('user'));
     }
 
     /**

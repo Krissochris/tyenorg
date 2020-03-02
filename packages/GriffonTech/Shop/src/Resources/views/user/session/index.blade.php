@@ -1,73 +1,88 @@
 @extends('shop::layouts.master')
 
 @section('content')
-    <div class="container">
-        <hr>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">User Login</div>
-                    <div class="card-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('user.session.create') }}">
-                            {{ csrf_field() }}
+    <!-- ===================== Breadcumb area start ===================== -->
+    <section class="breadcumb_area" style="background-image: url({{ asset('lms/img/bg-pattern/breadcumb.jpg') }});">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="breadcumb_section">
+                        <!-- Breadcumb page title start -->
+                        <div class="page_title">
+                            <h3>sign in</h3>
+                        </div>
+                        <!-- Breadcumb page pagination start -->
+                        <div class="page_pagination">
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                <li>Sign in</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ===================== Breadcumb area end ===================== -->
 
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-12 control-label">E-Mail Address</label>
+    <!-- ===================== login area start ===================== -->
+    <section class="login_area section_padding_100">
+        <div class="container">
+            <div class="row">
 
-                                <div class="col-md-12">
-                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                <div class="col-12 col-lg-5 col-xl-6 item">
+                    <!-- Login thumb start -->
+                    <div class="login_thumb" style="background-image: url({{ asset('lms/img/bg-pattern/courses-bg.jpg') }});">
+                        <!-- Login thumb caption -->
+                        <div class="login_thumb_caption">
+                            <h3>Welcome Back!</h3>
+                            <p>Continue your learning by sign in.</p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col-12 col-lg-7 col-xl-6 item">
+                    <!-- login form start -->
+                    <div class="login_form">
+                        <!-- sign in manual form -->
+                        <div class="login_manual_form">
+                            <form role="form" method="post" action="{{ route('user.session.create') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <i class="fa fa-user"></i>
+                                    <input id="email" type="email" name="email" placeholder="Email" value="{{ old('email') }}" required autofocus>
                                     @if ($errors->has('email'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                     @endif
                                 </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-md-12 control-label">Password</label>
-
-                                <div class="col-md-12">
-                                    <input id="password" type="password" class="form-control" name="password" required>
-
+                                <div class="form-group">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                    <input id="password" type="password" name="password" required>
                                     @if ($errors->has('password'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                     @endif
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                        </label>
-                                    </div>
-                                </div>
+                                <button type="submit" class="btn btn-default" id="login_submit">Sign in</button>
+                            </form>
+                            <!-- forget password -->
+                            <div class="forget_pass one">
+                                <a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i>Forget Password</a>
                             </div>
-
-                            <div class="form-group">
-                                <div class="col-md-12 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Login
-                                    </button>
-
-                                    <a class="btn btn-link" href="{{ route('user.forgot-password.create') }}">
-                                        Forgot Your Password?
-                                    </a>
-                                </div>
+                            <div class="forget_pass">
+                                <a href="{{ route('user.register.index') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>Didn't have a account? Register</a>
                             </div>
-                        </form>
+                        </div>
                     </div>
+                    <!-- login form end -->
                 </div>
-                <hr><br>
             </div>
-            <div class="col-md-4"></div>
-
         </div>
-    </div>
+    </section>
+    <!-- ===================== login area end ===================== -->
 @endsection

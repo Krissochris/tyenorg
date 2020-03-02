@@ -1,15 +1,18 @@
 @extends("admin::layouts.master")
 
 @section("content")
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class=" float-right mb-3">
-                    <a href="{{route('admin.courses.create')}}" class="btn btn-dark"> Add Course </a>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5> Courses </h5>
                 </div>
+                <div class="ibox-content table-responsive">
+                    <div class=" float-right mb-3">
+                        <a href="{{route('admin.courses.create')}}" class="btn btn-dark"> Add Course </a>
+                    </div>
 
-                <div class="table-responsive">
-                    <table class="table table-bordered" {{--id="dataTable"--}} width="100%" cellspacing="0">
+                    <table class="table table-bordered">
                         <thead class="thead-dark">
                         <tr>
                             <th>S/N</th>
@@ -37,10 +40,10 @@
                                     <a href="{{route('admin.courses.edit', $course->id)}}"> edit </a>&nbsp;&nbsp;
                                     <a href="#"
                                        onclick="event.preventDefault();
-                                               var response = confirm('Are you sure you want to delete this course ?');
-                                               if (response) {
-                                               document.getElementById('{{ $course->id }}').submit(); }"
-                                            ><i class="fa fa-trash text-danger grow" title="delete"></i>
+                                           var response = confirm('Are you sure you want to delete this course ?');
+                                           if (response) {
+                                           document.getElementById('{{ $course->id }}').submit(); }"
+                                    ><i class="fa fa-trash text-danger grow" title="delete"></i>
                                     </a>
                                     <form id="{{ $course['id'] }}" action="{{ route('admin.courses.delete', $course['id']) }}" method="POST" style="display: none;">
                                         <input type="hidden" name="_method" value="delete">
@@ -59,7 +62,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 @endsection
