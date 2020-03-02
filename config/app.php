@@ -1,6 +1,5 @@
 <?php
 
-use LaravelFrontendPresets\MaterialPreset\MaterialPresetServiceProvider;
 
 return [
 
