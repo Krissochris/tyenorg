@@ -45,7 +45,7 @@
 
                                 <div id="payment_options" style="display: none;">
                                     <div class="form-group">
-                                        <label for="total_no_of_referrals_needed">Total Number of Referrals Needed</label>
+                                        <label for="total_no_of_referrals_needed"> Number of Referrals Needed (Equivalent of Price)</label>
                                         {!! Form::number('total_no_of_referrals_needed', null, ['class' => 'form-control']) !!}
                                     </div>
 
@@ -102,7 +102,9 @@
             </div>
         </div>
     </div>
+@endsection
 
+@section('footer-scripts')
     <script>
         $('#course_type').change(function(event) {
             if (event.target.value === '<?= \GriffonTech\Course\Repositories\CourseRepository::PRO_MEMBER_PAID ?>') {

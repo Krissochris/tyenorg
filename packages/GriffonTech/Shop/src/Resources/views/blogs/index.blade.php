@@ -2,43 +2,77 @@
 
 
 @section('content')
-    <!-- Page Content -->
-    <div class="container"><br>
 
-        @if(count($blogs) > 0)
+    <!-- ===================== Breadcumb Area Start ===================== -->
+    <section class="breadcumb_area" style="background-image: url({{ asset('lms/img/bg-pattern/breadcumb.jpg') }});">
+        <div class="container">
             <div class="row">
-                @foreach($blogs as $blog)
-                    <div class="col-sm-8">
-                        <div class="card mb-4">
-                            <h4 class="card-header text-dark">{{$blog->title}}</h4>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-12">
+                <div class="col">
+                    <div class="breadcumb_section">
+                        <!-- Breadcumb page title start -->
+                        <div class="page_title">
+                            <h3>Blog</h3>
+                        </div>
+                        <!-- Breadcumb page pagination start -->
+                        <div class="page_pagination">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                <li>Blog</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ===================== Breadcumb Area End ===================== -->
 
-                                        <p class="card-text"> {!! (strlen($blog->body) > 400) ? substr($blog->body, 0, 400)."<b> (&hellip;)</b>  <br> " : $blog->body !!} <a href="{{route('blog.posts.show', $blog->url_key)}}" class="btn btn-dark btn-sm">Read More &rarr;</a></p>
+    <!-- ========================== Latest Blog Area Start ========================== -->
+    <div class="latest_blog_news_area blog section_padding_100">
+        <div class="container">
+
+            @if(count($blogs) > 0)
+                <div class="row">
+                    @foreach($blogs as $blog)
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="single_latest_news_area">
+                                <!-- single latest news thumb -->
+                                <div class="single_latest_news_img_area">
+                                    <img src="{{ $blog->photo }}" alt="">
+                                    <!-- single latest news published date -->
+                                    <div class="published_date">
+                                        <p class="date">{{ $blog->created_at->format('d') }}</p>
+                                        <p class="month">{{ $blog->created_at->format('M') }}</p>
+                                    </div>
+                                </div>
+                                <div class="single_latest_news_text_area">
+                                    <!-- single latest news title -->
+                                    <div class="news_title">
+                                        <a href="{{route('blog.posts.show', $blog->url_key)}}">{{$blog->title}}</a>
+                                    </div>
+                                    <!-- single latest news excerp -->
+                                    <div class="news_content">
+                                        <p>
+                                            {!! (strlen($blog->body) > 70) ? substr($blog->body, 0, 70)."<b> (&hellip;)</b>  <br> " : $blog->body !!}
+                                        </p>
+                                        <a href="{{route('blog.posts.show', $blog->url_key)}}" class="btn blog-btn">Read More <i class="fa fa-angle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                By <a href="#" class="text-primary">{{$blog->user->username}} </a>:
-                                <span class="text-primary"> {{$blog->created_at}}</span>
-                                <div class="float-right">
-                                    <a href=""><i class="fa fa-thumbs-up fa-lg grow text-secondary"></i><span class="badge badge-notify" style="font-size:10px;">30</span></a> &nbsp;
-                                    <a href=""><i class="fa fa-thumbs-down fa-lg grow text-secondary"></i><span class="badge badge-notify" style="font-size:10px;">3</span></a> &nbsp;
-                                    <a href=""><i class="fa fa-comments fa-lg grow text-secondary"></i><span class="badge badge-notify" style="font-size:10px;">15</span></a> &nbsp;
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
+            @else
+                <div class="alert alert-info col-sm-6">
+                    No Blog post created yet!
+                </div>
+            @endif
 
-            </div>
-        @else
-            <div class="alert alert-info col-sm-6">
-                No Bolg created yet!
-            </div>
-        @endif
-
-    </div><br>
-    {{$blogs->links()}}
+        <br>
+        {{$blogs->links()}}
+    </div>
+    </div>
+    <!-- ========================== Latest Blog Area End ========================== -->
 @endsection

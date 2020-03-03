@@ -35,4 +35,9 @@ class Course extends Model implements CourseContract
     {
         return $this->hasMany(CourseRegistrationProxy::modelClass(), 'course_id', 'id');
     }
+
+    public function course_reviews()
+    {
+        return $this->hasMany(CourseReviewProxy::modelClass(), 'course_id', 'id');
+    }
 }

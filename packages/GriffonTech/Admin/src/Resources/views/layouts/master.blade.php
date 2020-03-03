@@ -24,7 +24,29 @@
         @include('admin::layouts.header.index')
 
         <div class="wrapper wrapper-content">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if(Session::has('success'))
+                <p class="alert alert-success">{{ Session::get('success') }}</p>
+            @endif
 
+            @if(Session::has('warning'))
+                <p class="alert alert-warning">{{ Session::get('warning') }}</p>
+            @endif
+
+            @if(Session::has('info'))
+                <p class="alert alert-info">{{ Session::get('info') }}</p>
+            @endif
+            @if(Session::has('error'))
+                <p class="alert alert-danger">{{ Session::get('error') }}</p>
+            @endif
             @yield('content')
 
         </div>
@@ -62,7 +84,7 @@
 
 <!-- jQuery UI -->
 <script src="{{ asset('admin/js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-
+@yield('footer-scripts')
 <script>
     $(document).ready(function () {
 

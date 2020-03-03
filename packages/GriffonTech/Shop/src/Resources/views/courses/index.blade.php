@@ -41,16 +41,8 @@
                     <div class="search_form">
                         <form action="#" method="get">
                             <div class="form-row">
-                                <div class="form-group col-12 col-md-7">
+                                <div class="form-group col-12 col-md-10">
                                     <input type="text" class="form-control keyword" placeholder="Type your keywords">
-                                </div>
-                                <div class="form-group col-12 col-md-3">
-                                    <select class="custom-select options w-100">
-                                        <option selected>Choose...</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
                                 </div>
                                 <div class="form-group col-12 col-md-2">
                                     <button type="submit" class="btn submit-btn btn-primary w-100">Search</button>
@@ -80,7 +72,7 @@
                                         <div class="courses_badge">
                                             <span>New</span>
                                         </div>
-                                        <img src="{{ asset('lms/img/course-img/c-1.jpg') }}" alt="">
+                                        <img src="{{ $course->photo }}" alt="{{ $course->name }}">
                                     </div>
                                     <div class="single_courses_desc">
                                         <div class="title">
@@ -104,12 +96,17 @@
                                                 @endswitch
                                             </div>
                                             <div class="rating text-right w-50">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                                <span>(4 Vote)</span>
+                                                @if($course->course_average_rating )
+                                                    @for($num = 1; $num <= 5; $num++)
+                                                        @if($num <= $course->course_average_rating)
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                        @else
+                                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        @endif
+                                                    @endfor
+
+                                                    <span>({{ $course->total_reviews }} Review)</span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -125,97 +122,10 @@
                 @endif
 
 
-                <!-- Single Courses Area Start -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <!-- Single Courses Area Start -->
-                    <div class="single_courses">
-                        <div class="single_courses_thumb">
-                            <div class="courses_badge">
-                                <span>New</span>
-                            </div>
-                            <img src="{{ asset('lms/img/course-img/c-2.jpg') }}" alt="">
-                        </div>
-                        <div class="single_courses_desc">
-                            <div class="title">
-                                <a href="#">Introduction to Family Engagement in Education</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, excepturi!</p>
-                            </div>
-                            <div class="price_rating_area d-flex align-items-center">
-                                <div class="price w-50">
-                                    <span>$199</span>
-                                </div>
-                                <div class="rating text-right w-50">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <span>(4 Vote)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Courses Area End -->
-
-
             </div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <!-- Pagination Area Start -->
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination mt-5">
-                            <li><a href="#" aria-label="Previous">Prev</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#" aria-label="Next">Next</a></li>
-                        </ul>
-                    </nav>
-                    <!-- Pagination Area End -->
-                </div>
-            </div>
-        </div>
     </div>
     <!-- ===================== Popular Courses Area End ===================== -->
-
-    <div class="popular_coureses_area all_courses grid_list section_padding_100" style="padding: 30px 0;">
-        <div class="container section_padding_100">
-            <div class="row">
-                <div class="col-12 col-sm-12">
-                    <div class="table-responsive">
-                        <table class="table table-hover table-bordered">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th>Field</th>
-                                <th>Value</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Referral Bonus:</td>
-                            </tr>
-                            <tr>
-                                <td>Total Referrals :</td>
-                            </tr>
-                            <tr>
-                                <td>Available Referral :</td>
-                            </tr>
-                            <tr>
-                                <td>Referral Code :</td>
-
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 @endsection

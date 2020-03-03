@@ -221,8 +221,15 @@ Route::group(['middleware' => ['web']], function(){
         'view' => 'shop::blogs.show'
     ])->name('blog.posts.show');
 
+    Route::post('blog/{slug}/add-comment', 'GriffonTech\Shop\Http\Controllers\BlogController@addComment')->defaults('_config', [
+        'redirect' => 'blog.posts.show'
+    ])->name('blog.posts.store');
+
+    Route::delete('blog/comment/delete/{id}', 'GriffonTech\Shop\Http\Controllers\BlogCommentController@destroy')->defaults('_config', [
+    ])->name('blog.comment.delete');
+
+
     Route::get('faqs', 'GriffonTech\Shop\Http\Controllers\FaqController@index')->defaults('_config', [
         'view' => 'shop::faqs.index'
     ])->name('faqs.index');
-
 });

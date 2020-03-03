@@ -2,6 +2,7 @@
 
 namespace GriffonTech\Course\Models;
 
+use GriffonTech\User\Models\UserProxy;
 use Illuminate\Database\Eloquent\Model;
 use GriffonTech\Course\Contracts\CourseRegistration as CourseRegistrationContract;
 
@@ -21,5 +22,11 @@ class CourseRegistration extends Model implements CourseRegistrationContract
     {
         return $this->belongsTo(CourseBatchProxy::modelClass(), 'batch_id', 'id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(UserProxy::modelClass(), 'user_id', 'id');
+    }
+
 
 }

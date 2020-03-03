@@ -203,6 +203,45 @@ Route::group(['middleware' => ['web']], function (){
             ])->name('admin.courses.delete');
 
 
+            // Course Batches
+            Route::get('course_batches/index', 'GriffonTech\Admin\Http\Controllers\CourseBatchesController@index')->defaults('_config', [
+                'view' => 'admin::admin.course_batches.index'
+            ])->name('admin.course_batches.index');
+
+            Route::get('course_batches/create', 'GriffonTech\Admin\Http\Controllers\CourseBatchesController@create')->defaults('_config', [
+                'view' => 'admin::admin.course_batches.create'
+            ])->name('admin.course_batches.create');
+
+            Route::post('course_batches/create', 'GriffonTech\Admin\Http\Controllers\CourseBatchesController@store')->defaults('_config', [
+                'redirect' => 'admin.course_batches.index'
+            ])->name('admin.course_batches.create');
+
+
+            Route::get('course_batches/show/{id}', 'GriffonTech\Admin\Http\Controllers\CourseBatchesController@show')->defaults('_config', [
+                'view' => 'admin::admin.course_batches.show'
+            ])->name('admin.course_batches.show');
+
+
+            Route::get('course_batches/edit/{id}', 'GriffonTech\Admin\Http\Controllers\CourseBatchesController@edit')->defaults('_config', [
+                'view' => 'admin::admin.course_batches.edit'
+            ])->name('admin.course_batches.edit');
+
+
+            Route::post('course_batches/edit/{id}', 'GriffonTech\Admin\Http\Controllers\CourseBatchesController@update')->defaults('_config', [
+                'redirect' => 'admin.course_batches.index'
+            ])->name('admin.course_batches.edit');
+
+
+            Route::delete('course_batches/delete/{id}', 'GriffonTech\Admin\Http\Controllers\CourseBatchesController@destroy')->defaults('_config', [
+                'redirect' => 'admin.course_batches.index'
+            ])->name('admin.course_batches.delete');
+
+
+            //Course Registrations
+            Route::get('course_registrations/index', 'GriffonTech\Admin\Http\Controllers\CourseRegistrationsController@index')->defaults('_config', [
+                'view' => 'admin::admin.course_registrations.index'
+            ])->name('admin.course_registrations.index');
+
 
 
             // Blogs

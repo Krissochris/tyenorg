@@ -24,10 +24,12 @@
                                 <td> {{ $tutor->id }}</td>
                                 <td> {{ $tutor->name }} </td>
                                 <td> {{ $tutor->title }} </td>
-                                <td> {{ $tutor->status }} </td>
                                 <td>
-                                    <a href="{{route('admin.tutors.show', $tutor->id)}}"> View</a>
-                                    <a href="{{route('admin.tutors.edit', $tutor->id)}}"> Edit </a>
+                                    {{ $tutor->status }}
+                                </td>
+                                <td>
+                                    <a class="btn btn-success btn-sm" href="{{route('admin.tutors.show', $tutor->id)}}"> View</a>
+                                    <a class="btn btn-primary btn-sm" href="{{route('admin.tutors.edit', $tutor->id)}}"> Edit </a>
                                 </td>
                             </tr>
                         @endforeach

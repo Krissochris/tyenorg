@@ -1,29 +1,27 @@
 @extends("admin::layouts.master")
 
 @section("content")
-    <div class="container">
-        <div class="container col-md-12 bg-dark">
-            <hr>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="{{ asset('images/26238.png')}}" class="card-img" alt="">
-                        <div class="card-footer">
-                            <a href="#">
-                                <button class="btn btn-dark text-center"><i class="fa fa-envelope-open-text"></i> Message</button>
-                            </a>
-                        </div>
-                    </div>
-                    <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5> Tutors </h5>
                 </div>
+                <div class="ibox-content table-responsive">
 
-                <div class="col-md-9">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="float-left">Tutor profile</h4>
-                            <a href="{{route('admin.tutors.index')}}" class="btn btn-dark float-right">Go Back</a>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="{{ asset('images/26238.png')}}" class="card-img" alt="">
+                            <div class="card-footer">
+                                <a href="#">
+                                    <button class="btn btn-dark text-center"><i class="fa fa-envelope-open-text"></i> Message</button>
+                                </a>
+                            </div>
                         </div>
-                        <div class="card-body">
+
+                        <div class="col-md-10">
+                            <a href="{{route('admin.tutors.index')}}" class="btn btn-dark float-right">Go Back</a>
+
                             <table class="table table-hover table-bordered table-striped">
                                 <thead class="thead-dark">
                                 <tr>
@@ -59,14 +57,57 @@
                                 </tr>
                                 </tbody>
                             </table>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
-            <hr>
         </div>
     </div>
 
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5> Tutor Courses </h5>
+                </div>
+                <div class="ibox-content table-responsive">
+                    @if($tutor->courses)
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Type</td>
+                                <td>Price</td>
+                                <td>Status</td>
+                                <td>Registered On</td>
+                                <td>Batches</td>
+                                <td></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($tutor->courses as $course)
+                                <tr>
+                                    <td>{{ $course->name }}</td>
+                                    <td>{{ $course->type }}</td>
+                                    <td>{{ $course->price }}</td>
+                                    <td>{{ $course->status }}</td>
+                                    <td>{{ $course->created_at }}</td>
+                                    <td>{{ $course->course_batches->count() }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.courses.show', $course->id) }}">view</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection

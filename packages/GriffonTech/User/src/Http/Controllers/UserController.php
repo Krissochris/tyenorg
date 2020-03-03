@@ -27,16 +27,9 @@ class UserController extends Controller {
     protected $userRepository;
 
     /**
-     * ProductReviewRepository object
-     *
-     * @var array
-     */
-    protected $productReviewRepository;
-
-    /**
      * Create a new controller instance.
      *
-     * @param  \GriffonTech\User\Repositories\UserRepository $user
+     * @param  \GriffonTech\User\Repositories\UserRepository $userRepository
      //* @param  \GriffonTech\Product\Repositories\ProductReviewRepository $productReview
      * @return void
      */
@@ -47,8 +40,6 @@ class UserController extends Controller {
         $this->_config = request('_config');
 
         $this->userRepository = $userRepository;
-
-        //$this->productReviewRepository = $productReviewRepository;
     }
 
     /**
@@ -85,22 +76,17 @@ class UserController extends Controller {
         $id = auth()->guard('user')->user()->id;
 
         $this->validate(request(), [
-            'first_name' => 'string',
+            'name' => 'string',
             'last_name' => 'string',
-            'gender' => 'required',
-            'date_of_birth' => 'date|before:today',
             'email' => 'email|unique:users,email,'.$id,
-            'oldpassword' => 'required_with:password',
-            'password' => 'confirmed|min:6'
+            'old_password' => 'required_with:password',
+            'password' => 'nullable:confirmed|min:6'
         ]);
 
         $data = collect(request()->input())->except('_token')->toArray();
 
-        if ($data['date_of_birth'] == "")
-            unset($data['date_of_birth']);
-
-        if ($data['oldpassword'] != "" || $data['oldpassword'] != null) {
-            if(Hash::check($data['oldpassword'], auth()->guard('user')->user()->password)) {
+        if ($data['old_password'] != "" || $data['old_password'] != null) {
+            if(Hash::check($data['old_password'], auth()->guard('user')->user()->password)) {
                 $data['password'] = bcrypt($data['password']);
             } else {
                 session()->flash('warning', trans('shop::app.user.account.profile.unmatch'));

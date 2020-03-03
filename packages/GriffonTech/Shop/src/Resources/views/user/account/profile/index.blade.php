@@ -67,6 +67,21 @@
                                 </div>
                             </div>
 
+                            <h4> Change Password</h4>
+                            <div class="form-group row">
+                                <label class="col-sm-2">Password: </label>
+                                <div class="col-sm-7">
+                                    {!! Form::password('old_password', ['class' => 'form-control']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2">New Password: </label>
+                                <div class="col-sm-7">
+                                    {!! Form::password('password', ['class' => 'form-control']) !!}
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <button class="btn btn-primary">Update</button>
                             </div>
@@ -74,8 +89,9 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <br>
         </div>
-        <hr>
     </div>
 </div>
 <!-- /.container -->

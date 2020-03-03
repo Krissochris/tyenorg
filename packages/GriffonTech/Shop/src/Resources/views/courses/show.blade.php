@@ -87,6 +87,21 @@
                     </div>
                     @include("shop::partials.courses.tutor_detail", ['tutor' => $course->tutor ])
 
+                    <div class="courses_description m-bottom-50">
+                        <h5>Reviews</h5>
+                    </div>
+                    @if($course->course_reviews)
+                    <div class="testimonial_slides">
+                        @foreach($course->course_reviews as $course_review)
+                            <div class="single_testimonial text-center">
+                                <div class="testimonial_text">
+                                    <p>{{ $course_review->review }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    @endif
+
                     <!-- Courses Description -->
                     <div class="courses_description m-bottom-50">
                         <h5>Related Courses</h5>
@@ -234,115 +249,4 @@
         </div>
     </section>
     <!-- =============== Courses Details Area End =============== -->
-
-
-
-
-
-
-
-    <div class="container">
-
-        <!-- Page Heading/Breadcrumbs -->
-        <br>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="/">Home</a>
-            </li>
-            <li class="breadcrumb-item active">Course Details</li>
-        </ol>
-
-        @if (isset($course))
-
-        <div class="container">
-            <div class="row bg-dark" style="padding: 20px 0">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="{{ $course->photo }}" class="img-fluid" style="max-height: 200px; width: 100%" alt="Course Image">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <div class="card-title text-light"><h2>{{ $course->name }} </h2></div>
-                        <h6 class="text-light"> {{ $course->summary }} </h6>
-                        <div>
-                            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-
-                            <p class="text-light">
-                                @switch($course->type)
-                                @case('free')
-                                {{ __('Free') }}
-                                @break
-                                @case('pro_user_free')
-                                {{ __('Pro user free') }}
-                                @break
-                                @case('pro_user_paid')
-                                ${{ $course->price }}
-                                @break
-                                @default
-                                {{''}}
-                                @endswitch
-                            </p>
-                        </div>
-                        <small class="text-light">Created By: <span class="text-light"> {{ $course->tutor->name }} </span></small>
-                        <div class="float-right">
-                            @if (isset(auth('user')->user()->id) && (isset($course->is_registered) && $course->is_registered === true) )
-                                <a class="btn btn-primary" href="{{ route('user.course.show', $course->url_key) }}"> View Course</a>
-                            @else
-                                @switch($course->type)
-                                @case('free')
-                                @case('pro_user_free')
-                                <a class="btn btn-primary" href="{{ route('courses.join', $course->url_key) }}">Join Course</a>
-                                @break
-                                @case('pro_user_paid')
-                                <a class="btn btn-primary" href="{{ route('courses.checkout', $course->url_key) }}">Purchase Course</a>
-                                @break
-                                @default
-                                {{''}}
-                                @endswitch
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="clearfix">
-                <div class="float-right col-sm-4">
-                    <video width="320" height="240" controls class="embed-responsive">
-                        <source src="movie.mp4" type="video/mp4">
-                        <source src="movie.ogg" type="video/ogg">
-                        Your browser does not support the video tag.
-                    </video>
-                    <hr>
-                </div >
-
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header"> Description </div>
-                        <div class="card-body">
-                            {!! $course->description !!}
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-
-            <?php if ($course->tutor->tutor_profile) { $tutor = $course->tutor->tutor_profile; $tutor->name = $course->tutor->name;  } else {
-                $tutor['name'] = $course->tutor->name;
-            }
-            ?>
-            @include("shop::partials.courses.tutor_detail", ['tutor' => $tutor ])
-            </div>
-            <hr>
-
-{{--
-            @include("shop::partials.courses.related_courses")
---}}
-        </div>
-
-        @endif
-
-
-    </div>
 @endsection

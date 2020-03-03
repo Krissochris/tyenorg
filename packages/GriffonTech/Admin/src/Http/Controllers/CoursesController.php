@@ -111,7 +111,14 @@ class CoursesController extends Controller
 
     public function show($id)
     {
-        $course = $this->courseRepository->with(['course_category','tutor.tutor_profile'])->findOrFail($id);
+        $course = $this->courseRepository
+            ->with([
+                'course_category',
+                'tutor',
+                'course_batches',
+                'course_registrations.user:id,name'
+            ])
+            ->findOrFail($id);
 
         return view($this->_config['view'])->with(compact('course'));
     }

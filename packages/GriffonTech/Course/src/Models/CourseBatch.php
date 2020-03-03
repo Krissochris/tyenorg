@@ -2,6 +2,7 @@
 
 namespace GriffonTech\Course\Models;
 
+use GriffonTech\Tutor\Models\TutorProfileProxy;
 use GriffonTech\User\Models\UserProxy;
 use Illuminate\Database\Eloquent\Model;
 use GriffonTech\Course\Contracts\CourseBatch as CourseBatchContract;
@@ -21,6 +22,13 @@ class CourseBatch extends Model implements CourseBatchContract
 
     public function tutor()
     {
-        return $this->belongsTo(UserProxy::modelClass(), 'tutor_id', 'id');
+        return $this->belongsTo(TutorProfileProxy::modelClass(), 'tutor_id', 'id');
     }
+
+    public function course_registrations()
+    {
+        return $this->hasMany(CourseRegistrationProxy::modelClass(), 'batch_id', 'id');
+    }
+
+
 }

@@ -86,6 +86,7 @@ class CourseController extends Controller
                             ['type', CourseRepository::FREE],
                             ['course_category_id', $category->id]
                         ])->paginate(20);
+
                 } catch (ModelNotFoundException $exception) {
                     $courses = $this->courseRepository->getModel()
                         ->query()
@@ -93,6 +94,7 @@ class CourseController extends Controller
                         ->paginate(20);
                 }
             } else {
+
                 $courses = $this->courseRepository->getModel()
                     ->query()
                     ->where('type', CourseRepository::FREE)
@@ -118,7 +120,14 @@ class CourseController extends Controller
                     ->paginate(20);
             }
         }
-
+        if ($courses->count()) {
+            $courses->map(function($row){
+                $row->course_average_rating =
+                    $row->course_reviews->average('rating');
+                $row->total_reviews = $row->course_reviews->count();
+                return $row;
+            });
+        }
         // if the user is pro member // get all course
 
         // if the category_slug is set
@@ -133,7 +142,7 @@ class CourseController extends Controller
     {
         try {
             $course = $this->courseRepository
-                ->with(['tutor'])
+                ->with(['tutor', 'course_reviews'])
                 ->findBySlugOrFail($slug);
 
         } catch (ModelNotFoundException $exception) {

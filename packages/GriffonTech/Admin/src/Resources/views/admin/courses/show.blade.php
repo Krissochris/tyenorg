@@ -3,15 +3,14 @@
 @section("content")
     <div class="container">
         <div class="row">
-
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="float-left"> {{ $course->name }} - {{ $course->tutor->name }} </h4>
-                        <a href="{{route('admin.courses.index')}}" class="btn btn-dark float-right">Go Back</a>
+            <div class="col-sm-12">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>{{ $course->name }} - {{ $course->tutor->name }}  </h5>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-hover table-bordered table-striped">
+                    <div class="ibox-content table-responsive">
+
+                        <table class="table table-hover table-bordered table-striped no-margins">
                             <thead class="thead-dark">
                             <tr>
                                 <th>Field</th>
@@ -59,7 +58,7 @@
                             @endif
                             <tr>
                                 <td> Photo:</td>
-                                <td><img src="{{ $course->photo }}" alt="{{ $course->name }}"> </td>
+                                <td><img src="{{ $course->photo }}" alt="{{ $course->name }}" width="300" height="200"> </td>
                             </tr>
                             <tr>
                                 <td>Video Link </td>
@@ -68,19 +67,91 @@
 
                             <tr>
                                 <td> Status </td>
-                                <td> {{ $course->status }} </td>
+                                <td> {{ ($course->status) ? 'Active' : 'Not Active' }} </td>
                             </tr>
 
                             </tbody>
                         </table>
 
-{{--
-                        {{ Display the tutor detials below  }}
---}}
                     </div>
-
                 </div>
+
+
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5> Course Batches  </h5>
+                    </div>
+                    <div class="ibox-content table-responsive">
+
+                        <table class="table table-hover table-bordered table-striped no-margins">
+                            <thead class="">
+                            <tr>
+                                <th>Id</th>
+                                <th>No of Users In Batch</th>
+                                <th>Maximum number of users needed</th>
+                                <th>Entry Status</th>
+                                <th>Is Taken</th>
+                                <th>Time Completed</th>
+                                <th>Status</th>
+                                <th>Created On</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @if($course->course_batches)
+                                @foreach($course->course_batches as $course_batch)
+                                    <tr>
+                                        <td>{{ $course_batch->id }}</td>
+                                        <td>{{ $course_batch->no_of_users }}</td>
+                                        <td>{{ $course_batch->maximum_number_of_users }}</td>
+                                        <td>{{ ($course_batch->entry_status) ? 'Active' : 'UnActive' }}</td>
+                                        <td>{{ ($course_batch->is_taken) ? 'Yes' : 'No' }}</td>
+                                        <td>{{ $course_batch->time_completed }}</td>
+                                        <td>{{ ($course_batch->status) ? 'Yes' : 'No' }}</td>
+                                        <td>{{ $course_batch->created_at }}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5> Course Registrations  </h5>
+                    </div>
+                    <div class="ibox-content table-responsive">
+
+                        <table class="table table-hover table-bordered table-striped no-margins">
+                            <thead class="">
+                            <tr>
+                                <th>Name</th>
+                                <th>Date Registered</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @if($course->course_registrations)
+                                    @foreach($course->course_registrations as $registration)
+                                        <tr>
+                                            <td>{{ $registration->user->name }}</td>
+                                            <td>{{ $registration->created_at }}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
             </div>
+
         </div>
     </div>
 @endsection

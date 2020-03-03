@@ -39,7 +39,7 @@
                                 <!-- Single Courses Area Start -->
                                 <div class="single_courses">
                                     <div class="single_courses_thumb">
-                                        <img src="{{ asset('lms/img/course-img/c-1.jpg') }}" alt="{{ $course->name }}">
+                                        <img src="{{ $course->photo }}" alt="{{ $course->name }}">
                                     </div>
                                     <div class="single_courses_desc">
                                         <div class="title">
@@ -47,13 +47,18 @@
                                             <p>{{ $course->summary }}</p>
                                         </div>
                                         <div class="price_rating_area d-flex align-items-center">
-                                            <div class="rating text-right w-50">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                                <span>(4 Vote)</span>
+                                            <div class="rating w-50">
+                                                @if($course->course_average_rating )
+                                                    @for($num = 1; $num <= 5; $num++)
+                                                        @if($num <= $course->course_average_rating)
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                        @else
+                                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                        @endif
+                                                    @endfor
+
+                                                <span>({{ $course->total_reviews }} Review)</span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

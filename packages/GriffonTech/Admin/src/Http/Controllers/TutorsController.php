@@ -60,7 +60,7 @@ class TutorsController extends Controller
     {
         $tutor = $this->tutorProfileRepository->findOrFail($id);
 
-        $tutorUpdated = $tutor->update($request->input());
+        $tutorUpdated = $tutor->update($request->all());
 
         if ($tutorUpdated) {
             session()->flash('success', 'Tutor profile was successfully updated!');

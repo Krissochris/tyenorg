@@ -30,7 +30,16 @@ class CourseRegistrationRepository extends Repository
             ->where('user_id', $user_id)
             ->pluck('course_id')
             ->toArray();
-        return app(CourseRepository::class)->findWhereIn('id', $courses_ids);
+
+        return app(CourseRepository::class)
+            ->with(['course_reviews'])
+            ->findWhereIn('id', $courses_ids)
+            ->map(function($row){
+                $row->course_average_rating =
+                    $row->course_reviews->average('rating');
+                $row->total_reviews = $row->course_reviews->count();
+               return $row;
+            });
     }
 
 }

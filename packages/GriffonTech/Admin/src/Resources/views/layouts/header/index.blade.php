@@ -12,6 +12,7 @@
         </div>
         <ul class="nav navbar-top-links navbar-right">
 
+{{--
             <li class="dropdown">
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                     <i class="fa fa-envelope"></i> <span class="label label-warning">16</span>
@@ -67,12 +68,16 @@
                     </li>
                 </ul>
             </li>
+--}}
             <li class="dropdown">
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                    <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
+                    <i class="fa fa-bell"></i>
+{{--
+                    <span class="label label-primary">8</span>
+--}}
                 </a>
                 <ul class="dropdown-menu dropdown-alerts">
-                    <li>
+                    {{--<li>
                         <a href="mailbox.html" class="dropdown-item">
                             <div>
                                 <i class="fa fa-envelope fa-fw"></i> You have 16 messages
@@ -106,19 +111,14 @@
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </div>
-                    </li>
+                    </li>--}}
                 </ul>
             </li>
 
 
             <li>
-                <a href="login.html">
+                <a href="{{route('admin.session.destroy')}}">
                     <i class="fa fa-sign-out"></i> Log out
-                </a>
-            </li>
-            <li>
-                <a class="right-sidebar-toggle">
-                    <i class="fa fa-tasks"></i>
                 </a>
             </li>
         </ul>

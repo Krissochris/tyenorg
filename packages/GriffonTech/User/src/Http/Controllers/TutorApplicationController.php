@@ -43,9 +43,9 @@ class TutorApplicationController extends Controller
         ]);
 
         $tutor_application_submission = $this->tutorApplicationSubmissionRepository
-            ->findOneWhere([
+            ->findWhere([
                 'tutor_profile_id' => $tutor_application->id,
-            ]);
+            ])->last();
 
         if ($tutor_application_submission->status === TutorApplicationSubmissionRepository::ACTIVE) {
             return view('shop::user.tutor_application.under_review')

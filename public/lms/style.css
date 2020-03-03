@@ -1464,7 +1464,7 @@
 
     .singl-blog-status-bar span i {
         margin-right: 10px;
-        color: #009688;
+        color: #2971be;
         font-size: 18px;
     }
 
@@ -1910,13 +1910,13 @@
 
     .author-name h5,
     .commenter h5 {
-        color: #009688;
+        color: #2971be;
         font-weight: 500;
         text-transform: uppercase;
     }
 
     .commenter > a {
-        color: #009688;
+        color: #2971be;
     }
 
     .comment ul {
@@ -1951,7 +1951,7 @@
     }
 
     .replay:hover {
-        background: #009688;
+        background: #2971be;
         color: #fff;
     }
 

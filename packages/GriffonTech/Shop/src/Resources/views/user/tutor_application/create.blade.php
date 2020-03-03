@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <div class="container">
+    <div class="container section_padding_100">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -48,7 +48,6 @@
 
                     </div>
                 </div>
-                <hr>
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
-                {!! Form::open(['route' => 'user.blog.create']) !!}
+                {!! Form::open(['route' => 'user.blog.create', 'enctype' => 'multipart/form-data']) !!}
                 <div class="card">
                     <h5 class="card-header">Create Blog</h5>
                     <div class="card-body">
@@ -24,7 +24,7 @@
 
                         <div class="form-group float-left">
                             <label for="">Status</label>
-                            {!! Form::select('status', ['Publish', 'Unpublish'], null, ['class' => 'form-control']) !!}
+                            {!! Form::select('status', ['1' => 'Published', '0' => 'UnPublish'], null, ['class' => 'form-control']) !!}
                         </div>
                     </div>
                     <div class="card-footer">
