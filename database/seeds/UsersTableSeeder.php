@@ -23,11 +23,11 @@ class UsersTableSeeder extends Seeder
             'updated_at' => now()
         ]);
 
-        if (config('app.debug')) {
+        /*if (config('app.debug')) {
             factory(\GriffonTech\User\Models\User::class, 30)->create([
                 'is_verified' => 1,
                 'password' => Hash::make('secret'),
-            ]);/*->each(function($user) {
+            ])->each(function($user) {
                 $user->tutor_profile()->save(factory(\GriffonTech\Tutor\Models\TutorProfile::class)->make());
 
                 factory(\GriffonTech\Blog\Models\Blog::class)->create([
@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder
                     ]);
                 });
                 //$user->blogs()->save(factory(\GriffonTech\Blog\Models\Blog::class)->make());
-            });*/
-        }
+            });
+        }*/
     }
 }
