@@ -47,7 +47,9 @@ class TutorApplicationController extends Controller
                 'tutor_profile_id' => $tutor_application->id,
             ])->last();
 
-        if ($tutor_application_submission->status === TutorApplicationSubmissionRepository::ACTIVE) {
+
+        if ($tutor_application_submission &&
+            $tutor_application_submission->status === TutorApplicationSubmissionRepository::ACTIVE) {
             return view('shop::user.tutor_application.under_review')
                 ->with(compact('tutor_application_submission'));
         }
