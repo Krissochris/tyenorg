@@ -350,7 +350,6 @@
             </div>
             <div class="row">
                 @if($blogPosts)
-
                     @foreach($blogPosts as $post)
 
                         <!-- single latest news area start -->
@@ -358,7 +357,7 @@
                                 <div class="single_latest_news_area">
                                     <!-- single latest news thumb -->
                                     <div class="single_latest_news_img_area">
-                                        <img src="{{ asset('lms/img/news-img/blog.jpg') }}" alt="">
+                                        <img src="{{ $post->photo }}" alt="{{ $post->title }}">
                                         <!-- single latest news published date -->
                                         <div class="published_date">
                                             <p class="date">{{ $post->created_at->format('d') }}</p>
@@ -372,13 +371,14 @@
                                         </div>
                                         <!-- single latest news excerp -->
                                         <div class="news_content">
-                                            <p> {{ $post->body }} </p>
-                                            <a href="#" class="btn blog-btn">Read More <i class="fa fa-angle-right"></i></a>
+                                            <p>
+                                                {!! (strlen($blog->body) > 70) ? substr($blog->body, 0, 70)."<b> (&hellip;)</b>  <br> " : $blog->body !!}
+                                            </p>
+                                            <a href="{{route('blog.posts.show', $blog->url_key)}}" class="btn blog-btn">Read More <i class="fa fa-angle-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                     @endforeach
 
                 @endif

@@ -19,6 +19,8 @@ class CreateTutorProfilesTable extends Migration
             $table->string('name')->nullable();
             $table->string('title')->nullable();
             $table->string('email')->nullable();
+            $table->decimal('earned_amount', 20, 2)->default(0);
+            $table->decimal('total_earned_amount', 20, 2)->default(0);
             $table->string('phone', 40)->nullable();
             $table->text('description')->nullable();
             $table->unsignedInteger('state_of_residence_id')->nullable();

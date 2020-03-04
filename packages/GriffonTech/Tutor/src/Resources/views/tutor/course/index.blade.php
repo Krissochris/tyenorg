@@ -3,12 +3,12 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ route('tutor.courses.create') }}">
+            {{--<a href="{{ route('tutor.courses.create') }}">
                 <button class="btn btn-dark float-right">
                     <i class="fa fa-book-medical"></i>
                     Add Course
                 </button>
-            </a>
+            </a>--}}
         </div>
     </div>
     <hr>

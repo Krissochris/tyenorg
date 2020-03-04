@@ -15,13 +15,15 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('tutor_id')->unsigned();
             $table->string('name');
             $table->string('url_key');
             $table->string('summary');
             $table->string('learning_url')->nullable();
+            $table->string('learning_url_2')->nullable();
+            $table->string('amount_per_student')->nullable();
             $table->text('description')->nullable();
             $table->integer('course_category_id')->unsigned();
-            $table->integer('tutor_id')->unsigned();
             $table->integer('total_no_of_users_in_batch')->unsigned();
             $table->integer('total_no_of_referrals_needed')->unsigned()->nullable();
             $table->decimal('price', 8, 2)->nullable();
