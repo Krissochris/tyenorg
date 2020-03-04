@@ -78,6 +78,7 @@
 <!-- Active js -->
 <script src="{{ asset('lms/js/active.js') }}"></script>
 
+@yield('footer-scripts')
 </body>
 
 </html>

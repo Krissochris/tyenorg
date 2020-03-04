@@ -6,6 +6,7 @@ namespace GriffonTech\Admin\Http\Controllers;
 
 use GriffonTech\Tutor\Contracts\TutorProfile;
 use GriffonTech\Tutor\Repositories\TutorProfileRepository;
+use GriffonTech\User\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class TutorsController extends Controller
@@ -15,13 +16,18 @@ class TutorsController extends Controller
 
     protected $tutorProfileRepository;
 
+    protected $userRepository;
+
     public function __construct(
-        TutorProfileRepository $tutorProfileRepository
+        TutorProfileRepository $tutorProfileRepository,
+        UserRepository $userRepository
     )
     {
         $this->_config = request('_config');
 
         $this->tutorProfileRepository = $tutorProfileRepository;
+
+        $this->userRepository = $userRepository;
     }
 
     public function index()
@@ -36,7 +42,29 @@ class TutorsController extends Controller
 
     public function create()
     {
-        return view($this->_config['view']);
+        $users = $this->userRepository->pluck('name', 'id');
+        return view($this->_config['view'])->with(compact('users'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required',
+            'title' => 'required',
+            'phone' => 'required',
+            'status' => 'required'
+        ]);
+        $newData = $request->input();
+        $user = $this->userRepository->find($request->input('user_id'),['id','name']);
+        $newData['name'] = $user->name;
+
+        $tutor = $this->tutorProfileRepository->create($newData);
+        if ($tutor) {
+            session()->flash('success', 'Tutor profile was successfully created');
+        } else {
+            session()->flash('error', 'Tutor profile could not be created.Please try again');
+        }
+        return redirect()->route($this->_config['redirect']);
     }
 
 
@@ -70,10 +98,6 @@ class TutorsController extends Controller
         return redirect()->route($this->_config['redirect'], $tutor->id);
     }
 
-    public function store()
-    {
-        return view($this->_config['view']);
-    }
 
     public function destroy()
     {

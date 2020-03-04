@@ -39,16 +39,17 @@
                     </div>
                     <!-- Search Form -->
                     <div class="search_form">
+                        {!! Form::open(['route' => 'courses.index', 'method' => 'GET']) !!}
                         <form action="#" method="get">
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-10">
-                                    <input type="text" class="form-control keyword" placeholder="Type your keywords">
+                                    <input name="_q" type="text" class="form-control keyword" value="{{ request()->query('_q') }}" placeholder="Type your keywords">
                                 </div>
                                 <div class="form-group col-12 col-md-2">
                                     <button type="submit" class="btn submit-btn btn-primary w-100">Search</button>
                                 </div>
                             </div>
-                        </form>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
@@ -60,8 +61,7 @@
     <div class="popular_coureses_area all_courses grid_list section_padding_100" style="padding: 30px 0;">
         <div class="container">
             <div class="row">
-
-                @if($courses && !empty($courses))
+                @if($courses && $courses->count() > 0)
 
                     @foreach($courses as $course)
                         <!-- Single Courses Area Start -->
@@ -116,8 +116,8 @@
                     @endforeach
 
                     @else
-                        <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
-                            <p> No courses added yet!</p>
+                        <div class="col-lg-12 col-md-12 col-sm-12 mb-4 text-center">
+                            <h4> No courses found!</h4>
                         </div>
                 @endif
 

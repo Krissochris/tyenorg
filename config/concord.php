@@ -17,5 +17,6 @@ return [
         \GriffonTech\Blog\Providers\ModuleServiceProvider::class,
         \GriffonTech\Testimony\Providers\ModuleServiceProvider::class,
         \GriffonTech\Faq\Providers\ModuleServiceProvider::class,
+        \GriffonTech\CouponSystem\Providers\CouponSystemModuleServiceProvider::class
     ]
 ];

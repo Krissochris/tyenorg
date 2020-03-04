@@ -37,7 +37,7 @@ Route::group(['middleware' => ['web']], function(){
 
         // Login form store
         Route::post('login', 'GriffonTech\User\Http\Controllers\SessionController@create')->defaults('_config', [
-            'redirect' => 'user.course.index'
+            'redirect' => 'user.dashboard.index'
         ])->name('user.session.create');
 
         // Registration Routes
@@ -75,7 +75,7 @@ Route::group(['middleware' => ['web']], function(){
             ])->name('user.tutor_application.create');
 
             Route::post('tutor_application/create', 'GriffonTech\User\Http\Controllers\TutorApplicationController@store')->defaults('_config', [
-                'redirect' => 'user.tutor_application.create'
+                'redirect' => 'user.tutor_application.add_courses'
             ])->name('user.tutor_application.create');
 
             Route::get('tutor_application/add_courses', 'GriffonTech\User\Http\Controllers\TutorApplicationController@addCourses')->defaults('_config', [
@@ -106,6 +106,11 @@ Route::group(['middleware' => ['web']], function(){
 
 
             Route::prefix('account')->group(function(){
+
+                Route::get('dashboard', 'GriffonTech\User\Http\Controllers\DashboardController@index')->defaults('_config', [
+                    'view' => 'shop::user.account.dashboard.index'
+                ])->name('user.dashboard.index');
+
                 //Customer Dashboard Route
                 Route::get('index', 'GriffonTech\User\Http\Controllers\AccountController@index')->defaults('_config', [
                     'view' => 'shop::user.account.index'

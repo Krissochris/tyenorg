@@ -29,6 +29,13 @@
     <!-- ===================== Popular Courses Area Start ===================== -->
     <div class="popular_coureses_area all_courses grid_list section_padding_100">
         <div class="container">
+
+            @if(!auth('user')->user()->is_pro_user)
+                <div class="alert alert-success">
+                    Become a pro member to enjoy the full benefits of this system. Click <a href="#">Here</a> to become a pro member
+                </div>
+            @endif
+
             <div class="row">
 
                 @if($courses)
@@ -69,26 +76,6 @@
 
                 @endif
 
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <!-- Pagination Area Start -->
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination mt-5">
-                            <li><a href="#" aria-label="Previous">Prev</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#" aria-label="Next">Next</a></li>
-                        </ul>
-                    </nav>
-                    <!-- Pagination Area End -->
-                </div>
             </div>
         </div>
     </div>

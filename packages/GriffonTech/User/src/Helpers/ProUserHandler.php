@@ -3,6 +3,7 @@
 
 namespace GriffonTech\User\Helpers;
 
+use GriffonTech\CouponSystem\Repositories\UserCouponRepository;
 use GriffonTech\User\Repositories\ReferralRepository;
 use GriffonTech\User\Repositories\UserReferralRepository;
 use GriffonTech\User\Repositories\UserRepository;
@@ -15,11 +16,14 @@ class ProUserHandler {
 
     protected $userReferralRepository;
 
+    protected $userCouponRepository;
+
 
     public function __construct(
         UserRepository $userRepository,
         ReferralRepository $referralRepository,
-        UserReferralRepository $userReferralRepository
+        UserReferralRepository $userReferralRepository,
+        UserCouponRepository $userCouponRepository
     )
     {
 
@@ -28,6 +32,8 @@ class ProUserHandler {
         $this->referralRepository = $referralRepository;
 
         $this->userReferralRepository = $userReferralRepository;
+
+        $this->userCouponRepository = $userCouponRepository;
     }
 
     public function becomeProUser($user_id)
@@ -38,11 +44,12 @@ class ProUserHandler {
             $madePro = $user->makeProUser();
             if ($madePro) {
                 $referral = $this->referralRepository->findOneWhere([
-                    'referred_id' => $user->id
-                ], ['referral_id', 'referred_id']);
+                    'referred_user_id' => $user->id
+                ], ['referral_user_id']);
+
                 if ($referral) {
                     $userReferral = $this->userReferralRepository
-                        ->findOneWhere(['user_id' => $referral->referral_id]);
+                        ->findOneWhere(['user_id' => $referral->referral_user_id]);
 
                     if ($userReferral) {
                         $userReferral->update([
@@ -51,6 +58,11 @@ class ProUserHandler {
                         ]);
                     }
 
+                    // create the user coupon system
+                    $this->userCouponRepository->create([
+                        'user_id' => $user->id,
+                        'coupon_code' => $user->username.'-'.rand(100000,999999)
+                    ]);
                 }
             }
 

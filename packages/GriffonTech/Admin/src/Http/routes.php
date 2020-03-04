@@ -76,6 +76,7 @@ Route::group(['middleware' => ['web']], function (){
                 'redirect' => 'admin.tutors.index'
             ])->name('admin.tutors.create');
 
+
             Route::get('tutors/edit/{id}', 'GriffonTech\Admin\Http\Controllers\TutorsController@edit')->defaults('_config', [
                 'view' => 'admin::admin.tutors.edit'
             ])->name('admin.tutors.edit');

@@ -46,7 +46,13 @@ class HomeController extends Controller {
             ->getModel()
             ->latest()
             ->limit(4)
-            ->get();
+            ->get()
+            ->map(function($row){
+                $row->course_average_rating =
+                    $row->course_reviews->average('rating');
+                $row->total_reviews = $row->course_reviews->count();
+                return $row;
+            });
 
         $testimonies = $this->testimonyRepository
             ->getModel()

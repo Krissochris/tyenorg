@@ -185,7 +185,7 @@
                                             <div class="courses_badge">
                                                 <span>New</span>
                                             </div>
-                                            <img src="{{ asset('lms/img/course-img/c-1.jpg') }}" alt="">
+                                            <img src="{{ $course->photo  }}" alt="{{ $course->name }}">
                                         </div>
                                         <div class="single_courses_desc">
                                             <div class="title">
@@ -202,19 +202,24 @@
                                                         <span>{{ __('Pro user free') }}</span>
                                                         @break
                                                         @case('pro_user_paid')
-                                                        <span>${{ $course->price }}</span> or <span>{{ $course->total_number_of_referrals_needed }} Referrals</span>
+                                                        <span>${{ $course->price }}</span> or <span>{{ $course->total_no_of_referrals_needed }} Referrals</span>
                                                         @break
                                                         @default
                                                         {{''}}
                                                     @endswitch
                                                 </div>
                                                 <div class="rating text-right w-50">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                                    <span>(4 Vote)</span>
+                                                    @if($course->course_average_rating )
+                                                        @for($num = 1; $num <= 5; $num++)
+                                                            @if($num <= $course->course_average_rating)
+                                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                            @else
+                                                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                            @endif
+                                                        @endfor
+
+                                                        <span>({{ $course->total_reviews }} Review)</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

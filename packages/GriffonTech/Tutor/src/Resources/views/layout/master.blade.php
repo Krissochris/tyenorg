@@ -32,12 +32,12 @@
     <div id="content-wrapper">
         <div class="container-fluid">
             <!-- Breadcrumbs-->
-            <ol class="breadcrumb">
+            {{--<ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <a href="{{route('tutor-courses')}}" style="text-decoration: none">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item active">Add Course</li>
-            </ol>
+            </ol>--}}
 
             @if(Session::has('success'))
                 <p class="alert alert-success">{{ Session::get('success') }}</p>

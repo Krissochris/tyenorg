@@ -16,7 +16,7 @@
                         {!! Form::model($tutor_application, ['route' => 'user.tutor_application.create']) !!}
 
                         <div class="form-group">
-                            <label for="full_name"> Name </label>
+                            {!! Form::label('name', 'Name') !!}
                             {!! Form::text('name', null, ['class' => 'form-control']) !!}
                         </div>
 
@@ -25,17 +25,12 @@
                             {!! Form::text('title', null, ['class' => 'form-control']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('phone_number', 'Phone Number') !!}
-                            {!! Form::text('phone_number', null, ['class' => 'form-control']) !!}
+                            {!! Form::label('phone', 'Phone Number') !!}
+                            {!! Form::text('phone', null, ['class' => 'form-control']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('description', 'Description') !!}
                             {!! Form::textarea('description', null, ['rows' => 5, 'class' => 'form-control']) !!}
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('state_id', 'State of Residence') !!}
-                            {!! Form::select('state_id', [], null, ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="form-group">
@@ -44,11 +39,15 @@
 
                         {!! Form::close() !!}
 
-                        <a href="{{ route('user.tutor_application.add_courses', $tutor_application->id) }}">Add Courses</a>
-
+                        @if($tutor_application)
+                            <div class="float-right">
+                                <a  href="{{ route('user.tutor_application.add_courses', $tutor_application->id) }}">Add Courses</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+

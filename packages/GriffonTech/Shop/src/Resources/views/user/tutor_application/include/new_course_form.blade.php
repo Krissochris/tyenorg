@@ -27,7 +27,7 @@ if (request()->input('form_number')) {
 
     <div class="form-group">
         {!! Form::label("courses[$form_number][how_much_would_you_charge_per_student]", 'How Much Would You Charge Per Student') !!}
-        {!! Form::number("courses[$form_number][how_much_would_you_charge_per_student]", null, ['class' => 'form-control']) !!}
+        {!! Form::text("courses[$form_number][how_much_would_you_charge_per_student]", null, ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">

@@ -63,7 +63,7 @@ class TutorApplicationController extends Controller
         $request->validate([
             'name' => 'required',
             'title' => 'required',
-            'phone_number' => 'required',
+            'phone' => 'required',
         ]);
         $tutorProfile = $this->tutorProfileRepository->findOneWhere([
             'user_id' => auth('user')->user()->id
@@ -71,7 +71,11 @@ class TutorApplicationController extends Controller
         $tutorProfile->forceFill($request->only(['name' , 'title',
             'phone_number', 'description', 'state_of_residence_id']));
 
-        $tutorProfile->update();
+        if ($tutorProfile->update()) {
+            session()->flash('success', 'Your information was successfully saved');
+        } else {
+            session()->flash('error', 'Your information could not be saved.Please try again');
+        }
 
         return redirect()->route($this->_config['redirect']);
     }
@@ -101,22 +105,36 @@ class TutorApplicationController extends Controller
         $postData = $request->all();
 
         if (!empty($postData['courses'])) {
+            $courses = 0;
             foreach ($postData['courses'] as $course) {
-
-                $this->tutorCourseRepository->create([
-                    'tutor_id' => $postData['tutor_id'],
-                    'course_name' => $course['course_name'],
-                    'course_experience_&_qualification' => $course['course_experience_&_qualification'],
-                    'how_well_can_u_tutor_course' => $course['how_well_can_u_tutor_course'],
-                    'how_much_would_you_charge_per_student' => $course['how_much_would_you_charge_per_student'],
-                    'would_you_be_willing_to_repeat_a_batch' => $course['would_you_be_willing_to_repeat_a_batch'],
-                    'do_you_agree_to_carry_student_along_after_batch_ends' => $course['do_you_agree_to_carry_student_along_after_batch_ends'],
-                ]);
-
+                if (
+                    (isset($course['course_name']) && !empty($course['course_name'])) &&
+                    (isset($course['course_experience_and_qualification']) && !empty($course['course_experience_and_qualification'])) &&
+                    (isset($course['how_well_can_u_tutor_course']) && !empty($course['how_well_can_u_tutor_course'])) &&
+                    (isset($course['how_much_would_you_charge_per_student']) && !empty($course['how_much_would_you_charge_per_student'])) &&
+                    (isset($course['would_you_be_willing_to_repeat_a_batch']) && !empty($course['would_you_be_willing_to_repeat_a_batch'])) &&
+                    (isset($course['do_you_agree_to_carry_student_along_after_batch_ends']) && !empty($course['do_you_agree_to_carry_student_along_after_batch_ends']))
+                ) {
+                    $course = $this->tutorCourseRepository->create([
+                        'tutor_id' => $postData['tutor_id'],
+                        'course_name' => $course['course_name'],
+                        'course_experience_and_qualification' => $course['course_experience_and_qualification'],
+                        'how_well_can_u_tutor_course' => $course['how_well_can_u_tutor_course'],
+                        'how_much_would_you_charge_per_student' => $course['how_much_would_you_charge_per_student'],
+                        'would_you_be_willing_to_repeat_a_batch' => $course['would_you_be_willing_to_repeat_a_batch'],
+                        'do_you_agree_to_carry_student_along_after_batch_ends' => $course['do_you_agree_to_carry_student_along_after_batch_ends'],
+                    ]);
+                    if ($course) {
+                        $courses++;
+                    }
+                }
             }
-            session()->flash('success', 'Your courses was successfully added!');
+            if ($courses) {
+                session()->flash('success', 'Your courses were successfully added!');
+                return redirect()->route('user.tutor_application.preview');
+            }
         }
-        return redirect()->route($this->_config['redirect'], $postData['tutor_id']);
+        return redirect()->route($this->_config['redirect']);
     }
 
 
@@ -131,20 +149,26 @@ class TutorApplicationController extends Controller
         return view($this->_config['view'])->with(compact('tutorProfile', 'tutorCourses'));
     }
 
-    public function submitApplication ()
+    public function submitApplication (Request $request)
     {
+        $request->validate([
+            'term_and_service_agreement' => 'required'
+        ]);
+
         $tutorProfile = $this->tutorProfileRepository->findOneWhere([
             'user_id' => auth('user')->user()->id
         ], ['user_id','id']);
         if (!$tutorProfile) {
             session()->flash('error', 'An error occurred while submitting your application. Please try again.');
+            return redirect()->route($this->_config['redirect']);
         }
+
         $tutorApplicationSubmission = $this->tutorApplicationSubmissionRepository->create([
             'tutor_profile_id' => $tutorProfile->id
         ]);
-        if ($tutorApplicationSubmission) {
-            session()->flash('success', 'Your tutor application form was successfully submitted. Thank you.');
 
+        if ($tutorApplicationSubmission) {
+            session()->flash('success', 'Your tutor application form was successfully submitted. We will process it shortly and give your response.');
         } else {
             session()->flash('error', 'Your application could not be submitted successfully. Please contact the administrators. Thank you');
         }

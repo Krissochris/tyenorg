@@ -6,6 +6,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
+                    <a class="float-right btn btn-primary btn-sm" href="{{ route('admin.tutors.create') }}">Add New Tutor</a>
                     <h5> Tutors </h5>
                 </div>
                 <div class="ibox-content table-responsive">

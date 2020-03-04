@@ -20,7 +20,7 @@
                         <div>
                             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                         </div>
-                        <small class="text-light">Created By: <span class="text-primary">Anderson Mike </span></small> &nbsp;&nbsp;
+                        <small class="text-light">Created By: <span class="text-primary">{{ $course->tutor->name }} </span></small> &nbsp;&nbsp;
                         <small class="text-light">Purchased On: <span class="text-primary"> {{ $courseRegistration->created_at }} </span></small>
 
                     </div>

@@ -11,7 +11,7 @@ class TutorProfile extends Model implements TutorContract
 {
 
     protected $fillable = [
-        'user_id', 'title', 'description', 'photo','phone_number','email',
+        'user_id', 'name', 'title', 'description', 'photo','phone_number','email', 'phone',
         'facebook_url', 'website_url', 'linkedIn_url', 'youtube_url', 'status',
     ];
 

@@ -210,7 +210,7 @@
                                     <div class="single_option clearfix">
                                         <i class="fa fa-users" aria-hidden="true"></i>
                                         <p>Total Batches:</p>
-                                        <p>1500 Seats</p>
+                                        <p>{{ $course->course_batches->count() }}</p>
                                     </div>
                                 </div>
                             </div>

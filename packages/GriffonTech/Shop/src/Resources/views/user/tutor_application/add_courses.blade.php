@@ -68,7 +68,7 @@
 
                                     <div class="form-group">
                                         {!! Form::label('courses[1][how_much_would_you_charge_per_student]', 'How Much Would You Charge Per Student') !!}
-                                        {!! Form::number('courses[1][how_much_would_you_charge_per_student]', null, ['class' => 'form-control']) !!}
+                                        {!! Form::text('courses[1][how_much_would_you_charge_per_student]', null, ['class' => 'form-control']) !!}
                                     </div>
 
                                     <div class="form-group">
@@ -88,14 +88,17 @@
                             </div>
                         </div>
 
-                        <a href="javascript:;" id="add_extra_course">+ add another course</a>
 
                         <div class="form-group">
-                            <button class="btn btn-primary"> Save and Continue </button>
+                            <a class="btn btn-primary" href="javascript:;" id="add_extra_course">+ add another course</a>
+
+                            <button class="btn btn-success"> Save and Continue </button>
                         </div>
 
                         {!! Form::close() !!}
+                        @if (!empty($tutorCourses))
                         <a class="pull-right" href="{{ route('user.tutor_application.preview') }}"> Preview and Submit</a>
+                        @endif
                     </div>
                 </div>
                 <hr>

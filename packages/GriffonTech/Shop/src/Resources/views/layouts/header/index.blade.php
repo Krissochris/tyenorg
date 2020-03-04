@@ -12,9 +12,12 @@
                 <div class="col-md">
                     <div class="login_language_area d-flex align-items-center float-right">
                         <!-- Login Register Area Start -->
+                        @guest('user')
                         <div class="login_register">
                             <a href="{{ route('user.session.index') }}"><i class="fa fa-lock" aria-hidden="true"></i> Login/Register</a>
                         </div>
+                        @endguest
+
                         <!-- Language Area Start -->
                         <div class="language_area">
                             <div class="dropdown">

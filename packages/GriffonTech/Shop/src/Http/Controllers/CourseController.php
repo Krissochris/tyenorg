@@ -76,15 +76,17 @@ class CourseController extends Controller
 
         // get free courses
         if (auth('user')->guest() || (auth('user')->check() && !auth('user')->user()->is_pro_user)) {
-            if (request()->input('category_slug')) {
-                $category_slug = request()->input('category_slug');
+            if (request()->input('_q')) {
+                $query = request()->input('_q');
                 try {
-                    $category = $this->courseCategoryRepository->findBySlugOrFail($category_slug);
+                    /*$category = $this->courseCategoryRepository
+                        ->fin
+                        ->findBySlugOrFail($category_slug);*/
                     $courses = $this->courseRepository->getModel()
                         ->query()
                         ->where([
                             ['type', CourseRepository::FREE],
-                            ['course_category_id', $category->id]
+                            ['name','LIKE', "%{$query}%"]
                         ])->paginate(20);
 
                 } catch (ModelNotFoundException $exception) {
@@ -102,14 +104,15 @@ class CourseController extends Controller
             }
 
         } else if (auth('user')->check() && auth('user')->user()->is_pro_user) {
-            if (request()->input('category_slug')) {
-                $category_slug = request()->input('category_slug');
+            if (request()->input('_q')) {
+                //$category_slug = request()->input('category_slug');
+                $query = request()->input('_q');
                 try {
-                    $category = $this->courseCategoryRepository->findBySlugOrFail($category_slug);
+                    //$category = $this->courseCategoryRepository->findBySlugOrFail($category_slug);
                     $courses = $this->courseRepository->getModel()
                         ->query()
                         ->where([
-                            ['course_category_id', $category->id]
+                            ['name','LIKE', "%{$query}%"]
                         ])->paginate(20);
                 } catch (ModelNotFoundException $exception) {
                     $courses = $this->courseRepository
@@ -120,6 +123,7 @@ class CourseController extends Controller
                     ->paginate(20);
             }
         }
+
         if ($courses->count()) {
             $courses->map(function($row){
                 $row->course_average_rating =

@@ -33,30 +33,51 @@
                         </table>
                         <div class="">
                             <h4> Courses I Want To Teach </h4>
-                            <table class="table">
-                                @foreach($tutorCourses as $course)
-                                    <tr>
-                                        <td>{{ $course->course_name }}</td>
-                                        <td> {{ $course->course_expeirence_and_qualification }} </td>
-                                        <td> {{ $course->how_well_can_u_tutor_course }} </td>
-                                        <td> {{ $course->how_much_would_you_charge_per_student }} </td>
-                                        <td> {{ ($course->would_you_be_willing_to_repeat_a_batch) ? 'Yes' : 'No' }} </td>
-                                        <td> {{ ($course->do_you_agree_to_carry_student_along_after_batch_ends) ? 'Yes' : 'No' }} </td>
-                                    </tr>
-                                @endforeach
+                            @foreach($tutorCourses as $course)
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>Course Name</td>
+                                    <td>{{ $course->course_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Course Experience and Qualification</td>
+                                    <td>{{ $course->course_experience_and_qualification }}</td>
+                                </tr>
+                                <tr>
+                                    <td>How well can you tutor course</td>
+                                    <td>{{ $course->how_well_can_u_tutor_course }}</td>
+                                </tr>
+                                <tr>
+                                    <td>How much would you charge per student</td>
+                                    <td>{{ $course->how_much_would_you_charge_per_student }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Would you be willing to repeat a batch</td>
+                                    <td>{{ ($course->would_you_be_willing_to_repeat_a_batch) ? 'Yes' : 'No' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Do you agree to carry students along after batch ends?</td>
+                                    <td>{{ ($course->do_you_agree_to_carry_student_along_after_batch_ends) ? 'Yes' : 'No' }}</td>
+                                </tr>
                             </table>
+                            @endforeach
                         </div>
-                        {!! Form::open(['route' => 'user.tutor_application.submit']) !!}
-
-                        <label for="tos">
-                            <input id="tos" type="checkbox" name="tos" value="true"> Yes I agree to the terms and conditions.
-                        </label>
-
-                        <div class="form-group">
-                            <button class="btn btn-primary"> Submit Application </button>
+                        <div>
+                            <a class="btn btn-default" href="{{ route('user.tutor_application.add_courses') }}">Go Back to add courses</a>
                         </div>
+                        <div style="margin-top: 20px;">
+                            {!! Form::open(['route' => 'user.tutor_application.submit']) !!}
 
-                        {!! Form::close() !!}
+                            <label for="tos">
+                                <input id="tos" type="checkbox" name="term_and_service_agreement" value="true"> Yes I agree to the terms and conditions.
+                            </label>
+
+                            <div class="form-group float-right">
+                                <button class="btn btn-primary"> Submit Application </button>
+                            </div>
+
+                            {!! Form::close() !!}
+                        </div>
 
                     </div>
                 </div>
