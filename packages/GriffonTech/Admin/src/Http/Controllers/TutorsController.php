@@ -4,6 +4,7 @@
 namespace GriffonTech\Admin\Http\Controllers;
 
 
+use GriffonTech\Core\Helpers\FileManager;
 use GriffonTech\Tutor\Contracts\TutorProfile;
 use GriffonTech\Tutor\Repositories\TutorProfileRepository;
 use GriffonTech\User\Repositories\UserRepository;
@@ -34,16 +35,17 @@ class TutorsController extends Controller
     {
         $tutors = $this->tutorProfileRepository
             ->getModel()
-            ->where('status', '!=', 0)
             ->paginate(15);
 
         return view($this->_config['view'], compact('tutors'));
     }
 
+
     public function create()
     {
         $users = $this->userRepository->pluck('name', 'id');
-        return view($this->_config['view'])->with(compact('users'));
+        $status = TutorProfileRepository::STATUS;
+        return view($this->_config['view'])->with(compact('users', 'status'));
     }
 
     public function store(Request $request)
@@ -52,11 +54,23 @@ class TutorsController extends Controller
             'user_id' => 'required',
             'title' => 'required',
             'phone' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'photo' => 'required|mimes:jpeg,png,jpg,gif,svg|max:1048'
         ]);
+
         $newData = $request->input();
         $user = $this->userRepository->find($request->input('user_id'),['id','name']);
         $newData['name'] = $user->name;
+        if ($request->file('photo')) {
+            $image = $request->file('photo');
+
+            if ($newPhoto = (new FileManager())->upload($image, 'tutors')) {
+
+                $newData['photo'] = $newPhoto;
+            } else {
+                session()->flash('error', 'Photo could not be uploaded.');
+            }
+        }
 
         $tutor = $this->tutorProfileRepository->create($newData);
         if ($tutor) {

@@ -5,6 +5,7 @@ namespace GriffonTech\Admin\Http\Controllers;
 
 
 use GriffonTech\Tutor\Repositories\TutorApplicationSubmissionRepository;
+use GriffonTech\Tutor\Repositories\TutorProfileRepository;
 use GriffonTech\User\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
@@ -15,10 +16,13 @@ class TutorApplicationSubmissionsController extends Controller
 
     protected $tutorApplicationSubmissionRepository;
     protected $userRepository;
+    protected $tutorProfileRepository;
+
 
     public function __construct(
         TutorApplicationSubmissionRepository $tutorApplicationSubmissionRepository,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        TutorProfileRepository $tutorProfileRepository
     )
     {
         $this->_config = request('_config');
@@ -26,12 +30,14 @@ class TutorApplicationSubmissionsController extends Controller
         $this->tutorApplicationSubmissionRepository = $tutorApplicationSubmissionRepository;
 
         $this->userRepository = $userRepository;
+
+        $this->tutorProfileRepository = $tutorProfileRepository;
     }
 
     public function index()
     {
         $tutorApplicationSubmissions = $this->tutorApplicationSubmissionRepository
-            ->with(['tutor_profile'])
+            ->with(['tutor_application'])
             ->findWhere(['status' => TutorApplicationSubmissionRepository::ACTIVE]);
 
         return view($this->_config['view'])
@@ -41,7 +47,7 @@ class TutorApplicationSubmissionsController extends Controller
     public function show($id)
     {
         $tutor_application = $this->tutorApplicationSubmissionRepository
-            ->with(['tutor_profile.tutor_application_courses'])
+            ->with(['tutor_application.tutor_application_courses'])
             ->find($id);
 
         return view($this->_config['view'])
@@ -65,15 +71,27 @@ class TutorApplicationSubmissionsController extends Controller
 
     public function approve($id)
     {
-        $tutor_application = $this->tutorApplicationSubmissionRepository
-            ->with(['tutor_profile'])
+        $tutor_application_submission = $this->tutorApplicationSubmissionRepository
+            ->with(['tutor_application'])
             ->find($id);
 
-        $tutor_application->update([
+        $tutor_application_submission->update([
             'status' => TutorApplicationSubmissionRepository::APPROVED
         ]);
-        $user = $this->userRepository->find($tutor_application->tutor_profile->user_id);
-        $user->forceFill(['tutor_id' => $tutor_application->tutor_profile->id]);
+
+        $tutor_profile = $this->tutorProfileRepository->create([
+            'user_id' => $tutor_application_submission->tutor_application->user_id,
+            'name' => $tutor_application_submission->tutor_application->name,
+            'title' => $tutor_application_submission->tutor_application->title,
+            'phone' => $tutor_application_submission->tutor_application->phone,
+            'description' => $tutor_application_submission->tutor_application->description,
+            'photo' => $tutor_application_submission->tutor_application->photo,
+            'tutor_application_id' => $tutor_application_submission->tutor_application->id
+        ]);
+
+        $user = $this->userRepository->find($tutor_profile->user_id);
+
+        $user->forceFill(['tutor_id' => $tutor_profile->id]);
 
         if ($user->update()) {
             session()->flash('success', 'Tutor application was successfully approved');

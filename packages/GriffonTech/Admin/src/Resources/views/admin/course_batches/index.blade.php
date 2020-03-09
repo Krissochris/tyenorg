@@ -24,6 +24,7 @@
                             <th> Is Taken </th>
                             <th> Time Completed </th>
                             <th> Status </th>
+                            <th> has Paid Tutor </th>
                             <th> Created At </th>
                             <th>Last Modified On </th>
                             <th></th>
@@ -41,17 +42,21 @@
                                 <td> {{ ($course_batch->is_taken) ? 'Yes' : 'No' }} </td>
                                 <td> {{ $course_batch->time_completed }} </td>
                                 <td> {{ $course_batch->status }} </td>
+                                <td> {{ ($course_batch->paid_tutor) ? 'Yes' : 'No' }} </td>
                                 <td> {{ $course_batch->created_at }} </td>
                                 <td> {{ $course_batch->updated_at }} </td>
                                 <td>
-                                    <a href="{{route('admin.course_batches.show', $course_batch->id)}}">view</a>&nbsp;&nbsp;
-                                    <a href="{{route('admin.course_batches.edit', $course_batch->id)}}"> edit </a>&nbsp;&nbsp;
-                                    <a href="#"
+                                    <a class="btn btn-success btn-sm" href="{{route('admin.course_batches.show', $course_batch->id)}}">view</a>&nbsp;&nbsp;
+                                    <a class="btn btn-primary btn-sm" href="{{route('admin.course_batches.edit', $course_batch->id)}}"> edit </a>
+                                    @if($course_batch->is_taken && !$course_batch->paid_tutor)
+                                    <a class="btn btn-default btn-sm" href="{{route('admin.course_batches.pay_tutor', $course_batch->id)}}"> pay tutor </a>
+                                    @endif
+                                    <a class="btn btn-danger btn-sm" href="#"
                                        onclick="event.preventDefault();
                                            var response = confirm('Are you sure you want to delete this course batch ?');
                                            if (response) {
                                            document.getElementById('{{ $course_batch->id }}').submit(); }"
-                                    ><i class="fa fa-trash text-danger grow" title="delete"></i>
+                                    >Delete
                                     </a>
                                     <form id="{{ $course_batch['id'] }}" action="{{ route('admin.course_batches.delete', $course_batch['id']) }}" method="POST" style="display: none;">
                                         <input type="hidden" name="_method" value="delete">

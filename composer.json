@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
+        "akaunting/setting": "^1.1",
         "astrotomic/laravel-translatable": "^11.0.0",
         "cmgmyr/messenger": "^2.19",
         "doctrine/dbal": "^2.10",
@@ -21,7 +22,8 @@
         "laravelcollective/html": "^5.7",
         "league/flysystem-aws-s3-v3": "^1.0",
         "paypal/rest-api-sdk-php": "*",
-        "prettus/l5-repository": "2.6.32"
+        "prettus/l5-repository": "2.6.32",
+        "spatie/laravel-activitylog": "^2.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",

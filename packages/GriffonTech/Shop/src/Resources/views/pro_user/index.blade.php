@@ -48,6 +48,11 @@
                                     <input id="rave_pay" name="paymentMethod" type="radio" value="rave_pay" required>
                                     Rave Pay </label>
                             </div>
+                            <div class="custom-control custom-radio">
+                                <label for="bank_deposit">
+                                    <input id="bank_deposit" name="paymentMethod" type="radio" value="bank_deposit" required>
+                                    Bank Deposit </label>
+                            </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-lg btn-block">Continue to checkout</button>
                             </div>

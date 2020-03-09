@@ -13,6 +13,11 @@ use GriffonTech\User\Repositories\UserRepository;
  */
 class TutorProfileRepository extends Repository
 {
+    CONST STATUS = [
+        '1' => 'Active',
+        '-1' => 'UnActive'
+    ];
+
     /**
      * Specify Model class name
      *

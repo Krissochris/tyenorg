@@ -18,6 +18,12 @@ Route::group(['middleware' => ['web']], function() {
     Route::post('/payment/coin_payment/status', 'GriffonTech\Payment\Http\Controllers\CoinPaymentController@getPaymentStatus')->name('payment.coin_payment.status');
 
 
+    Route::get('/payment/bank_deposit', 'GriffonTech\Payment\Http\Controllers\BankDepositController@index')->defaults('_config', [
+        'view' => 'payment::bank_deposits.index'
+    ])
+        ->name('payment.bank_deposit');
+
+
 
     Route::get('/payment/success', function() {
         return view("shop::payment.success");

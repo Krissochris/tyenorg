@@ -73,6 +73,11 @@ class UsersController extends Controller
 
         $userUpdated = $user->update($request->input());
         if ($userUpdated) {
+            if ( (int)$request->input('is_pro_user') === 1 ) {
+                $user->makeProUser();
+            } else if ((int)$request->input('is_pro_user') === 0) {
+                $user->removeProUser();
+            }
             session()->flash('success', 'User was successfully updated!');
         } else {
             session()->flash('error', 'User could not be updated. Please try again.');

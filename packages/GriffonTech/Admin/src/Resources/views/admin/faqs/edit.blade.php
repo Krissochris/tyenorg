@@ -26,7 +26,7 @@
 
                                 <div class="form-group">
                                     <label for="testimony"> Answer </label>
-                                    {!! Form::textarea('answer', null, ['class' => 'form-control', 'placeholder' => 'Answer']) !!}
+                                    {!! Form::textarea('answer', null, ['class' => 'form-control summernote', 'placeholder' => 'Answer']) !!}
                                 </div>
 
                                 <div class="form-group">

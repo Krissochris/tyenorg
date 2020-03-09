@@ -5,6 +5,8 @@
     <!-- Page Content -->
 
     <div class="container section_padding_100">
+
+        @if(!auth('user')->user()->is_pro_user)
         <div class="row">
             <div class="col-sm-12">
                 <div class="alert alert-primary">
@@ -12,6 +14,8 @@
                 </div>
             </div>
         </div>
+        @endif
+
         <div class="row">
             <div class="col-sm-6 col-md-4 col-lg-3">
                 <div class="single_course_collection">
@@ -53,7 +57,7 @@
                 <div>
                     <strong>Referral Code:</strong>
                     <div class="alert alert-dismissable alert-info">
-                        {{ url()->route('user.register.index') }}?ref={{auth('user')->user()->email}}
+                        {{ url()->route('user.register.index') }}?ref={{auth('user')->user()->username}}
                     </div>
                 </div>
             </div>

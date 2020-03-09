@@ -50,7 +50,7 @@ class CoursesController extends Controller
     {
 
         $courses = $this->courseRepository
-            ->with(['tutor:id,name'])
+            ->with(['tutor:id,name', 'course_batches:id'])
             ->orderBy('created_at', 'desc')
             ->paginate(15);
 

@@ -372,9 +372,9 @@
                                         <!-- single latest news excerp -->
                                         <div class="news_content">
                                             <p>
-                                                {!! (strlen($blog->body) > 70) ? substr($blog->body, 0, 70)."<b> (&hellip;)</b>  <br> " : $blog->body !!}
+                                                {!! (strlen($post->body) > 70) ? substr($post->body, 0, 70)."<b> (&hellip;)</b>  <br> " : $post->body !!}
                                             </p>
-                                            <a href="{{route('blog.posts.show', $blog->url_key)}}" class="btn blog-btn">Read More <i class="fa fa-angle-right"></i></a>
+                                            <a href="{{route('blog.posts.show', $post->url_key)}}" class="btn blog-btn">Read More <i class="fa fa-angle-right"></i></a>
                                         </div>
                                     </div>
                                 </div>

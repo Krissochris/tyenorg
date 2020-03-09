@@ -51,6 +51,11 @@
                                     <input id="rave_pay" name="paymentMethod" type="radio" value="rave_pay" required>
                                     Rave Pay </label>
                             </div>
+                            <div class="custom-control custom-radio">
+                                <label class="" for="bank_deposit">
+                                    <input id="bank_deposit" name="paymentMethod" type="radio" value="bank_deposit" required>
+                                    Bank Deposit </label>
+                            </div>
                         </div>
                         {{--<div class="row">
                             <div class="col-md-6 mb-3">

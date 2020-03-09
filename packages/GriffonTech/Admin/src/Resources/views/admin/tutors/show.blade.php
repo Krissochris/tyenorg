@@ -11,7 +11,11 @@
 
                     <div class="row">
                         <div class="col-md-2">
-                            <img src="{{ asset('images/26238.png')}}" class="card-img" alt="">
+                            @if($tutor->photo)
+                                <img src="{{ $tutor->photo }}" class="card-img" alt="{{ $tutor->name }}">
+                            @else
+                                <img src="{{ asset('images/26238.png')}}" class="card-img" alt="{{ $tutor->name }}">
+                            @endif
                             <div class="card-footer">
                                 <a href="#">
                                     <button class="btn btn-dark text-center"><i class="fa fa-envelope-open-text"></i> Message</button>
@@ -20,8 +24,6 @@
                         </div>
 
                         <div class="col-md-10">
-                            <a href="{{route('admin.tutors.index')}}" class="btn btn-dark float-right">Go Back</a>
-
                             <table class="table table-hover table-bordered table-striped">
                                 <thead class="thead-dark">
                                 <tr>
@@ -54,6 +56,14 @@
                                 <tr>
                                     <td> Created On:</td>
                                     <td> {{ $tutor->created_at }}</td>
+                                </tr>
+                                <tr>
+                                    <td> Wallet Balance </td>
+                                    <td> {{ number_format($tutor->earned_amount, 2) }}</td>
+                                </tr>
+                                <tr>
+                                    <td> Total Earned Amount</td>
+                                    <td> {{ number_format($tutor->total_earned_amount, 2) }}</td>
                                 </tr>
                                 </tbody>
                             </table>

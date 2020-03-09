@@ -59,7 +59,7 @@
 
             <div class="alert alert-dismissable alert-info">
                 <strong>Referral Code:</strong>
-                {{ url()->route('user.register.index') }}?ref={{auth('user')->user()->email}}
+                {{ url()->route('user.register.index') }}?ref={{auth('user')->user()->username}}
             </div>
         </div>
     </div>

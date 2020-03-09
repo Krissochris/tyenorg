@@ -12,6 +12,8 @@
     <link href="{{ asset('admin/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
 
     <link href="{{ asset('admin/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet">
+
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
 
 </head>
@@ -84,6 +86,9 @@
 
 <!-- jQuery UI -->
 <script src="{{ asset('admin/js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('admin/js/fileinput.min.js') }}"></script>
+<script src="{{ asset('admin/js/plugins/summernote/summernote-bs4.js') }}"></script>
+
 @yield('footer-scripts')
 <script>
     $(document).ready(function () {
@@ -197,6 +202,13 @@
         var previousPoint = null, previousLabel = null;
 
         $.plot($("#flot-dashboard-chart"), dataset, options);
+    });
+</script>
+<script>
+    $(document).ready(function(){
+
+        $('.summernote').summernote();
+
     });
 </script>
 </body>

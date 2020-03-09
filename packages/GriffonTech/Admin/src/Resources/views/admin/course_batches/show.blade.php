@@ -38,16 +38,22 @@
                         </tr>
                         <tr>
                             <td>Entry Status </td>
-                            <td>{{ $course_batch->entry_status }}</td>
+                            <td>{{ ($course_batch->entry_status) ? 'Yes' : 'No' }}</td>
                         </tr>
                         <tr>
                             <td>Is Taken</td>
-                            <td>{{ $course_batch->is_taken }}</td>
+                            <td>{{ ($course_batch->is_taken) ? 'Yes' : 'No' }}</td>
                         </tr>
-                        <tr>
-                            <td>Time Course Was Completed</td>
-                            <td>{{ $course_batch->time_completed }}</td>
-                        </tr>
+                        @if ($course_batch->is_taken)
+                            <tr>
+                                <td>Time Course Was Completed</td>
+                                <td>{{ $course_batch->time_completed }}</td>
+                            </tr>
+                            <tr>
+                                <td>Has Paid Tutor</td>
+                                <td>{{ ($course_batch->tutor_paid) ? 'Yes' : 'No' }}</td>
+                            </tr>
+                        @endif
                         <tr>
                             <td>Status</td>
                             <td>{{ $course_batch->status }}</td>

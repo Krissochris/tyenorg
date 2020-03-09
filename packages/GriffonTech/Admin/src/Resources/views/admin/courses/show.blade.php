@@ -39,6 +39,10 @@
                                 <td> {{ $course->learning_url }}</td>
                             </tr>
                             <tr>
+                                <td> Learning Url 2:</td>
+                                <td> {{ $course->learning_url_2 }}</td>
+                            </tr>
+                            <tr>
                                 <td> Description:</td>
                                 <td> {!!  $course->description !!}</td>
                             </tr>

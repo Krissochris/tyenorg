@@ -30,8 +30,8 @@
                         @foreach($tutorApplicationSubmissions as $application)
                             <tr>
                                 <td> {{ $application->created_at }} </td>
-                                <td> {{ $application->tutor_profile->name }}</td>
-                                <td> {{ $application->tutor_profile->title }}</td>
+                                <td> {{ $application->tutor_application->name }}</td>
+                                <td> {{ $application->tutor_application->title }}</td>
                                 <td class="text-navy">
                                     <a href="{{ route('admin.tutor_application_submissions.show', $application->id) }}">View</a>
                                 </td>

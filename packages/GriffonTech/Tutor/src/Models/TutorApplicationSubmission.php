@@ -11,10 +11,12 @@ class TutorApplicationSubmission extends Model implements TutorApplicationSubmis
 {
     protected $table = 'tutor_application_submissions';
 
-    protected $fillable = ['tutor_profile_id', 'status'];
+    protected $fillable = ['tutor_application_id', 'status'];
 
-    public function tutor_profile()
+
+    public function tutor_application()
     {
-        return $this->belongsTo(TutorProfileProxy::modelClass(), 'tutor_profile_id', 'id');
+        return $this->belongsTo(TutorApplicationProxy::modelClass(), 'tutor_application_id', 'id');
     }
+
 }

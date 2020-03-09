@@ -4,12 +4,11 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="float-left">Create Course</h3>
-                        <a href="{{route('admin.courses.index')}}" class="btn btn-dark float-right">Go Back</a>
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5> Create Course </h5>
                     </div>
-                    <div class="card-body">
+                    <div class="ibox-content">
                         {!! Form::open(['route' => 'admin.courses.create', 'enctype' => 'multipart/form-data']) !!}
                         <div class="row">
                             <div class="col-sm-6">
@@ -39,7 +38,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="name"> Number of Batch </label>
+                                    <label for="name"> Learning Link 2 </label>
+                                    {!! Form::text('learning_url_2', null, ['class' => 'form-control', 'placeholder' => 'Learning Url 2']) !!}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="name"> Number of Course Batch(s) </label>
                                     {!! Form::text('number_of_batch', null, ['class' => 'form-control', 'placeholder' => 'Number of Batch']) !!}
                                 </div>
 
@@ -66,7 +70,7 @@
 
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+                                    {!! Form::textarea('description', null, ['class' => 'form-control summernote']) !!}
                                 </div>
 
                                 <div class="form-group">
@@ -98,7 +102,6 @@
                         {!! Form::close() !!}
                     </div>
                 </div>
-                <hr>
             </div>
         </div>
     </div>

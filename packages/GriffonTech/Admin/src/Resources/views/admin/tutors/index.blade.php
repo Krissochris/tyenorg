@@ -13,24 +13,25 @@
                     <table class="table table-hover no-margins">
                         <thead>
                         <tr>
-                            <th>S/N</th>
                             <th> Name </th>
                             <th>Title</th>
+                            <th>Earned Amount </th>
                             <th> Status </th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($tutors as $tutor)
                             <tr>
-                                <td> {{ $tutor->id }}</td>
                                 <td> {{ $tutor->name }} </td>
                                 <td> {{ $tutor->title }} </td>
+                                <td> {{ number_format($tutor->earned_amount, 2) }} </td>
                                 <td>
                                     {{ $tutor->status }}
                                 </td>
                                 <td>
                                     <a class="btn btn-success btn-sm" href="{{route('admin.tutors.show', $tutor->id)}}"> View</a>
                                     <a class="btn btn-primary btn-sm" href="{{route('admin.tutors.edit', $tutor->id)}}"> Edit </a>
+                                    <a class="btn btn-danger btn-sm" href="{{route('admin.tutors.edit', $tutor->id)}}"> Delete</a>
                                 </td>
                             </tr>
                         @endforeach

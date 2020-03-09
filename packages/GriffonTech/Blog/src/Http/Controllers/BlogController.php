@@ -3,6 +3,7 @@
 namespace GriffonTech\Blog\Http\Controllers;
 
 use GriffonTech\Blog\Repositories\BlogRepository;
+use GriffonTech\Core\Helpers\FileManager;
 use GriffonTech\User\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
@@ -53,10 +54,21 @@ class BlogController extends Controller
         $request->validate([
             'title' => 'required',
             'body' => 'required',
-            'user_id' => 'required'
+            'user_id' => 'required',
+            'photo' => 'required|mimes:jpeg,png,jpg,gif,svg|max:1048'
         ]);
 
-        $blog = $this->blogRepository->create($request->input());
+        $blogData = $request->input();
+        if ($request->file('photo')) {
+            $image = $request->file('photo');
+
+            if ($updated = (new FileManager())->upload($image, 'blogs')) {
+                $blogData['photo'] = $updated;
+            } else {
+                session()->flash('error', 'Photo could not be uploaded.');
+            }
+        }
+        $blog = $this->blogRepository->create($blogData);
 
         if ($blog) {
             session()->flash('success', 'Blog post was successfully created');
@@ -65,6 +77,8 @@ class BlogController extends Controller
         }
         return redirect()->route($this->_config['redirect']);
     }
+
+
 
     public function edit($id)
     {
@@ -89,8 +103,18 @@ class BlogController extends Controller
             'user_id' => 'required'
         ]);
 
-        $blog = $this->blogRepository->update($request->input(), $id);
+        $blog = $this->blogRepository->find($id);
 
+        if ($request->file('photo')) {
+            $image = $request->file('photo');
+            if ($updated = (new FileManager())->update($image, $blog->photo, 'blogs')) {
+                $blog->forceFill(['photo' => $updated]);
+            } else {
+                session()->flash('error', 'Photo could not be updated.');
+            }
+        }
+
+        $blog = $this->blogRepository->update($request->input(), $id);
         if ($blog) {
             session()->flash('success', 'Blog post was successfully updated!');
         } else {

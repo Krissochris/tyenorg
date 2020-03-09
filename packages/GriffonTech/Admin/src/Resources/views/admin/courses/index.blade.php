@@ -17,11 +17,12 @@
                         <tr>
                             <th>S/N</th>
                             <th> Name </th>
-                            <th>Teacher </th>
+                            <th>Tutor </th>
                             <th> Type </th>
                             <th> Image</th>
                             <th>Created On</th>
-                            <th>Last Modified On
+                            <th>Last Modified On</th>
+                            <th>Batches</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -35,15 +36,16 @@
                                 <td><img src="{{ $course->photo }}" alt="course image" width="70" height="70"> </td>
                                 <td> {{ $course->created_at }} </td>
                                 <td> {{ $course->updated_at }} </td>
+                                <td> {{ $course->course_batches->count() }} </td>
                                 <td>
-                                    <a href="{{route('admin.courses.show', $course->id)}}">view</a>&nbsp;&nbsp;
-                                    <a href="{{route('admin.courses.edit', $course->id)}}"> edit </a>&nbsp;&nbsp;
-                                    <a href="#"
+                                    <a class="btn btn-primary btn-sm" href="{{route('admin.courses.show', $course->id)}}">view</a>&nbsp;&nbsp;
+                                    <a class="btn btn-success btn-sm" href="{{route('admin.courses.edit', $course->id)}}"> edit </a>&nbsp;&nbsp;
+                                    <a class="btn btn-danger btn-sm" href="#"
                                        onclick="event.preventDefault();
                                            var response = confirm('Are you sure you want to delete this course ?');
                                            if (response) {
                                            document.getElementById('{{ $course->id }}').submit(); }"
-                                    ><i class="fa fa-trash text-danger grow" title="delete"></i>
+                                    >Delete
                                     </a>
                                     <form id="{{ $course['id'] }}" action="{{ route('admin.courses.delete', $course['id']) }}" method="POST" style="display: none;">
                                         <input type="hidden" name="_method" value="delete">

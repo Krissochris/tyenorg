@@ -16,7 +16,7 @@ class CreateUserCouponsTable extends Migration
         Schema::create('user_coupons', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('coupon_code');
+            $table->string('coupon_code');
             $table->boolean('is_used')->default(0);
             $table->timestamp('used_on')->nullable();
             $table->timestamps();

@@ -77,6 +77,7 @@
                                         @endif
                                         <li><a href="#">{{ auth('user')->user()->username }}</a>
                                             <ul class="dropdown">
+                                                <li><a href="{{ route('user.dashboard.index') }}">Dashboard</a></li>
                                                 <li><a href="{{ route('user.course.index') }}">My Courses</a></li>
                                                 <li><a href="{{ route('user.profile.index') }}">Profile</a></li>
                                                 <li><a href="{{ route('user.referral.show') }}">Referrals</a></li>

@@ -7,6 +7,7 @@ namespace GriffonTech\Admin\Http\Controllers;
 use GriffonTech\Course\Repositories\CourseBatchRepository;
 use GriffonTech\Course\Repositories\CourseRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CourseBatchesController extends Controller
 {
@@ -137,6 +138,42 @@ class CourseBatchesController extends Controller
         if ($this->courseBatchRepository->delete($id)) {
             session()->flash('success', 'Course batch was successfully deleted.');
         }
+        return redirect()->route($this->_config['redirect']);
+    }
+
+    public function payTutor($id)
+    {
+        $course_batch = $this->courseBatchRepository
+            ->findOrFail($id);
+
+        return view($this->_config['view'])
+            ->with(compact('course_batch'));
+    }
+
+    public function processPayTutor(Request $request, $id)
+    {
+        $request->validate([
+            'amount' => 'required'
+        ]);
+
+        $course_batch = $this->courseBatchRepository->findOrFail($id);
+        try {
+            DB::beginTransaction();
+            $course_batch->markCompleted();
+            if ($course_batch->tutor->credit($request->input('amount'))) {
+                $course_batch->markPaidTutorAsCompleted();
+                session()->flash('success', 'Tutor was successfully paid');
+            } else {
+                throw new \Exception('Could not pay the tutor');
+            }
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            session()->flash('error', 'An Error occurred trying to pay the tutor.Please try again');
+        }
+        // get the user profile
+        // mark the batch as completed
+        // mark the
         return redirect()->route($this->_config['redirect']);
     }
 

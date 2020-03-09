@@ -56,7 +56,7 @@ class BlogController extends Controller
         ]);
 
         $data = $request->input();
-
+        dd($data);
         $data['user_id'] = auth('user')->user()->id;
 
         $image = $request->file('photo');

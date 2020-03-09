@@ -237,6 +237,19 @@ Route::group(['middleware' => ['web']], function (){
                 'redirect' => 'admin.course_batches.index'
             ])->name('admin.course_batches.delete');
 
+            Route::get('course_batches/pay_tutor/{id}', 'GriffonTech\Admin\Http\Controllers\CourseBatchesController@payTutor')->defaults('_config', [
+                'view' => 'admin::admin.course_batches.pay_tutor'
+            ])->name('admin.course_batches.pay_tutor');
+
+            Route::post('course_batches/pay_tutor/{id}', 'GriffonTech\Admin\Http\Controllers\CourseBatchesController@processPayTutor')->defaults('_config', [
+                'redirect' => 'admin.course_batches.pay_tutor'
+            ])->name('admin.course_batches.pay_tutor');
+
+
+
+
+
+
 
             //Course Registrations
             Route::get('course_registrations/index', 'GriffonTech\Admin\Http\Controllers\CourseRegistrationsController@index')->defaults('_config', [
@@ -269,6 +282,11 @@ Route::group(['middleware' => ['web']], function (){
             Route::get('blogs/show/{id}', 'GriffonTech\Blog\Http\Controllers\BlogController@show')->defaults('_config', [
                 'view' => 'admin::admin.blogs.show'
             ])->name('admin.blogs.show');
+
+            Route::delete('blogs/delete/{id}', 'GriffonTech\Blog\Http\Controllers\BlogController@destroy')->defaults('_config', [
+                'redirect' => 'admin.blogs.index'
+            ])->name('admin.blogs.delete');
+
 
 
             // Blog Comments
@@ -381,6 +399,33 @@ Route::group(['middleware' => ['web']], function (){
             ])->name('admin.faqs.delete');
 
 
+            // Site Settings
+            Route::get('site_settings/index', 'GriffonTech\Admin\Http\Controllers\SiteSettingsController@index')->defaults('_config', [
+                'view' => 'admin::admin.site_settings.index'
+            ])->name('admin.site_settings.index');
+
+
+            Route::post('site_settings/store', 'GriffonTech\Admin\Http\Controllers\SiteSettingsController@store')->defaults('_config', [
+                'redirect' => 'admin.site_settings.index'
+            ])->name('admin.site_settings.update');
+
+            // Pages
+            Route::get('pages/index', 'GriffonTech\Admin\Http\Controllers\PagesController@index')->defaults('_config', [
+                'view' => 'admin::admin.pages.index'
+            ])->name('admin.pages.index');
+
+            Route::get('pages/edit/{page}', 'GriffonTech\Admin\Http\Controllers\PagesController@edit')->defaults('_config', [
+                'view' => 'admin::admin.pages.edit'
+            ])->name('admin.pages.edit');
+
+            Route::post('pages/edit/{page}', 'GriffonTech\Admin\Http\Controllers\PagesController@update')->defaults('_config', [
+                'redirect' => 'admin.pages.index'
+            ])->name('admin.pages.update');
+
+            Route::get('pages/show/{page}', 'GriffonTech\Admin\Http\Controllers\PagesController@show')->defaults('_config', [
+                'view' => 'admin::admin.pages.view'
+            ])->name('admin.pages.view');
+
 
 
             // Messages
@@ -407,6 +452,8 @@ Route::group(['middleware' => ['web']], function (){
             Route::get('messages/show', 'GriffonTech\Admin\Http\Controllers\MessagesController@show')->defaults('_config', [
                 'view' => 'admin::admin.messages.show'
             ])->name('admin.messages.show');
+
+
         });
 
     });

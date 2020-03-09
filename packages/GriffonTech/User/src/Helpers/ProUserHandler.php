@@ -57,12 +57,6 @@ class ProUserHandler {
                             'available_referral' => $userReferral->available_referral + 1
                         ]);
                     }
-
-                    // create the user coupon system
-                    $this->userCouponRepository->create([
-                        'user_id' => $user->id,
-                        'coupon_code' => $user->username.'-'.rand(100000,999999)
-                    ]);
                 }
             }
 

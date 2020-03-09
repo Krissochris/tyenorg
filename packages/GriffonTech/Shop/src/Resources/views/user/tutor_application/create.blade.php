@@ -13,8 +13,11 @@
                         <h3 class="float-left"> Tutor Application Form </h3>
                     </div>
                     <div class="card-body">
-                        {!! Form::model($tutor_application, ['route' => 'user.tutor_application.create']) !!}
-
+                        @if(isset($tutor_application))
+                            {!! Form::model($tutor_application, ['route' => 'user.tutor_application.create']) !!}
+                        @else
+                            {!! Form::open(['route' => 'user.tutor_application.create']) !!}
+                        @endif
                         <div class="form-group">
                             {!! Form::label('name', 'Name') !!}
                             {!! Form::text('name', null, ['class' => 'form-control']) !!}
@@ -39,7 +42,7 @@
 
                         {!! Form::close() !!}
 
-                        @if($tutor_application)
+                        @if(isset($tutor_application))
                             <div class="float-right">
                                 <a  href="{{ route('user.tutor_application.add_courses', $tutor_application->id) }}">Add Courses</a>
                             </div>

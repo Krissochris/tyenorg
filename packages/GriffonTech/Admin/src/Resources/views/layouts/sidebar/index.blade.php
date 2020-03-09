@@ -3,7 +3,9 @@
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element">
+{{--
                     <img alt="image" class="rounded-circle" src="img/profile_small.jpg"/>
+--}}
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="block m-t-xs font-bold"> {{ auth('admin')->user()->name }}</span>
                         <span class="text-muted text-xs block"> admin <b class="caret"></b></span>
@@ -20,7 +22,10 @@
                     IN+
                 </div>
             </li>
-            <li class="active">
+            <li>
+                <a href="{{ route('admin.site_settings.index') }}"> <span class="nav-label"> Site Settings </span> </a>
+            </li>
+            <li>
                 <a href="{{ route('admin.dashboard.index') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span>
                 </a>
             </li>
@@ -69,6 +74,11 @@
             </li>
             <li>
                 <a href="{{ route('admin.faqs.index') }}"><i class="fa fa-blogger-b"></i> <span class="nav-label">FAQs</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.pages.index') }}">
+                    <span class="nav-label"> Pages </span>
                 </a>
             </li>
         </ul>

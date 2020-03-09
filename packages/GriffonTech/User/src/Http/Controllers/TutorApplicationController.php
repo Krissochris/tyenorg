@@ -4,6 +4,7 @@
 namespace GriffonTech\User\Http\Controllers;
 
 
+use GriffonTech\Tutor\Repositories\TutorApplicationRepository;
 use GriffonTech\Tutor\Repositories\TutorApplicationSubmissionRepository;
 use GriffonTech\Tutor\Repositories\TutorCourseRepository;
 use GriffonTech\Tutor\Repositories\TutorProfileRepository;
@@ -21,14 +22,14 @@ class TutorApplicationController extends Controller
     protected $tutorApplicationSubmissionRepository;
 
     public function __construct(
-        TutorProfileRepository $tutorProfileRepository,
+        TutorApplicationRepository $tutorApplicationRepository,
         TutorCourseRepository $tutorCourseRepository,
         TutorApplicationSubmissionRepository $tutorApplicationSubmissionRepository
     )
     {
         $this->_config = request('_config');
 
-        $this->tutorProfileRepository = $tutorProfileRepository;
+        $this->tutorApplicationRepository = $tutorApplicationRepository;
 
         $this->tutorCourseRepository = $tutorCourseRepository;
 
@@ -38,23 +39,26 @@ class TutorApplicationController extends Controller
 
     public function create()
     {
-        $tutor_application = $this->tutorProfileRepository->firstOrCreate([
+        $tutor_application = $this->tutorApplicationRepository->findOneWhere([
             'user_id' => auth('user')->user()->id
         ]);
 
-        $tutor_application_submission = $this->tutorApplicationSubmissionRepository
-            ->findWhere([
-                'tutor_profile_id' => $tutor_application->id,
-            ])->last();
+        if ($tutor_application) {
 
+            $tutor_application_submission = $this->tutorApplicationSubmissionRepository
+                ->findWhere([
+                    'tutor_application_id' => $tutor_application->id,
+                ])->last();
 
-        if ($tutor_application_submission &&
-            $tutor_application_submission->status === TutorApplicationSubmissionRepository::ACTIVE) {
-            return view('shop::user.tutor_application.under_review')
-                ->with(compact('tutor_application_submission'));
+            if ($tutor_application_submission &&
+                $tutor_application_submission->status === TutorApplicationSubmissionRepository::ACTIVE) {
+                return view('shop::user.tutor_application.under_review')
+                    ->with(compact('tutor_application_submission'));
+            }
+            return view($this->_config['view'])->with(compact('tutor_application'));
         }
 
-        return view($this->_config['view'])->with(compact('tutor_application'));
+        return view($this->_config['view']);
     }
 
 
@@ -65,13 +69,15 @@ class TutorApplicationController extends Controller
             'title' => 'required',
             'phone' => 'required',
         ]);
-        $tutorProfile = $this->tutorProfileRepository->findOneWhere([
+
+        $tutorApplication = $this->tutorApplicationRepository->firstOrCreate([
             'user_id' => auth('user')->user()->id
         ]);
-        $tutorProfile->forceFill($request->only(['name' , 'title',
-            'phone_number', 'description', 'state_of_residence_id']));
 
-        if ($tutorProfile->update()) {
+        $tutorApplication->forceFill($request->only(['name' , 'title',
+            'phone', 'description', 'state_of_residence_id']));
+
+        if ($tutorApplication->update()) {
             session()->flash('success', 'Your information was successfully saved');
         } else {
             session()->flash('error', 'Your information could not be saved.Please try again');
@@ -89,12 +95,12 @@ class TutorApplicationController extends Controller
 
     public function addCourses()
     {
-        $tutorProfile = $this->tutorProfileRepository->findOneWhere([
+        $tutorProfile = $this->tutorApplicationRepository->findOneWhere([
             'user_id' => auth('user')->user()->id
         ], ['user_id', 'id']);
 
         $tutorCourses = $this->tutorCourseRepository
-            ->findWhere(['tutor_id' => $tutorProfile->id]);
+            ->findWhere(['tutor_application_id' => $tutorProfile->id]);
 
         return view($this->_config['view'])->with(compact('tutorProfile', 'tutorCourses'));
     }
@@ -116,7 +122,7 @@ class TutorApplicationController extends Controller
                     (isset($course['do_you_agree_to_carry_student_along_after_batch_ends']) && !empty($course['do_you_agree_to_carry_student_along_after_batch_ends']))
                 ) {
                     $course = $this->tutorCourseRepository->create([
-                        'tutor_id' => $postData['tutor_id'],
+                        'tutor_application_id' => $postData['tutor_id'],
                         'course_name' => $course['course_name'],
                         'course_experience_and_qualification' => $course['course_experience_and_qualification'],
                         'how_well_can_u_tutor_course' => $course['how_well_can_u_tutor_course'],
@@ -140,31 +146,38 @@ class TutorApplicationController extends Controller
 
     public function preview()
     {
-        $tutorProfile = $this->tutorProfileRepository
-            ->findOneByField(['user_id' => auth('user')->user()->id]);
+        $tutorApplication = $this->tutorApplicationRepository
+            ->findOneWhere([
+                'user_id' => auth('user')->user()->id
+            ]);
 
         $tutorCourses = $this->tutorCourseRepository
-            ->findWhere(['tutor_id' => $tutorProfile->id]);
+            ->findWhere([
+                'tutor_application_id' => $tutorApplication->id
+            ]);
 
-        return view($this->_config['view'])->with(compact('tutorProfile', 'tutorCourses'));
+        return view($this->_config['view'])
+            ->with(compact('tutorApplication', 'tutorCourses'));
     }
 
-    public function submitApplication (Request $request)
+    public function submitApplication(Request $request)
     {
         $request->validate([
             'term_and_service_agreement' => 'required'
         ]);
 
-        $tutorProfile = $this->tutorProfileRepository->findOneWhere([
+        $tutorApplication = $this->tutorApplicationRepository->findOneWhere([
             'user_id' => auth('user')->user()->id
         ], ['user_id','id']);
-        if (!$tutorProfile) {
+
+
+        if (!$tutorApplication) {
             session()->flash('error', 'An error occurred while submitting your application. Please try again.');
             return redirect()->route($this->_config['redirect']);
         }
 
         $tutorApplicationSubmission = $this->tutorApplicationSubmissionRepository->create([
-            'tutor_profile_id' => $tutorProfile->id
+            'tutor_application_id' => $tutorApplication->id
         ]);
 
         if ($tutorApplicationSubmission) {
@@ -174,6 +187,7 @@ class TutorApplicationController extends Controller
         }
         return redirect()->route($this->_config['redirect']);
     }
+
 
     public function deleteCourse ($tutor_course_id)
     {

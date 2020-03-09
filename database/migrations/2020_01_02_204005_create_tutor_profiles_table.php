@@ -19,8 +19,6 @@ class CreateTutorProfilesTable extends Migration
             $table->string('name')->nullable();
             $table->string('title')->nullable();
             $table->string('email')->nullable();
-            $table->decimal('earned_amount', 20, 2)->default(0);
-            $table->decimal('total_earned_amount', 20, 2)->default(0);
             $table->string('phone', 40)->nullable();
             $table->text('description')->nullable();
             $table->unsignedInteger('state_of_residence_id')->nullable();
@@ -30,8 +28,11 @@ class CreateTutorProfilesTable extends Migration
             $table->string('linkedIn_url')->nullable();
             $table->string('twitter_url')->nullable();
             $table->string('youtube_url')->nullable();
-            $table->smallInteger('status')->default(0)
-                ->comment('0=> not active, 1 => active, -1 => blocked/deactivated');
+            $table->decimal('amount_balance', 20, 2)->default(0);
+            $table->decimal('total_earned_amount', 20, 2)->default(0);
+            $table->unsignedInteger('tutor_application_id')->nullable();
+            $table->smallInteger('status')->default(1)
+                ->comment('1 => active, -1 => blocked/deactivated');
             $table->timestamps();
         });
     }

@@ -20,30 +20,26 @@
                     <table class="table">
                         <tr>
                             <td>Name</td>
-                            <td>{{ $tutor_application->tutor_profile->name }}</td>
+                            <td>{{ $tutor_application->tutor_application->name }}</td>
                         </tr>
                         <tr>
                             <td>Title</td>
-                            <td>{{ $tutor_application->tutor_profile->title }}</td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td>{{ $tutor_application->tutor_profile->email }}</td>
+                            <td>{{ $tutor_application->tutor_application->title }}</td>
                         </tr>
                         <tr>
                             <td>Phone Number</td>
-                            <td>{{ $tutor_application->tutor_profile->phone_number }}</td>
+                            <td>{{ $tutor_application->tutor_application->phone }}</td>
                         </tr>
                         <tr>
                             <td>Description</td>
-                            <td>{{ $tutor_application->tutor_profile->description }}</td>
+                            <td>{{ $tutor_application->tutor_application->description }}</td>
                         </tr>
                     </table>
 
                     <h4> Courses To Tutor </h4>
-                    @if($tutor_application->tutor_profile->tutor_application_courses)
+                    @if($tutor_application->tutor_application->tutor_application_courses)
 
-                        @foreach($tutor_application->tutor_profile->tutor_application_courses as $course)
+                        @foreach($tutor_application->tutor_application->tutor_application_courses as $course)
                             <table class="table">
                                 <tr>
                                     <td>Course Name</td>

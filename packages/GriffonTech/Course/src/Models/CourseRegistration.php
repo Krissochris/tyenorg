@@ -28,5 +28,10 @@ class CourseRegistration extends Model implements CourseRegistrationContract
         return $this->belongsTo(UserProxy::modelClass(), 'user_id', 'id');
     }
 
+    public function review()
+    {
+        return $this->hasOne(CourseReviewProxy::modelClass(), 'user_id', 'user_id');
+    }
+
 
 }

@@ -61,7 +61,7 @@
 
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+                                    {!! Form::textarea('description', null, ['class' => 'form-control summernote']) !!}
                                 </div>
 
                                 <div class="form-group">

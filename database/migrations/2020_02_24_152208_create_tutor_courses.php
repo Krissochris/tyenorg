@@ -15,7 +15,7 @@ class CreateTutorCourses extends Migration
     {
         Schema::create('tutor_courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('tutor_id');
+            $table->unsignedInteger('tutor_application_id');
             $table->string('course_name', 100);
             $table->string('course_experience_and_qualification')->nullable();
             $table->unsignedInteger('how_well_can_u_tutor_course')->nullable()->default(1);

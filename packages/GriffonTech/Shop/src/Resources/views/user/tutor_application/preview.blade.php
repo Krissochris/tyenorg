@@ -13,22 +13,23 @@
                         <h3 class="float-left"> Tutor Application Form Preview </h3>
                     </div>
                     <div class="card-body">
-                        <table class="table ">
+                        <table class="table">
+
                             <tr>
                                 <td> Name </td>
-                                <td> {{ $tutorProfile->name }} </td>
+                                <td> {{ $tutorApplication->name }} </td>
                             </tr>
                             <tr>
                                 <td> Title </td>
-                                <td> {{ $tutorProfile->title }} </td>
+                                <td> {{ $tutorApplication->title }} </td>
                             </tr>
                             <tr>
                                 <td> Phone Number </td>
-                                <td> {{ $tutorProfile->phone_number }} </td>
+                                <td> {{ $tutorApplication->phone }} </td>
                             </tr>
                             <tr>
                                 <td> Description </td>
-                                <td> {{ $tutorProfile->description }} </td>
+                                <td> {{ $tutorApplication->description }} </td>
                             </tr>
                         </table>
                         <div class="">

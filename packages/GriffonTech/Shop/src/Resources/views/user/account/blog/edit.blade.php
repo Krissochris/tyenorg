@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
-                {!! Form::model($blog, ['route' => ['user.blog.edit', $blog->url_key] ]) !!}
+                {!! Form::model($blog, ['route' => ['user.blog.edit', $blog->url_key], 'enctype' => 'multipart/form-data' ]) !!}
                 <div class="card">
                     <h5 class="card-header">Create Blog</h5>
                     <div class="card-body">

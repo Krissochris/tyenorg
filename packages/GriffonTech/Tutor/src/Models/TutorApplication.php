@@ -10,7 +10,7 @@ class TutorApplication extends Model implements TutorApplicationContract
 {
 
     protected $fillable = [
-        'user_id','first_name', 'last_name', 'title', 'description', 'photo','phone','email',
+        'user_id','name', 'title', 'description', 'photo','phone','email',
     ];
 
     public function user()
@@ -18,4 +18,8 @@ class TutorApplication extends Model implements TutorApplicationContract
         return $this->belongsTo(UserProxy::modelClass(), 'user_id', 'id');
     }
 
+    public function tutor_application_courses()
+    {
+        return $this->hasMany(TutorCourseProxy::modelClass(), 'tutor_application_id', 'id');
+    }
 }
