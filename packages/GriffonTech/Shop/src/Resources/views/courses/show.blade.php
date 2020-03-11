@@ -78,7 +78,7 @@
 
                     <!-- Courses Description Content -->
                     <div class="courses_description_content">
-                       {{ $course->description }}
+                       {!! $course->description !!}
                     </div>
 
                     <!-- Tutor Details -->
@@ -91,6 +91,7 @@
                         <h5>Reviews</h5>
                     </div>
                     @if($course->course_reviews)
+
                     <div class="testimonial_slides">
                         @foreach($course->course_reviews as $course_review)
                             <div class="single_testimonial text-center">
@@ -102,7 +103,7 @@
                     </div>
                     @endif
 
-                    <!-- Courses Description -->
+                   {{-- <!-- Courses Description -->
                     <div class="courses_description m-bottom-50">
                         <h5>Related Courses</h5>
                     </div>
@@ -173,7 +174,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Single Courses Area End -->
+                    <!-- Single Courses Area End -->--}}
                 </div>
 
                 <!-- ==================== Sidebar Area Start ==================== -->
@@ -216,11 +217,18 @@
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <video width="320" height="240" controls class="embed-responsive">
-                                        <source src="movie.mp4" type="video/mp4">
-                                        <source src="movie.ogg" type="video/ogg">
-                                        Your browser does not support the video tag.
-                                    </video>
+                                    @if ($course->video_url)
+                                        <iframe width="420" height="315"
+                                                src="{{ $course->video_url }}">
+                                        </iframe>
+                                    @else
+                                        <video width="320" height="240" controls class="embed-responsive">
+                                            <source src="movie.mp4" type="video/mp4">
+                                            <source src="movie.ogg" type="video/ogg">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    @endif
+
                                 </div>
                             </div>
                         </div>
@@ -234,10 +242,9 @@
                                     <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                                 </div>
                                 <div class="single_share_link">
-                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="single_share_link">
-                                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('courses.show', $course->url_key) }}" target="_blank">
+                                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>

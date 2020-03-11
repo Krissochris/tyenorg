@@ -1,6 +1,8 @@
 <?php
 namespace GriffonTech\User\Http\Controllers;
 
+use GriffonTech\User\Repositories\UserRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Cookie;
 
@@ -13,16 +15,19 @@ class SessionController extends Controller {
      */
     protected $_config;
 
+    protected $userRepository;
     /**
      * Create a new Repository instance.
-     *
+     * @param $userRepository
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepository $userRepository)
     {
         $this->middleware('user')->except(['show','create']);
 
         $this->_config = request('_config');
+
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -71,13 +76,13 @@ class SessionController extends Controller {
         }
 
         /*if (auth()->guard('user')->user()->is_verified == 0) {
-            session()->flash('info', trans('user::app.user.login-form.verify-first'));
+            session()->flash('info', trans('shop::app.user.login-form.verify-first'));
 
             Cookie::queue(Cookie::make('enable-resend', 'true', 1));
 
             Cookie::queue(Cookie::make('email-for-resend', request('email'), 1));
 
-            auth()->guard('customer')->logout();
+            auth()->guard('user')->logout();
 
             return redirect()->back();
         }*/
@@ -103,5 +108,25 @@ class SessionController extends Controller {
         return redirect()->route($this->_config['redirect']);
     }
 
+    public function verifyAccount()
+    {
+        return view($this->_config['view']);
+    }
+
+    public function changeEmail(Request $request)
+    {
+        $request->validate([
+            'email' => 'email|required|unique:users,email'
+        ]);
+
+        $emailUpdated = $this->userRepository
+            ->update(['email' => $request->input('email')], auth('user')->user()->id);
+        if ($emailUpdated) {
+            session()->flash('success', 'Email was successfully change');
+        } else {
+            session()->flash('error', 'Email could not be change.');
+        }
+        return redirect()->route($this->_config['redirect']);
+    }
 }
 

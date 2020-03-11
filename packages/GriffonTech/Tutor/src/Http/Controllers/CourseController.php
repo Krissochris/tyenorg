@@ -72,6 +72,9 @@ class CourseController extends Controller
 
     public function create()
     {
+        session()->flash('You are not allowed to access this view');
+        return back();
+
         $courseTypes = CourseRepository::TYPE;
         $categories = $this->courseCategoryRepository->getList()->prepend('--Select Category--' ,'');
         return view($this->_config['view'])->with(compact('categories', 'courseTypes'));
@@ -79,6 +82,9 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
+        session()->flash('You are not allowed to access this view');
+        return back();
+
         $request->validate([
             'name' => 'required',
             'course_category_id' => 'required',
@@ -130,6 +136,7 @@ class CourseController extends Controller
         return view($this->_config['view'])->with(compact('course'));
     }
 
+
     public function edit($slug)
     {
         try {
@@ -138,8 +145,10 @@ class CourseController extends Controller
             // handle error
         }
         $courseTypes = CourseRepository::TYPE;
+        $courseStatus = CourseRepository::STATUS;
         $categories = $this->courseCategoryRepository->getList()->prepend('--Select Category--' ,'');
-        return view($this->_config['view'])->with(compact('categories', 'course', 'courseTypes'));
+        return view($this->_config['view'])->with(compact(
+            'categories', 'course', 'courseTypes', 'courseStatus'));
     }
 
     public function update(Request $request, $slug)

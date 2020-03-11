@@ -57,6 +57,14 @@ Route::group(['middleware' => ['web', 'user']], function() {
                 'redirect' => 'tutor.courses.index',
             ])->name('tutor.courses.edit');
 
+
+            Route::get('courses/show/{slug}', 'GriffonTech\Tutor\Http\Controllers\CourseController@show')->defaults('_config', [
+                'view' => 'tutor::tutor.course.show',
+            ])->name('tutor.courses.show');
+
+
+
+
             Route::get('courses/{course_id}/course_batch/index', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@index')->defaults('_config', [
                 'view' => 'tutor::tutor.course.course_batch.index',
             ])->name('tutor.courses.course_batch.index');
@@ -76,6 +84,10 @@ Route::group(['middleware' => ['web', 'user']], function() {
             Route::post('courses/course_batch/edit/{id}', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@update')->defaults('_config', [
                 'redirect' => 'tutor.courses.course_batch.edit',
             ])->name('tutor.courses.course_batch.edit');
+
+            Route::get('courses/course_batch/show/{id}', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@show')->defaults('_config', [
+                'view' => 'tutor::tutor.course.course_batch.show',
+            ])->name('tutor.courses.course_batch.show');
 
 
             // Dashboard view

@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration
             $table->string('token')->nullable();
             $table->text('notes')->nullable();
             $table->unsignedInteger('tutor_id')->nullable();
+            $table->unsignedInteger('country_id')->nullable();
+            $table->unsignedInteger('state_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

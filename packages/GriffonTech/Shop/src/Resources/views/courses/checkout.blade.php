@@ -56,6 +56,11 @@
                                     <input id="bank_deposit" name="paymentMethod" type="radio" value="bank_deposit" required>
                                     Bank Deposit </label>
                             </div>
+                            <div class="custom-control custom-radio">
+                                <label class="" for="referrals">
+                                    <input id="referrals" name="paymentMethod" type="radio" value="referrals" required>
+                                    Referrals ( Available {{ auth('user')->user()->user_referral->available_referral }} ) </label>
+                            </div>
                         </div>
                         {{--<div class="row">
                             <div class="col-md-6 mb-3">

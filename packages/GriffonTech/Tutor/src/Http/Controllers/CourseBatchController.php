@@ -3,6 +3,7 @@
 namespace GriffonTech\Tutor\Http\Controllers;
 
 use GriffonTech\Course\Repositories\CourseBatchRepository;
+use GriffonTech\Course\Repositories\CourseRegistrationRepository;
 use GriffonTech\Course\Repositories\CourseRepository;
 use Illuminate\Http\Request;
 
@@ -15,11 +16,14 @@ class CourseBatchController extends Controller
 
     protected $courseBatchRepository;
 
+    protected $courseRegistrationRepository;
+
 
 
     public function __construct(
         CourseBatchRepository $courseBatchRepository,
-        CourseRepository $courseRepository
+        CourseRepository $courseRepository,
+        CourseRegistrationRepository $courseRegistrationRepository
 
         // confirm that the course_id belongs to the tutor before proceeding with the
         // action please .
@@ -30,6 +34,8 @@ class CourseBatchController extends Controller
         $this->courseBatchRepository = $courseBatchRepository;
 
         $this->courseRepository = $courseRepository;
+
+        $this->courseRegistrationRepository = $courseRegistrationRepository;
     }
 
     public function index($course_id)
@@ -84,6 +90,10 @@ class CourseBatchController extends Controller
     {
         $course_batch = $this->courseBatchRepository->findOrFail($id);
 
+        if ($course_batch->tutor_id !== auth('user')->user()->tutor_id) {
+            abort(403);
+        }
+
         return view($this->_config['view'])->with(compact('course_batch'));
     }
 
@@ -101,6 +111,17 @@ class CourseBatchController extends Controller
         return redirect()->route($this->_config['redirect'], $id);
     }
 
+    public function show($id)
+    {
+        $course_batch = $this->courseBatchRepository
+            ->with(['course_registrations.user'])
+            ->findOrFail($id);
 
+        if ($course_batch->tutor_id !== auth('user')->user()->tutor_id) {
+            abort(403);
+        }
+
+        return view($this->_config['view'])->with(compact('course_batch'));
+    }
 
 }

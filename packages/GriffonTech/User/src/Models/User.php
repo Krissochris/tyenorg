@@ -22,7 +22,9 @@ class User extends Authenticatable implements UserContract
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'email', 'password', 'is_verified', 'phone_number', 'photo', 'status', 'subscribed_to_news_letter'
+        'name', 'username', 'email', 'password', 'is_verified',
+        'phone_number', 'photo', 'status', 'subscribed_to_news_letter',
+        'token', 'tutor_id'
     ];
 
     /**
@@ -56,6 +58,11 @@ class User extends Authenticatable implements UserContract
     public function coupon_code()
     {
         return $this->hasOne(UserCouponProxy::modelClass(), 'user_id', 'id');
+    }
+
+    public function user_referral()
+    {
+        return $this->hasOne(UserReferralProxy::modelClass(), 'user_id', 'id');
     }
 
     /**

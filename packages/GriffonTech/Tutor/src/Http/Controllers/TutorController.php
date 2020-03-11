@@ -1,6 +1,7 @@
 <?php
 
 namespace GriffonTech\Tutor\Http\Controllers;
+use GriffonTech\Core\Helpers\FileManager;
 use GriffonTech\Tutor\Repositories\TutorProfileRepository;
 use Illuminate\Http\Request;
 
@@ -60,6 +61,20 @@ class TutorController extends Controller
         $data = $request->input();
 
         $tutorProfile = $this->tutorProfileRepository->findOneByField('user_id', auth('user')->user()->id);
+
+        if ($request->file('photo')) {
+            $image = $request->file('photo');
+
+            try {
+                if ($newPhoto = (new FileManager())->update($image, $tutorProfile->photo, 'tutors')) {
+                    $data['photo'] = $newPhoto;
+                } else {
+                    session()->flash('error', 'Photo could not be uploaded.');
+                }
+            } catch ( \Exception $exception) {
+                session()->flash('error', $exception->getMessage());
+            }
+        }
 
         $tutorProfile = $tutorProfile->update($data);
 

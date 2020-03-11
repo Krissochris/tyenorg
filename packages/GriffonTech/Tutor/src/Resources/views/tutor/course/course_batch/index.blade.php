@@ -35,15 +35,15 @@
                         <td> {{ $course_batch->id }}</td>
                         <td> {{ $course_batch->no_of_users }}</td>
                         <td> {{ $course_batch->maximum_number_of_users }}</td>
-                        <td> {{ $course_batch->entry_status }}</td>
-                        <td> {{ $course_batch->is_taken }}</td>
+                        <td> {{ ($course_batch->entry_status) ? 'Yes' : 'No' }}</td>
+                        <td> {{ ($course_batch->is_taken) ? 'Yes' : 'No' }}</td>
                         <td> {{ $course_batch->time_completed }}</td>
-                        <td> {{ $course_batch->status }}</td>
+                        <td> {{ ($course_batch->status) ? 'Active' : 'UnActive' }}</td>
                         <td> {{ $course_batch->created_at }}</td>
                         <td> {{ $course_batch->updated_at }}</td>
                         <td>
                             <a href="{{ route('tutor.courses.course_batch.edit', $course_batch->id) }}">edit</a>
-                            <a class="text-danger" href="">delete </a>
+                            <a href="{{ route('tutor.courses.course_batch.show', $course_batch->id) }}">view</a>
                         </td>
                     </tr>
                 @endforeach

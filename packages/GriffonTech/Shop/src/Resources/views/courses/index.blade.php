@@ -89,7 +89,7 @@
                                                     <span>{{ __('Pro user free') }}</span>
                                                     @break
                                                     @case('pro_user_paid')
-                                                    <span>${{ $course->price }}</span> or <span>{{ $course->total_number_of_referrals_needed }} Referrals</span>
+                                                    <span>${{ $course->price }}</span> or <span>{{ $course->total_no_of_referrals_needed }} Referrals</span>
                                                     @break
                                                     @default
                                                     {{''}}

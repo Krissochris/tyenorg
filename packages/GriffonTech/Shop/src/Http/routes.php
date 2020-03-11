@@ -52,7 +52,8 @@ Route::group(['middleware' => ['web']], function(){
         ])->name('user.register.create');
 
         //verify account
-        Route::get('/verify-account/{token}', 'GriffonTech\User\Http\Controllers\RegistrationController@verifyAccount')->name('user.verify');
+        Route::get('/verify-account/{token}', 'GriffonTech\User\Http\Controllers\RegistrationController@verifyAccount')
+            ->name('user.verify');
 
         //resend verification email
         Route::get('/resend/verification/{email}', 'GriffonTech\User\Http\Controllers\RegistrationController@resendVerificationEmail')->name('user.resend.verification-email');
@@ -61,158 +62,172 @@ Route::group(['middleware' => ['web']], function(){
         // Auth Route
         Route::group(['middleware' => ['user']], function(){
 
+            Route::get('verify_account', 'GriffonTech\User\Http\Controllers\SessionController@verifyAccount')->defaults('_config', [
+                'view' => 'shop::user.account.verify_account.index'
+            ])->name('user.verify_account.index');
+
+            Route::post('change_verification_email', 'GriffonTech\User\Http\Controllers\SessionController@changeEmail')->defaults('_config', [
+                'redirect' => 'user.verify_account.index'
+            ])->name('user.change_verification_email');
+
             //Customer logout
             Route::get('logout', 'GriffonTech\User\Http\Controllers\SessionController@destroy')->defaults('_config', [
                 'redirect' => 'user.session.index'
             ])->name('user.session.destroy');
 
-            Route::get('tutor_application/create', 'GriffonTech\User\Http\Controllers\TutorApplicationController@create')->defaults('_config', [
-                'view' => 'shop::user.tutor_application.create'
-            ])->name('user.tutor_application.create');
 
-            Route::get('tutor_application/create', 'GriffonTech\User\Http\Controllers\TutorApplicationController@create')->defaults('_config', [
-                'view' => 'shop::user.tutor_application.create'
-            ])->name('user.tutor_application.create');
+            Route::group(['middleware' => ['is_verified']], function() {
+                Route::get('tutor_application/create', 'GriffonTech\User\Http\Controllers\TutorApplicationController@create')->defaults('_config', [
+                    'view' => 'shop::user.tutor_application.create'
+                ])->name('user.tutor_application.create');
 
-            Route::post('tutor_application/create', 'GriffonTech\User\Http\Controllers\TutorApplicationController@store')->defaults('_config', [
-                'redirect' => 'user.tutor_application.add_courses'
-            ])->name('user.tutor_application.create');
+                Route::get('tutor_application/create', 'GriffonTech\User\Http\Controllers\TutorApplicationController@create')->defaults('_config', [
+                    'view' => 'shop::user.tutor_application.create'
+                ])->name('user.tutor_application.create');
 
-            Route::get('tutor_application/add_courses', 'GriffonTech\User\Http\Controllers\TutorApplicationController@addCourses')->defaults('_config', [
-                'view' => 'shop::user.tutor_application.add_courses'
-            ])->name('user.tutor_application.add_courses');
+                Route::post('tutor_application/create', 'GriffonTech\User\Http\Controllers\TutorApplicationController@store')->defaults('_config', [
+                    'redirect' => 'user.tutor_application.add_courses'
+                ])->name('user.tutor_application.create');
 
-            Route::post('tutor_application/add_courses', 'GriffonTech\User\Http\Controllers\TutorApplicationController@processAddCourses')->defaults('_config', [
-                'redirect' => 'user.tutor_application.add_courses'
-            ])->name('user.tutor_application.add_courses');
+                Route::get('tutor_application/add_courses', 'GriffonTech\User\Http\Controllers\TutorApplicationController@addCourses')->defaults('_config', [
+                    'view' => 'shop::user.tutor_application.add_courses'
+                ])->name('user.tutor_application.add_courses');
 
-            Route::delete('tutor_application/delete_course/{tutor_course_id}', 'GriffonTech\User\Http\Controllers\TutorApplicationController@deleteCourse')
-                ->name('user.tutor_application.delete_course');
+                Route::post('tutor_application/add_courses', 'GriffonTech\User\Http\Controllers\TutorApplicationController@processAddCourses')->defaults('_config', [
+                    'redirect' => 'user.tutor_application.add_courses'
+                ])->name('user.tutor_application.add_courses');
 
-            Route::get('tutor_application/preview', 'GriffonTech\User\Http\Controllers\TutorApplicationController@preview')->defaults('_config', [
-                'view' => 'shop::user.tutor_application.preview'
-            ])->name('user.tutor_application.preview');
+                Route::delete('tutor_application/delete_course/{tutor_course_id}', 'GriffonTech\User\Http\Controllers\TutorApplicationController@deleteCourse')
+                    ->name('user.tutor_application.delete_course');
 
-            Route::post('tutor_application/submit', 'GriffonTech\User\Http\Controllers\TutorApplicationController@submitApplication')->defaults('_config', [
-                'redirect' => 'user.tutor_application.create'
-            ])->name('user.tutor_application.submit');
+                Route::get('tutor_application/preview', 'GriffonTech\User\Http\Controllers\TutorApplicationController@preview')->defaults('_config', [
+                    'view' => 'shop::user.tutor_application.preview'
+                ])->name('user.tutor_application.preview');
 
-
-            Route::get('tutor_application/get_new_course_form', 'GriffonTech\User\Http\Controllers\TutorApplicationController@getNewCourseForm')->defaults('_config', [
-                'view' => 'shop::user.tutor_application.include.new_course_form'
-            ])->name('user.tutor_application.new_course_form');
+                Route::post('tutor_application/submit', 'GriffonTech\User\Http\Controllers\TutorApplicationController@submitApplication')->defaults('_config', [
+                    'redirect' => 'user.tutor_application.create'
+                ])->name('user.tutor_application.submit');
 
 
+                Route::get('tutor_application/get_new_course_form', 'GriffonTech\User\Http\Controllers\TutorApplicationController@getNewCourseForm')->defaults('_config', [
+                    'view' => 'shop::user.tutor_application.include.new_course_form'
+                ])->name('user.tutor_application.new_course_form');
 
 
-            Route::prefix('account')->group(function(){
-
-                Route::get('dashboard', 'GriffonTech\User\Http\Controllers\DashboardController@index')->defaults('_config', [
-                    'view' => 'shop::user.account.dashboard.index'
-                ])->name('user.dashboard.index');
-
-                //Customer Dashboard Route
-                Route::get('index', 'GriffonTech\User\Http\Controllers\AccountController@index')->defaults('_config', [
-                    'view' => 'shop::user.account.index'
-                ])->name('user.account.index');
-
-                //Customer Profile Show
-                Route::get('profile', 'GriffonTech\User\Http\Controllers\UserController@index')->defaults('_config', [
-                    'view' => 'shop::user.account.profile.index'
-                ])->name('user.profile.index');
-
-                //Customer Profile Edit Form Show
-                Route::get('profile/edit', 'GriffonTech\User\Http\Controllers\UserController@edit')->defaults('_config', [
-                    'view' => 'shop::user.account.profile.edit'
-                ])->name('user.profile.edit');
-
-                //Customer Profile Edit Form Store
-                Route::post('profile/edit', 'GriffonTech\User\Http\Controllers\UserController@update')->defaults('_config', [
-                    'redirect' => 'user.profile.index'
-                ])->name('user.profile.edit');
-
-                //Customer Profile Delete Form Store
-                Route::post('profile/destroy', 'GriffonTech\User\Http\Controllers\CustomerController@destroy')->defaults('_config', [
-                    'redirect' => 'user.profile.index'
-                ])->name('user.profile.destroy');
-
-                //User Course Show
-                Route::get('my-courses/learning', 'GriffonTech\User\Http\Controllers\CourseController@index')->defaults('_config', [
-                    'view' => 'shop::user.account.course.index'
-                ])->name('user.course.index');
-
-                Route::get('my-courses/show/{slug}', 'GriffonTech\User\Http\Controllers\CourseController@show')->defaults('_config', [
-                    'view' => 'shop::user.account.course.show'
-                ])->name('user.course.show');
-
-                Route::get('purchases', 'GriffonTech\User\Http\Controllers\PurchasesController@index')->defaults('_config', [
-                    'view' => 'shop::user.account.purchases.index'
-                ])->name('user.purchases.index');
-
-                Route::get('referral', 'GriffonTech\User\Http\Controllers\ReferralController@show')->defaults('_config', [
-                    'view' => 'shop::user.account.referral.show'
-                ])->name('user.referral.show');
 
 
-                //User Blog
-                Route::get('blog/index', 'GriffonTech\User\Http\Controllers\BlogController@index')->defaults('_config', [
-                    'view' => 'shop::user.account.blog.index'
-                ])->name('user.blog.index');
+                Route::prefix('account')->group(function(){
 
 
-                Route::get('blog/create', 'GriffonTech\User\Http\Controllers\BlogController@create')->defaults('_config', [
-                    'view' => 'shop::user.account.blog.create'
-                ])->name('user.blog.create');
+                    Route::get('dashboard', 'GriffonTech\User\Http\Controllers\DashboardController@index')->defaults('_config', [
+                        'view' => 'shop::user.account.dashboard.index'
+                    ])->name('user.dashboard.index');
 
-                Route::post('blog/create', 'GriffonTech\User\Http\Controllers\BlogController@store')->defaults('_config', [
-                    'redirect' => 'user.blog.index'
-                ])->name('user.blog.create');
+                    //Customer Dashboard Route
+                    Route::get('index', 'GriffonTech\User\Http\Controllers\AccountController@index')->defaults('_config', [
+                        'view' => 'shop::user.account.index'
+                    ])->name('user.account.index');
 
-                Route::get('blog/edit/{slug}', 'GriffonTech\User\Http\Controllers\BlogController@edit')->defaults('_config', [
-                    'view' => 'shop::user.account.blog.edit'
-                ])->name('user.blog.edit');
+                    //Customer Profile Show
+                    Route::get('profile', 'GriffonTech\User\Http\Controllers\UserController@index')->defaults('_config', [
+                        'view' => 'shop::user.account.profile.index'
+                    ])->name('user.profile.index');
 
-                Route::post('blog/edit/{slug}', 'GriffonTech\User\Http\Controllers\BlogController@update')->defaults('_config', [
-                    'redirect' => 'user.blog.index'
-                ])->name('user.blog.edit');
+                    //Customer Profile Edit Form Show
+                    Route::get('profile/edit', 'GriffonTech\User\Http\Controllers\UserController@edit')->defaults('_config', [
+                        'view' => 'shop::user.account.profile.edit'
+                    ])->name('user.profile.edit');
 
-                Route::delete('blog/delete/{slug}', 'GriffonTech\User\Http\Controllers\BlogController@destroy')->defaults('_config', [
-                    'redirect' => 'user.blog.index'
-                ])->name('user.blog.delete');
+                    //Customer Profile Edit Form Store
+                    Route::post('profile/edit', 'GriffonTech\User\Http\Controllers\UserController@update')->defaults('_config', [
+                        'redirect' => 'user.profile.index'
+                    ])->name('user.profile.edit');
+
+                    //Customer Profile Delete Form Store
+                    Route::post('profile/destroy', 'GriffonTech\User\Http\Controllers\CustomerController@destroy')->defaults('_config', [
+                        'redirect' => 'user.profile.index'
+                    ])->name('user.profile.destroy');
+
+                    //User Course Show
+                    Route::get('my-courses/learning', 'GriffonTech\User\Http\Controllers\CourseController@index')->defaults('_config', [
+                        'view' => 'shop::user.account.course.index'
+                    ])->name('user.course.index');
+
+                    Route::get('my-courses/show/{slug}', 'GriffonTech\User\Http\Controllers\CourseController@show')->defaults('_config', [
+                        'view' => 'shop::user.account.course.show'
+                    ])->name('user.course.show');
+
+                    Route::get('purchases', 'GriffonTech\User\Http\Controllers\PurchasesController@index')->defaults('_config', [
+                        'view' => 'shop::user.account.purchases.index'
+                    ])->name('user.purchases.index');
+
+                    Route::get('referral', 'GriffonTech\User\Http\Controllers\ReferralController@show')->defaults('_config', [
+                        'view' => 'shop::user.account.referral.show'
+                    ])->name('user.referral.show');
 
 
-                //User Testimonies
-                Route::get('testimonies/index', 'GriffonTech\User\Http\Controllers\TestimonyController@index')->defaults('_config', [
-                    'view' => 'shop::user.account.testimonies.index'
-                ])->name('user.testimonies.index');
-
-                Route::post('testimonies/create', 'GriffonTech\User\Http\Controllers\TestimonyController@store')->defaults('_config', [
-                    'redirect' => 'user.testimonies.index'
-                ])->name('user.testimonies.create');
-
-                Route::delete('testimonies/delete/{id}', 'GriffonTech\User\Http\Controllers\TestimonyController@destroy')->defaults('_config', [
-                    'redirect' => 'user.testimonies.index'
-                ])->name('user.testimonies.delete');
-
-                // Course Review
-                Route::post('course_review/create', 'GriffonTech\User\Http\Controllers\CourseReviewController@store')->defaults('_config', [
-                ])->name('user.course_review.create');
-
-                Route::post('course_review/edit/{id}', 'GriffonTech\User\Http\Controllers\CourseReviewController@update')->defaults('_config', [
-                ])->name('user.course_review.edit');
-
-                Route::delete('course_review/delete/{id}', 'GriffonTech\User\Http\Controllers\CourseReviewController@destroy')->defaults('_config', [
-                ])->name('user.course_review.delete');
+                    //User Blog
+                    Route::get('blog/index', 'GriffonTech\User\Http\Controllers\BlogController@index')->defaults('_config', [
+                        'view' => 'shop::user.account.blog.index'
+                    ])->name('user.blog.index');
 
 
-                Route::get('become_a_pro_user', 'GriffonTech\User\Http\Controllers\BecomeProUserController@index')->defaults('_config', [
-                    'view' => 'shop::pro_user.index'
-                ])->name('user.pro_user');
+                    Route::get('blog/create', 'GriffonTech\User\Http\Controllers\BlogController@create')->defaults('_config', [
+                        'view' => 'shop::user.account.blog.create'
+                    ])->name('user.blog.create');
 
-                Route::post('become_a_pro_user/process', 'GriffonTech\User\Http\Controllers\BecomeProUserController@create')->defaults('_config', [
-                ])->name('user.pro_user.process');
+                    Route::post('blog/create', 'GriffonTech\User\Http\Controllers\BlogController@store')->defaults('_config', [
+                        'redirect' => 'user.blog.index'
+                    ])->name('user.blog.create');
+
+                    Route::get('blog/edit/{slug}', 'GriffonTech\User\Http\Controllers\BlogController@edit')->defaults('_config', [
+                        'view' => 'shop::user.account.blog.edit'
+                    ])->name('user.blog.edit');
+
+                    Route::post('blog/edit/{slug}', 'GriffonTech\User\Http\Controllers\BlogController@update')->defaults('_config', [
+                        'redirect' => 'user.blog.index'
+                    ])->name('user.blog.edit');
+
+                    Route::delete('blog/delete/{slug}', 'GriffonTech\User\Http\Controllers\BlogController@destroy')->defaults('_config', [
+                        'redirect' => 'user.blog.index'
+                    ])->name('user.blog.delete');
+
+
+                    //User Testimonies
+                    Route::get('testimonies/index', 'GriffonTech\User\Http\Controllers\TestimonyController@index')->defaults('_config', [
+                        'view' => 'shop::user.account.testimonies.index'
+                    ])->name('user.testimonies.index');
+
+                    Route::post('testimonies/create', 'GriffonTech\User\Http\Controllers\TestimonyController@store')->defaults('_config', [
+                        'redirect' => 'user.testimonies.index'
+                    ])->name('user.testimonies.create');
+
+                    Route::delete('testimonies/delete/{id}', 'GriffonTech\User\Http\Controllers\TestimonyController@destroy')->defaults('_config', [
+                        'redirect' => 'user.testimonies.index'
+                    ])->name('user.testimonies.delete');
+
+                    // Course Review
+                    Route::post('course_review/create', 'GriffonTech\User\Http\Controllers\CourseReviewController@store')->defaults('_config', [
+                    ])->name('user.course_review.create');
+
+                    Route::post('course_review/edit/{id}', 'GriffonTech\User\Http\Controllers\CourseReviewController@update')->defaults('_config', [
+                    ])->name('user.course_review.edit');
+
+                    Route::delete('course_review/delete/{id}', 'GriffonTech\User\Http\Controllers\CourseReviewController@destroy')->defaults('_config', [
+                    ])->name('user.course_review.delete');
+
+
+                    Route::get('become_a_pro_user', 'GriffonTech\User\Http\Controllers\BecomeProUserController@index')->defaults('_config', [
+                        'view' => 'shop::pro_user.index'
+                    ])->name('user.pro_user');
+
+                    Route::post('become_a_pro_user/process', 'GriffonTech\User\Http\Controllers\BecomeProUserController@create')->defaults('_config', [
+                    ])->name('user.pro_user.process');
+
+                });
 
             });
+
         });
 
     });

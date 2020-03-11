@@ -72,7 +72,7 @@
                             </form>
                             <!-- forget password -->
                             <div class="forget_pass one">
-                                <a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i>Forget Password</a>
+                                <a href="{{ route('user.forgot-password.create') }}"><i class="fa fa-question-circle" aria-hidden="true"></i>Forget Password</a>
                             </div>
                             <div class="forget_pass">
                                 <a href="{{ route('user.register.index') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>Didn't have a account? Register</a>

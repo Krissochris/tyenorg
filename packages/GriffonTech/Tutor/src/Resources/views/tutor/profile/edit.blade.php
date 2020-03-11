@@ -4,21 +4,25 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <form action="{{ route('tutor.profile.edit') }}" method="POST">
+                <form action="{{ route('tutor.profile.edit') }}" method="POST" enctype="multipart/form-data">
                     <div class="row">
                         @csrf
                         <div class="col-sm-2">
-                            <div class="card">
-                                <img src="{{ asset('images/26238.png')}}" class="card-img" alt="">
-
-                                <div class="card-footer text-center">
-                                    <div class="custom-file">
-                                        <input type="file" name="photo" class="custom-file-input">
-                                        <label class="custom-file-label" for="customFile"></label>
+                            <div class="form-group">
+                                <div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden" value="" name="...">
+                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px; line-height: 150px;">
+                                        @if($tutor->photo) <img src="{{ $tutor->photo }}" alt="{{ $tutor->name }}"> @endif
+                                    </div>
+                                    <div>
+                                    <span class="btn btn-default btn-file">
+                                    <span class="fileinput-new">Load Image</span>
+                                        <span class="fileinput-exists">Change</span>
+                                        {!! Form::file('photo') !!}
+                                    </span>
+                                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                                     </div>
                                 </div>
                             </div>
-                            <hr>
                         </div>
 
                         <div class="col-sm-10">

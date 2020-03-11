@@ -18,10 +18,18 @@ class CourseRepository extends Repository
     CONST PRO_USER_FREE = 'pro_user_free';
     CONST PRO_MEMBER_PAID = 'pro_user_paid';
 
+    CONST STATUS_ACTIVE = 1;
+    CONST STATUS_UNACTIVE = -1;
+
     CONST TYPE = [
         CourseRepository::FREE => 'Free Course',
         CourseRepository::PRO_USER_FREE => 'Pro User Free',
         CourseRepository::PRO_MEMBER_PAID => 'Pro User paid'
+    ];
+
+    CONST STATUS = [
+        CourseRepository::STATUS_ACTIVE => 'Active',
+        CourseRepository::STATUS_UNACTIVE => 'UnActive'
     ];
 
     /**

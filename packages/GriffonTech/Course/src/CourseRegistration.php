@@ -47,7 +47,7 @@ class CourseRegistration
         }
 
         $course_batch->no_of_users += 1;
-        if ($course_batch->no_of_users == $course_batch->maximum_number_of_users) {
+        if ( (int)$course_batch->no_of_users === (int) $course_batch->maximum_number_of_users) {
             $course_batch->_entry_status = 0;
         }
 

@@ -4,6 +4,7 @@
 namespace GriffonTech\Admin\Http\Controllers;
 
 
+use GriffonTech\Tutor\Repositories\TutorProfileRepository;
 use GriffonTech\User\Contracts\User;
 use GriffonTech\User\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -15,11 +16,18 @@ class UsersController extends Controller
 
     protected $userRepository;
 
-    public function __construct(UserRepository $userRepository)
+    protected $tutorProfileRepository;
+
+    public function __construct(
+        UserRepository $userRepository,
+        TutorProfileRepository $tutorProfileRepository
+    )
     {
         $this->_config = request('_config');
 
         $this->userRepository = $userRepository;
+
+        $this->tutorProfileRepository = $tutorProfileRepository;
 
     }
 
@@ -60,9 +68,15 @@ class UsersController extends Controller
     {
         return view($this->_config['view'], compact('user'));
     }
+
+
     public function edit(User $user)
     {
-        return view($this->_config['view'], compact('user'));
+        $tutors = $this->tutorProfileRepository
+            ->pluck('name', 'id')
+            ->prepend('--Select Tutor --', '');
+
+        return view($this->_config['view'], compact('user', 'tutors'));
     }
 
     public function update(Request $request, User $user)
@@ -73,11 +87,6 @@ class UsersController extends Controller
 
         $userUpdated = $user->update($request->input());
         if ($userUpdated) {
-            if ( (int)$request->input('is_pro_user') === 1 ) {
-                $user->makeProUser();
-            } else if ((int)$request->input('is_pro_user') === 0) {
-                $user->removeProUser();
-            }
             session()->flash('success', 'User was successfully updated!');
         } else {
             session()->flash('error', 'User could not be updated. Please try again.');
@@ -90,5 +99,16 @@ class UsersController extends Controller
     public function destroy()
     {
         return view($this->_config['view']);
+    }
+
+    public function proUserUpdate(Request $request, User $user)
+    {
+        if ( (int)$request->input('is_pro_user') === 1 ) {
+            $user->makeProUser();
+        } else if ((int)$request->input('is_pro_user') === 0) {
+            $user->removeProUser();
+        }
+        // check if the user is a pro user and make or unmake
+        return redirect()->route($this->_config['redirect']);
     }
 }

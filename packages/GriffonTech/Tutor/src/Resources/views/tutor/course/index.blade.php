@@ -38,6 +38,7 @@
                                     @endswitch
                                 </div>
                                 <p class="font-weight-bold"> {{ $course->name }} </p>
+                                <small> {{ ((int) $course->status === 1) ? 'Active' : 'UnActive'  }}</small>
 {{--
                                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
 --}}
@@ -50,10 +51,9 @@
                                     </li>
                                 </ul>--}}
                                 <div class="float-right">
+                                    <a href="{{ route('tutor.courses.show', [ 'slug' => $course->url_key]) }}">View</a> |
                                     <a href="{{ route('tutor.courses.edit', [ 'slug' => $course->url_key]) }}">Edit</a> |
-                                    <a href="{{ route('tutor.courses.course_batch.index', $course->id) }}">Batch </a> |
-                                    <a class="text-danger" href="">Delete</a>
-
+                                    <a href="{{ route('tutor.courses.course_batch.index', $course->id) }}">Batch </a>
                                 </div>
 
                             </div>

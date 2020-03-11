@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-3">
                 <div class="img-thumbnail">
-                    <img src="{{ asset('lms/img/course-img/event-details.jpg') }}" alt="">
+                    <img src="{{ $tutor['photo'] }}" alt="">
                 </div>
             </div>
             <div class="col-9">

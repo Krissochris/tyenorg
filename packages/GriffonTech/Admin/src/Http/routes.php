@@ -62,6 +62,11 @@ Route::group(['middleware' => ['web']], function (){
                 'view' => 'admin::admin.users.show'
             ])->name('admin.users.show');
 
+            Route::post('users/pro_user_update/{user}', 'GriffonTech\Admin\Http\Controllers\UsersController@proUserUpdate')->defaults('_config', [
+                'redirect' => 'admin.users.edit'
+            ])->name('admin.users.pro_user_update');
+
+
 
             // Tutors
             Route::get('tutors/index', 'GriffonTech\Admin\Http\Controllers\TutorsController@index')->defaults('_config', [

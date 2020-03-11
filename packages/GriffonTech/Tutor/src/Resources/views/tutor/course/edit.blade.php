@@ -7,7 +7,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="float-left">Create Course</h3>
+                        <h3 class="float-left">Edit Course</h3>
                         <a href="{{route('tutor.courses.index')}}" class="btn btn-dark float-right">Go Back</a>
                     </div>
                     <div class="card-body">
@@ -25,35 +25,20 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="type">Course Type </label>
-                                    {!! Form::select('type', $courseTypes, null, ['class' => 'form-control', 'id' => 'course_type']) !!}
-                                </div>
-
-                                <div class="form-group">
                                     <label for="name"> Learning Link </label>
                                     {!! Form::text('learning_url', null, ['class' => 'form-control', 'placeholder' => 'Learning Url']) !!}
                                 </div>
 
-                                <div id="payment_options" @if($course->type != \GriffonTech\Course\Repositories\CourseRepository::PRO_MEMBER_PAID ) style="display: none;" @endif >
-                                    <div class="form-group">
-                                        <label for="total_no_of_referrals_needed">Total Number of Referrals Needed</label>
-                                        {!! Form::number('total_no_of_referrals_needed', null, ['class' => 'form-control']) !!}
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label for="price"> Price (For Pro Member Paid Courses ) </label>
-                                        {!! Form::number('price', null, ['class' => 'form-control']) !!}
-                                    </div>
+                                <div class="form-group">
+                                    <label for="name"> Summary </label>
+                                    {!! Form::textarea('summary', null, ['rows' => 3, 'class' => 'form-control' ]) !!}
                                 </div>
 
                             </div>
 
                             <div class="col-sm-6">
 
-                                <div class="form-group">
-                                    <label for="name"> Summary </label>
-                                    {!! Form::textarea('summary', null, ['rows' => 3, 'class' => 'form-control' ]) !!}
-                                </div>
 
                                 <div class="form-group">
                                     <label for="description">Description</label>
@@ -71,8 +56,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="total_no_of_users_in_batch">Total Number of Users in a Batch</label>
-                                    {!! Form::number('total_no_of_users_in_batch', null, ['class' => 'form-control']) !!}
+                                    <label for="status"> Status </label>
+                                    {!! Form::select('status', $courseStatus, null, ['class' => 'form-control'] ) !!}
                                 </div>
 
                             </div>

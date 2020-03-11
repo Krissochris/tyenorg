@@ -1,6 +1,7 @@
 <?php
 namespace GriffonTech\User\Http\Controllers;
 
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 use GriffonTech\User\Mail\RegistrationEmail;
@@ -87,12 +88,13 @@ class RegistrationController extends Controller {
         Event::fire('customer.registration.after', $user);
 
         if ($user) {
-            if (false) {
+            if (true) {
                 try {
                     Mail::queue(new VerificationEmail($verificationData));
 
                     session()->flash('success', trans('shop::app.user.signup-form.success-verify'));
                 } catch (\Exception $e) {
+                    dd($e->getTraceAsString());
                     session()->flash('info', trans('shop::app.user.signup-form.success-verify-email-unsent'));
                 }
             } else {
@@ -101,7 +103,6 @@ class RegistrationController extends Controller {
 
                     session()->flash('success', trans('shop::app.user.signup-form.success-verify')); //customer registered successfully
                 } catch (\Exception $e) {
-                    dd($e->getMessage());
                     session()->flash('info', trans('shop::app.user.signup-form.success-verify-email-unsent'));
                 }
 
@@ -149,12 +150,13 @@ class RegistrationController extends Controller {
         try {
             Mail::queue(new VerificationEmail($verificationData));
 
+
             if (Cookie::has('enable-resend')) {
-                \Cookie::queue(\Cookie::forget('enable-resend'));
+                Cookie::queue(Cookie::forget('enable-resend'));
             }
 
             if (Cookie::has('email-for-resend')) {
-                \Cookie::queue(\Cookie::forget('email-for-resend'));
+                Cookie::queue(Cookie::forget('email-for-resend'));
             }
         } catch (\Exception $e) {
             session()->flash('error', trans('shop::app.user.signup-form.verification-not-sent'));

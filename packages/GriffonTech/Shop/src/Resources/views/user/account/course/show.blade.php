@@ -15,10 +15,20 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <div class="card-title text-light"><h2> {{ $course->name }} </h2></div>
+                        <div class="card-title text-white"><h2 style="color:#fff;"> {{ $course->name }} </h2></div>
                         <h6 class="text-light"> {{ $course->summary }} </h6>
                         <div>
-                            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                            @if($course->course_average_rating )
+                                @for($num = 1; $num <= 5; $num++)
+                                    @if($num <= $course->course_average_rating)
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    @else
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    @endif
+                                @endfor
+
+                                <span>({{ $course->total_reviews }} Review)</span>
+                            @endif
                         </div>
                         <small class="text-light">Created By: <span class="text-primary">{{ $course->tutor->name }} </span></small> &nbsp;&nbsp;
                         <small class="text-light">Purchased On: <span class="text-primary"> {{ $courseRegistration->created_at }} </span></small>
@@ -29,11 +39,17 @@
             <hr>
             <div class="clearfix">
                 <div class="float-right col-sm-4">
-                    <video width="320" height="240" controls class="embed-responsive">
-                        <source src="movie.mp4" type="video/mp4">
-                        <source src="movie.ogg" type="video/ogg">
-                        Your browser does not support the video tag.
-                    </video>
+                    @if ($course->video_url)
+                        <iframe width="420" height="315"
+                                src="{{ $course->video_url }}">
+                        </iframe>
+                    @else
+                        <video width="320" height="240" controls class="embed-responsive">
+                            <source src="movie.mp4" type="video/mp4">
+                            <source src="movie.ogg" type="video/ogg">
+                            Your browser does not support the video tag.
+                        </video>
+                    @endif
                     <br>
                 </div >
                 <div class="col-sm-8">
@@ -106,11 +122,7 @@
                 </div>
             </div>
 
-            <?php if ($course->tutor->tutor_profile) { $tutor = $course->tutor->tutor_profile; $tutor->name = $course->tutor->name;  } else {
-                $tutor['name'] = $course->tutor->name;
-            }
-            ?>
-            @include("shop::partials.courses.tutor_detail", ['tutor' => $tutor])
+            @include("shop::partials.courses.tutor_detail", ['tutor' => $course->tutor])
             <br>
 
 {{--
