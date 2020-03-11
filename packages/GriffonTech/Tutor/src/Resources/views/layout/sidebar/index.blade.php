@@ -23,6 +23,12 @@
     </li>
 
     <li class="nav-item">
+        <a class="nav-link" href="{{route('tutor.withdrawals.index')}}">
+            <i class="fas fa-money-bill "></i>
+            <span>Withdrawals </span></a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link" href="#">
             <i class="fas fa-fw fa-award"></i>
             <span>Messages</span></a>

@@ -247,7 +247,7 @@ Route::group(['middleware' => ['web']], function (){
             ])->name('admin.course_batches.pay_tutor');
 
             Route::post('course_batches/pay_tutor/{id}', 'GriffonTech\Admin\Http\Controllers\CourseBatchesController@processPayTutor')->defaults('_config', [
-                'redirect' => 'admin.course_batches.pay_tutor'
+                'redirect' => 'admin.course_batches.index'
             ])->name('admin.course_batches.pay_tutor');
 
 

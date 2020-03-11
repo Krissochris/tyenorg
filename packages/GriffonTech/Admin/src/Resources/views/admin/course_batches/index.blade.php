@@ -41,14 +41,23 @@
                                 <td> {{ ($course_batch->entry_status) ? 'Yes' : 'No' }} </td>
                                 <td> {{ ($course_batch->is_taken) ? 'Yes' : 'No' }} </td>
                                 <td> {{ $course_batch->time_completed }} </td>
-                                <td> {{ $course_batch->status }} </td>
-                                <td> {{ ($course_batch->paid_tutor) ? 'Yes' : 'No' }} </td>
+                                <td>
+                                    @switch($course_batch->status)
+                                        @case(1)
+                                            <span class="text-success"> Active </span>
+                                            @break
+                                        @case(2)
+                                            <span class="text-primary">Completed </span>
+                                            @break
+                                    @endswitch
+                                </td>
+                                <td> {{ ($course_batch->tutor_paid) ? 'Yes' : 'No' }} </td>
                                 <td> {{ $course_batch->created_at }} </td>
                                 <td> {{ $course_batch->updated_at }} </td>
                                 <td>
                                     <a class="btn btn-success btn-sm" href="{{route('admin.course_batches.show', $course_batch->id)}}">view</a>&nbsp;&nbsp;
                                     <a class="btn btn-primary btn-sm" href="{{route('admin.course_batches.edit', $course_batch->id)}}"> edit </a>
-                                    @if($course_batch->is_taken && !$course_batch->paid_tutor)
+                                    @if($course_batch->is_taken && !$course_batch->tutor_paid)
                                     <a class="btn btn-default btn-sm" href="{{route('admin.course_batches.pay_tutor', $course_batch->id)}}"> pay tutor </a>
                                     @endif
                                     <a class="btn btn-danger btn-sm" href="#"

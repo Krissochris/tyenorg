@@ -59,11 +59,11 @@
                                 </tr>
                                 <tr>
                                     <td> Wallet Balance </td>
-                                    <td> {{ number_format($tutor->earned_amount, 2) }}</td>
+                                    <td> ${{ number_format($tutor->amount_balance, 2) }}</td>
                                 </tr>
                                 <tr>
                                     <td> Total Earned Amount</td>
-                                    <td> {{ number_format($tutor->total_earned_amount, 2) }}</td>
+                                    <td> ${{ number_format($tutor->total_earned_amount, 2) }}</td>
                                 </tr>
                                 </tbody>
                             </table>

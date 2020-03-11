@@ -2,6 +2,7 @@
 namespace GriffonTech\Tutor\Http\Controllers;
 use GriffonTech\Course\Repositories\CourseRepository;
 use GriffonTech\Course\Repositories\CourseReviewRepository;
+use GriffonTech\Tutor\Repositories\TutorProfileRepository;
 use GriffonTech\Tutor\Repositories\TutorWalletRepository;
 
 /**
@@ -21,13 +22,6 @@ class DashboardController extends Controller {
     protected $_config;
 
     /**
-     * tutorWalletRepository object
-     *
-     * @var Object
-     */
-    protected $tutorWalletRepository;
-
-    /**
      * courseRepository object
      *
      * @var Object
@@ -41,18 +35,20 @@ class DashboardController extends Controller {
      */
     protected $courseReviewRepository;
 
+    protected $tutorProfileRepository;
+
 
     public function __construct(
         CourseRepository $courseRepository,
         CourseReviewRepository $courseReviewRepository,
-        TutorWalletRepository $tutorWalletRepository
+        TutorProfileRepository $tutorProfileRepository
     )
     {
         $this->_config = request('_config');
 
-        $this->tutorWalletRepository = $tutorWalletRepository;
-
         $this->courseRepository = $courseRepository;
+
+        $this->tutorProfileRepository = $tutorProfileRepository;
 
         $this->courseReviewRepository = $courseReviewRepository;
     }
@@ -68,9 +64,11 @@ class DashboardController extends Controller {
 
         $courses_ids = $tutorCourses->pluck('id');
 
+        $tutorProfile = $this->tutorProfileRepository->find(auth('user')->user()->tutor_id);
+
         $totalReviews = $this->courseReviewRepository->findCoursesReviews($courses_ids)->count();
         // get the tutor amount in the wallet
         // get the tutor total reviews count
-        return view($this->_config['view'])->with(compact('totalCourses', 'totalReviews'));
+        return view($this->_config['view'])->with(compact('totalCourses', 'totalReviews', 'tutorProfile'));
     }
 }

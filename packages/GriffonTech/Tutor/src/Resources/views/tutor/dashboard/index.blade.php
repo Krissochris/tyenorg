@@ -40,7 +40,7 @@
                     <div class="card-body-icon">
                         <i class="fas fa-fw fa-piggy-bank"></i>
                     </div>
-                    <div class="mr-5">0.00 USD</div>
+                    <div class="mr-5">{{ $tutorProfile->amount_balance }} USD</div>
                 </div>
                 <p class="card-footer text-white clearfix small z-1">
                     <span class="float-left"> Account Balance </span>
@@ -49,17 +49,6 @@
         </div>
 
 
-    </div>
-
-    <!-- Area Chart Example-->
-    <div class="card mb-3">
-        <div class="card-header">
-            <i class="fas fa-chart-area"></i>
-            Area Chart Example</div>
-        <div class="card-body">
-            <canvas id="myAreaChart" width="100%" height="30"></canvas>
-        </div>
-        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
     </div>
 
     <!-- DataTables Example -->

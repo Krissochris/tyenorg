@@ -94,7 +94,7 @@
                     <h5> Pay Tutor </h5>
                 </div>
                 <div class="ibox-content table-responsive">
-                    {!! Form::open(['route' => ['admin.course_batches.pay_tutor', $course_batch->tutor_id]]) !!}
+                    {!! Form::open(['route' => ['admin.course_batches.pay_tutor', $course_batch->id]]) !!}
                     <div class="form-group">
                         {!! Form::label('Amount') !!}
                         {!! Form::number('amount', null, ['class' => 'form-control']) !!}

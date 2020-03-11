@@ -8,7 +8,7 @@ use GriffonTech\Course\Repositories\CourseBatchRepository;
 use GriffonTech\Course\Repositories\CourseRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use GriffonTech\Tutor\Repositories\TutorPaymentRepository;
 class CourseBatchesController extends Controller
 {
 
@@ -16,16 +16,19 @@ class CourseBatchesController extends Controller
 
     protected $courseBatchRepository;
     protected $courseRepository;
+    protected $tutorPaymentRepository;
 
     public function __construct(
         CourseBatchRepository $courseBatchRepository,
-        CourseRepository $courseRepository
+        CourseRepository $courseRepository,
+        TutorPaymentRepository $tutorPaymentRepository
     )
     {
         $this->_config = request('_config');
 
         $this->courseBatchRepository = $courseBatchRepository;
         $this->courseRepository = $courseRepository;
+        $this->tutorPaymentRepository = $tutorPaymentRepository;
     }
 
     public function index()
@@ -161,15 +164,23 @@ class CourseBatchesController extends Controller
             DB::beginTransaction();
             $course_batch->markCompleted();
             if ($course_batch->tutor->credit($request->input('amount'))) {
-                $course_batch->markPaidTutorAsCompleted();
+                $this->tutorPaymentRepository->create([
+                    'tutor_id' => $course_batch->tutor_id,
+                    'course_id' => $course_batch->course_id,
+                    'course_batch_id' => $course_batch->id,
+                    'amount' => $request->input('amount')
+                ]);
+                $course_batch->markPaidTutorAsCompleted()->update();
                 session()->flash('success', 'Tutor was successfully paid');
+
             } else {
                 throw new \Exception('Could not pay the tutor');
             }
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
-            session()->flash('error', 'An Error occurred trying to pay the tutor.Please try again');
+            session()->flash('error', $exception->getMessage());
+            return back();
         }
         // get the user profile
         // mark the batch as completed

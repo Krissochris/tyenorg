@@ -24,7 +24,7 @@
                             <tr>
                                 <td> {{ $tutor->name }} </td>
                                 <td> {{ $tutor->title }} </td>
-                                <td> {{ number_format($tutor->earned_amount, 2) }} </td>
+                                <td> ${{ number_format($tutor->amount_balance, 2) }} </td>
                                 <td>
                                     {{ $tutor->status }}
                                 </td>

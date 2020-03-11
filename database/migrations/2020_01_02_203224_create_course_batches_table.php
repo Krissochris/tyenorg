@@ -23,7 +23,8 @@ class CreateCourseBatchesTable extends Migration
             $table->boolean('is_taken')->default(0)->comment('is_taken 0 = Not Taken, 1 = Taken');
             $table->timestamp('time_completed')->nullable();
             $table->tinyInteger('status')->default(1);
-            $table->tinyInteger('paid_tutor')->default(0)->comment('0 => No, 1 => Yes');
+            $table->tinyInteger('tutor_paid')->default(0)
+                ->comment('0 => No, 1 => Yes');
             $table->timestamps();
         });
     }

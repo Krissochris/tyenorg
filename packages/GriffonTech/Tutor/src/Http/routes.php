@@ -110,6 +110,20 @@ Route::group(['middleware' => ['web', 'user']], function() {
             Route::get('reviews', 'GriffonTech\Tutor\Http\Controllers\ReviewController@index')->defaults('_config', [
                 'view' => 'tutor::tutor.review.index',
             ])->name('tutor.review.index');
+
+
+            Route::get('withdrawals', 'GriffonTech\Tutor\Http\Controllers\WithdrawalController@index')->defaults('_config', [
+                'view' => 'tutor::tutor.withdrawals.index',
+            ])->name('tutor.withdrawals.index');
+
+            Route::get('withdrawals/create', 'GriffonTech\Tutor\Http\Controllers\WithdrawalController@create')->defaults('_config', [
+                'view' => 'tutor::tutor.withdrawals.create',
+            ])->name('tutor.withdrawals.create');
+
+            Route::post('withdrawals/create', 'GriffonTech\Tutor\Http\Controllers\WithdrawalController@store')->defaults('_config', [
+                'redirect' => 'tutor.withdrawals.index',
+            ])->name('tutor.withdrawals.index');
+
         });
 
     });

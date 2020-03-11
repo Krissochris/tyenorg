@@ -18,7 +18,7 @@ class CourseBatch extends Model implements CourseBatchContract
 
     protected $fillable = [
         'course_id', 'tutor_id', 'no_of_users', 'maximum_number_of_users',
-        'entry_status', 'is_taken', 'time_completed', 'status'
+        'entry_status', 'is_taken', 'time_completed', 'status',
     ];
 
 
@@ -39,8 +39,15 @@ class CourseBatch extends Model implements CourseBatchContract
 
     public function markCompleted()
     {
-        return $this->update([
+        $this->forceFill([
             'status' => static::STATUS_COMPLETED
         ]);
+        return $this;
+    }
+
+    public function markPaidTutorAsCompleted()
+    {
+        $this->forceFill(['tutor_paid' => 1]);
+        return $this;
     }
 }

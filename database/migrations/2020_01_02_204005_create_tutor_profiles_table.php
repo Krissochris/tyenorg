@@ -33,6 +33,9 @@ class CreateTutorProfilesTable extends Migration
             $table->unsignedInteger('tutor_application_id')->nullable();
             $table->smallInteger('status')->default(1)
                 ->comment('1 => active, -1 => blocked/deactivated');
+            $table->string('bank_name')->nullable();
+            $table->string('bank_account_number')->nullable();
+            $table->string('bank_account_name')->nullable();
             $table->timestamps();
         });
     }
