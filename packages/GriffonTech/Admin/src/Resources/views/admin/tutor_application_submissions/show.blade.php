@@ -1,5 +1,9 @@
 @extends('admin::layouts.master')
 
+@section('title')
+    Tutor Application Review
+@stop
+
 @section('content')
 
     <div class="row">
@@ -66,14 +70,16 @@
                                     <td>{{ ($course->do_you_agree_to_carry_student_along_after_batch_ends) ? 'Yes' : 'No' }}</td>
                                 </tr>
                             </table>
-                            <div>
-                                <form method="POST" id="approve" action="{{ route('admin.tutor_application_submissions.approve', $tutor_application->id) }}">
-                                    @csrf
-                                </form>
-                                <form method="POST" id="reject" action="{{ route('admin.tutor_application_submissions.reject', $tutor_application->id) }}">
-                                    @csrf
-                                </form>
-                                <button onclick="event.preventDefault();
+                        @endforeach
+                    @endif
+                    <div>
+                        <form method="POST" id="approve" action="{{ route('admin.tutor_application_submissions.approve', $tutor_application->id) }}">
+                            @csrf
+                        </form>
+                        <form method="POST" id="reject" action="{{ route('admin.tutor_application_submissions.reject', $tutor_application->id) }}">
+                            @csrf
+                        </form>
+                        <button onclick="event.preventDefault();
                                         var confirmAccept = confirm('Are you you want to accept this application');
                                         if (confirmAccept) {
                                             document.getElementById('approve').submit();
@@ -81,16 +87,15 @@
                                         " class="btn btn-success">Approve</button>
 
 
-                                <button onclick="event.preventDefault();
+                        <button onclick="event.preventDefault();
                                         var confirmAccept = confirm('Are you you want to reject this application');
                                         if (confirmAccept) {
                                             document.getElementById('reject').submit();
                                         }
                                         "
-                                    class="btn btn-danger">Reject</button>
-                            </div>
-                        @endforeach
-                    @endif
+                                class="btn btn-danger">Reject</button>
+                    </div>
+
                 </div>
             </div>
         </div>
