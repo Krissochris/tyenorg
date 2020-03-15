@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <label for="is_verified"> Is Email Verified </label>
                                 <input type="hidden" name="is_verified" value="0">
-                                <input id="is_verified" type="checkbox" name="is_verified" value="1" {{ ( old('is_verified') ? 'checked' : ($user->is_verified) ) ? 'checked' : '' }}>
+                                <input id="is_verified" type="checkbox" name="is_verified" value="1" {{ ($user->is_verified) ? 'checked' : '' }} >
                             </div>
 
 
@@ -50,6 +50,7 @@
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Update </button>
                             </div>
+
                         </div>
                     </div>
                     {!! Form::close() !!}
