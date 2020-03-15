@@ -71,7 +71,8 @@
                 <div class="form-group">
                     <label for="is_pro_user"> Is Pro user  </label>
                     <input type="hidden" name="is_pro_user" value="0">
-                    <input id="is_pro_user" type="checkbox" name="is_pro_user" value="1" {{ old('is_pro_user') ? 'checked' : ($user->is_pro_user) ? 'checked' : '' }}>
+                    <input id="is_pro_user" type="checkbox" name="is_pro_user" value="1" {{ ($user->is_pro_user) ? 'checked' : '' }}>
+
                 </div>
 
                 <div class="form-group">
