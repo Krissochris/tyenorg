@@ -41,25 +41,8 @@ class ProUserHandler {
         $user = $this->userRepository->find($user_id);
 
         if ($user) {
-            $madePro = $user->makeProUser();
-            if ($madePro) {
-                $referral = $this->referralRepository->findOneWhere([
-                    'referred_user_id' => $user->id
-                ], ['referral_user_id']);
-
-                if ($referral) {
-                    $userReferral = $this->userReferralRepository
-                        ->findOneWhere(['user_id' => $referral->referral_user_id]);
-
-                    if ($userReferral) {
-                        $userReferral->update([
-                            'referral_bonus' => $userReferral->referral_bonus + (30 * 0.05),
-                            'available_referral' => $userReferral->available_referral + 1
-                        ]);
-                    }
-                }
-            }
-
+            return $user->makeProUser();
         }
+        return false;
     }
 }

@@ -9,7 +9,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>TYEN - LMS Template for Courses &amp; Education</title>
+    <title>TYEN - @yield('title') </title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('lms/img/core-img/favicon.ico') }}">

@@ -35,7 +35,7 @@
                     <div class="login_thumb" style="background-image: url({{ asset('lms/img/bg-pattern/courses-bg.jpg') }});">
                         <!-- Login thumb caption -->
                         <div class="login_thumb_caption">
-                            <h3>Register is so Easy!</h3>
+                            <h3>Registration is so Easy!</h3>
                             <p>Register &amp; start learning.</p>
                         </div>
                     </div>

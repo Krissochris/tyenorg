@@ -124,12 +124,14 @@ class CourseController extends Controller
                         ])->paginate(20);
                 } catch (ModelNotFoundException $exception) {
                     $courses = $this->courseRepository
-                        ->findWhere(['status', 1])
+                        ->getModel()
+                        ->findWhere('status', 1)
                         ->paginate(20);
                 }
             } else {
                 $courses = $this->courseRepository
-                    ->findWhere(['status', 1])
+                    ->getModel()
+                    ->where('status', 1)
                     ->paginate(20);
             }
         }

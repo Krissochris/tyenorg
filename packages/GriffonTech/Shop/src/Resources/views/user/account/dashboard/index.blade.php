@@ -1,5 +1,8 @@
 @extends('shop::layouts.master')
 
+@section('title')
+    My Dashboard
+@stop
 
 @section('content')
     <!-- Page Content -->
@@ -21,7 +24,7 @@
                 <div class="single_course_collection">
                     <a href="#">
                         <h4>Referral Bonus</h4>
-                        <p> 0.00 </p>
+                        <p> {{ ($user_referral->referral_bonus) ? $user_referral->referral_bonus : '0.00' }} </p>
                     </a>
                 </div>
             </div>
@@ -29,7 +32,7 @@
                 <div class="single_course_collection">
                     <a href="#">
                         <h4>Total Referrals</h4>
-                        <p> 0 </p>
+                        <p> {{ $user_referral->total_referral }} </p>
                     </a>
                 </div>
             </div>
@@ -37,7 +40,7 @@
                 <div class="single_course_collection">
                     <a href="#">
                         <h4>Available Referral</h4>
-                        <p> 0</p>
+                        <p> {{ $user_referral->available_referral }} </p>
                     </a>
                 </div>
             </div>
@@ -46,7 +49,7 @@
                 <div class="single_course_collection">
                     <a href="#">
                         <h4>Courses</h4>
-                        <p> 0</p>
+                        <p> {{ $myCoursesCount }} </p>
                     </a>
                 </div>
             </div>

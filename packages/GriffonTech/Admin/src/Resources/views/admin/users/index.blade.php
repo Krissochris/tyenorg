@@ -16,9 +16,10 @@
                     <table class="table table-hover no-margins">
                         <thead class="thead-dark">
                         <tr>
-                            <th>S/N</th>
-                            <th>User</th>
-                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>is Pro user</th>
                             <th>Registered</th>
                             <th></th>
                         </tr>
@@ -26,9 +27,10 @@
                         <tbody>
                         @foreach($users as $user)
                             <tr>
-                                <td> {{ $user->id }}</td>
                                 <td> {{ $user->name }} </td>
-                                <td> {{ ($user->is_pro_user) ? 'Pro user' : 'User' }} </td>
+                                <td> {{ $user->email }} </td>
+                                <td> {{ $user->phone_number }} </td>
+                                <td> {{ ($user->is_pro_user) ? 'Yes' : 'No' }} </td>
                                 <td> {{ $user->created_at }} </td>
                                 <td>
                                     <a href="{{route('admin.users.show', $user->id)}}">view</a>&nbsp;&nbsp;

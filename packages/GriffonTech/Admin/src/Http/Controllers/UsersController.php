@@ -101,14 +101,19 @@ class UsersController extends Controller
         return view($this->_config['view']);
     }
 
+
     public function proUserUpdate(Request $request, User $user)
     {
         if ( (int)$request->input('is_pro_user') === 1 ) {
-            $user->makeProUser();
+            if ($user->makeProUser()) {
+                session()->flash('success', 'User was successfully made a pro user');
+            } else {
+                session()->flash('error', 'User could not be made a pro user. Please try again');
+            }
+
         } else if ((int)$request->input('is_pro_user') === 0) {
             $user->removeProUser();
         }
-        // check if the user is a pro user and make or unmake
-        return redirect()->route($this->_config['redirect']);
+        return back();
     }
 }

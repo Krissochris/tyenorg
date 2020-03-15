@@ -10,6 +10,7 @@
                     <div class="card-header">
                         <a class="float-right btn btn-primary btn-sm" href="{{ route('tutor.withdrawals.create') }}">Create Withdrawal Request</a>
                         <h4> Withdrawals </h4>
+
                     </div>
                     <div class="card-body">
                         <table class="table table-hover table-bordered table-striped">

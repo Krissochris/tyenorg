@@ -1,5 +1,8 @@
 @extends('shop::layouts.master')
 
+@section('title')
+    My Referrals
+@stop
 
 @section('content')
     <!-- Breadcumb area start -->
