@@ -34,24 +34,29 @@ class EventServiceProvider extends ServiceProvider
 
         //
         Event::listen('customer.registration.after', function ($newUser) {
-            $referral_email = urldecode(request()->cookie('ref'));
+            $referral_username = urldecode(request()->cookie('ref'));
 
             try {
                 $userRepository = $this->app->make(UserRepository::class);
                 $referralRepository = $this->app->make(ReferralRepository::class);
                 $userReferralRepository = $this->app->make(UserReferralRepository::class);
 
-                $referral_user = $userRepository->findOneByField('email', $referral_email, ['id', 'email']);
+                $referral_user = $userRepository->findOneByField('username', $referral_username, ['id', 'username']);
+
                 if ($referral_user) {
                     $referralRepository->create([
                         'referral_user_id' => $referral_user->id,
                         'referred_user_id' => $newUser->id
                     ]);
 
-                    $userReferral = $userReferralRepository->firstOrCreate([
-                        'user_id' => $newUser->id
+                    $referralUserProfile = $userReferralRepository->firstOrCreate([
+                        'user_id' => $referral_user->id
                     ]);
-                    $userReferral->update(['total_referral' =>(int) $userReferral->total_referral + 1 ]);
+
+                    $referralUserProfile ->update([
+                        'total_referral' =>(int) $referralUserProfile->total_referral + 1
+                    ]);
+
                 }
             } catch (\Exception $exception) {
                 // sub due error

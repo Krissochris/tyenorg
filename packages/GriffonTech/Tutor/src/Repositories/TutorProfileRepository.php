@@ -34,4 +34,16 @@ class TutorProfileRepository extends Repository
             ->pluck($value, $key)
             ->toArray();
     }
+
+    public function deactivateProfile($id)
+    {
+        $tutor = $this->findOrFail($id);
+        return $tutor->deactivate();
+    }
+
+    public function activateProfile($id)
+    {
+        $tutor = $this->findOrFail($id);
+        return $tutor->activate();
+    }
 }

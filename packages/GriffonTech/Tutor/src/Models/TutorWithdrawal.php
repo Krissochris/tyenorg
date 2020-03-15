@@ -15,4 +15,19 @@ class TutorWithdrawal extends Model implements TutorWithdrawalContract
     protected $fillable = ['tutor_id', 'amount', 'note', 'status'];
 
 
+    public function getStatus()
+    {
+        switch ($this->status) {
+            case -1:
+                return 'Cancelled';
+            case  1:
+                return 'Active';
+            case  2:
+                return 'Completed';
+            default:
+                return 'Unknown';
+        }
+    }
+
+
 }

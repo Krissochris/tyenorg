@@ -120,7 +120,7 @@ class BlogController extends Controller
         } else {
             session()->flash('error', 'Blog post was not successfully updated!');
         }
-        return redirect()->route($this->_config['redirect'], $id);
+        return back();
     }
 
 

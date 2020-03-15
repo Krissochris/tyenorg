@@ -86,4 +86,26 @@ class TutorController extends Controller
         return redirect()->route($this->_config['redirect']);
     }
 
+
+    public function updatePaymentDetail(Request $request)
+    {
+        $request->validate([
+            'bank_name' => 'required',
+            'bank_account_number' => 'required',
+            'bank_account_name' => 'required',
+        ]);
+
+        $tutorProfile = $this->tutorProfileRepository
+            ->findOneByField('user_id', auth('user')->user()->id);
+
+        $tutorProfileUpdated = $tutorProfile->update($request->only(['bank_name', 'bank_account_number', 'bank_account_name']));
+
+        if ($tutorProfileUpdated) {
+            session()->flash('success', 'Your tutor payment details was successfully added.');
+        } else {
+            session()->flash('error', 'Your tutor payment detail could not be updated. ');
+        }
+
+        return back();
+    }
 }

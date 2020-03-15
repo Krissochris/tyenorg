@@ -2,6 +2,7 @@
 
 @section("content")
     <div class="container">
+
         <div class="row">
             <div class="col-sm-12">
                 <form action="{{ route('tutor.profile.edit') }}" method="POST" enctype="multipart/form-data">
@@ -106,6 +107,50 @@
                     </div>
                 </form>
                 <hr>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                {!! Form::model($tutor, ['route' => 'tutor.profile.update_payment_detail']) !!}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Payment Details </h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2"> Bank Name </label>
+                                        <div class="col-sm-7">
+                                            {!! Form::text('bank_name', null, ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2"> Account Name </label>
+                                        <div class="col-sm-7">
+                                            {!! Form::text('bank_account_name', null, ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2"> Account Number </label>
+                                        <div class="col-sm-7">
+                                            {!! Form::text('bank_account_number', null, ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer">
+                                    <input type="submit" class="btn btn-dark" value="Update">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {!! Form::close() !!}
+
             </div>
         </div>
     </div>

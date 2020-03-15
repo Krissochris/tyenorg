@@ -87,29 +87,27 @@
     <!-- ===================== Welcome Area End ===================== -->
 
     <!-- ===================== Search Courses Area Start ===================== -->
-    <div class="search_courses_area section_padding_100">
+    <div class="search_courses_area section_padding_100" style="padding: 20px 0; ">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <!-- Search Text -->
                     <div class="search_text">
-                        <h2>Find your desire courses</h2>
-                        <p>
-                            Search our database for some of your favorite courses.
-                        </p>
+                        <h2>Search For Courses</h2>
+                        <p>search for your favorite courses.</p>
                     </div>
                     <!-- Search Form -->
                     <div class="search_form">
-                        <form action="#" method="get">
+                        {!! Form::open(['route' => 'courses.index', 'method' => 'GET']) !!}
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-10">
-                                    <input type="text" class="form-control keyword" placeholder="Type your keywords">
+                                    <input name="_q" type="text" class="form-control keyword" value="{{ request()->query('_q') }}" placeholder="Type your keywords">
                                 </div>
                                 <div class="form-group col-12 col-md-2">
                                     <button type="submit" class="btn submit-btn btn-primary w-100">Search</button>
                                 </div>
                             </div>
-                        </form>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>

@@ -117,4 +117,29 @@ class TutorsController extends Controller
     {
         return view($this->_config['view']);
     }
+
+
+    public function changeTutorProfileStatus(Request $request, $id)
+    {
+        if ( (int)$request->input('status') === 1) {
+            $tutorActivated = $this->tutorProfileRepository->activateProfile($id);
+
+            if ($tutorActivated) {
+                session()->flash('success', 'Tutor profile account has been Activated');
+            } else {
+                session()->flash('error', 'Tutor profile account could not be Activated. Please try again.');
+            }
+
+        } elseif ( -1 === (int) $request->input('status')) {
+            $tutorDeactivated = $this->tutorProfileRepository->deactivateProfile($id);
+            if ($tutorDeactivated) {
+                session()->flash('success', 'Tutor profile account has been deactivated');
+            } else {
+                session()->flash('error', 'Tutor profile account could not be deactivated. Please try again.');
+            }
+        }
+
+
+        return redirect()->route($this->_config['redirect']);
+    }
 }

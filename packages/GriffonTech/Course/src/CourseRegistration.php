@@ -6,6 +6,7 @@ namespace GriffonTech\Course;
 use GriffonTech\Course\Repositories\CourseBatchRepository;
 use GriffonTech\Course\Repositories\CourseRegistrationRepository;
 use GriffonTech\Course\Repositories\CourseRepository;
+use Illuminate\Support\Facades\DB;
 
 class CourseRegistration
 {
@@ -38,7 +39,7 @@ class CourseRegistration
             ->where('entry_status', 1)
             ->first();
 
-        if (!$course_batch) {
+        if (is_null($course_batch)) {
             $course_batch = $this->courseBatchRepository->create([
                 'course_id' => $course->id,
                 'tutor_id' => $course->tutor_id,
@@ -46,14 +47,22 @@ class CourseRegistration
             ]);
         }
 
-        $course_batch->no_of_users += 1;
-        if ( (int)$course_batch->no_of_users === (int) $course_batch->maximum_number_of_users) {
-            $course_batch->_entry_status = 0;
-        }
+        try {
+            if ((int)$course_batch->no_of_users < (int) $course_batch->maximum_number_of_users) {
+                $course_batch->no_of_users += 1;
+            }
 
-        $courseBatchUpdated = $course_batch->update();
+            if ( (int)$course_batch->no_of_users === (int) $course_batch->maximum_number_of_users) {
+                $course_batch->entry_status = 0;
+            }
 
-        if ($courseBatchUpdated) {
+            DB::beginTransaction();
+
+            $courseBatchUpdated = $course_batch->update();
+
+            if (!$courseBatchUpdated) {
+                throw new \Exception('Could not update the course batch details');
+            }
 
             $courseRegistration = $this->courseRegistrationRepository->create([
                 'user_id' => $user_id,
@@ -61,11 +70,16 @@ class CourseRegistration
                 'batch_id' => $course_batch->id
             ]);
 
-            if ($courseRegistration) {
-                return true;
+            if (!$courseRegistration) {
+                throw new \Exception('Course not create student course registration record');
             }
-        }
 
-        return false;
+            DB::commit();
+
+            return true;
+
+        } catch (\Exception $exception) {
+            return false;
+        }
     }
 }

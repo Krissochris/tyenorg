@@ -8,6 +8,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
+                        <a class="float-right btn btn-primary btn-sm" href="{{ route('tutor.withdrawals.create') }}">Create Withdrawal Request</a>
                         <h4> Withdrawals </h4>
                     </div>
                     <div class="card-body">
@@ -24,7 +25,7 @@
                             @foreach($withdrawals as $withdrawal)
                                 <tr>
                                     <td> {{ $withdrawal->amount }} </td>
-                                    <td> {{ $withdrawal->status }} </td>
+                                    <td> {{ $withdrawal->getStatus() }} </td>
                                     <td> {{ $withdrawal->note }} </td>
                                     <td> {{ $withdrawal->created_at }} </td>
                                 </tr>

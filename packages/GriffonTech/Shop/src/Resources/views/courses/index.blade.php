@@ -40,7 +40,6 @@
                     <!-- Search Form -->
                     <div class="search_form">
                         {!! Form::open(['route' => 'courses.index', 'method' => 'GET']) !!}
-                        <form action="#" method="get">
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-10">
                                     <input name="_q" type="text" class="form-control keyword" value="{{ request()->query('_q') }}" placeholder="Type your keywords">

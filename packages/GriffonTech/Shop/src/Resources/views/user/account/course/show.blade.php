@@ -57,11 +57,14 @@
                         <div class="card-header"> Course Batch - #{{ $courseRegistration->course_batch->id }} </div>
                         <div class="card-body">
                             <ul class="list-group col-lg-12">
-                                <li class="list-group-item"> <i class="fa fa-link"></i> - course learning link : <a href="{{ $course->learning_url }}" class="font-weight-bold text-decoration-none">{{ $course->learning_url }} </a> </li>
-                                <li class="list-group-item"> <i class="fa fa-users"></i> - No of Users : <span class="text-danger font-weight-bold">{{ $courseRegistration->course_batch->no_of_users }}</span>  </li>
-                                <li class="list-group-item"> <i class="fa fa-users-cog"></i> - Maximum Number of Users : <span class="text-danger font-weight-bold">{{ $courseRegistration->course_batch->maximum_number_of_users }}</span>  </li>
+                                <li class="list-group-item"> <i class="fa fa-link"></i> - course learning link 1 : <a href="{{ $course->learning_url }}" class="font-weight-bold text-decoration-none">{{ $course->learning_url }} </a> </li>
+                                <li class="list-group-item"> <i class="fa fa-link"></i> - course learning link 2: <a href="{{ $course->learning_url_2 }}" class="font-weight-bold text-decoration-none">{{ $course->learning_url_2 }} </a> </li>
+                                <li class="list-group-item"> <i class="fa fa-users"></i> - Current Number of Students In The Course : <span class="text-danger font-weight-bold">{{ $courseRegistration->course_batch->no_of_users }}</span>  </li>
+                                <li class="list-group-item"> <i class="fa fa-users"></i> - Maximum Number of Users : <span class="text-danger font-weight-bold">{{ $courseRegistration->course_batch->maximum_number_of_users }}</span>  </li>
                                 <li class="list-group-item"> <i class="fa fa-tasks"></i> - Is Taken : <span class="text-danger font-weight-bold">{{ ($courseRegistration->course_batch->is_taken) ? 'Yes' : 'No' }} </span></li>
-                                <li class="list-group-item"> <i class="fa fa-clock"></i> - Course Completed on : <span class="text-danger font-weight-bold">{{ ($courseRegistration->course_batch->time_completed) ? $courseRegistration->course_batch->time_completed : 'Not Yet' }}</span> </li>
+                                @if ($courseRegistration->course_batch->is_taken)
+                                    <li class="list-group-item"> <i class="fa fa-clock"></i> - Course Completed on : <span class="text-danger font-weight-bold">{{ ($courseRegistration->course_batch->time_completed) ? $courseRegistration->course_batch->time_completed : 'Not Yet' }}</span> </li>
+                                @endif
                             </ul>
                         </div>
                     </div>

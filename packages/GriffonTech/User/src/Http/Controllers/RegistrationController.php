@@ -87,6 +87,7 @@ class RegistrationController extends Controller {
 
         Event::fire('customer.registration.after', $user);
 
+
         if ($user) {
             if (true) {
                 try {

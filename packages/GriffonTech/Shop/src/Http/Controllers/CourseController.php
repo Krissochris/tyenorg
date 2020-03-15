@@ -86,20 +86,27 @@ class CourseController extends Controller
                         ->query()
                         ->where([
                             ['type', CourseRepository::FREE],
-                            ['name','LIKE', "%{$query}%"]
+                            ['name','LIKE', "%{$query}%"],
+                            ['status', 1]
                         ])->paginate(20);
 
                 } catch (ModelNotFoundException $exception) {
                     $courses = $this->courseRepository->getModel()
                         ->query()
-                        ->where('type', CourseRepository::FREE)
+                        ->where([
+                            ['type', CourseRepository::FREE],
+                            ['status', 1]
+                        ])
                         ->paginate(20);
                 }
             } else {
 
                 $courses = $this->courseRepository->getModel()
                     ->query()
-                    ->where('type', CourseRepository::FREE)
+                    ->where([
+                        ['type', CourseRepository::FREE],
+                        ['status', 1]
+                    ])
                     ->paginate(20);
             }
 
@@ -112,14 +119,17 @@ class CourseController extends Controller
                     $courses = $this->courseRepository->getModel()
                         ->query()
                         ->where([
-                            ['name','LIKE', "%{$query}%"]
+                            ['name','LIKE', "%{$query}%"],
+                            ['status', 1]
                         ])->paginate(20);
                 } catch (ModelNotFoundException $exception) {
                     $courses = $this->courseRepository
+                        ->findWhere(['status', 1])
                         ->paginate(20);
                 }
             } else {
                 $courses = $this->courseRepository
+                    ->findWhere(['status', 1])
                     ->paginate(20);
             }
         }
@@ -171,25 +181,25 @@ class CourseController extends Controller
 
     public function join($slug)
     {
-        try {
-            $course = $this->courseRepository->findBySlugOrFail($slug);
-        } catch (ModelNotFoundException $exception) {
-            abort(404);
-        }
+        $course = $this->courseRepository->findBySlugOrFail($slug);
 
         // check if the user is register to the course
         $courseRegistered = $this->courseRegistrationRepository->findOneWhere([
             'course_id' => $course->id,
             'user_id' => auth('user')->user()->id
-        ], ['course_id', 'user_id']);
+        ]);
 
         if ($courseRegistered) {
-            return redirect()->route('courses.show', $course->url_key);
+            session()->flash('info', 'You are already registered to this course');
+            return back();
         }
 
         $courseRegistration = CourseRegistration::registerStudent($course->id, auth('user')->user()->id);
+
         if ($courseRegistration) {
             session()->flash('success', 'You have successfully registered for this course!');
+        } else {
+            session()->flash('error', 'An error occurred adding you to the course. Please try again later.');
         }
         return back();
     }

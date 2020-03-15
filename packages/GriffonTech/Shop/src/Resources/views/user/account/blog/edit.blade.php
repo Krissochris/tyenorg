@@ -4,10 +4,10 @@
     <br>
     <div class="container">
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 {!! Form::model($blog, ['route' => ['user.blog.edit', $blog->url_key], 'enctype' => 'multipart/form-data' ]) !!}
                 <div class="card">
-                    <h5 class="card-header">Create Blog</h5>
+                    <h5 class="card-header">Edit Blog</h5>
                     <div class="card-body">
                         <div class="form-group">
                             <label for="title">Title</label>
@@ -15,7 +15,7 @@
                         </div>
                         <div class="form-group">
                             <label for="body"> Body </label>
-                            {!! Form::textarea('body', $blog->body, ['class' => 'form-control', 'cols' => 30, 'rows' => 10]) !!}
+                            {!! Form::textarea('body', $blog->body, ['class' => 'form-control summernote', 'cols' => 30, 'rows' => 10]) !!}
                         </div>
 
                         <div class="custom-file" >
@@ -24,7 +24,7 @@
 
                         <div class="form-group float-left">
                             <label for="">Status</label>
-                            {!! Form::select('status', ['Publish', 'Unpublish'], $blog->status, ['class' => 'form-control']) !!}
+                            {!! Form::select('status', ['1' => 'Publish', '0' => 'UnPublish'], $blog->status, ['class' => 'form-control']) !!}
                         </div>
                     </div>
                     <div class="card-footer">

@@ -29,13 +29,6 @@
     <!-- ===================== Popular Courses Area Start ===================== -->
     <div class="popular_coureses_area all_courses grid_list section_padding_100">
         <div class="container">
-
-            @if(!auth('user')->user()->is_pro_user)
-                <div class="alert alert-success">
-                    Become a pro member to enjoy the full benefits of this system. Click <a href="#">Here</a> to become a pro member
-                </div>
-            @endif
-
             <div class="row">
 
                 @if($courses)

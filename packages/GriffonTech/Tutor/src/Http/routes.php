@@ -101,9 +101,16 @@ Route::group(['middleware' => ['web', 'user']], function() {
                 'view' => 'tutor::tutor.profile.edit',
             ])->name('tutor.profile.edit');
 
+
             Route::post('profile/edit', 'GriffonTech\Tutor\Http\Controllers\TutorController@update')->defaults('_config', [
                 'redirect' => 'tutor.profile.edit',
             ])->name('tutor.profile.edit');
+
+
+            Route::post('profile/update_payment_detail', 'GriffonTech\Tutor\Http\Controllers\TutorController@updatePaymentDetail')->defaults('_config', [
+                'redirect' => 'tutor.profile.edit',
+            ])->name('tutor.profile.update_payment_detail');
+
 
 
             // tutor Reviews
@@ -112,17 +119,19 @@ Route::group(['middleware' => ['web', 'user']], function() {
             ])->name('tutor.review.index');
 
 
-            Route::get('withdrawals', 'GriffonTech\Tutor\Http\Controllers\WithdrawalController@index')->defaults('_config', [
+            Route::get('withdrawals/index', 'GriffonTech\Tutor\Http\Controllers\WithdrawalController@index')->defaults('_config', [
                 'view' => 'tutor::tutor.withdrawals.index',
             ])->name('tutor.withdrawals.index');
+
 
             Route::get('withdrawals/create', 'GriffonTech\Tutor\Http\Controllers\WithdrawalController@create')->defaults('_config', [
                 'view' => 'tutor::tutor.withdrawals.create',
             ])->name('tutor.withdrawals.create');
 
+
             Route::post('withdrawals/create', 'GriffonTech\Tutor\Http\Controllers\WithdrawalController@store')->defaults('_config', [
                 'redirect' => 'tutor.withdrawals.index',
-            ])->name('tutor.withdrawals.index');
+            ])->name('tutor.withdrawals.create');
 
         });
 

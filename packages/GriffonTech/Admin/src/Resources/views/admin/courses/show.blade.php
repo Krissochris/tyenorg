@@ -71,7 +71,7 @@
 
                             <tr>
                                 <td> Status </td>
-                                <td> {{ ($course->status) ? 'Active' : 'Not Active' }} </td>
+                                <td> {{ ($course->getStatus()) }} </td>
                             </tr>
 
                             </tbody>

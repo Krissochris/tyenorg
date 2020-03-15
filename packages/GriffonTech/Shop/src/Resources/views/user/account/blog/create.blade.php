@@ -4,7 +4,7 @@
     <br>
     <div class="container">
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 {!! Form::open(['route' => 'user.blog.create', 'enctype' => 'multipart/form-data']) !!}
                 <div class="card">
                     <h5 class="card-header">Create Blog</h5>
@@ -15,7 +15,7 @@
                         </div>
                         <div class="form-group">
                             <label for="body"> Body </label>
-                            {!! Form::textarea('body', null, ['class' => 'form-control', 'cols' => 30, 'rows' => 10]) !!}
+                            {!! Form::textarea('body', null, ['class' => 'form-control summernote', 'cols' => 30, 'rows' => 10]) !!}
                         </div>
 
                         <div class="custom-file" >

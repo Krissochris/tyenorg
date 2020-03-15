@@ -22,6 +22,7 @@
                             <th> Image</th>
                             <th>Created On</th>
                             <th>Last Modified On</th>
+                            <th>Status</th>
                             <th>Batches</th>
                             <th></th>
                         </tr>
@@ -36,6 +37,7 @@
                                 <td><img src="{{ $course->photo }}" alt="course image" width="70" height="70"> </td>
                                 <td> {{ $course->created_at }} </td>
                                 <td> {{ $course->updated_at }} </td>
+                                <td> {{ $course->getStatus() }} </td>
                                 <td> {{ $course->course_batches->count() }} </td>
                                 <td>
                                     <a class="btn btn-primary btn-sm" href="{{route('admin.courses.show', $course->id)}}">view</a>&nbsp;&nbsp;

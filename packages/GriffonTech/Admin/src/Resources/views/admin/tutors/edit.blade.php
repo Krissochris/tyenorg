@@ -51,16 +51,35 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="status">Status</label>
-                                        {!! Form::select('status', [1 => 'Active', -1 => 'UnActive'], null, ['class' => 'form-control']) !!}
-                                    </div>
-
-                                    <div class="form-group">
                                         <button type="submit" class="btn btn-primary">Update </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5> Deactivate Tutor </h5>
+                </div>
+                <div class="ibox-content">
+                    {!! Form::model($tutor, ['route' => ['admin.tutors.deactivate', $tutor->id ]]) !!}
+
+                    <div class="form-group">
+                        <label for="status">Status</label>
+
+                        {!! Form::select('status', [
+                             '1' => 'Active',
+                             '-1' => 'UnActive'
+                            ], null,
+                             ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::submit('submit', ['class' => 'btn btn-primary']) !!}
                     </div>
                     {!! Form::close() !!}
                 </div>

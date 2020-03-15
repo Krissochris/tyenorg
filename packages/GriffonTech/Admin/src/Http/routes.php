@@ -73,9 +73,11 @@ Route::group(['middleware' => ['web']], function (){
                 'view' => 'admin::admin.tutors.index'
             ])->name('admin.tutors.index');
 
+
             Route::get('tutors/create', 'GriffonTech\Admin\Http\Controllers\TutorsController@create')->defaults('_config', [
                 'view' => 'admin::admin.tutors.create'
             ])->name('admin.tutors.create');
+
 
             Route::post('tutors/create', 'GriffonTech\Admin\Http\Controllers\TutorsController@store')->defaults('_config', [
                 'redirect' => 'admin.tutors.index'
@@ -86,13 +88,23 @@ Route::group(['middleware' => ['web']], function (){
                 'view' => 'admin::admin.tutors.edit'
             ])->name('admin.tutors.edit');
 
+
             Route::post('tutors/edit/{id}', 'GriffonTech\Admin\Http\Controllers\TutorsController@update')->defaults('_config', [
                 'redirect' => 'admin.tutors.edit'
             ])->name('admin.tutors.edit');
 
+
             Route::get('tutors/show/{id}', 'GriffonTech\Admin\Http\Controllers\TutorsController@show')->defaults('_config', [
                 'view' => 'admin::admin.tutors.show'
             ])->name('admin.tutors.show');
+
+
+            Route::post('tutors/deactivate/{id}', 'GriffonTech\Admin\Http\Controllers\TutorsController@changeTutorProfileStatus')->defaults('_config', [
+                'redirect' => 'admin.tutors.index'
+            ])->name('admin.tutors.deactivate');
+
+
+
 
             // Tutor Application Submission
             Route::get('tutor_application_submissions/index', 'GriffonTech\Admin\Http\Controllers\TutorApplicationSubmissionsController@index')->defaults('_config', [

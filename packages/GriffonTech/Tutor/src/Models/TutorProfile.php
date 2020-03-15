@@ -6,6 +6,7 @@ use GriffonTech\Course\Models\CourseProxy;
 use GriffonTech\User\Models\UserProxy;
 use Illuminate\Database\Eloquent\Model;
 use \GriffonTech\Tutor\Contracts\TutorProfile as TutorContract;
+use Illuminate\Support\Facades\DB;
 
 class TutorProfile extends Model implements TutorContract
 {
@@ -13,7 +14,8 @@ class TutorProfile extends Model implements TutorContract
     protected $fillable = [
         'user_id', 'name', 'title', 'description', 'photo','phone_number','email', 'phone',
         'facebook_url', 'website_url', 'linkedIn_url', 'youtube_url',
-        'status','amount_balance', 'total_earned_amount', 'tutor_application_id'
+        'status','amount_balance', 'total_earned_amount', 'tutor_application_id',
+        'bank_name', 'bank_account_number', 'bank_account_name'
     ];
 
     public function user()
@@ -31,7 +33,27 @@ class TutorProfile extends Model implements TutorContract
         return $this->hasMany(CourseProxy::modelClass(), 'tutor_id', 'id');
     }
 
-    public function getStatusAttribute($value)
+
+    public function withdrawals()
+    {
+        return $this->hasMany(TutorWithdrawalProxy::modelClass(), 'tutor_id', 'id');
+    }
+
+
+    public function getStatus()
+    {
+        switch ($this->status) {
+            case -1:
+                return 'UnActive';
+            case  1:
+                return 'Active';
+            default:
+                return 'Unknown';
+        }
+    }
+
+
+    /*public function getStatusAttribute($value)
     {
         switch ($value) {
             case -1:
@@ -41,7 +63,7 @@ class TutorProfile extends Model implements TutorContract
             default:
                 return 'Unknown';
         }
-    }
+    }*/
 
 
     public function credit($amount)
@@ -60,6 +82,58 @@ class TutorProfile extends Model implements TutorContract
             }
         }
         return false;
+    }
+
+
+    public function deactivate()
+    {
+        try {
+            DB::beginTransaction();
+            $this->update([
+                'status' => -1
+            ]);
+
+            $courses = $this->courses;
+
+            if (!$courses->isEmpty()) {
+                foreach ($courses as $course) {
+                    if (!$course->deactivate()) {
+                        throw new \Exception(sprintf('Could not deactivate course with id %s ', $course->id));
+                    }
+                }
+            }
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return false;
+        }
+        return true;
+    }
+
+
+    public function activate()
+    {
+        try {
+            DB::beginTransaction();
+            $this->update([
+                'status' => 1
+            ]);
+
+            $courses = $this->courses;
+
+            if (!$courses->isEmpty()) {
+                foreach ($courses as $course) {
+                    if (!$course->activate()) {
+                        throw new \Exception(sprintf('Could not activate course with id %s ', $course->id));
+                    }
+                }
+            }
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return false;
+        }
+        return true;
     }
 
 }

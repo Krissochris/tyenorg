@@ -42,4 +42,30 @@ class Course extends Model implements CourseContract
     {
         return $this->hasMany(CourseReviewProxy::modelClass(), 'course_id', 'id');
     }
+
+    public function deactivate()
+    {
+        return $this->update([
+            'status' => -1
+        ]);
+    }
+
+    public function activate()
+    {
+        return $this->update([
+            'status' => 1
+        ]);
+    }
+
+    public function getStatus()
+    {
+        switch ($this->status) {
+            case -1:
+                return 'UnActive';
+            case  1:
+                return 'Active';
+            default:
+                return 'Unknown';
+        }
+    }
 }

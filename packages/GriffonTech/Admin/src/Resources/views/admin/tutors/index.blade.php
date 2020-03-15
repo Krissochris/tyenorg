@@ -15,7 +15,10 @@
                         <tr>
                             <th> Name </th>
                             <th>Title</th>
-                            <th>Earned Amount </th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th> Wallet Balance </th>
+                            <th>Total Courses </th>
                             <th> Status </th>
                         </tr>
                         </thead>
@@ -24,14 +27,19 @@
                             <tr>
                                 <td> {{ $tutor->name }} </td>
                                 <td> {{ $tutor->title }} </td>
+                                <td> {{ $tutor->phone }} </td>
+                                <td> {{ $tutor->email }} </td>
                                 <td> ${{ number_format($tutor->amount_balance, 2) }} </td>
+                                <td> {{ $tutor->courses->count() }} </td>
                                 <td>
-                                    {{ $tutor->status }}
+                                    {{ $tutor->getStatus() }}
                                 </td>
                                 <td>
                                     <a class="btn btn-success btn-sm" href="{{route('admin.tutors.show', $tutor->id)}}"> View</a>
                                     <a class="btn btn-primary btn-sm" href="{{route('admin.tutors.edit', $tutor->id)}}"> Edit </a>
-                                    <a class="btn btn-danger btn-sm" href="{{route('admin.tutors.edit', $tutor->id)}}"> Delete</a>
+{{--
+                                    <a class="btn btn-danger btn-sm" href="#" onclick="event.preventDefault(); alert('This action is not active')"> Delete</a>
+--}}
                                 </td>
                             </tr>
                         @endforeach

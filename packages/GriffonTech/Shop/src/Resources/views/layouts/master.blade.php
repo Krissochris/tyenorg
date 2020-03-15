@@ -17,6 +17,7 @@
     <!-- ===================== All CSS Files ===================== -->
 
     <!-- Style css -->
+    <link href="{{ asset('admin/css/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('lms/style.css') }}">
 
     <!-- Responsive css -->
@@ -77,7 +78,14 @@
 <script src="{{ asset('lms/js/classy-nav.js') }}"></script>
 <!-- Active js -->
 <script src="{{ asset('lms/js/active.js') }}"></script>
+<script src="{{ asset('admin/js/plugins/summernote/summernote-bs4.js') }}"></script>
+<script>
+    $(document).ready(function(){
 
+        $('.summernote').summernote();
+
+    });
+</script>
 @yield('footer-scripts')
 </body>
 

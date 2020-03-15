@@ -53,7 +53,7 @@ class ProUserHandler {
 
                     if ($userReferral) {
                         $userReferral->update([
-                            'referral_bonus' => $userReferral->referral_bonus + (15 * 0.05),
+                            'referral_bonus' => $userReferral->referral_bonus + (30 * 0.05),
                             'available_referral' => $userReferral->available_referral + 1
                         ]);
                     }
@@ -61,9 +61,5 @@ class ProUserHandler {
             }
 
         }
-        // get the user record and make a pro user
-        // get the user referral and give the referral bonus
-        // also increment the available referrals
-
     }
 }

@@ -45,6 +45,7 @@ class HomeController extends Controller {
         $courses = $this->courseRepository
             ->getModel()
             ->latest()
+            ->where('status', 1)
             ->limit(4)
             ->get()
             ->map(function($row){
