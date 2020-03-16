@@ -1,5 +1,8 @@
 @extends('shop::layouts.master')
 
+@section('title')
+   Course Purchase Checkout
+@stop
 @section('content')
     <div class="container col-sm-9">
         <div class="py-5 text-center">
@@ -18,7 +21,7 @@
                             <h6 class="my-0"> {{ $course->name }}</h6>
                             <small class="text-muted">{{ $course->summary }}</small>
                         </div>
-                        <span class="text-danger font-weight-bold float-right">${{ $course->price }}</span>
+                        <span class="text-danger font-weight-bold float-right">${{ $course->price }} or {{ $course->total_no_of_referrals_needed }} Referrals</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total (USD)</span>
@@ -56,11 +59,16 @@
                                     <input id="bank_deposit" name="paymentMethod" type="radio" value="bank_deposit" required>
                                     Bank Deposit </label>
                             </div>
-                            <div class="custom-control custom-radio">
-                                <label class="" for="referrals">
-                                    <input id="referrals" name="paymentMethod" type="radio" value="referrals" required>
-                                    Referrals ( Available {{ auth('user')->user()->user_referral->available_referral }} ) </label>
-                            </div>
+                            @if(isset(auth('user')->user()->user_referral))
+                                <div class="custom-control custom-radio">
+                                    <label class="" for="referrals">
+                                        <input id="referrals" name="paymentMethod" type="radio" value="referrals"
+                                               {{ ($course->total_no_of_referrals_needed > auth('user')->user()->user_referral->available_referral) ? 'disabled' : '' }}
+                                               required>
+                                        Referrals ( Available Referrals : {{ auth('user')->user()->user_referral->available_referral }} ) </label>
+                                </div>
+                            @endif
+
                         </div>
                         {{--<div class="row">
                             <div class="col-md-6 mb-3">

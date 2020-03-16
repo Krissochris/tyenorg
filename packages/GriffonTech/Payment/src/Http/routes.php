@@ -23,6 +23,10 @@ Route::group(['middleware' => ['web']], function() {
     ])
         ->name('payment.bank_deposit');
 
+    Route::get('/payment/referrals', 'GriffonTech\Payment\Http\Controllers\ReferralsPaymentController@index')->defaults('_config', [
+        'view' => 'payment::bank_deposits.index'
+    ])->name('payment.referrals');
+
 
 
     Route::get('/payment/success', function() {

@@ -1,5 +1,8 @@
 @extends('shop::layouts.master')
 
+@section('title')
+    My Profile
+@stop
 
 @section('content')
     <!-- Breadcumb area start -->
@@ -38,7 +41,7 @@
                         <h4>Personal Details</h4>
                     </div>
                     <div class="card-body">
-                        {!! Form::model($user, ['route' => 'user.profile.edit']) !!}
+                        {!! Form::model($user, ['route' => 'user.profile.update_payment_details']) !!}
                             <div class="form-group row">
                                 <label class="col-sm-2">Full Name: </label>
                                 <div class="col-sm-7">
@@ -88,6 +91,66 @@
                         {!! Form::close() !!}
                     </div>
                 </div>
+
+
+
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <h5>Payment Details </h5>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="alert alert-danger">
+                            <p> Please you can only edit your payment details once. </p>
+                        </div>
+
+                        {!! Form::model($paymentDetails, ['route' => 'user.profile.update_payment_details']) !!}
+                        <h5> Local Bank Details </h5>
+                        <div class="form-group row">
+                            <label class="col-sm-2">Bank Details: </label>
+                            <div class="col-sm-7">
+                                {!! Form::text('bank_name', null, ['class' => 'form-control', 'placeholder' => 'Bank Name']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2"> Account Name: </label>
+                            <div class="col-sm-7">
+                                {!! Form::text('account_name', null, ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2">Account Number: </label>
+                            <div class="col-sm-7">
+                                {!! Form::text('account_number', null, ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
+
+                        <h5> Bitcoin Detail : </h5>
+                        <div class="form-group row">
+                            <label class="col-sm-2">Bitcoin Address: </label>
+                            <div class="col-sm-7">
+                                {!! Form::text('btc_address', null, ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
+
+                        <h5> PayPal Details</h5>
+                        <div class="form-group row">
+                            <label class="col-sm-2">PayPal Email Address: </label>
+                            <div class="col-sm-7">
+                                {!! Form::email('paypal_email_address', null, ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-primary">Update</button>
+                        </div>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+
             </div>
             <br>
             <br>

@@ -148,6 +148,12 @@ Route::group(['middleware' => ['web']], function(){
                         'redirect' => 'user.profile.index'
                     ])->name('user.profile.destroy');
 
+                    Route::post('profile/update_payment_details', 'GriffonTech\User\Http\Controllers\UserController@updatePaymentDetails')->defaults('_config', [
+                        'redirect' => 'user.profile.index'
+                    ])->name('user.profile.update_payment_details');
+
+
+
                     //User Course Show
                     Route::get('my-courses/learning', 'GriffonTech\User\Http\Controllers\CourseController@index')->defaults('_config', [
                         'view' => 'shop::user.account.course.index'
@@ -164,6 +170,19 @@ Route::group(['middleware' => ['web']], function(){
                     Route::get('referral', 'GriffonTech\User\Http\Controllers\ReferralController@show')->defaults('_config', [
                         'view' => 'shop::user.account.referral.show'
                     ])->name('user.referral.show');
+
+                    // User Withdrawals
+                    Route::get('withdrawals/index', 'GriffonTech\User\Http\Controllers\UserWithdrawalsController@index')->defaults('_config', [
+                        'view' => 'shop::user.account.withdrawals.index'
+                    ])->name('user.withdrawals.index');
+
+                    Route::get('withdrawals/create', 'GriffonTech\User\Http\Controllers\UserWithdrawalsController@create')->defaults('_config', [
+                        'view' => 'shop::user.account.withdrawals.create'
+                    ])->name('user.withdrawals.create');
+
+                    Route::post('withdrawals/create', 'GriffonTech\User\Http\Controllers\UserWithdrawalsController@store')->defaults('_config', [
+                        'redirect' => 'user.withdrawals.index'
+                    ])->name('user.withdrawals.create');
 
 
                     //User Blog

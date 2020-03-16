@@ -2,7 +2,9 @@
 
 namespace GriffonTech\User\Http\Controllers;
 
+use GriffonTech\User\Repositories\UserPaymentDetailRepository;
 use GriffonTech\User\Repositories\UserRepository;
+use Illuminate\Http\Request;
 
 /**
  * User controller for the customer basically for the tasks of users which will be
@@ -26,20 +28,27 @@ class UserController extends Controller {
      */
     protected $userRepository;
 
+    protected $userPaymentDetailRepository;
+
     /**
      * Create a new controller instance.
      *
      * @param  \GriffonTech\User\Repositories\UserRepository $userRepository
-     //* @param  \GriffonTech\Product\Repositories\ProductReviewRepository $productReview
+     * @param  \GriffonTech\User\Repositories\UserPaymentDetailRepository $userPaymentDetailRepository
      * @return void
      */
-    public function __construct(UserRepository $userRepository /*ProductReviewRepository $productReviewRepository*/)
+    public function __construct(
+        UserRepository $userRepository,
+        UserPaymentDetailRepository $userPaymentDetailRepository
+    )
     {
         $this->middleware('user');
 
         $this->_config = request('_config');
 
         $this->userRepository = $userRepository;
+
+        $this->userPaymentDetailRepository = $userPaymentDetailRepository;
     }
 
     /**
@@ -50,21 +59,14 @@ class UserController extends Controller {
     public function index()
     {
         $user = $this->userRepository->find(auth()->guard('user')->user()->id);
+        $paymentDetails = $this->userPaymentDetailRepository->firstOrCreate([
+            'user_id' => auth('user')->user()->id
+        ]);
 
-        return view($this->_config['view'], compact('user'));
+        return view($this->_config['view'], compact('user', 'paymentDetails'));
     }
 
-    /**
-     * For loading the edit form page.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function edit()
-    {
-        $customer = $this->userRepository->find(auth()->guard('user')->user()->id);
 
-        return view($this->_config['view'], compact('customer'));
-    }
 
     /**
      * Edit function for editing customer profile.
@@ -143,5 +145,29 @@ class UserController extends Controller {
         }
     }
 
+
+    public function updatePaymentDetails(Request $request)
+    {
+        $paymentDetails = $this->userPaymentDetailRepository->firstOrCreate([
+            'user_id' => auth('user')->user()->id
+        ]);
+
+        if ($paymentDetails->is_saved) {
+            session()->flash('error', 'You can not edit your payment record again. Please contact support for any changes');
+            return back();
+        }
+
+        $paymentDetails = $paymentDetails->forceFill($request->except(['_token','_method']));
+        $paymentDetails->is_saved = 1;
+
+        $saved = $paymentDetails->update();
+
+        if ($saved) {
+            session()->flash('success', 'Payment details was successfully saved.');
+        } else {
+            session()->flash('error', 'Payment details could not be saved.');
+        }
+        return back();
+    }
 
 }

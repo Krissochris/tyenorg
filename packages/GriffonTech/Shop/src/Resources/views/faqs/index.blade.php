@@ -24,7 +24,7 @@
 
                             <div id="collapse-{{ $faq->id }}" class="collapse hide" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="card-body">
-                                    {{ $faq->answer }}
+                                    {!! $faq->answer !!}
                                 </div>
                             </div>
                         </div>

@@ -81,7 +81,7 @@
                                                 <li><a href="{{ route('user.course.index') }}">My Courses</a></li>
                                                 <li><a href="{{ route('user.profile.index') }}">Profile</a></li>
                                                 <li><a href="{{ route('user.referral.show') }}">Referrals</a></li>
-                                                <li><a href="#">Notifications</a></li>
+                                                <li><a href="{{ route('user.withdrawals.index') }}"> Withdrawals</a></li>
                                                 <li><a href="{{route('user.purchases.index')}}">Purchase History</a></li>
                                                 <li><a href="{{route('user.blog.index')}}">My Blog</a></li>
                                                 <li><a href="{{route('user.testimonies.index')}}">Testimonies</a></li>
