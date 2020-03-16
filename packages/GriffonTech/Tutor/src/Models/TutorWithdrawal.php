@@ -29,5 +29,10 @@ class TutorWithdrawal extends Model implements TutorWithdrawalContract
         }
     }
 
+    public function tutor_profile()
+    {
+        return $this->belongsTo(TutorProfileProxy::modelClass(), 'tutor_id', 'id');
+    }
+
 
 }

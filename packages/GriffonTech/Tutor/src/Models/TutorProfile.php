@@ -84,6 +84,21 @@ class TutorProfile extends Model implements TutorContract
         return false;
     }
 
+    public function debit($amount)
+    {
+        if (is_numeric($amount)) {
+            $amount = floatval($amount);
+            $this->forceFill([
+                'amount_balance' => $this->amount_balance - $amount,
+            ]);
+            if ($this->update()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
     public function deactivate()
     {

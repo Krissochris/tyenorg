@@ -39,12 +39,19 @@
                 <ul class="nav nav-second-level collapse">
                     <li><a href="{{ route('admin.tutor_application_submissions.index') }}">Tutor Applications</a></li>
                     <li><a href="{{ route('admin.tutors.index') }}"> Tutors </a></li>
+                    <li><a href="{{ route('admin.tutor_withdrawals.index') }}"> Tutor Withdrawals </a></li>
                 </ul>
             </li>
             <li>
-                <a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i>
-                    <span class="nav-label">Users</span>
-                </a>
+                <a href="#"><i class="fa fa-users"></i> <span class="nav-label">Users</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+
+                        <a href="{{ route('admin.users.index') }}">Users</a>
+                        <a href="{{ route('admin.users.index') }}">User Bonus Withdrawals</a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="#"><i class="fa fa-book"></i> <span class="nav-label">Courses</span><span

@@ -104,6 +104,23 @@ Route::group(['middleware' => ['web']], function (){
             ])->name('admin.tutors.deactivate');
 
 
+            // Tutor Withdrawals
+            Route::get('tutor_withdrawals/index', 'GriffonTech\Admin\Http\Controllers\TutorWithdrawalsController@index')->defaults('_config', [
+                'view' => 'admin::admin.tutor_withdrawals.index'
+            ])->name('admin.tutor_withdrawals.index');
+
+
+            Route::get('tutor_withdrawals/edit/{id}', 'GriffonTech\Admin\Http\Controllers\TutorWithdrawalsController@edit')->defaults('_config', [
+                'view' => 'admin::admin.tutor_withdrawals.edit'
+            ])->name('admin.tutor_withdrawals.edit');
+
+
+            Route::post('tutor_withdrawals/edit/{id}', 'GriffonTech\Admin\Http\Controllers\TutorWithdrawalsController@update')->defaults('_config', [
+                'redirect' => 'admin.tutor_withdrawals.index'
+            ])->name('admin.tutor_withdrawals.edit');
+
+
+
 
 
             // Tutor Application Submission
