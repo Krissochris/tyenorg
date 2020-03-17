@@ -51,6 +51,14 @@
                             <th> Account Number </th>
                             <td> {{ $tutorWithdrawal->tutor_profile->bank_account_number }} </td>
                         </tr>
+                        <tr>
+                            <th> Bitcoin Wallet Address </th>
+                            <td> {{ $tutorWithdrawal->tutor_profile->btc_wallet_address }} </td>
+                        </tr>
+                        <tr>
+                            <th> PayPal Email Address </th>
+                            <td> {{ $tutorWithdrawal->tutor_profile->paypal_email_address }} </td>
+                        </tr>
                     </table>
 
                     @if($tutorWithdrawal->status === 1)
