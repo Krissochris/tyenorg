@@ -121,6 +121,19 @@ Route::group(['middleware' => ['web']], function (){
 
 
 
+            // User Withdrawal
+            Route::get('user_withdrawals/index', 'GriffonTech\Admin\Http\Controllers\UserWithdrawalsController@index')->defaults('_config', [
+                'view' => 'admin::admin.user_withdrawals.index'
+            ])->name('admin.user_withdrawals.index');
+
+            Route::get('user_withdrawals/edit/{id}', 'GriffonTech\Admin\Http\Controllers\UserWithdrawalsController@edit')->defaults('_config', [
+                'view' => 'admin::admin.user_withdrawals.edit'
+            ])->name('admin.user_withdrawals.edit');
+
+            Route::post('user_withdrawals/edit/{id}', 'GriffonTech\Admin\Http\Controllers\UserWithdrawalsController@update')->defaults('_config', [
+                'redirect' => 'admin.user_withdrawals.index'
+            ])->name('admin.user_withdrawals.edit');
+
 
 
             // Tutor Application Submission

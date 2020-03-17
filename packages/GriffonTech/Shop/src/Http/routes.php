@@ -271,4 +271,10 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('faqs', 'GriffonTech\Shop\Http\Controllers\FaqController@index')->defaults('_config', [
         'view' => 'shop::faqs.index'
     ])->name('faqs.index');
+
+
+    Route::get('pages/view/{page}', 'GriffonTech\Shop\Http\Controllers\PagesController@view')->defaults('_config', [
+        'view' => 'shop::pages.view'
+    ])->name('pages.view');
+
 });

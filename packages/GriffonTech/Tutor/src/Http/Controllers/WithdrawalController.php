@@ -68,7 +68,8 @@ class WithdrawalController extends Controller
         $activeWithdrawal = $this->tutorWithdrawalRepository->findOneWhere([
             'tutor_id' => $tutorProfile->id,
             'status' => 1
-        ])->first();
+        ]);
+
 
         if ($activeWithdrawal) {
             session()->flash('error', 'You can only have one active withdrawal at the a time.');

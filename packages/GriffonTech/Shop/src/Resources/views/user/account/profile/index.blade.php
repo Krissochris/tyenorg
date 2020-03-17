@@ -41,7 +41,7 @@
                         <h4>Personal Details</h4>
                     </div>
                     <div class="card-body">
-                        {!! Form::model($user, ['route' => 'user.profile.update_payment_details']) !!}
+                        {!! Form::model($user, ['route' => 'user.profile.edit']) !!}
                             <div class="form-group row">
                                 <label class="col-sm-2">Full Name: </label>
                                 <div class="col-sm-7">

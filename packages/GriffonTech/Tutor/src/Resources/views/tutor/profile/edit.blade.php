@@ -122,25 +122,41 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group row">
-                                        <label class="col-sm-2"> Bank Name </label>
+                                        <label class="col-sm-3"> Bank Name </label>
                                         <div class="col-sm-7">
                                             {!! Form::text('bank_name', null, ['class' => 'form-control']) !!}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2"> Account Name </label>
+                                        <label class="col-sm-3"> Account Name </label>
                                         <div class="col-sm-7">
                                             {!! Form::text('bank_account_name', null, ['class' => 'form-control']) !!}
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2"> Account Number </label>
+                                        <label class="col-sm-3"> Account Number </label>
                                         <div class="col-sm-7">
                                             {!! Form::text('bank_account_number', null, ['class' => 'form-control']) !!}
                                         </div>
                                     </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3"> Bitcoin Wallet Address </label>
+                                        <div class="col-sm-7">
+                                            {!! Form::text('btc_wallet_address', null, ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3"> PayPal Email Address </label>
+                                        <div class="col-sm-7">
+                                            {!! Form::text('paypal_email_address', null, ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="card-footer">

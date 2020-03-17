@@ -68,6 +68,10 @@ class User extends Authenticatable implements UserContract
         return $this->hasOne(UserReferralProxy::modelClass(), 'user_id', 'id');
     }
 
+    public function payment_details()
+    {
+        return $this->hasOne(UserPaymentDetailProxy::modelClass(), 'user_id', 'id');
+    }
     /**
      * Send the password reset notification.
      *

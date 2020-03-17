@@ -40,14 +40,14 @@
                         <!-- single contact info start -->
                         <div class="footer_single_contact_info">
                             <i class="fa fa-phone" aria-hidden="true"></i>
-                            <a href="tel:+8801791166123">+ number</a>
-                            <a href="tel:+8801791166123">+ number</a>
+                            <a href="tel:{{setting('phone_number_1')}}"> {{ setting('phone_number_1') }} </a>
+                            <a href="tel:{{setting('phone_number_2')}}"> {{ setting('phone_number_2') }}</a>
                         </div>
                         <!-- single contact info start -->
                         <div class="footer_single_contact_info">
                             <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                            <a href="mailto:info@educamp.com">info@tyen.org</a>
-                            <a href="mailto:care@educamp.com">care@tyen.org</a>
+                            <a href="mailto:{{ setting('email_address_1') }}"> {{ setting('email_address_1') }} </a>
+                            <a href="mailto:{{ setting('email_address_2') }}"> {{ setting('email_address_2') }}</a>
                         </div>
                     </div>
                 </div>
@@ -62,33 +62,31 @@
                         </div>
                         <!-- Links Start -->
                         <div class="links">
-                            <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> All Our Courses</a>
-                            <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Event Calendar</a>
+                            <a href="{{ route('courses.index') }}"><i class="fa fa-angle-right" aria-hidden="true"></i> All Our Courses</a>
                             <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Customer Support</a>
-                            <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Career at EduCamp</a>
-                            <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Terms &amp; Conditions</a>
+                            <a href="{{ route('pages.view', 'page_terms_&_conditions') }}"><i class="fa fa-angle-right" aria-hidden="true"></i> Terms &amp; Conditions</a>
                             <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Community Forums</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Useful Links Area Start -->
-                <div class="col-12 col-md-6 col-lg">
-                    <div class="important_links footer-single-part">
-                        <div class="title">
-                            <h4>Subscribe Newsletter</h4>
-                            <div class="underline"></div>
-                        </div>
-                        <div class="newsletter_from">
-                            <form action="#">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" id="email" placeholder="Enter Your E-mail" required>
-                                </div>
-                                <button type="submit" class="btn blog-btn w-100">Submit <i class="fa fa-paper-plane"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="col-12 col-md-6 col-lg">--}}
+{{--                    <div class="important_links footer-single-part">--}}
+{{--                        <div class="title">--}}
+{{--                            <h4>Subscribe Newsletter</h4>--}}
+{{--                            <div class="underline"></div>--}}
+{{--                        </div>--}}
+{{--                        <div class="newsletter_from">--}}
+{{--                            <form action="#">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <input type="email" class="form-control" id="email" placeholder="Enter Your E-mail" required>--}}
+{{--                                </div>--}}
+{{--                                <button type="submit" class="btn blog-btn w-100">Submit <i class="fa fa-paper-plane"></i></button>--}}
+{{--                            </form>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
             </div>
         </div>

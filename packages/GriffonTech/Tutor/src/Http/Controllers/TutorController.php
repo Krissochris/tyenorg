@@ -98,7 +98,9 @@ class TutorController extends Controller
         $tutorProfile = $this->tutorProfileRepository
             ->findOneByField('user_id', auth('user')->user()->id);
 
-        $tutorProfileUpdated = $tutorProfile->update($request->only(['bank_name', 'bank_account_number', 'bank_account_name']));
+        $tutorProfileUpdated = $tutorProfile
+            ->update($request->only(['bank_name', 'bank_account_number',
+                'bank_account_name', 'btc_wallet_address', 'paypal_email_address']));
 
         if ($tutorProfileUpdated) {
             session()->flash('success', 'Your tutor payment details was successfully added.');

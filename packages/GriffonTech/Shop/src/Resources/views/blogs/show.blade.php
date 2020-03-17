@@ -169,7 +169,7 @@
                             <!-- Single Input Start -->
                             <div class="col-12">
                                 <div class="form-group text-area text-center">
-                                    <input type="submit" value="Drope Your Comments" id="submit">
+                                    <input type="submit" value="Drop Your Comments" id="submit">
                                 </div>
                             </div>
                         </div>

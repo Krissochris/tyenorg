@@ -1,5 +1,10 @@
 @extends('shop::layouts.master')
 
+@section('title')
+    My Courses
+@stop
+
+
 @section('content')
     <!-- Breadcumb area start -->
     <section class="breadcumb_area" style="background-image: url({{ asset('lms/img/bg-pattern/breadcumb.jpg') }});">
@@ -43,7 +48,7 @@
                                     </div>
                                     <div class="single_courses_desc">
                                         <div class="title">
-                                            <a href="{{ route('user.course.show', $course->url_key) }}">Introduction to Family Engagement in Education</a>
+                                            <a href="{{ route('user.course.show', $course->url_key) }}"> {{ $course->name }} </a>
                                             <p>{{ $course->summary }}</p>
                                         </div>
                                         <div class="price_rating_area d-flex align-items-center">

@@ -21,6 +21,27 @@
                         {!! Form::number('pro_membership_fee', setting('pro_membership_fee'), ['class' => 'form-control']) !!}
                     </div>
 
+                    <h5>Contact Details </h5>
+                    <div class="form-group">
+                        <label for="facebook_link">Phone Number 1</label>
+                        {!! Form::text('facebook_url', setting('phone_number_1'), ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="facebook_link">Phone Number 2</label>
+                        {!! Form::text('facebook_url', setting('phone_number_2'), ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="facebook_link">Email Address 1 </label>
+                        {!! Form::text('facebook_url', setting('email_address_1'), ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="facebook_link">Email Address 2</label>
+                        {!! Form::text('facebook_url', setting('email_address_1'), ['class' => 'form-control']) !!}
+                    </div>
+
                     <h5> Social Links</h5>
 
                     <div class="form-group">

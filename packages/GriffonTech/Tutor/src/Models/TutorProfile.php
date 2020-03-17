@@ -15,7 +15,8 @@ class TutorProfile extends Model implements TutorContract
         'user_id', 'name', 'title', 'description', 'photo','phone_number','email', 'phone',
         'facebook_url', 'website_url', 'linkedIn_url', 'youtube_url',
         'status','amount_balance', 'total_earned_amount', 'tutor_application_id',
-        'bank_name', 'bank_account_number', 'bank_account_name'
+        'bank_name', 'bank_account_number', 'bank_account_name', 'btc_wallet_address',
+        'paypal_email_address'
     ];
 
     public function user()
