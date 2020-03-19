@@ -21,6 +21,7 @@ class CreateBlogsTable extends Migration
             $table->text('body');
             $table->string('photo', 255)->nullable();
             $table->boolean('status')->default(1)->comment('The Blog status 1 = Published, 0 = Unpublished');
+            $table->unsignedInteger('blog_category_id')->nullable();
             $table->unsignedInteger('views')->default(0);
             $table->timestamps();
         });

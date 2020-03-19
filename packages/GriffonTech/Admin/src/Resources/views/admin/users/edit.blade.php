@@ -81,4 +81,57 @@
             {!! Form::close() !!}
         </div>
     </div>
+
+
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5> Edit Payment Details </h5>
+        </div>
+        <div class="ibox-content">
+            {!! Form::model($userPaymentDetail, ['route' => ['admin.users.update_payment_detail', $user->id] ]) !!}
+            <h5> Local Bank Details </h5>
+            <div class="form-group row">
+                <label class="col-sm-2">Bank Details: </label>
+                <div class="col-sm-7">
+                    {!! Form::text('bank_name', null, ['class' => 'form-control', 'placeholder' => 'Bank Name']) !!}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2"> Account Name: </label>
+                <div class="col-sm-7">
+                    {!! Form::text('account_name', null, ['class' => 'form-control', 'placeholder' => 'Account Name']) !!}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2">Account Number: </label>
+                <div class="col-sm-7">
+                    {!! Form::text('account_number', null, ['class' => 'form-control', 'placeholder' => 'Account Number']) !!}
+                </div>
+            </div>
+
+            <h5> Bitcoin Detail : </h5>
+            <div class="form-group row">
+                <label class="col-sm-2">Bitcoin Address: </label>
+                <div class="col-sm-7">
+                    {!! Form::text('btc_address', null, ['class' => 'form-control', 'placeholder' => 'Bitcoin Address']) !!}
+                </div>
+            </div>
+
+            <h5> PayPal Details</h5>
+            <div class="form-group row">
+                <label class="col-sm-2">PayPal Email Address: </label>
+                <div class="col-sm-7">
+                    {!! Form::email('paypal_email_address', null, ['class' => 'form-control', 'placeholder' => 'PayPal Email Address']) !!}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary">Update</button>
+            </div>
+            {!! Form::close() !!}
+        </div>
+    </div>
+
 @endsection

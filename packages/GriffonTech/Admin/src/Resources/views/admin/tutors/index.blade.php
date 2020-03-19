@@ -10,7 +10,7 @@
                     <h5> Tutors </h5>
                 </div>
                 <div class="ibox-content table-responsive">
-                    <table class="table table-hover no-margins">
+                    <table id="data-table" class="table table-hover no-margins">
                         <thead>
                         <tr>
                             <th> Name </th>
@@ -20,6 +20,7 @@
                             <th> Wallet Balance </th>
                             <th>Total Courses </th>
                             <th> Status </th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>

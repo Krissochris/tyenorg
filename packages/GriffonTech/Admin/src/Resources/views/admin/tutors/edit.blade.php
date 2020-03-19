@@ -50,6 +50,45 @@
                                         {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
                                     </div>
 
+                                    <h4> Payment Details</h4>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3"> Bank Name </label>
+                                        <div class="col-sm-7">
+                                            {!! Form::text('bank_name', null, ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3"> Account Name </label>
+                                        <div class="col-sm-7">
+                                            {!! Form::text('bank_account_name', null, ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3"> Account Number </label>
+                                        <div class="col-sm-7">
+                                            {!! Form::text('bank_account_number', null, ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3"> Bitcoin Wallet Address </label>
+                                        <div class="col-sm-7">
+                                            {!! Form::text('btc_wallet_address', null, ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3"> PayPal Email Address </label>
+                                        <div class="col-sm-7">
+                                            {!! Form::text('paypal_email_address', null, ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+
+
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary">Update </button>
                                     </div>
@@ -84,6 +123,7 @@
                     {!! Form::close() !!}
                 </div>
             </div>
+
         </div>
     </div>
 

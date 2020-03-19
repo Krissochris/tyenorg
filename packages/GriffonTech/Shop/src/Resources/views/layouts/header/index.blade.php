@@ -71,7 +71,7 @@
 
                                 @auth('user')
                                         @if(auth('user')->user()->tutor_id)
-                                            <li><a href="{{route('tutor.courses.index')}}">Tutor Account </a></li>
+                                            <li><a href="{{route('tutor.dashboard.index')}}">Tutor Account </a></li>
                                         @else
                                             <li><a href="{{route('user.tutor_application.create')}}">Become A Tutor</a></li>
                                         @endif

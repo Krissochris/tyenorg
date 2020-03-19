@@ -18,14 +18,14 @@
                                 <div class="form-group">
                                     <input type="hidden" name="entry_status" value="0">
                                     <label for="entry_status">
-                                        <input type="checkbox" name="entry_status" value="1" {{ ($course_batch->entry_status) ? 'checked' : '' }} >
+                                        <input type="checkbox" name="entry_status" value="1" {{ ($course_batch->entry_status) ? 'checked' : '' }} {{ ($course_batch->entry_status) ? 'disabled' : '' }} >
                                         Entry Status </label>
                                 </div>
 
                                 <div class="form-group">
                                     <input type="hidden" name="is_taken" value="0">
                                     <label for="is_taken">
-                                        <input type="checkbox" name="is_taken" value="1" {{ ($course_batch->is_taken) ? 'checked' : '' }} >
+                                        <input type="checkbox" name="is_taken" value="1" {{ ($course_batch->is_taken) ? 'checked' : '' }} {{ ($course_batch->is_taken) ? 'disabled' : '' }} >
                                         Is Taken? </label>
                                 </div>
                             </div>

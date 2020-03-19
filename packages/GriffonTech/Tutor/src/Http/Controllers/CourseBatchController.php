@@ -99,8 +99,13 @@ class CourseBatchController extends Controller
 
     public function update(Request $request, $id)
     {
+        $postData = $request->input();
 
-        $courseBatchUpdated = $this->courseBatchRepository->update($request->only(['entry_status', 'is_taken']), $id);
+        if ($request->input('is_taken')) {
+            $postData['time_completed'] = now();
+        }
+        $courseBatchUpdated = $this->courseBatchRepository
+            ->update($postData, $id);
 
         if ($courseBatchUpdated) {
             session()->flash('success', 'Course batch was successfully updated!');

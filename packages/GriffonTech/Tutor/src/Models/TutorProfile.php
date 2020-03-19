@@ -24,9 +24,9 @@ class TutorProfile extends Model implements TutorContract
         return $this->belongsTo(UserProxy::modelClass(), 'user_id', 'id');
     }
 
-    public function tutor_application_courses()
+    public function application_courses()
     {
-        return $this->hasMany(TutorCourseProxy::modelClass(), 'tutor_id', 'id');
+        return $this->hasMany(TutorCourseProxy::modelClass(), 'tutor_application_id', 'tutor_application_id');
     }
 
     public function courses()

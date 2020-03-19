@@ -52,11 +52,11 @@
                             <td> {{ $userWithdrawal->user->payment_details->account_number }} </td>
                         </tr>
                         <tr>
-                            <th> Account Number </th>
+                            <th> Bitcoin Wallet Address </th>
                             <td> {{ $userWithdrawal->user->payment_details->btc_address }} </td>
                         </tr>
                         <tr>
-                            <th> Account Number </th>
+                            <th> PayPal Email Address </th>
                             <td> {{ $userWithdrawal->user->payment_details->paypal_email_address }} </td>
                         </tr>
                     </table>

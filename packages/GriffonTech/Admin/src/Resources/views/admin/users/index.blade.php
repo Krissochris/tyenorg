@@ -13,13 +13,14 @@
                     </div>
 
 
-                    <table class="table table-hover no-margins">
-                        <thead class="thead-dark">
+                    <table id="data-table" class="table table-hover no-margins">
+                        <thead class="">
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone Number</th>
                             <th>is Pro user</th>
+                            <th> Is Tutor </th>
                             <th>Registered</th>
                             <th></th>
                         </tr>
@@ -31,6 +32,7 @@
                                 <td> {{ $user->email }} </td>
                                 <td> {{ $user->phone_number }} </td>
                                 <td> {{ ($user->is_pro_user) ? 'Yes' : 'No' }} </td>
+                                <td> {{ ($user->tutor_id) ? 'Yes' : 'No' }} </td>
                                 <td> {{ $user->created_at }} </td>
                                 <td>
                                     <a href="{{route('admin.users.show', $user->id)}}">view</a>&nbsp;&nbsp;

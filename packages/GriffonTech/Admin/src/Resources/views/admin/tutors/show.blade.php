@@ -120,4 +120,49 @@
         </div>
     </div>
 
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5> Applied Courses </h5>
+                </div>
+                <div class="ibox-content table-responsive">
+                    @if($tutor->application_courses)
+                        @foreach($tutor->application_courses as $applied_course)
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th> Course Name </th>
+                                    <td> {{ $applied_course->course_name }} </td>
+                                </tr>
+                                <tr>
+                                    <th>Course Experience and Qualification</th>
+                                    <td> {{ $applied_course->course_experience_and_qualification }}</td>
+                                </tr>
+                                <tr>
+                                    <th>How well can you tutor this course</th>
+                                    <td> {{ $applied_course->how_well_can_u_tutor_course }} (1 - 10) </td>
+                                </tr>
+                                <tr>
+                                    <th>How much would you charge per student ?</th>
+                                    <td>${{ $applied_course->how_much_would_you_charge_per_student }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Would you be willing to repeat a batch</th>
+                                    <td>{{ ($applied_course->would_you_be_willing_to_repeat_a_batch) ? 'Yes' : 'No' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Do you agree to students along after batch ends ?</th>
+                                    <td>{{ ($applied_course->do_you_agree_to_carry_student_along_after_batch_ends) ? 'Yes' : 'No' }}</td>
+                                </tr>
+                            </table>
+                        @endforeach
+
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 @endsection

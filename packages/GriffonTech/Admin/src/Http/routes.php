@@ -66,6 +66,10 @@ Route::group(['middleware' => ['web']], function (){
                 'redirect' => 'admin.users.edit'
             ])->name('admin.users.pro_user_update');
 
+            Route::post('users/update_payment_detail/{id}', 'GriffonTech\Admin\Http\Controllers\UsersController@updatePaymentDetail')->defaults('_config', [
+                'redirect' => 'admin.users.edit'
+            ])->name('admin.users.update_payment_detail');
+
 
 
             // Tutors

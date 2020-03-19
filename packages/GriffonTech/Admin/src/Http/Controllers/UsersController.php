@@ -6,6 +6,7 @@ namespace GriffonTech\Admin\Http\Controllers;
 
 use GriffonTech\Tutor\Repositories\TutorProfileRepository;
 use GriffonTech\User\Contracts\User;
+use GriffonTech\User\Repositories\UserPaymentDetailRepository;
 use GriffonTech\User\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
@@ -18,9 +19,12 @@ class UsersController extends Controller
 
     protected $tutorProfileRepository;
 
+    protected $userPaymentDetailRepository;
+
     public function __construct(
         UserRepository $userRepository,
-        TutorProfileRepository $tutorProfileRepository
+        TutorProfileRepository $tutorProfileRepository,
+        UserPaymentDetailRepository $userPaymentDetailRepository
     )
     {
         $this->_config = request('_config');
@@ -28,6 +32,8 @@ class UsersController extends Controller
         $this->userRepository = $userRepository;
 
         $this->tutorProfileRepository = $tutorProfileRepository;
+
+        $this->userPaymentDetailRepository = $userPaymentDetailRepository;
 
     }
 
@@ -76,7 +82,12 @@ class UsersController extends Controller
             ->pluck('name', 'id')
             ->prepend('--Select Tutor --', '');
 
-        return view($this->_config['view'], compact('user', 'tutors'));
+        $userPaymentDetail = $this->userPaymentDetailRepository
+            ->findOneByField('user_id', $user->id);
+
+
+        return view($this->_config['view'],
+            compact('user', 'tutors', 'userPaymentDetail'));
     }
 
     public function update(Request $request, User $user)
@@ -113,6 +124,26 @@ class UsersController extends Controller
 
         } else if ((int)$request->input('is_pro_user') === 0) {
             $user->removeProUser();
+        }
+        return back();
+    }
+
+    public function updatePaymentDetail(Request $request, $id)
+    {
+        $userPaymentDetail = $this->userPaymentDetailRepository
+            ->findOneByField('user_id', $id);
+
+        if ($userPaymentDetail) {
+            $userPaymentDetail = $userPaymentDetail->update($request->input());
+        } else {
+            $postData = $request->input();
+            $postData['user_id'] = $id;
+            $userPaymentDetail = $this->userPaymentDetailRepository->create($postData);
+        }
+        if ($userPaymentDetail) {
+            session()->flash('success', 'User payment details was successfully updated.');
+        } else {
+            session()->flash('error', 'User payment details could not be updated.');
         }
         return back();
     }
