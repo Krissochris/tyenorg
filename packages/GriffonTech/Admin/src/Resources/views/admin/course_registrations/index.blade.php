@@ -11,7 +11,7 @@
                     </div>
                     <div class="ibox-content table-responsive">
 
-                        <table class="table table-hover table-bordered table-striped no-margins">
+                        <table id="data-table" class="table table-hover table-bordered table-striped no-margins">
                             <thead class="">
                             <tr>
                                 <th>Name</th>

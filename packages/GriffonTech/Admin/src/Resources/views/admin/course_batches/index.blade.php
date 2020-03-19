@@ -12,7 +12,7 @@
                         <a href="{{route('admin.course_batches.create')}}" class="btn btn-dark"> Add Course Batch </a>
                     </div>
 
-                    <table class="table table-bordered">
+                    <table id="data-table" class="table table-bordered">
                         <thead class="thead-dark">
                         <tr>
                             <th>S/N</th>

@@ -12,8 +12,8 @@
                         <a href="{{route('admin.courses.create')}}" class="btn btn-dark"> Add Course </a>
                     </div>
 
-                    <table class="table table-bordered">
-                        <thead class="thead-dark">
+                    <table id="data-table" class="table table-bordered">
+                        <thead>
                         <tr>
                             <th>S/N</th>
                             <th> Name </th>
