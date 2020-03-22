@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <div class="container section_padding_100">
+    <div class="container p-30">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -96,7 +96,8 @@
                         </div>
 
                         {!! Form::close() !!}
-                        @if (!empty($tutorCourses))
+                        <a href="{{ route('user.tutor_application.create_agreement') }}"> << Go Back </a>
+                        @if (!$tutorCourses->isEmpty())
                         <a class="pull-right" href="{{ route('user.tutor_application.preview') }}"> Preview and Submit</a>
                         @endif
                     </div>

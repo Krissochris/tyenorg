@@ -37,6 +37,8 @@
                 <a href="#"><i class="fa fa-users"></i> <span class="nav-label">Tutors</span><span
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
+                    <li><a href="{{ route('admin.tutor_agreement_attributes.index') }}">Tutor Agreement Attribute</a></li>
+                    <li><a href="{{ route('admin.tutor_agreement_attribute_options.index') }}">Tutor Agreement Attribute Options</a></li>
                     <li><a href="{{ route('admin.tutor_application_submissions.index') }}">Tutor Applications</a></li>
                     <li><a href="{{ route('admin.tutors.index') }}"> Tutors </a></li>
                     <li><a href="{{ route('admin.tutor_withdrawals.index') }}"> Tutor Withdrawals </a></li>

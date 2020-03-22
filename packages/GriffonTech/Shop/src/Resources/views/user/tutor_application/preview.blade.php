@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <div class="container section_padding_100">
+    <div class="container p-30">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -13,7 +13,8 @@
                         <h3 class="float-left"> Tutor Application Form Preview </h3>
                     </div>
                     <div class="card-body">
-                        <table class="table">
+                        <h5> Tutor Details </h5>
+                        <table class="table table-bordered" style="margin-bottom: 20px;">
 
                             <tr>
                                 <td> Name </td>
@@ -33,7 +34,7 @@
                             </tr>
                         </table>
                         <div class="">
-                            <h4> Courses I Want To Teach </h4>
+                            <h5> Courses I Want To Teach </h5>
                             @foreach($tutorCourses as $course)
                             <table class="table table-bordered">
                                 <tr>
@@ -63,9 +64,34 @@
                             </table>
                             @endforeach
                         </div>
-                        <div>
-                            <a class="btn btn-default" href="{{ route('user.tutor_application.add_courses') }}">Go Back to add courses</a>
+
+                        <div style="margin: 30px 0;">
+                            <h5>My Agreement </h5>
+                            @if(isset($tutor_agreement))
+                                <table class="table table-bordered">
+                                    @foreach($attributes as $attribute)
+                                        <tr>
+                                            <th> {{ $attribute->admin_name }} </th>
+                                            @if($attribute->type === 'boolean')
+
+                                                <td> {{ ($tutor_agreement[$attribute->code]) ? 'Yes' : 'No' }} </td>
+
+                                            @elseif($attribute->type === 'select')
+
+                                                <td> {{ $attribute->options()->pluck('admin_name', 'id')->toArray()[$tutor_agreement[$attribute->code]] }} </td>
+
+                                            @else
+                                                <td> {{ $tutor_agreement[$attribute->code] }} </td>
+                                            @endif
+                                        </tr>
+                                    @endforeach
+
+                                </table>
+                            @endif
                         </div>
+
+
+
                         <div style="margin-top: 20px;">
                             {!! Form::open(['route' => 'user.tutor_application.submit']) !!}
 
@@ -78,6 +104,9 @@
                             </div>
 
                             {!! Form::close() !!}
+                        </div>
+                        <div>
+                            <a class="btn btn-default" href="{{ route('user.tutor_application.add_courses') }}"> << Go Back</a>
                         </div>
 
                     </div>

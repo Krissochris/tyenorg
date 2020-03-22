@@ -22,7 +22,11 @@
 
     <!-- Responsive css -->
     <link rel="stylesheet" href="{{ asset('lms/css/responsive.css') }}">
-
+    <style>
+        .p-30 {
+            padding: 30px 0;
+        }
+    </style>
 </head>
 
 <body>

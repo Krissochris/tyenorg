@@ -4,6 +4,8 @@
 namespace GriffonTech\Admin\Http\Controllers;
 
 
+use GriffonTech\Tutor\Repositories\TutorAgreementAttributeRepository;
+use GriffonTech\Tutor\Repositories\TutorAgreementRepository;
 use GriffonTech\Tutor\Repositories\TutorApplicationSubmissionRepository;
 use GriffonTech\Tutor\Repositories\TutorProfileRepository;
 use GriffonTech\User\Repositories\UserRepository;
@@ -17,12 +19,16 @@ class TutorApplicationSubmissionsController extends Controller
     protected $tutorApplicationSubmissionRepository;
     protected $userRepository;
     protected $tutorProfileRepository;
+    protected $tutorAgreementRepository;
+    protected $tutorAgreementAttributeRepository;
 
 
     public function __construct(
         TutorApplicationSubmissionRepository $tutorApplicationSubmissionRepository,
         UserRepository $userRepository,
-        TutorProfileRepository $tutorProfileRepository
+        TutorProfileRepository $tutorProfileRepository,
+        TutorAgreementRepository $tutorAgreementRepository,
+        TutorAgreementAttributeRepository $tutorAgreementAttributeRepository
     )
     {
         $this->_config = request('_config');
@@ -32,6 +38,10 @@ class TutorApplicationSubmissionsController extends Controller
         $this->userRepository = $userRepository;
 
         $this->tutorProfileRepository = $tutorProfileRepository;
+
+        $this->tutorAgreementRepository = $tutorAgreementRepository;
+
+        $this->tutorAgreementAttributeRepository = $tutorAgreementAttributeRepository;
     }
 
     public function index()
@@ -50,8 +60,13 @@ class TutorApplicationSubmissionsController extends Controller
             ->with(['tutor_application.tutor_application_courses'])
             ->find($id);
 
+        $tutor_agreement = $this->tutorAgreementRepository
+            ->findOneByField('tutor_application_id', $tutor_application->id);
+
+        $agreement_attributes = $this->tutorAgreementAttributeRepository->get();
+
         return view($this->_config['view'])
-            ->with(compact('tutor_application'));
+            ->with(compact('tutor_application', 'agreement_attributes', 'tutor_agreement'));
     }
 
     public function reject($id)

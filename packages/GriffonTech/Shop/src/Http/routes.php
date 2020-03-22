@@ -76,7 +76,9 @@ Route::group(['middleware' => ['web']], function(){
             ])->name('user.session.destroy');
 
 
+
             Route::group(['middleware' => ['is_verified']], function() {
+
                 Route::get('tutor_application/create', 'GriffonTech\User\Http\Controllers\TutorApplicationController@create')->defaults('_config', [
                     'view' => 'shop::user.tutor_application.create'
                 ])->name('user.tutor_application.create');
@@ -86,7 +88,7 @@ Route::group(['middleware' => ['web']], function(){
                 ])->name('user.tutor_application.create');
 
                 Route::post('tutor_application/create', 'GriffonTech\User\Http\Controllers\TutorApplicationController@store')->defaults('_config', [
-                    'redirect' => 'user.tutor_application.add_courses'
+                    'redirect' => 'user.tutor_application.create_agreement'
                 ])->name('user.tutor_application.create');
 
                 Route::get('tutor_application/add_courses', 'GriffonTech\User\Http\Controllers\TutorApplicationController@addCourses')->defaults('_config', [
@@ -112,6 +114,16 @@ Route::group(['middleware' => ['web']], function(){
                 Route::get('tutor_application/get_new_course_form', 'GriffonTech\User\Http\Controllers\TutorApplicationController@getNewCourseForm')->defaults('_config', [
                     'view' => 'shop::user.tutor_application.include.new_course_form'
                 ])->name('user.tutor_application.new_course_form');
+
+                Route::post('tutor_application/agreement/create/{id}', 'GriffonTech\User\Http\Controllers\TutorApplicationController@storeAgreement')->defaults('_config', [
+                    'redirect' => 'user.tutor_application.create_agreement'
+                ])->name('user.tutor_application.create_agreement');
+
+                Route::get('tutor_application/agreement/create', 'GriffonTech\User\Http\Controllers\TutorApplicationController@createAgreement')->defaults('_config', [
+                    'view' => 'shop::user.tutor_agreement.create'
+                ])->name('user.tutor_application.create_agreement');
+
+
 
 
 

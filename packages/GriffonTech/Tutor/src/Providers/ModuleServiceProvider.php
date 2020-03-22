@@ -2,6 +2,10 @@
 
 namespace GriffonTech\Tutor\Providers;
 
+use GriffonTech\Tutor\Models\TutorAgreement;
+use GriffonTech\Tutor\Models\TutorAgreementAttribute;
+use GriffonTech\Tutor\Models\TutorAgreementAttributeOption;
+use GriffonTech\Tutor\Models\TutorAgreementAttributeValue;
 use GriffonTech\Tutor\Models\TutorApplication;
 use GriffonTech\Tutor\Models\TutorApplicationSubmission;
 use GriffonTech\Tutor\Models\TutorCourse;
@@ -21,6 +25,10 @@ class ModuleServiceProvider extends BaseModuleServiceProvider
         TutorCourse::class,
         TutorApplicationSubmission::class,
         TutorPayment::class,
-        TutorWithdrawal::class
+        TutorWithdrawal::class,
+        TutorAgreementAttribute::class,
+        TutorAgreementAttributeOption::class,
+        TutorAgreement::class,
+        TutorAgreementAttributeValue::class
     ];
 }

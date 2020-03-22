@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <div class="container section_padding_100">
+    <div class="container p-30">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -44,7 +44,7 @@
 
                         @if(isset($tutor_application))
                             <div class="float-right">
-                                <a  href="{{ route('user.tutor_application.add_courses', $tutor_application->id) }}">Add Courses</a>
+                                <a  href="{{ route('user.tutor_application.create_agreement') }}">Proceed >> </a>
                             </div>
                         @endif
                     </div>

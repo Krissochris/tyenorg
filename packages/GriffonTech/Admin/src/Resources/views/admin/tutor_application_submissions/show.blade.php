@@ -21,7 +21,8 @@
                     </div>
                 </div>
                 <div class="ibox-content table-responsive">
-                    <table class="table">
+                    <h5> Tutor Personal Detail </h5>
+                    <table class="table table-bordered">
                         <tr>
                             <td>Name</td>
                             <td>{{ $tutor_application->tutor_application->name }}</td>
@@ -44,7 +45,7 @@
                     @if($tutor_application->tutor_application->tutor_application_courses)
 
                         @foreach($tutor_application->tutor_application->tutor_application_courses as $course)
-                            <table class="table">
+                            <table class="table table-bordered">
                                 <tr>
                                     <td>Course Name</td>
                                     <td>{{ $course->course_name }}</td>
@@ -72,6 +73,32 @@
                             </table>
                         @endforeach
                     @endif
+
+                    <div>
+                        <h5> Tutor Agreement </h5>
+                        @if(isset($tutor_agreement))
+                            <table class="table table-bordered">
+                                @foreach($agreement_attributes as $attribute)
+                                    <tr>
+                                        <th> {{ $attribute->admin_name }} </th>
+                                        @if($attribute->type === 'boolean')
+
+                                            <td> {{ ($tutor_agreement[$attribute->code]) ? 'Yes' : 'No' }} </td>
+
+                                        @elseif($attribute->type === 'select')
+
+                                            <td> {{ $attribute->options()->pluck('admin_name', 'id')->toArray()[$tutor_agreement[$attribute->code]] }} </td>
+
+                                        @else
+                                            <td> {{ $tutor_agreement[$attribute->code] }} </td>
+                                        @endif
+                                    </tr>
+                                @endforeach
+
+                            </table>
+                        @endif
+                    </div>
+
                     <div>
                         <form method="POST" id="approve" action="{{ route('admin.tutor_application_submissions.approve', $tutor_application->id) }}">
                             @csrf

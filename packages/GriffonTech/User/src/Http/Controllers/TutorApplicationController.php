@@ -4,6 +4,9 @@
 namespace GriffonTech\User\Http\Controllers;
 
 
+use GriffonTech\Tutor\Repositories\TutorAgreementAttributeRepository;
+use GriffonTech\Tutor\Repositories\TutorAgreementAttributeValueRepository;
+use GriffonTech\Tutor\Repositories\TutorAgreementRepository;
 use GriffonTech\Tutor\Repositories\TutorApplicationRepository;
 use GriffonTech\Tutor\Repositories\TutorApplicationSubmissionRepository;
 use GriffonTech\Tutor\Repositories\TutorCourseRepository;
@@ -20,11 +23,17 @@ class TutorApplicationController extends Controller
 
     protected $tutorCourseRepository;
     protected $tutorApplicationSubmissionRepository;
+    protected $tutorAgreementAttributeRepository;
+    protected $tutorAgreementRepository;
+    protected $tutorAgreementAttributeValueRepository;
 
     public function __construct(
         TutorApplicationRepository $tutorApplicationRepository,
         TutorCourseRepository $tutorCourseRepository,
-        TutorApplicationSubmissionRepository $tutorApplicationSubmissionRepository
+        TutorApplicationSubmissionRepository $tutorApplicationSubmissionRepository,
+        TutorAgreementAttributeRepository $tutorAgreementAttributeRepository,
+        TutorAgreementRepository $tutorAgreementRepository,
+        TutorAgreementAttributeValueRepository $tutorAgreementAttributeValueRepository
     )
     {
         $this->_config = request('_config');
@@ -34,6 +43,12 @@ class TutorApplicationController extends Controller
         $this->tutorCourseRepository = $tutorCourseRepository;
 
         $this->tutorApplicationSubmissionRepository = $tutorApplicationSubmissionRepository;
+
+        $this->tutorAgreementAttributeRepository = $tutorAgreementAttributeRepository;
+
+        $this->tutorAgreementRepository = $tutorAgreementRepository;
+
+        $this->tutorAgreementAttributeValueRepository = $tutorAgreementAttributeValueRepository;
     }
 
 
@@ -151,14 +166,24 @@ class TutorApplicationController extends Controller
                 'user_id' => auth('user')->user()->id
             ]);
 
+        $tutor_agreement = $this->tutorAgreementRepository->findOneByField('tutor_application_id', $tutorApplication->id);
+        $attributes = $this->tutorAgreementAttributeRepository
+            ->getModel()
+            ->query()
+            ->orderBy('position')
+            ->get();
+
+
         $tutorCourses = $this->tutorCourseRepository
             ->findWhere([
                 'tutor_application_id' => $tutorApplication->id
             ]);
 
         return view($this->_config['view'])
-            ->with(compact('tutorApplication', 'tutorCourses'));
+            ->with(compact('tutorApplication', 'tutorCourses', 'attributes', 'tutor_agreement'));
     }
+
+
 
     public function submitApplication(Request $request)
     {
@@ -197,5 +222,37 @@ class TutorApplicationController extends Controller
             session()->flash('error', 'Course could not be removed. Please try again later');
         }
         return redirect()->back();
+    }
+
+    public function createAgreement()
+    {
+        $attributes = $this->tutorAgreementAttributeRepository
+            ->getModel()
+            ->query()
+            ->orderBy('position')
+            ->get();
+
+        $tutorApplication = $this->tutorApplicationRepository->findOneWhere([
+            'user_id' => auth('user')->user()->id
+        ], ['user_id','id']);
+
+        $tutor_agreement = $this->tutorAgreementRepository
+            ->findOneByField('tutor_application_id', $tutorApplication->id);
+
+        if (is_null($tutor_agreement)) {
+            $tutor_agreement = $this->tutorAgreementRepository->create([
+                'tutor_application_id' => $tutorApplication->id
+            ]);
+        }
+
+        return view($this->_config['view'])
+            ->with(compact('tutor_agreement', 'attributes'));
+    }
+
+
+    public function storeAgreement(Request $request, $id)
+    {
+        $this->tutorAgreementRepository->update($request->input(), $id);
+        return back();
     }
 }

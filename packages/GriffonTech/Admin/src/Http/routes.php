@@ -108,6 +108,62 @@ Route::group(['middleware' => ['web']], function (){
             ])->name('admin.tutors.deactivate');
 
 
+
+            // Tutor Agreement Attribute
+            Route::get('tutor_agreement_attributes/index', 'GriffonTech\Admin\Http\Controllers\TutorAgreementAttributesController@index')->defaults('_config', [
+                'view' => 'admin::admin.tutor_agreement_attributes.index'
+            ])->name('admin.tutor_agreement_attributes.index');
+
+            Route::get('tutor_agreement_attributes/create', 'GriffonTech\Admin\Http\Controllers\TutorAgreementAttributesController@create')->defaults('_config', [
+                'view' => 'admin::admin.tutor_agreement_attributes.create'
+            ])->name('admin.tutor_agreement_attributes.create');
+
+            Route::post('tutor_agreement_attributes/create', 'GriffonTech\Admin\Http\Controllers\TutorAgreementAttributesController@store')->defaults('_config', [
+                'redirect' => 'admin.tutor_agreement_attributes.index'
+            ])->name('admin.tutor_agreement_attributes.create');
+
+            Route::get('tutor_agreement_attributes/edit/{id}', 'GriffonTech\Admin\Http\Controllers\TutorAgreementAttributesController@edit')->defaults('_config', [
+                'view' => 'admin::admin.tutor_agreement_attributes.edit'
+            ])->name('admin.tutor_agreement_attributes.edit');
+
+            Route::post('tutor_agreement_attributes/edit/{id}', 'GriffonTech\Admin\Http\Controllers\TutorAgreementAttributesController@update')->defaults('_config', [
+                'redirect' => 'admin.tutor_agreement_attributes.index'
+            ])->name('admin.tutor_agreement_attributes.edit');
+
+            Route::delete('tutor_agreement_attributes/delete/{id}', 'GriffonTech\Admin\Http\Controllers\TutorAgreementAttributesController@destroy')->defaults('_config', [
+                'redirect' => 'admin.tutor_agreement_attributes.index'
+            ])->name('admin.tutor_agreement_attributes.delete');
+
+
+            // Tutor Agreement Attribute Options
+            Route::get('tutor_agreement_attribute_options/index', 'GriffonTech\Admin\Http\Controllers\TutorAgreementAttributeOptionsController@index')->defaults('_config', [
+                'view' => 'admin::admin.tutor_agreement_attribute_options.index'
+            ])->name('admin.tutor_agreement_attribute_options.index');
+
+            Route::get('tutor_agreement_attribute_options/create', 'GriffonTech\Admin\Http\Controllers\TutorAgreementAttributeOptionsController@create')->defaults('_config', [
+                'view' => 'admin::admin.tutor_agreement_attribute_options.create'
+            ])->name('admin.tutor_agreement_attribute_options.create');
+
+            Route::post('tutor_agreement_attribute_options/create', 'GriffonTech\Admin\Http\Controllers\TutorAgreementAttributeOptionsController@store')->defaults('_config', [
+                'redirect' => 'admin.tutor_agreement_attribute_options.index'
+            ])->name('admin.tutor_agreement_attribute_options.create');
+
+            Route::get('tutor_agreement_attribute_options/edit/{id}', 'GriffonTech\Admin\Http\Controllers\TutorAgreementAttributeOptionsController@edit')->defaults('_config', [
+                'view' => 'admin::admin.tutor_agreement_attribute_options.edit'
+            ])->name('admin.tutor_agreement_attribute_options.edit');
+
+            Route::post('tutor_agreement_attribute_options/edit/{id}', 'GriffonTech\Admin\Http\Controllers\TutorAgreementAttributeOptionsController@update')->defaults('_config', [
+                'redirect' => 'admin.tutor_agreement_attribute_options.index'
+            ])->name('admin.tutor_agreement_attribute_options.edit');
+
+            Route::delete('tutor_agreement_attribute_options/delete/{id}', 'GriffonTech\Admin\Http\Controllers\TutorAgreementAttributeOptionsController@destroy')->defaults('_config', [
+                'redirect' => 'admin.tutor_agreement_attribute_options.index'
+            ])->name('admin.tutor_agreement_attribute_options.delete');
+
+
+
+
+
             // Tutor Withdrawals
             Route::get('tutor_withdrawals/index', 'GriffonTech\Admin\Http\Controllers\TutorWithdrawalsController@index')->defaults('_config', [
                 'view' => 'admin::admin.tutor_withdrawals.index'
