@@ -23,7 +23,7 @@ class CreateTutorAgreementAttributeValuesTable extends Migration
             $table->decimal('float_value', 20, 2)->nullable();
             $table->dateTime('datetime_value')->nullable();
             $table->date('date_value')->nullable();
-            $table->json('json_value')->nullable();
+            //$table->json('json_value')->nullable();
         });
     }
 
