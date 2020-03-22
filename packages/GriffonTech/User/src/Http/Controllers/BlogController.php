@@ -4,6 +4,7 @@
 namespace GriffonTech\User\Http\Controllers;
 
 
+use GriffonTech\Blog\Repositories\BlogCategoryRepository;
 use GriffonTech\Blog\Repositories\BlogRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -20,15 +21,18 @@ class BlogController extends Controller
     protected $_config;
 
     protected $blogRepository;
+    protected $blogCategoryRepository;
 
 
     public function __construct(
-        BlogRepository $blogRepository
+        BlogRepository $blogRepository,
+        BlogCategoryRepository $blogCategoryRepository
     )
     {
         $this->_config = request('_config');
 
         $this->blogRepository = $blogRepository;
+        $this->blogCategoryRepository = $blogCategoryRepository;
     }
 
 
@@ -43,7 +47,17 @@ class BlogController extends Controller
 
     public function create()
     {
-        return view($this->_config['view']);
+        $blog_categories = $this->blogCategoryRepository->pluck('name', 'id');
+
+        return view($this->_config['view'])->with(compact('blog_categories'));
+    }
+
+    public function show($slug)
+    {
+        $blog = $this->blogRepository->findBySlugOrFail($slug);
+
+        return view($this->_config['view'])
+            ->with(compact( 'blog'));
     }
 
 
@@ -88,8 +102,10 @@ class BlogController extends Controller
         } catch (ModelNotFoundException $modelNotFoundException) {
             abort(404);
         }
+        $blog_categories = $this->blogCategoryRepository->pluck('name', 'id');
 
-        return view($this->_config['view'])->with(compact( 'blog'));
+        return view($this->_config['view'])
+            ->with(compact( 'blog', 'blog_categories'));
     }
 
     public function update(Request $request, $slug)

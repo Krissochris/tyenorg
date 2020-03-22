@@ -1,5 +1,10 @@
 @extends('shop::layouts.master')
 
+@section('title')
+    {{ __('Edit Blog Post') }}
+@stop
+
+
 @section('content')
     <br>
     <div class="container">
@@ -9,6 +14,14 @@
                 <div class="card">
                     <h5 class="card-header">Edit Blog</h5>
                     <div class="card-body">
+
+                        @if(isset($blog_categories) && !$blog_categories->isEmpty())
+                            <div class="form-group">
+                                <label for="blog_category">Blog Category</label>
+                                {!! Form::select('blog_category_id', $blog_categories, null, ['class' => 'form-control']) !!}
+                            </div>
+                        @endif
+
                         <div class="form-group">
                             <label for="title">Title</label>
                             {!! Form::text('title', $blog->title, ['class' => 'form-control', 'placeholder' => 'Blog Title']) !!}

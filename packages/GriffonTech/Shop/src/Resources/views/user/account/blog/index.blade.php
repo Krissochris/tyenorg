@@ -1,5 +1,8 @@
 @extends('shop::layouts.master')
 
+@section('title')
+    {{ __('My Blog Posts') }}
+@stop
 
 @section('content')
     <!-- Breadcumb area start -->
@@ -40,9 +43,11 @@
                         <tr>
                             <th>S/N</th>
                             <th>Title</th>
+                            <th>Category </th>
+                            <th>Comments </th>
                             <th>Status</th>
                             <th> Created </th>
-                            <th></th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -51,10 +56,13 @@
                             <tr>
                                 <td>{{$sn++}}</td>
                                 <td><a href="{{route('blog.posts.show', $blog->url_key)}}">{{$blog->title}}</a></td>
+                                <td> {{ ($blog->category) ? $blog->category->name : '' }} </td>
+                                <td> {{ $blog->comments->count() }} </td>
                                 <td>{{ (($blog->status === 1) ? 'Published' : 'Unpublished')}}</td>
                                 <td>{{$blog->created_at}}</td>
                                 <td>
                                     <a href="{{route('user.blog.edit', $blog->url_key)}}" class="text-decoration-none font-weight-bold">Edit</a> |
+                                    <a href="{{route('user.blog.show', $blog->url_key)}}" class="text-decoration-none font-weight-bold">View</a> |
                                     <a href="#"
                                        onclick="event.preventDefault();
                                            var response = confirm('Are you sure you want to delete this blog?');

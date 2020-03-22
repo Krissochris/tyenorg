@@ -215,6 +215,11 @@ Route::group(['middleware' => ['web']], function(){
                         'view' => 'shop::user.account.blog.edit'
                     ])->name('user.blog.edit');
 
+                    Route::get('blog/show/{slug}', 'GriffonTech\User\Http\Controllers\BlogController@show')->defaults('_config', [
+                        'view' => 'shop::user.account.blog.show'
+                    ])->name('user.blog.show');
+
+
                     Route::post('blog/edit/{slug}', 'GriffonTech\User\Http\Controllers\BlogController@update')->defaults('_config', [
                         'redirect' => 'user.blog.index'
                     ])->name('user.blog.edit');

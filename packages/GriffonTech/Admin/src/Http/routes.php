@@ -395,6 +395,32 @@ Route::group(['middleware' => ['web']], function (){
             ])->name('admin.blogs.delete');
 
 
+            //Blog Category
+            Route::get('blog_categories/index', 'GriffonTech\Blog\Http\Controllers\BlogCategoriesController@index')->defaults('_config', [
+                'view' => 'admin::admin.blog_categories.index'
+            ])->name('admin.blog_categories.index');
+
+            Route::get('blog_categories/create', 'GriffonTech\Blog\Http\Controllers\BlogCategoriesController@create')->defaults('_config', [
+                'view' => 'admin::admin.blog_categories.create'
+            ])->name('admin.blog_categories.create');
+
+            Route::post('blog_categories/create', 'GriffonTech\Blog\Http\Controllers\BlogCategoriesController@store')->defaults('_config', [
+                'redirect' => 'admin.blog_categories.index'
+            ])->name('admin.blog_categories.create');
+
+            Route::get('blog_categories/edit/{id}', 'GriffonTech\Blog\Http\Controllers\BlogCategoriesController@edit')->defaults('_config', [
+                'view' => 'admin::admin.blog_categories.edit'
+            ])->name('admin.blog_categories.edit');
+
+            Route::post('blog_categories/edit/{id}', 'GriffonTech\Blog\Http\Controllers\BlogCategoriesController@update')->defaults('_config', [
+                'redirect' => 'admin.blog_categories.index'
+            ])->name('admin.blog_categories.edit');
+
+            Route::delete('blog_categories/delete/{id}', 'GriffonTech\Blog\Http\Controllers\BlogCategoriesController@destroy')->defaults('_config', [
+                'redirect' => 'admin.blog_categories.index'
+            ])->name('admin.blog_categories.delete');
+
+
 
             // Blog Comments
             Route::get('blogs/comments/index', 'GriffonTech\Blog\Http\Controllers\BlogCommentController@index')->defaults('_config', [

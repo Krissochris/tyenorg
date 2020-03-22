@@ -70,8 +70,12 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.blogs.index') }}"><i class="fa fa-blogger-b"></i> <span class="nav-label">Blogs</span>
-                </a>
+                <a href="#"><i class="fa fa-book"></i> <span class="nav-label">Blog</span><span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{ route('admin.blog_categories.index') }}">Blog Categories</a></li>
+                    <li><a href="{{ route('admin.blogs.index') }}">Blogs</a></li>
+                </ul>
             </li>
             <li>
                 <a href="{{ route('admin.reviews.index') }}"><i class="fa fa-comment"></i> <span class="nav-label">Reviews</span>

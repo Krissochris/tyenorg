@@ -8,8 +8,15 @@ use GriffonTech\Blog\Contracts\Blog as BlogContract;
 
 class Blog extends Model implements BlogContract {
 
-    protected $fillable = ['user_id', 'title', 'body', 'url_key',
-        'status', 'photo'];
+    protected $fillable = [
+        'user_id',
+        'title',
+        'body',
+        'url_key',
+        'status',
+        'photo',
+        'blog_category_id'
+    ];
 
 
     public function user()
@@ -20,5 +27,10 @@ class Blog extends Model implements BlogContract {
     public function comments()
     {
         return $this->hasMany(BlogCommentProxy::modelClass(), 'blog_id', 'id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(BlogCategoryProxy::modelClass(), 'blog_category_id', 'id');
     }
 }
