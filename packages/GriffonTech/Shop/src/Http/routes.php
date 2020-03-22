@@ -117,7 +117,7 @@ Route::group(['middleware' => ['web']], function(){
 
                 Route::post('tutor_application/agreement/create/{id}', 'GriffonTech\User\Http\Controllers\TutorApplicationController@storeAgreement')->defaults('_config', [
                     'redirect' => 'user.tutor_application.create_agreement'
-                ])->name('user.tutor_application.create_agreement');
+                ])->name('user.tutor_application.agreement_save');
 
                 Route::get('tutor_application/agreement/create', 'GriffonTech\User\Http\Controllers\TutorApplicationController@createAgreement')->defaults('_config', [
                     'view' => 'shop::user.tutor_agreement.create'

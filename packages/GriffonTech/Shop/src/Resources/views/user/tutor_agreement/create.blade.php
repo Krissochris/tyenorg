@@ -14,7 +14,7 @@
                     </div>
                     <div class="card-body">
 
-                        {!! Form::model($tutor_agreement, ['route' => ['user.tutor_application.create_agreement', $tutor_agreement->id]]) !!}
+                        {!! Form::model($tutor_agreement, ['route' => ['user.tutor_application.agreement_save', $tutor_agreement->id]]) !!}
 
                         @if($attributes)
                             <?php $num = 1;  ?>
