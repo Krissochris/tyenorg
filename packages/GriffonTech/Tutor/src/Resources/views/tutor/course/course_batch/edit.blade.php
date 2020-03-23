@@ -19,14 +19,14 @@
                             <div class="col-sm-12">
 
                                 <div class="form-group">
-                                    <input type="hidden" name="entry_status" value="0">
+                                    <input type="hidden" name="entry_status" {{ ($course_batch->entry_status) ? 'disabled' : '' }} value="0">
                                     <label for="entry_status">
                                         <input type="checkbox" name="entry_status" value="1" {{ ($course_batch->entry_status) ? 'checked' : '' }} {{ ($course_batch->entry_status) ? 'disabled' : '' }} >
                                         Entry Status </label>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="hidden" name="is_taken" value="0">
+                                    <input type="hidden" name="is_taken" value="0" {{ ($course_batch->entry_status) ? 'disabled' : '' }}>
                                     <label for="is_taken">
                                         <input type="checkbox" id="is_taken" name="is_taken" value="1" {{ ($course_batch->is_taken) ? 'checked' : '' }} {{ ($course_batch->is_taken) ? 'disabled' : '' }} >
                                         Is Taken? </label>

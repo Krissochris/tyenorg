@@ -102,8 +102,6 @@ class CourseBatchController extends Controller
     {
         $postData = $request->input();
 
-        dd($postData);
-
         if ($request->input('is_taken')) {
             $postData['time_completed'] = now();
         }
