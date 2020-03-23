@@ -41,7 +41,7 @@
 
                         <a href="{{ route('user.tutor_application.create') }}"><< Go Back </a>
 
-                        <a class="float-right" href="{{ route('user.tutor_application.add_courses') }}"> Proceed >></a>
+                        <a class="pull-right" href="{{ route('user.tutor_application.preview') }}"> Preview and Submit</a>
                     </div>
                 </div>
             </div>

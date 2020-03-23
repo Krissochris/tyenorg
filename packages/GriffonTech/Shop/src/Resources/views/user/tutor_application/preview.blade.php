@@ -33,6 +33,7 @@
                                 <td> {{ $tutorApplication->description }} </td>
                             </tr>
                         </table>
+{{--
                         <div class="">
                             <h5> Courses I Want To Teach </h5>
                             @foreach($tutorCourses as $course)
@@ -64,6 +65,7 @@
                             </table>
                             @endforeach
                         </div>
+--}}
 
                         <div style="margin: 30px 0;">
                             <h5>My Agreement </h5>
@@ -78,7 +80,13 @@
 
                                             @elseif($attribute->type === 'select')
 
-                                                <td> {{ $attribute->options()->pluck('admin_name', 'id')->toArray()[$tutor_agreement[$attribute->code]] }} </td>
+                                                <td>
+                                                    @if($tutor_agreement[$attribute->code])
+                                                    {{ $attribute->options()->pluck('admin_name', 'id')->toArray()[$tutor_agreement[$attribute->code]] }}
+                                                    @else
+                                                    {{ 'Not option selected' }}
+                                                    @endif
+                                                </td>
 
                                             @else
                                                 <td> {{ $tutor_agreement[$attribute->code] }} </td>
@@ -106,7 +114,7 @@
                             {!! Form::close() !!}
                         </div>
                         <div>
-                            <a class="btn btn-default" href="{{ route('user.tutor_application.add_courses') }}"> << Go Back</a>
+                            <a class="btn btn-default" href="{{ route('user.tutor_application.create_agreement') }}"> << Go Back</a>
                         </div>
 
                     </div>

@@ -167,20 +167,20 @@ class TutorApplicationController extends Controller
             ]);
 
         $tutor_agreement = $this->tutorAgreementRepository->findOneByField('tutor_application_id', $tutorApplication->id);
+
         $attributes = $this->tutorAgreementAttributeRepository
             ->getModel()
             ->query()
             ->orderBy('position')
             ->get();
 
-
-        $tutorCourses = $this->tutorCourseRepository
+        /*$tutorCourses = $this->tutorCourseRepository
             ->findWhere([
                 'tutor_application_id' => $tutorApplication->id
-            ]);
+            ]);*/
 
         return view($this->_config['view'])
-            ->with(compact('tutorApplication', 'tutorCourses', 'attributes', 'tutor_agreement'));
+            ->with(compact('tutorApplication', 'attributes', 'tutor_agreement'));
     }
 
 
@@ -252,7 +252,12 @@ class TutorApplicationController extends Controller
 
     public function storeAgreement(Request $request, $id)
     {
-        $this->tutorAgreementRepository->update($request->input(), $id);
+        $updated = $this->tutorAgreementRepository->update($request->input(), $id);
+        if ($updated) {
+            session()->flash('success', 'Tutor agreement was successfully updated');
+        } else {
+            session()->flash('error', 'Tutor agreement could not be updated.Please try again.');
+        }
         return back();
     }
 }
