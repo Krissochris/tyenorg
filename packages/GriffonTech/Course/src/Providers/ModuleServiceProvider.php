@@ -2,6 +2,7 @@
 
 namespace GriffonTech\Course\Providers;
 
+use GriffonTech\Course\Models\CourseComment;
 use Konekt\Concord\BaseModuleServiceProvider;
 use \GriffonTech\Course\Models\Course;
 use \GriffonTech\Course\Models\CourseBatch;
@@ -17,5 +18,6 @@ class ModuleServiceProvider extends BaseModuleServiceProvider
         CourseCategory::class,
         CourseRegistration::class,
         CourseReview::class,
+        CourseComment::class
     ];
 }

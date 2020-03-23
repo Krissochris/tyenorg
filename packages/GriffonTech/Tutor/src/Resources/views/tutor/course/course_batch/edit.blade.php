@@ -1,5 +1,8 @@
 @extends("tutor::layout.master")
 
+@section('title')
+    Edit Course Batch
+@stop
 
 @section("content")
     <div class="container">
@@ -13,8 +16,8 @@
                     <div class="card-body">
                         {!! Form::open(['route' => ['tutor.courses.course_batch.edit', $course_batch->id]]) !!}
                         <div class="row">
-
                             <div class="col-sm-12">
+
                                 <div class="form-group">
                                     <input type="hidden" name="entry_status" value="0">
                                     <label for="entry_status">
@@ -25,9 +28,10 @@
                                 <div class="form-group">
                                     <input type="hidden" name="is_taken" value="0">
                                     <label for="is_taken">
-                                        <input type="checkbox" name="is_taken" value="1" {{ ($course_batch->is_taken) ? 'checked' : '' }} {{ ($course_batch->is_taken) ? 'disabled' : '' }} >
+                                        <input type="checkbox" id="is_taken" name="is_taken" value="1" {{ ($course_batch->is_taken) ? 'checked' : '' }} {{ ($course_batch->is_taken) ? 'disabled' : '' }} >
                                         Is Taken? </label>
                                 </div>
+
                             </div>
 
                         </div>

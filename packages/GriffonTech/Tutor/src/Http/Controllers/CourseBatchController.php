@@ -97,13 +97,17 @@ class CourseBatchController extends Controller
         return view($this->_config['view'])->with(compact('course_batch'));
     }
 
+
     public function update(Request $request, $id)
     {
         $postData = $request->input();
 
+        dd($postData);
+
         if ($request->input('is_taken')) {
             $postData['time_completed'] = now();
         }
+
         $courseBatchUpdated = $this->courseBatchRepository
             ->update($postData, $id);
 

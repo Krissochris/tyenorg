@@ -2,6 +2,7 @@
 
 namespace GriffonTech\Blog\Http\Controllers;
 
+use GriffonTech\Blog\Repositories\BlogCategoryRepository;
 use GriffonTech\Blog\Repositories\BlogRepository;
 use GriffonTech\Core\Helpers\FileManager;
 use GriffonTech\User\Repositories\UserRepository;
@@ -16,10 +17,13 @@ class BlogController extends Controller
 
     protected $userRepository;
 
+    protected $blogCategoryRepository;
+
 
     public function __construct(
         BlogRepository $blogRepository,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        BlogCategoryRepository $blogCategoryRepository
     )
     {
 
@@ -28,6 +32,8 @@ class BlogController extends Controller
         $this->blogRepository = $blogRepository;
 
         $this->userRepository = $userRepository;
+
+        $this->blogCategoryRepository = $blogCategoryRepository;
     }
 
 
@@ -39,6 +45,7 @@ class BlogController extends Controller
         return view($this->_config['view'])->with(compact('blogs'));
     }
 
+
     public function create()
     {
         $users = $this->userRepository
@@ -46,8 +53,12 @@ class BlogController extends Controller
             ->prepend('-- Select User --', '')
             ->toArray();
 
-        return view($this->_config['view'], compact('users'));
+        $blog_categories = $this->blogCategoryRepository->pluck('name', 'id');
+
+        return view($this->_config['view'],
+            compact('users', 'blog_categories'));
     }
+
 
     public function store(Request $request)
     {
@@ -90,8 +101,10 @@ class BlogController extends Controller
             ->findOrFail($id);
 
         $users = $this->userRepository->pluck('name', 'id')->toArray();
+        $blog_categories = $this->blogCategoryRepository->pluck('name', 'id');
 
-        return view($this->_config['view'], compact('blog', 'users'));
+        return view($this->_config['view'],
+            compact('blog', 'users', 'blog_categories'));
     }
 
 

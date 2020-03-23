@@ -9,12 +9,33 @@ use GriffonTech\Course\Contracts\Course as CourseContract;
 
 class Course extends Model implements CourseContract
 {
+
+    public static $_status = [
+        '-1' => 'Paused',
+        '0' => 'Draft',
+        '1' => 'Complete'
+    ];
+
+
     protected $fillable = [
-        'name', 'description', 'tutor_id', 'url_key', 'summary',
-        'total_no_of_users_in_batch', 'total_no_of_referrals_needed',
-        'course_category_id', 'photo', 'price', 'status',
-        'learning_url','learning_url_2',
-        'amount_per_student','video_url', 'type'
+        'name',
+        'description',
+        'tutor_id',
+        'url_key',
+        'summary',
+        'total_no_of_users_in_batch',
+        'total_no_of_referrals_needed',
+        'course_category_id',
+        'photo',
+        'price',
+        'status',
+        'learning_url',
+        'learning_url_2',
+        'amount_per_student',
+        'video_url',
+        'type',
+        'approved_on',
+        'active'
     ];
 
 
@@ -43,6 +64,11 @@ class Course extends Model implements CourseContract
         return $this->hasMany(CourseReviewProxy::modelClass(), 'course_id', 'id');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(CourseCommentProxy::modelClass(), 'course_id', 'id');
+    }
+
     public function deactivate()
     {
         return $this->update([
@@ -60,7 +86,7 @@ class Course extends Model implements CourseContract
     public function getStatus()
     {
         switch ($this->status) {
-            case -1:
+            case 0:
                 return 'UnActive';
             case  1:
                 return 'Active';

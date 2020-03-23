@@ -353,7 +353,14 @@ Route::group(['middleware' => ['web']], function (){
             ])->name('admin.course_batches.pay_tutor');
 
 
+            // Course Comments
+            Route::post('course_comments/create', 'GriffonTech\Admin\Http\Controllers\CourseCommentsController@store')->defaults('_config', [
+                'view' => 'admin::admin.course_batches.index'
+            ])->name('admin.course_comments.create');
 
+            Route::delete('course_comments/delete/{id}', 'GriffonTech\Admin\Http\Controllers\CourseCommentsController@destroy')->defaults('_config', [
+                'view' => 'admin::admin.course_batches.index'
+            ])->name('admin.course_comments.delete');
 
 
 

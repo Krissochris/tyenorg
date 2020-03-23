@@ -1,11 +1,19 @@
 @extends("admin::layouts.master")
 
+@section('title')
+    {{ __('View Course :'. $course->name) }}
+@stop
+
 @section("content")
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="ibox ">
                     <div class="ibox-title">
+                        <div class="float-right">
+                            <a class="btn btn-primary btn-sm" href="{{route('admin.courses.edit', $course->id)}}" >Edit</a>
+                            <a class="btn btn-success btn-sm" href="">Add Comment </a>
+                        </div>
                         <h5>{{ $course->name }} - {{ $course->tutor->name }}  </h5>
                     </div>
                     <div class="ibox-content table-responsive">
@@ -68,7 +76,10 @@
                                 <td>Video Link </td>
                                 <td><a href="{{ $course->video_url }}"> {{ $course->video_url }} </a> </td>
                             </tr>
-
+                            <tr>
+                                <td>Approved On</td>
+                                <td> {{ $course->approved_on  }} </td>
+                            </tr>
                             <tr>
                                 <td> Status </td>
                                 <td> {{ ($course->getStatus()) }} </td>
@@ -77,6 +88,56 @@
                             </tbody>
                         </table>
 
+                    </div>
+                </div>
+
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5> Course Comments </h5>
+                    </div>
+                    <div class="ibox-content">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Note</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @if($course->comments)
+                                @foreach($course->comments as $comment)
+                                    <tr>
+                                        <td> {{ $comment->note }} </td>
+                                        <td>
+                                            <a
+                                                onclick="event.preventDefault();
+                                                    var confirmed = confirm('Are you sure you want to delete this ?');
+                                                    if (confirmed) {
+                                                    document.getElementById({{$comment->id}}).submit();
+                                                    }
+                                                    " class="text-danger">
+                                                Remove
+                                            </a>
+                                            <form id="{{ $comment->id }}" method="POST" action="{{ route('admin.course_comments.delete', $comment->id) }}">
+                                                @csrf
+                                                <input type="hidden" name="_method" value="DELETE">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                            </tbody>
+                        </table>
+
+                        <form method="POST" action="{{ url()->route('admin.course_comments.create').'?course_id='.$course->id }}" >
+                            @csrf
+                            <div class="form-group">
+                                {!! Form::textarea('note', null, ['rows' => 5, 'class' => 'form-control']) !!}
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary"> Save </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 

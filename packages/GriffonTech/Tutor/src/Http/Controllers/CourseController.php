@@ -65,25 +65,28 @@ class CourseController extends Controller
 
     public function index()
     {
-        $courses = $this->courseRepository->findTutorCourses(auth('user')->user()->id);
+        $courses = $this->courseRepository
+            ->findTutorCourses(auth('user')->user()->id);
         return view($this->_config['view'])->with(compact('courses'));
     }
 
 
     public function create()
     {
-        session()->flash('You are not allowed to access this view');
-        return back();
-
         $courseTypes = CourseRepository::TYPE;
-        $categories = $this->courseCategoryRepository->getList()->prepend('--Select Category--' ,'');
-        return view($this->_config['view'])->with(compact('categories', 'courseTypes'));
+        $categories = $this->courseCategoryRepository
+            ->getList()
+            ->prepend('--Select Category--' ,'');
+
+        return view($this->_config['view'])
+            ->with(compact(
+                'categories',
+                'courseTypes'));
     }
+
 
     public function store(Request $request)
     {
-        session()->flash('You are not allowed to access this view');
-        return back();
 
         $request->validate([
             'name' => 'required',
@@ -91,10 +94,10 @@ class CourseController extends Controller
             'summary' => 'required',
             'description' => 'required',
             'total_no_of_users_in_batch' => 'required',
-            'photo' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:1048'
+            'photo' => 'required|mimes:jpeg,png,jpg,gif,svg|max:1048'
         ]);
 
-        $data = $request->input();
+        $data = $request->except(['status', 'approved_on', 'active']);
 
         $data['tutor_id'] = auth('user')->user()->id;
 
@@ -169,6 +172,7 @@ class CourseController extends Controller
             session()->flash('error', 'Course does not exist!');
             return redirect()->route($this->_config['redirect']);
         }
+
         if ($request->file('photo')) {
             $image = $request->file('photo');
 
@@ -195,7 +199,7 @@ class CourseController extends Controller
                session()->flash('error', $exception->getMessage());
             }*/
         }
-        $course =  $course->update($request->input());
+        $course =  $course->update($request->except(['status', 'approved_on', 'active']));
 
         if ($course) {
             session()->flash('success', 'Course was successfully updated!');
@@ -203,6 +207,7 @@ class CourseController extends Controller
             session()->flash('error', 'Course could not be successfully updated!');
         }
         return redirect()->route($this->_config['redirect']);
+
     }
 
 

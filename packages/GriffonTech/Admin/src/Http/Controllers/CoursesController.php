@@ -50,7 +50,7 @@ class CoursesController extends Controller
     {
 
         $courses = $this->courseRepository
-            ->with(['tutor:id,name', 'course_batches:id'])
+            ->with(['tutor:id,name'])
             ->orderBy('created_at', 'desc')
             ->paginate(15);
 
@@ -154,19 +154,21 @@ class CoursesController extends Controller
 
         $course = $this->courseRepository->findOrFail($id);
 
+        $updateData = $request->input();
 
         if ($request->file('photo')) {
             $image = $request->file('photo');
 
             if ($updated = (new FileManager())->update($image, $course->photo, 'courses')) {
+                $updateData['photo'] = $updated;
 
-                $course->forceFill(['photo' => $updated]);
             } else {
+
                 session()->flash('error', 'Photo could not be updated.');
             }
         }
 
-        $courseUpdated = $course->update($request->input());
+        $courseUpdated = $this->courseRepository->update($updateData, $id);
 
         if ($courseUpdated) {
             session()->flash('success', 'course was successfully updated!');

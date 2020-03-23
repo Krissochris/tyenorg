@@ -77,5 +77,24 @@ class CourseRepository extends Repository
         return parent::create($attributes);
     }
 
+    public function update(array $attributes, $id)
+    {
+        if ($attributes['approved_on']) {
+            $attributes['approved_on'] = now();
+        } else {
+            $attributes['approved_on'] = null;
+        }
+
+        if ($attributes['active']) {
+            $attributes['active'] = 1;
+            $attributes['status'] = 1;
+        } else {
+            $attributes['active'] = 0;
+            $attributes['status'] = 0;
+        }
+
+        return parent::update($attributes, $id);
+    }
+
 
 }

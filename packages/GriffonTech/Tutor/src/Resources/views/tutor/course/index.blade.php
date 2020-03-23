@@ -1,21 +1,26 @@
 @extends("tutor::layout.master")
 
+@section('title')
+    My Courses
+@stop
+
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            {{--<a href="{{ route('tutor.courses.create') }}">
+            <a href="{{ route('tutor.courses.create') }}">
                 <button class="btn btn-dark float-right">
                     <i class="fa fa-book-medical"></i>
                     Add Course
                 </button>
-            </a>--}}
+            </a>
         </div>
     </div>
     <hr>
     <div class="container">
             <div class="row">
                 @foreach($courses as $course)
-                    <div class="col-lg-3 col-md-3 mb-3">
+                    <div class="col-lg-4 col-md-4 mb-3">
                         <div class="card">
                             <div class="card-img-top">
                                 <img class="img-fluid" style="max-height: 150px; width: 100%" src="{{ $course->photo }}" alt="{{ $course->name }}">
@@ -38,7 +43,7 @@
                                     @endswitch
                                 </div>
                                 <p class="font-weight-bold"> {{ $course->name }} </p>
-                                <small> {{ ((int) $course->status === 1) ? 'Active' : 'UnActive'  }}</small>
+                                <small> {{ ((int) $course->active === 1) ? 'Active' : 'UnActive'  }}</small>
 {{--
                                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
 --}}
@@ -52,8 +57,14 @@
                                 </ul>--}}
                                 <div class="float-right">
                                     <a href="{{ route('tutor.courses.show', [ 'slug' => $course->url_key]) }}">View</a> |
-                                    <a href="{{ route('tutor.courses.edit', [ 'slug' => $course->url_key]) }}">Edit</a> |
-                                    <a href="{{ route('tutor.courses.course_batch.index', $course->id) }}">Batch </a>
+                                    <a href="{{ route('tutor.courses.edit', [ 'slug' => $course->url_key]) }}">Edit</a>
+                                </div>
+
+                                <div>
+                                    <a href="{{ route('tutor.courses.course_batch.index', $course->id) }}">Course Batches </a>
+                                    @if($course->comments->count())
+                                        <span> Comments : {{ $course->comments->count() }} </span>
+                                    @endif
                                 </div>
 
                             </div>

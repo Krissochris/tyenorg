@@ -13,7 +13,7 @@
                     </div>
 
                     <table id="data-table" class="table table-bordered">
-                        <thead class="thead-dark">
+                        <thead>
                         <tr>
                             <th>S/N</th>
                             <th> Course Name </th>

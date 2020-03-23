@@ -7,6 +7,12 @@
         </div>
         <div class="ibox-content">
             {!! Form::model($blog,['route' => ['admin.blogs.edit', $blog->id], 'enctype' => 'multipart/form-data' ]) !!}
+            @if(isset($blog_categories))
+                <div class="form-group">
+                    <label for="blog_category"> Category </label>
+                    {!! Form::select('blog_category_id', $blog_categories, null, ['class' => 'form-control']) !!}
+                </div>
+            @endif
             <div class="row">
                 <div class="form-group col-sm-6">
                     <label for="slug"> User </label>

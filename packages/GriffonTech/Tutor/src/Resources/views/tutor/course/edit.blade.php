@@ -1,5 +1,8 @@
 @extends("tutor::layout.master")
 
+@section('title')
+    Edit Course : {{ $course->name }}
+@stop
 
 @section("content")
     <div class="container">
@@ -24,11 +27,33 @@
                                     {!! Form::text('name',null, ['class' => 'form-control',  'placeholder' => 'Course Name']) !!}
                                 </div>
 
+                                @if(!$course->active)
+                                <div class="form-group">
+                                    <label for="type">Course Type </label>
+                                    {!! Form::select('type', $courseTypes, null, ['class' => 'form-control', 'id' => 'course_type']) !!}
+                                </div>
+                                <div id="payment_options" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="total_no_of_referrals_needed">Total Number of Referrals Needed</label>
+                                        {!! Form::number('total_no_of_referrals_needed', null, ['class' => 'form-control']) !!}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="price"> Price (For Pro Member Paid Courses ) </label>
+                                        {!! Form::number('price', null, ['class' => 'form-control']) !!}
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="name"> Learning Link </label>
                                     {!! Form::text('learning_url', null, ['class' => 'form-control', 'placeholder' => 'Learning Url']) !!}
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="name"> Learning Link 2 </label>
+                                    {!! Form::text('learning_url_2', null, ['class' => 'form-control', 'placeholder' => 'Learning Url']) !!}
+                                </div>
+                                @endif
 
                                 <div class="form-group">
                                     <label for="name"> Summary </label>
@@ -54,12 +79,6 @@
                                     <label for="video_url">Course Feature Video Url</label>
                                     {!! Form::text('video_url', null, ['class' => 'form-control']) !!}
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="status"> Status </label>
-                                    {!! Form::select('status', $courseStatus, null, ['class' => 'form-control'] ) !!}
-                                </div>
-
                             </div>
 
                         </div>

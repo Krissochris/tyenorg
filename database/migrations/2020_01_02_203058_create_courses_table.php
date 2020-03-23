@@ -21,7 +21,7 @@ class CreateCoursesTable extends Migration
             $table->string('summary');
             $table->string('learning_url')->nullable();
             $table->string('learning_url_2')->nullable();
-            $table->string('amount_per_student')->nullable();
+            $table->decimal('amount_per_student', 4, 2)->nullable();
             $table->text('description')->nullable();
             $table->integer('course_category_id')->unsigned();
             $table->integer('total_no_of_users_in_batch')->unsigned();
@@ -30,7 +30,10 @@ class CreateCoursesTable extends Migration
             $table->string('photo')->nullable();
             $table->string('video_url')->nullable();
             $table->string('type', 30);
-            $table->string('status')->default(1);
+            $table->tinyInteger('status')->default(0)
+                ->comment('-1 => paused 0=>draft 1 => completed');
+            $table->dateTime('approved_on')->nullable();
+            $table->boolean('active')->default(0);
             $table->timestamps();
         });
     }

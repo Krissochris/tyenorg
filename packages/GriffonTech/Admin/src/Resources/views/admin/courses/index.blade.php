@@ -1,5 +1,9 @@
 @extends("admin::layouts.master")
 
+@section('title')
+    {{ __('All Courses') }}
+@stop
+
 @section("content")
     <div class="row">
         <div class="col-sm-12">
@@ -22,6 +26,7 @@
                             <th> Image</th>
                             <th>Created On</th>
                             <th>Last Modified On</th>
+                            <th>Is Approved</th>
                             <th>Status</th>
                             <th>Batches</th>
                             <th></th>
@@ -37,6 +42,7 @@
                                 <td><img src="{{ $course->photo }}" alt="course image" width="70" height="70"> </td>
                                 <td> {{ $course->created_at }} </td>
                                 <td> {{ $course->updated_at }} </td>
+                                <td> {{ ($course->approved_on) ? $course->approved_on : 'No' }} </td>
                                 <td> {{ $course->getStatus() }} </td>
                                 <td> {{ $course->course_batches->count() }} </td>
                                 <td>

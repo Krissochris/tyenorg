@@ -1,5 +1,8 @@
 @extends("tutor::layout.master")
 
+@section('title')
+    Add New Course
+@stop
 
 @section("content")
     <div class="container">
@@ -28,17 +31,6 @@
                                     <label for="type">Course Type </label>
                                     {!! Form::select('type', $courseTypes, null, ['class' => 'form-control', 'id' => 'course_type']) !!}
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="name"> Learning Link </label>
-                                    {!! Form::text('learning_url', null, ['class' => 'form-control', 'placeholder' => 'Learning Url']) !!}
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="name"> Number of Batch </label>
-                                    {!! Form::text('number_of_batch', null, ['class' => 'form-control', 'placeholder' => 'Number of Batch']) !!}
-                                </div>
-
                                 <div id="payment_options" style="display: none;">
                                     <div class="form-group">
                                         <label for="total_no_of_referrals_needed">Total Number of Referrals Needed</label>
@@ -50,15 +42,23 @@
                                         {!! Form::number('price', null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="name"> Learning Url 1 </label>
+                                    {!! Form::text('learning_url', null, ['class' => 'form-control', 'placeholder' => 'Learning Url']) !!}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="name"> Learning Link Url 2 </label>
+                                    {!! Form::text('learning_url_2', null, ['class' => 'form-control', 'placeholder' => 'Learning Url']) !!}
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"> Course Summary </label>
+                                    {!! Form::textarea('summary', null, ['rows' => 3, 'class' => 'form-control' ]) !!}
+                                </div>
 
                             </div>
 
                             <div class="col-sm-6">
-
-                                <div class="form-group">
-                                    <label for="name"> Summary </label>
-                                    {!! Form::textarea('summary', null, ['rows' => 3, 'class' => 'form-control' ]) !!}
-                                </div>
 
                                 <div class="form-group">
                                     <label for="description">Description</label>
@@ -76,9 +76,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="total_no_of_users_in_batch">Total Number of Users in a Batch</label>
+                                    <label for="total_no_of_users_in_batch">Maximum Number of Users in a Batch</label>
                                     {!! Form::number('total_no_of_users_in_batch', null, ['class' => 'form-control']) !!}
                                 </div>
+                                <div class="form-group">
+                                    <label for="name"> Number of Batches To Create </label>
+                                    {!! Form::text('number_of_batch', null, ['class' => 'form-control', 'placeholder' => 'Number of Batch']) !!}
+                                </div>
+
 
                             </div>
 
