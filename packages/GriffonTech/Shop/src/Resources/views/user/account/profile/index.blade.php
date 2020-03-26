@@ -5,30 +5,6 @@
 @stop
 
 @section('content')
-    <!-- Breadcumb area start -->
-    <section class="breadcumb_area" style="background-image: url({{ asset('lms/img/bg-pattern/breadcumb.jpg') }});">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="breadcumb_section">
-                        <!-- Breadcumb page title start -->
-                        <div class="page_title">
-                            <h3>My Profile</h3>
-                        </div>
-                        <!-- Breadcumb page pagination start -->
-                        <div class="page_pagination">
-                            <ul>
-                                <li><a href="/">Home</a></li>
-                                <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                                <li>My Profile</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section><br>
-    <!-- Breadcumb area end -->
 <!-- Page Content -->
 <div class="container">
     <div class="container col-md-11">

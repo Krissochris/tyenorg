@@ -11,12 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.pages.index');
-});
-Route::get('/administrator', function () {
-    return view('welcome');
-});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');

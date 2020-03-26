@@ -55,6 +55,7 @@ class HomeController extends Controller {
                 return $row;
             });
 
+
         $testimonies = $this->testimonyRepository
             ->getModel()
             ->with(['user:id,name'])

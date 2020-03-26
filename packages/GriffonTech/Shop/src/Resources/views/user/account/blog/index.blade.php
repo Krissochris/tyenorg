@@ -5,33 +5,14 @@
 @stop
 
 @section('content')
-    <!-- Breadcumb area start -->
-    <section class="breadcumb_area" style="background-image: url({{ asset('lms/img/bg-pattern/breadcumb.jpg') }});">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="breadcumb_section">
-                        <!-- Breadcumb page title start -->
-                        <div class="page_title">
-                            <h3>My Blogs</h3>
-                        </div>
-                        <!-- Breadcumb page pagination start -->
-                        <div class="page_pagination">
-                            <ul>
-                                <li><a href="/">Home</a></li>
-                                <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                                <li>My Blogs</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container page__heading-container">
+        <div class="page__heading d-flex align-items-center justify-content-between">
+            <h1 class="m-0">My Blog Posts</h1>
         </div>
-    </section><br>
-    <!-- Breadcumb area end -->
+    </div>
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container page__container">
         <div class="mb-4">
             <a href="{{route('user.blog.create')}}" class="btn btn-dark"> Create Blog</a>
         </div>
