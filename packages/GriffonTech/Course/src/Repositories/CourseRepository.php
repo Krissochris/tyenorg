@@ -71,6 +71,19 @@ class CourseRepository extends Repository
             ->get();
     }
 
+    public function findActiveCoursesBatches(array $course_ids)
+    {
+        $courseBatchRepository = $this->app->make(CourseBatchRepository::class);
+        return
+        $courseBatchRepository
+        ->model->query()
+            ->where('status', 1)
+            ->whereIn('course_id', $course_ids)
+            ->limit(5)
+            ->orderBy('no_of_users', 'desc')
+            ->get();
+    }
+
     public function create(array $attributes)
     {
         $attributes['url_key'] = str_slug($attributes['name']);

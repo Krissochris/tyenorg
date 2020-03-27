@@ -1,5 +1,8 @@
 @extends("shop::layouts.master")
 
+@section('title')
+    {{ $course->name }}
+@stop
 
 @section("content")
     <div class="container page__heading-container">
@@ -8,14 +11,24 @@
                 <h1 class="m-lg-0"> {{ $course->name }} </h1>
                 <div class="d-inline-flex align-items-center">
                     <span class="mr-2">
+                        <?php
+                            $course_reviews = $course->course_reviews;
+                            $average_course_rating = $course->course_reviews->average('rating');
+                        ?>
+                        @if(isset($average_course_rating) )
+                            <span class="mr-2">
+                                            @for($num = 1; $num <= 5; $num++)
+                                    @if($average_course_rating)
                                         <a href="#" class="rating-link active"><i class="material-icons icon-16pt">star</i></a>
-                                        <a href="#" class="rating-link active"><i class="material-icons icon-16pt">star</i></a>
-                                        <a href="#" class="rating-link active"><i class="material-icons icon-16pt">star</i></a>
-                                        <a href="#" class="rating-link active"><i class="material-icons icon-16pt">star</i></a>
-                                        <a href="#" class="rating-link active"><i class="material-icons icon-16pt">star_half</i></a>
-                                    </span>
-                    <strong>4.7</strong><br />
-                    <small class="text-muted">(391 ratings)</small>
+                                    @else
+                                        <a href="#" class="rating-link active"><i class="material-icons icon-16pt">star_empty</i></a>
+                                    @endif
+                                @endfor
+                            </span>
+                        @endif
+                    </span>
+                    <strong>{{ $average_course_rating }}</strong><br />
+                    <small class="text-muted">({{ $course_reviews->count() }} reviews)</small>
                 </div>
             </div>
             <div>
@@ -121,6 +134,7 @@
                         </div>
                     </div>
 
+{{--
                     <ul class="list-group list-group-fit">
                         <li class="list-group-item">
                             <div class="media">
@@ -202,6 +216,7 @@
                             </div>
                         </li>
                     </ul>
+--}}
                 </div>
 
 

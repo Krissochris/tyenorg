@@ -1,5 +1,9 @@
 @extends('shop::layouts.auth')
 
+@section('title')
+    User Login
+@stop
+
 @section('content')
 
 

@@ -1,5 +1,6 @@
 <?php
 namespace GriffonTech\Tutor\Http\Controllers;
+use GriffonTech\Course\Repositories\CourseRegistrationRepository;
 use GriffonTech\Course\Repositories\CourseRepository;
 use GriffonTech\Course\Repositories\CourseReviewRepository;
 use GriffonTech\Tutor\Repositories\TutorProfileRepository;
@@ -37,11 +38,14 @@ class DashboardController extends Controller {
 
     protected $tutorProfileRepository;
 
+    protected $courseRegistrationRepository;
+
 
     public function __construct(
         CourseRepository $courseRepository,
         CourseReviewRepository $courseReviewRepository,
-        TutorProfileRepository $tutorProfileRepository
+        TutorProfileRepository $tutorProfileRepository,
+        CourseRegistrationRepository $courseRegistrationRepository
     )
     {
         $this->_config = request('_config');
@@ -51,6 +55,8 @@ class DashboardController extends Controller {
         $this->tutorProfileRepository = $tutorProfileRepository;
 
         $this->courseReviewRepository = $courseReviewRepository;
+
+        $this->courseRegistrationRepository = $courseRegistrationRepository;
     }
 
 
@@ -58,17 +64,31 @@ class DashboardController extends Controller {
     {
 
         // count tutor courses
-        $tutorCourses = $this->courseRepository->findTutorCourses(auth('user')->user()->id, ['id']);
+        $tutorCourses = $this->courseRepository->findTutorCourses(auth('user')->user()->id);
+
+
+        $active_course_batches =
+        $this->courseRepository->findActiveCoursesBatches($tutorCourses->pluck('id')->toArray());
 
         $totalCourses = $tutorCourses->count();
 
         $courses_ids = $tutorCourses->pluck('id');
+
+        $studentRegistrations = ($this->courseRegistrationRepository
+        ->getRegistrationsForCourses($tutorCourses->pluck('id')->toArray()))->get();
 
         $tutorProfile = $this->tutorProfileRepository->find(auth('user')->user()->tutor_id);
 
         $totalReviews = $this->courseReviewRepository->findCoursesReviews($courses_ids)->count();
         // get the tutor amount in the wallet
         // get the tutor total reviews count
-        return view($this->_config['view'])->with(compact('totalCourses', 'totalReviews', 'tutorProfile'));
+        return view($this->_config['view'])
+            ->with(compact(
+                'tutorCourses',
+                'totalCourses',
+                'totalReviews',
+                'tutorProfile',
+                'active_course_batches',
+                'studentRegistrations'));
     }
 }

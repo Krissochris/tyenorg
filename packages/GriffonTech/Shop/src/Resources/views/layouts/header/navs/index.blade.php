@@ -6,6 +6,9 @@
                     <a href="{{ route('user.home.index') }}" class="nav-link active">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('courses.index') }}" class="nav-link active">Explore Courses</a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('user.home.index') }}" class="nav-link">About Us</a>
                 </li>
                 <li class="nav-item">

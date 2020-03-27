@@ -1,5 +1,10 @@
 @extends('shop::layouts.auth')
 
+@section('title')
+    User Registration
+@stop
+
+
 @section('content')
 
     <form method="POST" action="{{ route('user.register.create') }}">

@@ -30,11 +30,10 @@
                     <div class="dropdown ml-auto">
                         <a href="#" data-toggle="dropdown" data-caret="false" class="text-muted"><i class="material-icons">more_vert</i></a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="student-dashboard.html">Dashboard</a>
-                            <a class="dropdown-item" href="student-profile.html">My profile</a>
-                            <a class="dropdown-item" href="student-edit-account.html">Edit account</a>
+                            <a class="dropdown-item" href="{{ route('tutor.dashboard.index') }}">Dashboard</a>
+                            <a class="dropdown-item" href="{{route('tutor.profile.edit')}}">My profile</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" rel="nofollow" data-method="delete" href="login.html">Logout</a>
+                            <a class="dropdown-item" rel="nofollow" data-method="delete" href="{{ route('user.session.destroy') }}">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -46,7 +45,7 @@
 
                 <ul class="sidebar-menu mt-0">
                     <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" href="instructor-dashboard.html">
+                        <a class="sidebar-menu-button" href="{{ route('tutor.dashboard.index') }}">
                                             <span class="sidebar-menu-icon sidebar-menu-icon--left">
                                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" width="22" height="22">
                                                     <g transform="matrix(1.6666666666666667,0,0,1.6666666666666667,0,0)">
@@ -59,7 +58,7 @@
                     </li>
 
                     <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" href="instructor-courses.html">
+                        <a class="sidebar-menu-button" href="{{ route('tutor.courses.index') }}">
                                             <span class="sidebar-menu-icon sidebar-menu-icon--left">
                                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" width="22" height="22">
                                                     <g transform="matrix(1.6666666666666667,0,0,1.6666666666666667,0,0)">
@@ -71,23 +70,10 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" href="instructor-course-edit.html">
-                                            <span class="sidebar-menu-icon sidebar-menu-icon--left">
-                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" width="22" height="22">
-                                                    <g transform="matrix(1.6666666666666667,0,0,1.6666666666666667,0,0)">
-                                                        <path d="M19,13c-0.552,0-1,0.448-1,1v7c0,0.552-0.448,1-1,1H3c-0.552,0-1-0.448-1-1V3c0-0.552,0.448-1,1-1h7c0.552,0,1-0.448,1-1 s-0.448-1-1-1H3C1.343,0,0,1.343,0,3v18c0,1.657,1.343,3,3,3h14c1.657,0,3-1.343,3-3v-7C20,13.448,19.552,13,19,13z M8.73,12.521 c-0.174,0.048-0.309,0.186-0.353,0.361L7.82,15.119l-1.252,1.252c-0.293,0.293-0.293,0.768,0,1.061c0,0,0,0,0,0 c0.295,0.287,0.765,0.287,1.06,0l1.264-1.262l2.207-0.555c0.174-0.044,0.312-0.177,0.36-0.35c0.048-0.173,0-0.359-0.127-0.487 L9.217,12.65C9.09,12.522,8.904,12.473,8.73,12.521z M23.707,0.293c-0.39-0.39-1.024-0.39-1.414,0l-0.9,0.9 c-0.518-0.138-1.07-0.063-1.533,0.208L19.808,1.35c-1.172-1.165-3.066-1.162-4.235,0.006l-3.612,3.605 c-0.39,0.391-0.39,1.023,0,1.414c0.394,0.384,1.021,0.384,1.415,0L17,2.761c0.392-0.384,1.019-0.381,1.407,0.007L17.7,3.475 c-0.195,0.195-0.195,0.512,0,0.707L19.818,6.3c0.195,0.195,0.512,0.195,0.707,0l1.768-1.768c0.504-0.505,0.701-1.241,0.517-1.93 l0.9-0.9C24.096,1.311,24.095,0.682,23.707,0.293z M12.4,14.22c0.132,0,0.259-0.053,0.353-0.147l6.356-6.355 c0.195-0.195,0.195-0.512,0-0.707L16.99,4.889c-0.198-0.188-0.509-0.188-0.707,0l-6.356,6.356c-0.195,0.195-0.195,0.512,0,0.707 l2.121,2.121C12.141,14.167,12.268,14.219,12.4,14.22z" stroke="none" fill="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    </g>
-                                                </svg>
-                                            </span>
-                            <span class="sidebar-menu-text">Edit Course</span>
-                        </a>
-                    </li>
-
 
 
                     <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" href="instructor-lesson-edit.html">
+                        <a class="sidebar-menu-button" href="{{route('tutor.review.index')}}">
                                             <span class="sidebar-menu-icon sidebar-menu-icon--left">
                                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" width="22" height="22">
                                                     <g transform="matrix(1.6666666666666667,0,0,1.6666666666666667,0,0)">
@@ -95,30 +81,12 @@
                                                     </g>
                                                 </svg>
                                             </span>
-                            <span class="sidebar-menu-text">Edit Lesson</span>
+                            <span class="sidebar-menu-text">Course Reviews</span>
                         </a>
                     </li>
 
-
-
                     <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" href="instructor-create-quiz.html">
-                                            <span class="sidebar-menu-icon sidebar-menu-icon--left">
-                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" width="22" height="22">
-                                                    <g transform="matrix(1.6666666666666667,0,0,1.6666666666666667,0,0)">
-                                                        <path d="M17.464,11c-3.59,0-6.5,2.91-6.5,6.5s2.91,6.5,6.5,6.5s6.5-2.91,6.5-6.5C23.96,13.912,21.052,11.004,17.464,11z M19.964,18.25h-1.5c-0.138,0-0.25,0.112-0.25,0.25V20c0,0.414-0.336,0.75-0.75,0.75s-0.75-0.336-0.75-0.75v-1.5 c0-0.138-0.112-0.25-0.25-0.25h-1.5c-0.414,0-0.75-0.336-0.75-0.75s0.336-0.75,0.75-0.75h1.5c0.138,0,0.25-0.112,0.25-0.25V15 c0-0.414,0.336-0.75,0.75-0.75s0.75,0.336,0.75,0.75v1.5c0,0.138,0.112,0.25,0.25,0.25h1.5c0.414,0,0.75,0.336,0.75,0.75 S20.378,18.25,19.964,18.25z M12.786,8.5c0-0.414-0.336-0.75-0.75-0.75h-6c-0.414,0-0.75,0.336-0.75,0.75s0.336,0.75,0.75,0.75h6 C12.45,9.25,12.786,8.914,12.786,8.5z M6.036,14.749c-0.414,0-0.75,0.336-0.75,0.75c0,0.414,0.336,0.75,0.75,0.75h3.405 c0.117,0,0.217-0.085,0.237-0.2c0.06-0.323,0.139-0.641,0.238-0.954c0.036-0.116-0.006-0.345-0.333-0.345L6.036,14.749z M9.722,19.194c-0.021-0.115-0.121-0.199-0.238-0.2H3.536c-0.276,0-0.5-0.224-0.5-0.5V5.5c0-0.276,0.224-0.5,0.5-0.5h11 c0.276,0,0.5,0.224,0.5,0.5v4.08c-0.002,0.136,0.107,0.249,0.243,0.251c0.019,0,0.038-0.002,0.057-0.006 c0.814-0.154,1.637-0.252,2.464-0.293c0.132-0.008,0.235-0.118,0.234-0.25V3.5c0-0.828-0.672-1.5-1.5-1.5h-4 c-0.086,0-0.165-0.046-0.208-0.121C11.25,0.06,8.903-0.543,7.084,0.533C6.529,0.861,6.066,1.324,5.738,1.879 C5.696,1.953,5.619,1.999,5.534,2h-4c-0.828,0-1.5,0.672-1.5,1.5v17c0,0.828,0.672,1.5,1.5,1.5h8.94 c0.136,0,0.246-0.11,0.246-0.246c0-0.047-0.014-0.093-0.039-0.133C10.23,20.87,9.906,20.05,9.722,19.194z M11.186,12.654 c0.327-0.427,0.695-0.82,1.1-1.174c0.09-0.079-0.01-0.231-0.245-0.231h-6c-0.414,0-0.75,0.336-0.75,0.75s0.336,0.75,0.75,0.75H11 C11.073,12.747,11.142,12.712,11.186,12.654z" stroke="none" fill="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    </g>
-                                                </svg>
-                                            </span>
-                            <span class="sidebar-menu-text">Create Quiz</span>
-                        </a>
-                    </li>
-
-
-
-
-                    <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" href="instructor-earnings.html">
+                        <a class="sidebar-menu-button" href="{{route('tutor.withdrawals.index')}}">
                                             <span class="sidebar-menu-icon sidebar-menu-icon--left">
                                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" width="22" height="22">
                                                     <g transform="matrix(1.6666666666666667,0,0,1.6666666666666667,0,0)">
@@ -147,7 +115,7 @@
 
 
                     <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" href="instructor-payout.html">
+                        <a class="sidebar-menu-button" href="{{route('tutor.withdrawals.index')}}">
                                             <span class="sidebar-menu-icon sidebar-menu-icon--left">
                                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" width="22" height="22">
                                                     <g transform="matrix(1.6666666666666667,0,0,1.6666666666666667,0,0)">
@@ -155,7 +123,7 @@
                                                     </g>
                                                 </svg>
                                             </span>
-                            <span class="sidebar-menu-text">Payout</span>
+                            <span class="sidebar-menu-text">Withdrawals</span>
                         </a>
                     </li>
 

@@ -42,4 +42,9 @@ class CourseRegistrationRepository extends Repository
             });
     }
 
+    public function getRegistrationsForCourses(array $course_ids)
+    {
+        return $this->model->query()
+            ->whereIn('course_id', $course_ids);
+    }
 }
