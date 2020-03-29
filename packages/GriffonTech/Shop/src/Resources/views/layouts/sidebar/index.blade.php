@@ -88,6 +88,22 @@
                             </div>
                         </div>
                     </div>
+                    @if(auth('user')->user()->tutor_id)
+                        <div class="sidebar-block p-0">
+                            <div class="sidebar-heading">Navigations</div>
+                            <ul class="sidebar-menu mt-0">
+
+
+
+                                <li class="sidebar-menu-item">
+                                    <a class="sidebar-menu-button" href="{{ route('tutor.dashboard.index') }}">
+                                        <span class="sidebar-menu-text"> Tutor Account </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    @endif
                     <div class="sidebar-block p-0">
                         <div class="sidebar-heading">Student</div>
 

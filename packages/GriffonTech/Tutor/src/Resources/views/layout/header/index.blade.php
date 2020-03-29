@@ -31,19 +31,14 @@
 
 
                 <ul class="nav navbar-nav d-none d-lg-flex pl-2">
-                    <li class="nav-item dropdown">
-                        <a href="{{ route('user.dashboard.index')}}" class="nav-link dropdown-toggle" data-toggle="dropdown" data-caret="false">
+                    <li class="nav-item ">
+                        <a href="{{ route('user.dashboard.index')}}" class="nav-link">
                                     <span class="mr-1"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" width="22" height="22">
                                             <g transform="matrix(1.6666666666666667,0,0,1.6666666666666667,0,0)">
                                                 <path d="M24,4.75c0-1.657-1.343-3-3-3H3c-1.657,0-3,1.343-3,3v14.5c0,1.657,1.343,3,3,3h18c1.657,0,3-1.343,3-3V4.75z M21.75,6.75 C21.888,6.75,22,6.862,22,7v5.5c0,0.138-0.112,0.25-0.25,0.25h-12c-0.138,0-0.25-0.112-0.25-0.25V7c0-0.138,0.112-0.25,0.25-0.25 H21.75z M9.65,3.75c0.258-0.467,0.845-0.637,1.312-0.38c0.16,0.088,0.292,0.22,0.38,0.38c0.096,0.149,0.149,0.322,0.154,0.5 c-0.005,0.178-0.058,0.351-0.154,0.5c-0.258,0.467-0.845,0.637-1.312,0.38C9.87,5.042,9.738,4.91,9.65,4.75 c-0.096-0.149-0.149-0.322-0.154-0.5c0.006-0.178,0.06-0.351,0.158-0.5H9.65z M6.15,3.75c0.258-0.467,0.845-0.637,1.312-0.38 c0.16,0.088,0.292,0.22,0.38,0.38C7.94,3.899,7.994,4.072,8,4.25c-0.005,0.178-0.058,0.351-0.154,0.5 C7.588,5.217,7.001,5.387,6.534,5.13c-0.16-0.088-0.292-0.22-0.38-0.38C6.058,4.601,6.005,4.428,6,4.25 c0.005-0.178,0.058-0.351,0.154-0.5H6.15z M2.588,3.842C2.749,3.482,3.106,3.25,3.5,3.25c0.351,0.004,0.673,0.195,0.846,0.5 C4.442,3.899,4.495,4.072,4.5,4.25c-0.005,0.178-0.058,0.351-0.154,0.5C4.088,5.217,3.501,5.387,3.034,5.13 c-0.16-0.088-0.292-0.22-0.38-0.38C2.558,4.601,2.505,4.428,2.5,4.25c0.001-0.141,0.032-0.28,0.092-0.408H2.588z M8,20 c0,0.138-0.112,0.25-0.25,0.25H3c-0.552,0-1-0.448-1-1V7c0-0.138,0.112-0.25,0.25-0.25h5.5C7.888,6.75,8,6.862,8,7V20z M22,19.25 c0,0.552-0.448,1-1,1H9.75c-0.138,0-0.25-0.112-0.25-0.25v-5.5c0-0.138,0.112-0.25,0.25-0.25h12c0.138,0,0.25,0.112,0.25,0.25 V19.25z" stroke="none" fill="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round"></path>
                                             </g>
                                         </svg></span>
                             Student Account </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item active" href="index.html">Admin</a>
-                            <a class="dropdown-item" href="fluid-index.html">Full Width</a>
-                            <a class="dropdown-item" href="fixed-index.html">Fixed</a>
-                        </div>
                     </li>
                 </ul>
 
@@ -54,10 +49,10 @@
                 </ul>
 
 
-                <form class="search-form search-form--light d-none d-sm-flex flex ml-3" action="https://lema.frontted.com/index.html">
+                {{--<form class="search-form search-form--light d-none d-sm-flex flex ml-3" action="https://lema.frontted.com/index.html">
                     <input type="text" class="form-control" placeholder="Search">
                     <button class="btn" type="submit"><i class="material-icons">search</i></button>
-                </form>
+                </form>--}}
 
 
                 <ul class="nav navbar-nav d-none d-md-flex">
@@ -79,7 +74,7 @@
                             <div class="navbar-notifications-menu__content" data-perfect-scrollbar>
                                 <div class="py-2">
 
-                                    <div class="dropdown-item d-flex">
+                                   {{-- <div class="dropdown-item d-flex">
                                         <div class="mr-3">
                                             <div class="avatar avatar-xs">
                                                 <img src="assets/images/256_daniel-gaffey-1060698-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
@@ -194,7 +189,7 @@
                                             <div>Hey, how are you? What about our next meeting</div>
                                             <small class="text-muted">2 minutes ago</small>
                                         </div>
-                                    </div>
+                                    </div>--}}
 
                                 </div>
                             </div>
@@ -205,31 +200,45 @@
 
                 <div class="dropdown">
                     <a href="#account_menu" class="dropdown-toggle navbar-toggler navbar-toggler-dashboard border-left d-flex align-items-center ml-navbar" data-toggle="dropdown">
-                        <img src="{{ asset('assets/images/avatar/demi.png') }}" class="rounded-circle" width="32" alt="Frontted">
+                        @if(!auth('user')->user()->tutor_profile->photo)
+                            <span class="avatar-title rounded-circle bg-soft-secondary text-muted">
+                        @else
+                        <img src="{{ auth('user')->user()->tutor_profile->photo }}"
+                             class="rounded-circle" width="32"
+                             alt="{{ auth('user')->user()->name }}">
+                        @endif
+
                         <span class="ml-1 d-flex-inline">
-                                    <span class="text-light">Adrian D.</span>
+                                    <span class="text-light">{{ auth('user')->user()->tutor_profile->name }}</span>
                                 </span>
                     </a>
                     <div id="company_menu" class="dropdown-menu dropdown-menu-right navbar-company-menu">
                         <div class="dropdown-item d-flex align-items-center py-2 navbar-company-info py-3">
-
-                                    <span class="mr-3">
-                                        <img src="assets/images/frontted-logo-blue.svg" width="43" height="43" alt="avatar">
-                                    </span>
                             <span class="flex d-flex flex-column">
-                                        <strong class="h5 m-0">Adrian D.</strong>
-                                        <small class="text-muted text-uppercase">STUDENT</small>
+                                        <strong class="h5 m-0">
+                                            <?php
+                                            $names = explode(' ', auth('user')->user()->name);
+                                            $name = auth('user')->user()->name;
+                                            if (count($names) > 1) {
+                                                $name = $names[0]. ' .';
+                                                $last_name_abbr = substr($names[1], 0, 1);
+                                                $name .= $last_name_abbr;
+                                            }
+                                            ?>
+                                            {{ ucfirst($name)  }}
+                                        </strong>
+                                        <small class="text-muted text-uppercase">Instructor</small>
                                     </span>
 
                         </div>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item d-flex align-items-center py-2" href="student-edit-account.html">
+                        <a class="dropdown-item d-flex align-items-center py-2" href="{{ route('tutor.profile.edit') }}">
                             <span class="material-icons mr-2">account_circle</span> Edit Account
                         </a>
                         <a class="dropdown-item d-flex align-items-center py-2" href="#">
                             <span class="material-icons mr-2">settings</span> Settings
                         </a>
-                        <a class="dropdown-item d-flex align-items-center py-2" href="login.html">
+                        <a class="dropdown-item d-flex align-items-center py-2" href="{{ route('user.session.destroy') }}">
                             <span class="material-icons mr-2">exit_to_app</span> Logout
                         </a>
                     </div>

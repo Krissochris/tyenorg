@@ -166,21 +166,24 @@
                                 <li class="list-group-item">
                                     <div class="media align-items-center">
                                         <div class="media-body">
-                                            <a class="text-body mb-1" href="#">
+                                            <a class="text-body mb-1" href="{{ route('tutor.courses.show', [ 'slug' => $course->url_key]) }}">
                                                 <strong> {{ $course->name }} </strong>
                                             </a><br>
                                         </div>
                                         <div class="media-right text-center d-flex align-items-center">
-                                                    <span class="badge badge-warning mr-2">
+                                                    <span class="badge badge-success mr-2">
                                                         Good
                                                     </span>
-                                            <h4 class="mb-0 text-warning">5.8</h4>
+                                            <h4 class="mb-0 text-success">
+                                                {{  ($course->course_reviews->average('rating')) }}
+                                            </h4>
                                         </div>
                                     </div>
                                 </li>
 
                             @endforeach
                         @endif
+{{--
                         <li class="list-group-item">
                             <div class="media align-items-center">
                                 <div class="media-body">
@@ -204,6 +207,7 @@
                                 </div>
                             </div>
                         </li>
+--}}
 
                         {{--<li class="list-group-item">
                             <div class="media align-items-center">
@@ -302,7 +306,10 @@
                                             </div>
                                             <small> Registered for {{ $registration->course->name }} </small>
                                         </div>
-                                        <small class="text-muted">4 days ago</small>
+                                        <small class="text-muted">
+
+                                            4 days ago
+                                        </small>
                                     </div>
 
                                 </div>
