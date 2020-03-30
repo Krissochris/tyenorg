@@ -177,8 +177,11 @@ class CourseController extends Controller
                 $course->is_registered = false;
             }
         }
+        $relatedCourses = $this->courseRepository->findWhere([
+            'course_category_id' => $course->course_category_id
+        ]);
 
-        return view($this->_config['view'])->with(compact('course'));
+        return view($this->_config['view'])->with(compact('course', 'relatedCourses'));
     }
 
     public function join($slug)

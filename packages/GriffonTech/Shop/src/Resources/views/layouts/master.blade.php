@@ -48,9 +48,10 @@
 
         @include('shop::layouts.header.navs.index')
 
-        <div class="container page__container mt-2">
+        <div class="container page__container">
+
             @if ($errors->any())
-                <div class="alert alert-danger">
+                <div class="alert alert-danger mt-2">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -59,7 +60,7 @@
                 </div>
             @endif
             @if(Session::has('success'))
-                    <div class="alert alert-soft-success d-flex  align-items-center" role="alert">
+                    <div class="alert alert-soft-success d-flex  align-items-center mt-2" role="alert">
                         <i class="material-icons mr-3">check_circle</i>
                         <div class="text-body"><strong>Success:</strong>
                             {{ Session::get('success') }}
@@ -68,7 +69,7 @@
             @endif
 
             @if(Session::has('warning'))
-                    <div class="alert alert-soft-warning d-flex  align-items-center m-0" role="alert">
+                    <div class="alert alert-soft-warning d-flex  align-items-center m-0 mt-2" role="alert">
                         <i class="material-icons mr-3">error_outline</i>
                         <div class="text-body"><strong>warning</strong>
                             {{ Session::get('warning') }}
@@ -77,7 +78,7 @@
             @endif
 
             @if(Session::has('info'))
-                    <div class="alert alert-soft-info d-flex align-items-center" role="alert">
+                    <div class="alert alert-soft-info d-flex align-items-center mt-2" role="alert">
                         <i class="material-icons mr-3">info_outline</i>
                         <div class="text-body"><strong>Info - </strong>
                             {{ Session::get('info') }}
@@ -85,7 +86,7 @@
                     </div>
             @endif
             @if(Session::has('error'))
-                    <div class="alert alert-soft-danger d-flex align-items-center" role="alert">
+                    <div class="alert alert-soft-danger d-flex align-items-center mt-2" role="alert">
                         <i class="material-icons mr-3">error_outline</i>
                         <div class="text-body"><strong>Error - </strong>
                             {{ Session::get('error') }}
