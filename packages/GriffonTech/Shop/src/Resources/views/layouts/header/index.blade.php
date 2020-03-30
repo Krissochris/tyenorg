@@ -12,7 +12,8 @@
 
                 <div class="d-flex sidebar-account flex-shrink-0 mr-auto mr-lg-0">
                     <a href="{{ route('user.home.index') }}" class="flex d-flex align-items-center text-underline-0">
-                                <span class="mr-1  text-white">
+                        <img src="{{ asset('images/logo.png') }}" style="width: 70px;" >
+                               {{-- <span class="mr-1  text-white">
                                     <!-- LOGO -->
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40" width="30" height="30">
                                         <g transform="matrix(1.6666666666666667,0,0,1.6666666666666667,0,0)">
@@ -22,7 +23,7 @@
                                 </span>
                         <span class="flex d-flex flex-column text-white">
                                     <strong class="sidebar-brand">TYEN-Learn</strong>
-                                </span>
+                                </span>--}}
                     </a>
                 </div>
 

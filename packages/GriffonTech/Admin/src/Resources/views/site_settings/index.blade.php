@@ -1,5 +1,10 @@
 @extends("admin::layouts.master")
 
+@section('title')
+    Site Settings
+@stop
+
+
 @section("content")
     <div class="ibox">
         <div class="ibox-title">
@@ -41,6 +46,10 @@
                         <label for="facebook_link">Email Address 2</label>
                         {!! Form::text('facebook_url', setting('email_address_1'), ['class' => 'form-control']) !!}
                     </div>
+                    <div class="form-group">
+                        <label for="facebook_link">Contact Address</label>
+                        {!! Form::text('facebook_url', setting('contact_address'), ['class' => 'form-control']) !!}
+                    </div>
 
                     <h5> Social Links</h5>
 
@@ -62,6 +71,10 @@
                     <div class="form-group">
                         <label for="facebook_link">Telegram Link</label>
                         {!! Form::text('telegram_url',setting('telegram_url'), ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label for="facebook_link">Instagram Link</label>
+                        {!! Form::text('telegram_url',setting('instagram_url'), ['class' => 'form-control']) !!}
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary"> Submit </button>

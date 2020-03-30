@@ -145,6 +145,33 @@
 
 
 
+        <div class="m-4 p-4">
+            <h2 class="bold mb-1 text-center"> Our Users Testimonies </h2>
+        </div>
+        @if(!$testimonies->isEmpty())
+            @foreach($testimonies as $testimony)
+                <div class="card">
+                    <div class="px-4 py-3">
+                        <div class="d-flex mb-1">
+                            <div class="flex">
+                                <div class="d-flex align-items-center mb-1">
+                                    <strong class="text-15pt">{{ $testimony->user->name }}</strong>
+                                    <small class="ml-2 text-muted">{{ $testimony->created_at->format('d M, Y') }}</small>
+                                </div>
+                                <div>
+                                    <p>
+                                        {{ $testimony->testimony }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            @endforeach
+        @endif
+
+
 
 
 {{--
