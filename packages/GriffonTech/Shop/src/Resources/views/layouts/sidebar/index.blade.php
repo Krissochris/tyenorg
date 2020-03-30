@@ -68,7 +68,7 @@
                                 <span class="avatar-title rounded-circle bg-soft-secondary text-muted">
                                     <?php
                                     $name = '';
-                                    $names = explode(' ', auth('user')->user()->tutor_profile->name);
+                                    $names = explode(' ', auth('user')->user()->name);
                                     for ($i = 0; $i < count($names); $i++) {
                                         $name .= substr($names[$i], 0, 1);
                                         if ($i > 1) {
