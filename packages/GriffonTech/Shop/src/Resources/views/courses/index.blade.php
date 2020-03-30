@@ -20,6 +20,7 @@
                     <button class="btn" type="button"><i class="material-icons">search</i></button>
                 </div>
 
+{{--
                 <div class="form-inline  mb-3 ml-auto">
                     <div class="form-group mr-3">
                         <label for="custom-select" class="form-label mr-1">Category</label>
@@ -31,6 +32,7 @@
                         </select>
                     </div>
                 </div>
+--}}
             </div>
         {!! Form::close() !!}
 
@@ -97,18 +99,7 @@
         </div>
         <hr>
         <div class="d-flex flex-row align-items-center mb-3">
-            <div class="form-inline">
-                View
-                <select class="custom-select ml-2">
-                    <option value="20" selected>20</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                    <option value="200">200</option>
-                </select>
-            </div>
-            <div class="ml-auto">
-                20 <span class="text-muted">of 100</span> <a href="#" class="icon-muted"><i class="material-icons float-right">arrow_forward</i></a>
-            </div>
+            {{ $courses->links() }}
         </div>
 
     </div>

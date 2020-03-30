@@ -24,17 +24,24 @@
                     </li>
 
                     <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" href="#">
+                        <a class="sidebar-menu-button" href="{{ route('pages.view', 'page_about_us') }}">
                             <span class="sidebar-menu-text">About Us</span>
                         </a>
                     </li>
 
 
                     <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" href="#">
+                        <a class="sidebar-menu-button" href="{{ route('pages.view', 'page_contact_us') }}">
                             <span class="sidebar-menu-text">Contact Us</span>
                         </a>
                     </li>
+
+                    <li class="sidebar-menu-item">
+                        <a class="sidebar-menu-button" href="{{ route('faqs.index') }}">
+                            <span class="sidebar-menu-text">Faqs</span>
+                        </a>
+                    </li>
+
 
                     <li class="sidebar-menu-item">
                         <a class="sidebar-menu-button" href="{{ route('user.session.index') }}">
@@ -205,6 +212,32 @@
                                     <span class="sidebar-menu-text">My Testimonies</span>
                                 </a>
                             </li>
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="{{ route('user.home.index') }}">
+                                    <span class="sidebar-menu-text">Home</span>
+                                </a>
+                            </li>
+
+
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="{{ route('courses.index') }}">
+                                    <span class="sidebar-menu-text">Explore Courses</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="{{ route('pages.view', 'page_about_us') }}">
+                                    <span class="sidebar-menu-text">About Us</span>
+                                </a>
+                            </li>
+
+
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="{{ route('pages.view', 'page_contact_us') }}">
+                                    <span class="sidebar-menu-text">Contact Us</span>
+                                </a>
+                            </li>
+
 
                         </ul>
                     </div>

@@ -30,15 +30,7 @@
 
 
 
-
-
-
-                <ul class="ml-auto nav navbar-nav mr-2 d-none d-lg-flex">
-                    <li class="nav-item"><a href="#" class="nav-link">Get Help</a></li>
-                </ul>
-
-
-                <form class="search-form search-form--light d-none d-sm-flex flex ml-3" action="https://lema.frontted.com/fixed-index.html">
+                <form class="search-form search-form--light d-none d-sm-flex flex ml-3" action="#">
                     <input type="text" class="form-control" placeholder="Search">
                     <button class="btn" type="submit"><i class="material-icons">search</i></button>
                 </form>
@@ -52,6 +44,7 @@
 
 
                     @auth('user')
+{{--
                     <li class="nav-item dropdown">
                         <a href="#notifications_menu" class="nav-link dropdown-toggle" data-toggle="dropdown" data-caret="false">
                                     <span class="nav-icon navbar-notifications-indicator">
@@ -73,7 +66,7 @@
                                     <div class="dropdown-item d-flex">
                                         <div class="mr-3">
                                             <div class="avatar avatar-xs">
-                                                <img src="assets/images/256_daniel-gaffey-1060698-unsplash.jpg" alt="Avatar" class="avatar-img rounded-circle">
+                                                <img src="{{ asset('images/avatar.png') }}" alt="Avatar" class="avatar-img rounded-circle">
                                             </div>
                                         </div>
                                         <div class="flex">
@@ -192,6 +185,7 @@
                             <a href="javascript:void(0);" class="dropdown-item text-center navbar-notifications-menu__footer">View All</a>
                         </div>
                     </li>
+--}}
                     @endauth
 
                 </ul>
@@ -199,10 +193,10 @@
                 @auth('user')
                 <div class="dropdown">
                     <a href="#account_menu" class="dropdown-toggle navbar-toggler navbar-toggler-dashboard border-left d-flex align-items-center ml-navbar" data-toggle="dropdown">
-                        <img src="{{ asset('assets/images/avatar/demi.png') }}" class="rounded-circle" width="32" alt="{{ auth('user')->user()->name }}">
+                        <img src="{{ asset('images/avatar.png') }}" class="rounded-circle" width="32" alt="{{ auth('user')->user()->name }}">
                         <span class="ml-1 d-flex-inline">
-                                    <span class="text-light"> {{ auth('user')->user()->name }} </span>
-                                </span>
+                            <span class="text-light"> {{ auth('user')->user()->name }} </span>
+                        </span>
                     </a>
                     <div id="company_menu" class="dropdown-menu dropdown-menu-right navbar-company-menu">
                         <div class="dropdown-item d-flex align-items-center py-2 navbar-company-info py-3">

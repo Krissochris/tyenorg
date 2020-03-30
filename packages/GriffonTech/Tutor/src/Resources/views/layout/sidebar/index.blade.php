@@ -136,13 +136,37 @@
                 <div class="sidebar-heading">Navigations</div>
                 <ul class="sidebar-menu mt-0">
 
-
-
                     <li class="sidebar-menu-item">
                         <a class="sidebar-menu-button" href="{{ route('user.dashboard.index') }}">
                             <span class="sidebar-menu-text"> Student Account </span>
                         </a>
                     </li>
+                    <li class="sidebar-menu-item">
+                        <a class="sidebar-menu-button" href="{{ route('user.home.index') }}">
+                            <span class="sidebar-menu-text">Home</span>
+                        </a>
+                    </li>
+
+
+                    <li class="sidebar-menu-item">
+                        <a class="sidebar-menu-button" href="{{ route('courses.index') }}">
+                            <span class="sidebar-menu-text">Explore Courses</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-menu-item">
+                        <a class="sidebar-menu-button" href="{{ route('pages.view', 'page_about_us') }}">
+                            <span class="sidebar-menu-text">About Us</span>
+                        </a>
+                    </li>
+
+
+                    <li class="sidebar-menu-item">
+                        <a class="sidebar-menu-button" href="{{ route('pages.view', 'page_contact_us') }}">
+                            <span class="sidebar-menu-text">Contact Us</span>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>

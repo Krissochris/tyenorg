@@ -10,7 +10,7 @@
     <title>TYEN - @yield('title') </title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('lms/img/core-img/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('images/logo.png') }}">
     <!-- Perfect Scrollbar -->
     <link type="text/css" href="{{ asset('assets/vendor/perfect-scrollbar.css') }}" rel="stylesheet">
 

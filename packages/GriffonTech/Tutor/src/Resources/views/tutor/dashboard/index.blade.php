@@ -96,9 +96,9 @@
                             <h4 class="card-header__title">In Progress</h4>
                             <div class="card-subtitle text-muted">Active Courses Batches</div>
                         </div>
-                        <div class="ml-auto">
-                            <a href="student-courses.html" class="btn btn-light">Browse All</a>
-                        </div>
+                        {{--<div class="ml-auto">
+                            <a href="#" class="btn btn-light">Browse All</a>
+                        </div>--}}
                     </div>
 
 
@@ -130,9 +130,10 @@
                                                 <i class="material-icons">more_vert</i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#">View Stats</a>
-                                                <a class="dropdown-item" href="#">Proceed</a>
-                                                <a class="dropdown-item" href="#">Close</a>
+                                                <a class="dropdown-item" href="{{ route('tutor.courses.course_batch.show', $course_batch->id) }}">View</a>
+                                                <a class="dropdown-item" href="{{ route('tutor.courses.course_batch.edit', $course_batch->id) }}">Edit</a>
+                                                {{--<a class="dropdown-item" href="#">Proceed</a>
+                                                <a class="dropdown-item" href="#">Close</a>--}}
                                             </div>
                                         </div>
                                     </div>
@@ -307,8 +308,7 @@
                                             <small> Registered for {{ $registration->course->name }} </small>
                                         </div>
                                         <small class="text-muted">
-
-                                            4 days ago
+                                            {{ $registration->created_at }}
                                         </small>
                                     </div>
 
