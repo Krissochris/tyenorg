@@ -192,7 +192,7 @@ class CoursesController extends Controller
 
         if ($course_batches->count()) {
             $completed_first_batch = $course_batches->first(function($course_batch, $key) {
-                return $course_batch->status == 2;
+                return $course_batch->is_taken == 1;
             });
         }
         if (isset($completed_first_batch) && $completed_first_batch) {
@@ -213,6 +213,9 @@ class CoursesController extends Controller
         }
 
         if ($this->courseRepository->delete($id)) {
+            foreach ($course_batches as $course_batch) {
+                $course_batch->delete();
+            }
             session()->flash('success', 'Course was successfully deleted!.');
         } else {
             session()->flash('error', 'Course could not be deleted.');

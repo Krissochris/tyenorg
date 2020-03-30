@@ -11,7 +11,11 @@
     <div class="home-banner text-white mb-4">
         <div class="container page__container">
             <h1 class="display-4 bold" data-aos="fade-up" data-aos-duration="800">Everything you need to LEARN</h1>
-            <p class="lead mb-5" data-aos="fade-up" data-aos-duration="1000">Get your first Job as a UI/UX Designer</p>
+            <p class="lead mb-5" data-aos="fade-up" data-aos-duration="1000">
+                Learn with a team of likeminds; master a skill and be your own Boss - <strong>
+                    We shall HELP YOU for Free
+                </strong>
+            </p>
             <div data-aos="fade-down" data-aos-duration="400" data-aos-delay="400" data-offset="-100">
                 <a class="btn btn-light btn-lg mr-1" href="{{ route('courses.index') }}">Browse Lessons</a>
 {{--
@@ -83,7 +87,9 @@
 
         <div class="m-4 p-4">
             <h2 class="bold mb-1 text-center"> Our Blog Post</h2>
-            <p class="lead text-muted text-center"> Checkout Some of our awesome blog posts</p>
+            <p class="lead text-muted text-center">
+                <strong> Entrepreneurs sharing awesome ideas - check them out, learn and air your view in comment</strong>
+            </p>
         </div>
         <div class="d-flex justify-content-around pb-4">
             <div class="row">
