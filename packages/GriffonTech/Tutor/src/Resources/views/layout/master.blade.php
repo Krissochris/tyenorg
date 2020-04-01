@@ -89,7 +89,7 @@
 <script src="{{ asset('assets/js/sidebar-mini.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
 <script src="{{ asset('assets/vendor/tinymice/tinymce.min.js') }}"></script>
-<script>tinymce.init({selector:'textarea'});</script>
+<script>tinymce.init({selector:'.tinymce_editor'});</script>
 @yield('page-footer-script')
 </body>
 

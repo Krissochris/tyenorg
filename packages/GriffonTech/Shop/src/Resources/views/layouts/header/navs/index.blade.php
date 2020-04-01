@@ -3,19 +3,19 @@
         <div class="navbar navbar-secondary navbar-light navbar-expand-sm p-0 d-none d-md-flex" id="secondaryNavbar">
             <ul class="nav navbar-nav">
                 <li class="nav-item active">
-                    <a href="{{ route('user.home.index') }}" class="nav-link active">Home</a>
+                    <a href="{{ route('user.home.index') }}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('courses.index') }}" class="nav-link active">Explore Courses</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('user.home.index') }}" class="nav-link">About Us</a>
+                    <a href="{{ route('pages.view', 'page_about_us') }}" class="nav-link">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('user.home.index') }}" class="nav-link">Contact Us</a>
+                    <a href="{{ route('pages.view', 'page_contact_us') }}" class="nav-link">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('user.home.index') }}" class="nav-link">FaQs</a>
+                    <a href="{{ route('faqs.index') }}" class="nav-link">FaQs</a>
                 </li>
                 @auth('user')
                     @if(auth('user')->user()->tutor_id)

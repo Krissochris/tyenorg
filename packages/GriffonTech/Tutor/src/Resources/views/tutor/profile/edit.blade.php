@@ -1,37 +1,35 @@
 @extends("tutor::layout.master")
 
 @section("content")
-    <div class="container">
 
+
+    <div class="container page__heading-container">
+        <div class="page__heading d-flex align-items-center justify-content-between">
+            <h1 class="m-0">Edit Profile</h1>
+        </div>
+    </div>
+
+
+    <div class="container page__container">
         <div class="row">
             <div class="col-sm-12">
                 <form action="{{ route('tutor.profile.edit') }}" method="POST" enctype="multipart/form-data">
                     <div class="row">
                         @csrf
-                        <div class="col-sm-2">
-                            <div class="form-group">
-                                <div class="fileinput fileinput-new" data-provides="fileinput"><input type="hidden" value="" name="...">
-                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px; line-height: 150px;">
-                                        @if($tutor->photo) <img src="{{ $tutor->photo }}" alt="{{ $tutor->name }}"> @endif
-                                    </div>
-                                    <div>
-                                    <span class="btn btn-default btn-file">
-                                    <span class="fileinput-new">Load Image</span>
-                                        <span class="fileinput-exists">Change</span>
-                                        {!! Form::file('photo') !!}
-                                    </span>
-                                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-10">
+                        <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4>Personal Details</h4>
                                 </div>
                                 <div class="card-body">
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2" for="photo">Profile Picture</label>
+                                        <div class="col-sm-7">
+                                            {!! Form::file('photo', ['class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+
                                     <div class="form-group row">
                                         <label class="col-sm-2"> Title </label>
                                         <div class="col-sm-7">

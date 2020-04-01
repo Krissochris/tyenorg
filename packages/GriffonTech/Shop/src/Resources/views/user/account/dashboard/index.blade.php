@@ -39,7 +39,9 @@
                             </div>
 
 
+{{--
                             <p> Short bio about this student is comming soon.</p>
+--}}
 
 
                             <a href="#" class="btn btn-facebook btn-sm"><i class="fab fa-facebook"></i></a>

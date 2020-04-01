@@ -28,7 +28,7 @@
                         </div>
                         <div class="form-group">
                             <label for="body"> Body </label>
-                            {!! Form::textarea('body', $blog->body, ['class' => 'form-control summernote', 'cols' => 30, 'rows' => 10]) !!}
+                            {!! Form::textarea('body', $blog->body, ['class' => 'form-control tinymce_editor', 'cols' => 30, 'rows' => 10]) !!}
                         </div>
 
                         <div class="custom-file" >

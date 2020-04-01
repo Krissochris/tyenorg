@@ -69,6 +69,10 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <h4> Summary </h4>
+                        {{ $course->summary }}
+                        <hr>
+
                         {!! $course->description !!}
                     </div>
                 </div>
@@ -78,7 +82,7 @@
                     <div class="card-header">
                         <div class="media align-items-center">
                             <div class="media-left">
-                                <img src="{{ $course->tutor->photo }}" alt="About Adrian" width="40" class="rounded-circle">
+                                <img src="{{ $course->tutor->photo }}" alt="{{ $course->tutor->name }}" width="40" class="rounded-circle">
                             </div>
                             <div class="media-body">
                                 <div class="card-title mb-0">

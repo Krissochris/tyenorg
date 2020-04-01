@@ -75,7 +75,7 @@
 
                         <div class="form-group">
                             <label for="description">Description</label>
-                            {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+                            {!! Form::textarea('description', null, ['class' => 'form-control tinymce_editor']) !!}
                         </div>
 
                         <div class="form-group">

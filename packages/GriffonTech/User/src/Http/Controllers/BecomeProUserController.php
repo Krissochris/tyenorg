@@ -23,11 +23,10 @@ class BecomeProUserController extends Controller
 
     public function create()
     {
-
         if(request()->input('paymentMethod') !== 'bank_deposit') {
 
             request()->session()->put('payment', [
-                'amount' => 15,
+                'amount' => setting('pro_membership_fee'),
                 'user_id' => auth('user')->user()->id,
                 'item_no' => 1001,
                 'customer_name' => auth('user')->user()->name,

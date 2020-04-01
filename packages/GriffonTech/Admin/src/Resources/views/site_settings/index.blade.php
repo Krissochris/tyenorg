@@ -26,6 +26,17 @@
                         {!! Form::number('pro_membership_fee', setting('pro_membership_fee'), ['class' => 'form-control']) !!}
                     </div>
 
+                    <div class="form-group">
+                        <label for="pro_membership_fee"> Footer Copyright details </label>
+                        {!! Form::textarea('footer_copyright', setting('footer_copyright'), ['class' => 'form-control', 'rows' => 5]) !!}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pro_membership_fee"> Head Scripts </label>
+                        {!! Form::textarea('head_scripts', setting('head_scripts'), ['class' => 'form-control', 'placeholder' => 'head Scripts']) !!}
+                    </div>
+
+
                     <h5>Contact Details </h5>
                     <div class="form-group">
                         <label for="facebook_link">Phone Number 1</label>
