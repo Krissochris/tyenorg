@@ -83,10 +83,12 @@
                         <label for="facebook_link">Telegram Link</label>
                         {!! Form::text('telegram_url',setting('telegram_url'), ['class' => 'form-control']) !!}
                     </div>
+
                     <div class="form-group">
                         <label for="facebook_link">Instagram Link</label>
-                        {!! Form::text('telegram_url',setting('instagram_url'), ['class' => 'form-control']) !!}
+                        {!! Form::text('instagram_url',setting('instagram_url'), ['class' => 'form-control']) !!}
                     </div>
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary"> Submit </button>
                     </div>

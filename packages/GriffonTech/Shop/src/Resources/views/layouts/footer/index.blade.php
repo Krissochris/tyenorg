@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-3">
                 <a href="#" class="brand d-flex align-items-center mb-4">
-                    <img src="{{ asset('images/logo.png') }}" style="width: 70px;" alt="logo" >
+                    <img src="{{ asset('images/logo-white.png') }}" style="width: 70px;" alt="logo" >
                 </a>
             </div>
             <div class="col-md-9">
@@ -100,7 +100,14 @@
         </div>
         <div class="row">
             <div class="col-lg-12 text-center">
-                <small class="text-center">Copyright information here </small>
+                <div class="wt-footer-bot-left">
+                    <p class="copyrights-text">
+                        Copyright © <strong> TYEN </strong> - All Right Reserved.
+                    </p>
+
+                    <p class="text-white">Proudly Powered by: <strong> TYCT INITIATIVE (RC No: 127873) </strong>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

@@ -238,6 +238,15 @@
                                 </a>
                             </li>
 
+                            <li class="sidebar-menu-item">
+                                <a class="sidebar-menu-button" href="{{ route('pages.view', 'page_contact_us') }}">
+                                    <span class="sidebar-menu-text">Contact Us</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('faqs.index') }}" class="nav-link">Enterprenuer Blogs</a>
+                            </li>
 
                         </ul>
                     </div>

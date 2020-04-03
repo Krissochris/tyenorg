@@ -6,6 +6,9 @@ namespace GriffonTech\Admin\Http\Controllers;
 
 use GriffonTech\Core\Helpers\FileManager;
 use GriffonTech\Tutor\Contracts\TutorProfile;
+use GriffonTech\Tutor\Repositories\TutorAgreementAttributeRepository;
+use GriffonTech\Tutor\Repositories\TutorAgreementAttributeValueRepository;
+use GriffonTech\Tutor\Repositories\TutorAgreementRepository;
 use GriffonTech\Tutor\Repositories\TutorProfileRepository;
 use GriffonTech\User\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -17,11 +20,18 @@ class TutorsController extends Controller
 
     protected $tutorProfileRepository;
 
+    protected $tutorAgreementAttributeRepository;
+    protected $tutorAgreementRepository;
+    protected $tutorAgreementAttributeValueRepository;
+
     protected $userRepository;
 
     public function __construct(
         TutorProfileRepository $tutorProfileRepository,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        TutorAgreementAttributeRepository $tutorAgreementAttributeRepository,
+        TutorAgreementRepository $tutorAgreementRepository,
+        TutorAgreementAttributeValueRepository $tutorAgreementAttributeValueRepository
     )
     {
         $this->_config = request('_config');
@@ -29,6 +39,13 @@ class TutorsController extends Controller
         $this->tutorProfileRepository = $tutorProfileRepository;
 
         $this->userRepository = $userRepository;
+
+        $this->tutorAgreementAttributeRepository = $tutorAgreementAttributeRepository;
+
+        $this->tutorAgreementRepository = $tutorAgreementRepository;
+
+        $this->tutorAgreementAttributeValueRepository = $tutorAgreementAttributeValueRepository;
+
     }
 
     public function index()
@@ -86,7 +103,16 @@ class TutorsController extends Controller
     {
         $tutor = $this->tutorProfileRepository->with(['user:id,name'])
             ->findOneWhere(['id' => $id]);
-        return view($this->_config['view'], compact('tutor'));
+
+        $tutor_agreement = $this->tutorAgreementRepository->findOneByField('tutor_application_id', $tutor->tutor_application_id);
+
+        $attributes = $this->tutorAgreementAttributeRepository
+            ->getModel()
+            ->query()
+            ->orderBy('position')
+            ->get();
+
+        return view($this->_config['view'], compact('tutor', 'tutor_agreement', 'attributes'));
     }
 
 

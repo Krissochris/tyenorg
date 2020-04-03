@@ -17,6 +17,12 @@
                 <li class="nav-item">
                     <a href="{{ route('faqs.index') }}" class="nav-link">FaQs</a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('faqs.index') }}" class="nav-link">Enterprenuer Blogs</a>
+                </li>
+
+
                 @auth('user')
                     @if(auth('user')->user()->tutor_id)
                         <li class="nav-item">

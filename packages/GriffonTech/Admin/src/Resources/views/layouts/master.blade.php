@@ -55,10 +55,14 @@
         </div>
         <div class="footer">
             <div class="float-right">
-                Developed by <strong>Griffon Technologies</strong>.
-            </div>
-            <div>
-                <strong>Copyright</strong> Example Company &copy; {{ date('Y') }}
+                <div class="">
+                    <p class="copyrights-text">
+                        Copyright © <strong> TYEN </strong> - All Right Reserved.
+                    </p>
+
+                    <p>Proudly Powered by: <strong> TYCT INITIATIVE (RC No: 127873) </strong>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

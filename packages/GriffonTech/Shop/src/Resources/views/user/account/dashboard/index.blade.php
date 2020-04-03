@@ -35,7 +35,7 @@
 
                         <div class="card-body text-center">
                             <div class="mb-3">
-                                <img src="{{ asset('assets/images/256_luke-porter-261779-unsplash.jpg') }}" alt="About Adrian" width="100" class="rounded-circle">
+                                <img src="{{ asset('images/avatar.png') }}" alt="About Adrian" width="100" class="rounded-circle">
                             </div>
 
 
