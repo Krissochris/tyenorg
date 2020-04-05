@@ -167,6 +167,12 @@
                         </a>
                     </li>
 
+                    <li class="sidebar-menu-item">
+                        <a class="sidebar-menu-button" href="{{ route('blog.posts.index') }}">
+                            <span class="sidebar-menu-text">Entreprenuers Blog</span>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>

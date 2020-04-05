@@ -26,10 +26,6 @@
                         {!! Form::number('pro_membership_fee', setting('pro_membership_fee'), ['class' => 'form-control']) !!}
                     </div>
 
-                    <div class="form-group">
-                        <label for="pro_membership_fee"> Footer Copyright details </label>
-                        {!! Form::textarea('footer_copyright', setting('footer_copyright'), ['class' => 'form-control', 'rows' => 5]) !!}
-                    </div>
 
                     <div class="form-group">
                         <label for="pro_membership_fee"> Head Scripts </label>
@@ -40,26 +36,26 @@
                     <h5>Contact Details </h5>
                     <div class="form-group">
                         <label for="facebook_link">Phone Number 1</label>
-                        {!! Form::text('facebook_url', setting('phone_number_1'), ['class' => 'form-control']) !!}
+                        {!! Form::text('phone_number_1', setting('phone_number_1'), ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group">
                         <label for="facebook_link">Phone Number 2</label>
-                        {!! Form::text('facebook_url', setting('phone_number_2'), ['class' => 'form-control']) !!}
+                        {!! Form::text('phone_number_2', setting('phone_number_2'), ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group">
                         <label for="facebook_link">Email Address 1 </label>
-                        {!! Form::text('facebook_url', setting('email_address_1'), ['class' => 'form-control']) !!}
+                        {!! Form::text('email_address_1', setting('email_address_1'), ['class' => 'form-control']) !!}
                     </div>
 
                     <div class="form-group">
                         <label for="facebook_link">Email Address 2</label>
-                        {!! Form::text('facebook_url', setting('email_address_1'), ['class' => 'form-control']) !!}
+                        {!! Form::text('email_address_1', setting('email_address_2'), ['class' => 'form-control']) !!}
                     </div>
                     <div class="form-group">
                         <label for="facebook_link">Contact Address</label>
-                        {!! Form::text('facebook_url', setting('contact_address'), ['class' => 'form-control']) !!}
+                        {!! Form::text('contact_address', setting('contact_address'), ['class' => 'form-control']) !!}
                     </div>
 
                     <h5> Social Links</h5>

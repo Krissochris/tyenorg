@@ -59,7 +59,7 @@
         <div class="form-group">
             <label class="text-label" for="password_confirmation">Confirm Password:</label>
             <div class="input-group input-group-merge">
-                <input id="password_confirmation" type="password" required="" class="form-control form-control-prepended" placeholder="Re-Enter your password">
+                <input id="password_confirmation" name="password_confirmation" type="password" required="" class="form-control form-control-prepended" placeholder="Re-Enter your password">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <span class="material-icons">lock</span>

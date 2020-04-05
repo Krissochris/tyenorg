@@ -19,7 +19,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('faqs.index') }}" class="nav-link">Enterprenuer Blogs</a>
+                    <a href="{{ route('blog.posts.index') }}" class="nav-link">Entreprenuers Blog</a>
                 </li>
 
 

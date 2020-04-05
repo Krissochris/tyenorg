@@ -18,11 +18,6 @@
 
 
 
-{{--
-                <form class="search-form search-form--light d-none d-sm-flex flex ml-3" action="#">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <button class="btn" type="submit"><i class="material-icons">search</i></button>
-                </form>--}}
 
 
                 <ul class="nav navbar-nav d-none d-md-flex">

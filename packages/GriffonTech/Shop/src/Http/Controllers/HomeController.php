@@ -4,6 +4,7 @@ namespace GriffonTech\Shop\Http\Controllers;
 use GriffonTech\Blog\Repositories\BlogRepository;
 use GriffonTech\Course\Repositories\CourseRepository;
 use GriffonTech\Testimony\Repositories\TestimonyRepository;
+use GriffonTech\User\Repositories\UserRepository;
 
 class HomeController extends Controller {
 
@@ -19,17 +20,21 @@ class HomeController extends Controller {
     protected $courseRepository;
 
     protected $blogRepository;
+
+    protected $userRepository;
     /**
      * Create a new controller instance.
      * @param $testimonyRepository
      * @param $courseRepository
      * @param $blogRepository
+     * @param $userRepository
      * @return void
      */
     public function __construct(
         TestimonyRepository $testimonyRepository,
         CourseRepository $courseRepository,
-        BlogRepository $blogRepository
+        BlogRepository $blogRepository,
+        UserRepository $userRepository
     )
     {
         $this->_config = request('_config');
@@ -37,6 +42,7 @@ class HomeController extends Controller {
         $this->testimonyRepository = $testimonyRepository;
         $this->courseRepository = $courseRepository;
         $this->blogRepository = $blogRepository;
+        $this->userRepository = $userRepository;
     }
 
 
@@ -67,7 +73,12 @@ class HomeController extends Controller {
             ->limit(4)
             ->get();
 
+        $userCounts = $this->userRepository->count();
+
         return view($this->_config['view'])
-            ->with(compact('testimonies', 'courses', 'blogPosts'));
+            ->with(compact('testimonies',
+                'courses',
+                'blogPosts',
+                'userCounts'));
     }
 }

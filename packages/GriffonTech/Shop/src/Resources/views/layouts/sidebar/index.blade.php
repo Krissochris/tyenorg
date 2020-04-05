@@ -42,6 +42,11 @@
                         </a>
                     </li>
 
+                    <li class="sidebar-menu-item">
+                        <a class="sidebar-menu-button" href="{{ route('blog.posts.index') }}">
+                            <span class="sidebar-menu-text">Entreprenuers Blog</span>
+                        </a>
+                    </li>
 
                     <li class="sidebar-menu-item">
                         <a class="sidebar-menu-button" href="{{ route('user.session.index') }}">
@@ -245,7 +250,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ route('faqs.index') }}" class="nav-link">Enterprenuer Blogs</a>
+                                <a href="{{ route('blog.posts.index') }}" class="nav-link">Entreprenuers Blog</a>
                             </li>
 
                         </ul>

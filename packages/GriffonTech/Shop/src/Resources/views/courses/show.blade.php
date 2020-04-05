@@ -78,15 +78,12 @@
                 </div>
 
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header card-header-large bg-light d-flex align-items-center">
                         <div class="media align-items-center">
-                            <div class="media-left">
-                                <img src="{{ asset('assets/images/256_luke-porter-261779-unsplash.jpg') }}" alt="About Adrian" width="40" class="rounded-circle">
-                            </div>
                             <div class="media-body">
-                                <div class="card-title mb-0">
-                                    <a href="#" class="text-body"><strong> {{ $course->tutor->name }} </strong></a></div>
-                                <p class="text-muted mb-0">Instructor</p>
+                                <div class="flex">
+                                    <h4 class="card-header__title">Course Summary</h4>
+                                </div>
                             </div>
                             <div class="media-right">
                                 <a href="https://www.facebook.com/sharer/sharer.php?u={{ url()->route('blog.posts.show', $course->url_key) }}" class="btn btn-facebook btn-sm">
@@ -97,7 +94,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        {!! $course->tutor->description !!}
+                        {{ $course->summary }}
                     </div>
                 </div>
 
@@ -111,6 +108,25 @@
                         {!! $course->description !!}
                     </div>
                 </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="media align-items-center">
+                            <div class="media-left">
+                                <img src="{{ $course->tutor->photo }}" alt="{{ $course->tutor->name }}" width="40" class="rounded-circle">
+                            </div>
+                            <div class="media-body">
+                                <div class="card-title mb-0">
+                                    <a href="#" class="text-body"><strong> {{ $course->tutor->name }} </strong></a></div>
+                                <p class="text-muted mb-0">Instructor</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {!! $course->tutor->description !!}
+                    </div>
+                </div>
+
 
                 <div class="card">
                     <div class="card-header card-header-large bg-light d-flex align-items-center">

@@ -18,9 +18,7 @@
             </p>
             <div data-aos="fade-down" data-aos-duration="400" data-aos-delay="400" data-offset="-100">
                 <a class="btn btn-light btn-lg mr-1" href="{{ route('courses.index') }}">Browse Lessons</a>
-{{--
-                <a class="btn btn-success btn-lg" href="#">Subscribe</a>
---}}
+                <a class="btn btn-success btn-lg" href="{{ route('user.register.index') }}">Get Started</a>
             </div>
         </div>
     </div>
@@ -154,7 +152,12 @@
             </div>
         </div>
     </div>
-
+    <div class="m-4 p-4">
+        <h2 class="bold mb-1 text-center">Total Active Users </h2>
+        <p class="lead text-muted text-center">
+            {{ number_format($userCounts) }}
+        </p>
+    </div>
     <div class="container page__container">
         <h2 class="bold m-4 text-center p-4">Available Trainings </h2>
         <div class="row">
@@ -309,24 +312,24 @@
 
 
 
-{{--
         <div class="bg-soft-primary card-body mb-4">
             <div class="row p-4">
                 <div class="col-md-6 offset-md-3">
                     <div class="mb-4">
 
-                        <h4 class="text-center text-primary bold mb-1">Sign up and get new UI releases</h4>
+                        <h4 class="text-center text-primary bold mb-1">Sign up and get news letters from us</h4>
                         <p class="text-center text-muted">No spam. Only releases, updates and discounts</p>
                     </div>
                     <div class="d-flex">
 
-                        <input type="text" class="form-control" placeholder="Your email address">
-                        <a href="#" class="btn btn-secondary ml-2" data-aos="flip-left" data-aos-duration="800" data-aos-delay="150">SUBSCRIBE</a>
+                        <form action="#" class="form-inline">
+                            <input type="text" class="form-control" placeholder="Your email address">
+                            <button class="btn btn-secondary ml-2" data-aos="flip-left" data-aos-duration="800" data-aos-delay="150">SUBSCRIBE</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
---}}
 
     </div>
 
