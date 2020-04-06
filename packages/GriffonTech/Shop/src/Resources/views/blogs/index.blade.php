@@ -5,7 +5,7 @@
 
     <div class="container page__heading-container">
         <div class="page__heading d-flex align-items-center justify-content-between">
-            <h1 class="m-0"> Entprenuers Blog</h1>
+            <h1 class="m-0"> Entreprenuers Blog</h1>
         </div>
     </div>
 

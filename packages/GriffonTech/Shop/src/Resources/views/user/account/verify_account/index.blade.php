@@ -12,6 +12,8 @@
                     </div>
                     <div class="card-body">
                         To continue, Please click <a class="text-primary" href="{{ route('user.resend.verification-email', auth('user')->user()->email) }}">Here</a> verify the email email you registered in your account.
+                        <p> Please check the spam folder in your email if you couldn't find it in inbox. </p>
+
                         <div class="row" style="margin-top: 20px;">
                             <div class="col-sm-6">
                                 {!! Form::open(['route' => 'user.change_verification_email']) !!}
