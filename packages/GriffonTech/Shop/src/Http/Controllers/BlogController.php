@@ -31,8 +31,8 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = $this->blogRepository->getModel()
-            ->latest()
             ->query()
+            ->latest()
             ->paginate(10);
 
         return view($this->_config['view'],
