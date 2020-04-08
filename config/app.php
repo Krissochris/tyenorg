@@ -191,7 +191,7 @@ return [
         GriffonTech\Admin\Providers\AdminServiceProvider::class,
         GriffonTech\Payment\Providers\CoinPaymentServiceProvider::class,
         GriffonTech\Payment\Providers\PaymentServiceProvider::class,
-
+        \GriffonTech\CouponSystem\Providers\CouponSystemServiceProvider::class
     ],
 
     /*

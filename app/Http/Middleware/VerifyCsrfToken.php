@@ -19,6 +19,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'payment/rave_pay/status'
+        'payment/rave_pay/status',
+        'coupon_system/verify'
     ];
 }

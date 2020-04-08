@@ -1,5 +1,8 @@
 @extends('shop::layouts.master')
 
+@section('title')
+    Entreprenuers Blog
+@stop
 
 @section('content')
 

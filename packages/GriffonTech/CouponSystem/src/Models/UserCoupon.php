@@ -9,7 +9,12 @@ class UserCoupon extends Model implements UserCouponContract
 {
     protected $table = 'user_coupons';
 
-    protected $fillable = ['user_id', 'coupon_code', 'is_used', 'used_on'];
+    protected $fillable = [
+        'user_id',
+        'coupon_code',
+        'is_used',
+        'used_on'
+    ];
 
 
     public function user()
