@@ -31,10 +31,14 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = $this->blogRepository->getModel()
-            ->query()->paginate(10);
+            ->latest()
+            ->query()
+            ->paginate(10);
 
-        return view($this->_config['view'], ['blogs' => $blogs]);
+        return view($this->_config['view'],
+            ['blogs' => $blogs]);
     }
+
 
     public function show($slug)
     {
@@ -44,6 +48,7 @@ class BlogController extends Controller
 
         return view($this->_config['view'], compact('blog'));
     }
+
 
     public function addComment(Request $request, $slug)
     {

@@ -12,13 +12,13 @@
                     <ul class="list-group mb-3">
                         <li class="list-group-item justify-content-between lh-condensed">
                             <div>
-                                <h6 class="my-0"> Pro User Package </h6>
+                                <h6 class="my-0"> Lifetime Membership Fees </h6>
                                 <small class="text-muted"> </small>
                             </div>
-                            <span class="text-danger font-weight-bold float-right">$15</span>
+                            <span class="text-danger font-weight-bold float-right">$100.00</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between">
-                            <span>Total (USD)</span>
+                            <span>Discounted Total (USD)</span>
                             <strong>${{ setting('pro_membership_fee') }}</strong>
                         </li>
                     </ul>

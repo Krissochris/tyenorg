@@ -11,7 +11,7 @@
             <div>
 
                 <h1 class="m-0"> {{ auth('user')->user()->name }} </h1>
-                <p class="text-muted m-0">{{ config('app.name') }} Student</p>
+                <p class="text-muted m-0"> <strong>Welcome to TYEN - Lets Grow Together</strong> </p>
             </div>
         </div>
     </div>

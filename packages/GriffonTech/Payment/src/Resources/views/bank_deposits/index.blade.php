@@ -58,6 +58,9 @@
                             <li>If you paid using an account that's not yours (a third party), please include the 3rd party details so that we can confirm your
                                 payment very fast.</li>
                             <li> Clear Evidence of payment (Receipt) </li>
+                            <li>
+                                Purpose of payment (E.g Payment for TYEN CLUB, Free Donation, e.t.c)
+                            </li>
                         </ol>
 
                         <p>
@@ -74,7 +77,7 @@
                         </p>
                         <p>
                             <strong>Signed</strong> <br>
-                            Chris C.A (President)
+                            TYEN MANAGEMENT
                         </p>
                     </div>
                 </div>
