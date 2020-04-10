@@ -87,8 +87,13 @@
 
                                         @elseif($attribute->type === 'select')
 
-                                            <td> {{ $attribute->options()->pluck('admin_name', 'id')->toArray()[$tutor_agreement[$attribute->code]] }} </td>
-
+                                            <td>
+                                                @if($tutor_agreement[$attribute->code])
+                                                    {{ $attribute->options()->pluck('admin_name', 'id')->toArray()[$tutor_agreement[$attribute->code]] }}
+                                                @else
+                                                    {{ 'Not option selected' }}
+                                                @endif
+                                            </td>
                                         @else
                                             <td> {{ $tutor_agreement[$attribute->code] }} </td>
                                         @endif

@@ -53,7 +53,7 @@ class TutorAgreementAttributesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'code' => 'required|unique:tutor_agreement_attributes',
+            'code' => 'required|unique:tutor_agreement_attributes,code',
             'admin_name' => 'required',
             'type' => 'required',
             'position' => 'required|integer'
