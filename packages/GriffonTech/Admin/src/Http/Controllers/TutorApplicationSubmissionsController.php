@@ -72,10 +72,11 @@ class TutorApplicationSubmissionsController extends Controller
     public function reject($id)
     {
         $tutor_application = $this->tutorApplicationSubmissionRepository
-            ->with(['tutor_profile'])
+            ->with(['tutor_application'])
             ->find($id);
 
         $tutor_application->forceFill(['status' => TutorApplicationSubmissionRepository::CANCELLED]);
+
         if ($tutor_application->update()) {
             session()->flash('success', 'Tutor application was successfully rejected');
         } else {

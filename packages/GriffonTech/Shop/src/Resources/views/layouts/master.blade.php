@@ -137,7 +137,13 @@
 <script src="{{ asset('assets/js/sidebar-mini.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
 <script src="{{ asset('assets/vendor/tinymice/tinymce.min.js') }}"></script>
-<script>tinymce.init({selector:'.tinymce_editor'});</script>
+<script>tinymce.init({
+        selector:'.tinymce_editor',
+        plugins: "link",
+        menubar: 'file edit insert view format table tools help',
+        //toolbar: "link"
+});
+</script>
 </body>
 
 </html>

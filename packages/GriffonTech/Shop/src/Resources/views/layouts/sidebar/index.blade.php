@@ -102,11 +102,7 @@
                     </div>
                     @if(auth('user')->user()->tutor_id)
                         <div class="sidebar-block p-0">
-                            <div class="sidebar-heading">Navigations</div>
                             <ul class="sidebar-menu mt-0">
-
-
-
                                 <li class="sidebar-menu-item">
                                     <a class="sidebar-menu-button" href="{{ route('tutor.dashboard.index') }}">
                                         <span class="sidebar-menu-text"> Tutor Account </span>
@@ -114,7 +110,6 @@
                                 </li>
                             </ul>
                         </div>
-
                     @endif
                     <div class="sidebar-block p-0">
                         <div class="sidebar-heading">Student</div>
@@ -247,6 +242,11 @@
                                 <a href="{{ route('blog.posts.index') }}" class="nav-link">Entreprenuers Blog</a>
                             </li>
 
+                            @if(auth('user')->user()->tutor_id)
+                                <li class="nav-item">
+                                    <a href="{{route('user.tutor_application.create')}}" class="nav-link">Become A Tutor</a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
             @endauth

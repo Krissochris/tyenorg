@@ -13,7 +13,6 @@
                     <div class="container">
                         <p>
                             <strong> Please follow the Instructions Below to  Complete Your Payment. </strong>
-
                         </p>
 
                         <strong class="text-danger">Warning</strong>: Never pay to other account not listed here, else we won't ever
@@ -21,7 +20,7 @@
 
                         <p class="mt-4">
                             <strong>Step 1: </strong>
-                            Deposit/transfer the equivalent sum in naira of the aforementioned payment to our club's
+                            Deposit/transfer the equivalent sum in naira of the aforementioned payment to our company
                             account below:
                         </p>
 
@@ -59,7 +58,7 @@
                                 payment very fast.</li>
                             <li> Clear Evidence of payment (Receipt) </li>
                             <li>
-                                Purpose of payment (E.g Payment for TYEN CLUB, Free Donation, e.t.c)
+                                Purpose of payment (E.g Payment for TYEN E-Learn, Free Donation, e.t.c)
                             </li>
                         </ol>
 
