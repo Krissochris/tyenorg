@@ -7,5 +7,4 @@
                 {{ $option->admin_name }}
             </option>
         @endforeach
-
 </select>

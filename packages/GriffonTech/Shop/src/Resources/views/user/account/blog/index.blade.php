@@ -39,7 +39,18 @@
                                 <td><a href="{{route('blog.posts.show', $blog->url_key)}}">{{$blog->title}}</a></td>
                                 <td> {{ ($blog->category) ? $blog->category->name : '' }} </td>
                                 <td> {{ $blog->comments->count() }} </td>
-                                <td>{{ (($blog->status === 1) ? 'Published' : 'Unpublished')}}</td>
+                                <td>
+                                    @switch($blog->status)
+                                        @case(1)
+                                        {{ __('Published') }}
+                                        @break
+                                        @case(0)
+                                            {{ __('UnPublished') }}
+                                        @break
+                                        @default
+                                            {{ __('Unknown') }}
+                                    @endswitch
+                                </td>
                                 <td>{{$blog->created_at}}</td>
                                 <td>
                                     <a href="{{route('user.blog.edit', $blog->url_key)}}" class="text-decoration-none font-weight-bold">Edit</a> |

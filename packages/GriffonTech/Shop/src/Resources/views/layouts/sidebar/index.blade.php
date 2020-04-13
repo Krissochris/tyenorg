@@ -238,13 +238,13 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item">
-                                <a href="{{ route('blog.posts.index') }}" class="nav-link">Entreprenuers Blog</a>
+                            <li class="sidebar-menu-item">
+                                <a href="{{ route('blog.posts.index') }}" class="sidebar-menu-button">Entreprenuers Blog</a>
                             </li>
 
-                            @if(auth('user')->user()->tutor_id)
-                                <li class="nav-item">
-                                    <a href="{{route('user.tutor_application.create')}}" class="nav-link">Become A Tutor</a>
+                            @if(!auth('user')->user()->tutor_id)
+                                <li class="sidebar-menu-item">
+                                    <a href="{{route('user.tutor_application.create')}}" class="sidebar-menu-button">Become A Tutor</a>
                                 </li>
                             @endif
                         </ul>
