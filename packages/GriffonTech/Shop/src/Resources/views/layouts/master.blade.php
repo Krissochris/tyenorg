@@ -31,7 +31,7 @@
     <!-- ion Range Slider -->
     <link type="text/css" href="{{ asset('assets/css/vendor-ion-rangeslider.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('assets/css/vendor-ion-rangeslider.rtl.css') }}" rel="stylesheet">
-
+    @yield('css')
     {{ setting('head_scripts') }}
 
 </head>
@@ -136,7 +136,9 @@
 <script src="{{ asset('assets/js/dropdown.js') }}"></script>
 <script src="{{ asset('assets/js/sidebar-mini.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
+
 <script src="{{ asset('assets/vendor/tinymice/tinymce.min.js') }}"></script>
+@yield('footer-scripts')
 <script>tinymce.init({
         selector:'.tinymce_editor',
         plugins: "link",

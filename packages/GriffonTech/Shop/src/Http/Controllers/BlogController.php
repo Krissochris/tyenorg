@@ -32,6 +32,7 @@ class BlogController extends Controller
     {
         $blogs = $this->blogRepository->getModel()
             ->query()
+            ->where('status', 1)
             ->latest()
             ->paginate(10);
 

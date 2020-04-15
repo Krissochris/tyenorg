@@ -56,7 +56,7 @@ class TutorApplicationController extends Controller
     {
         $tutor_application = $this->tutorApplicationRepository->findOneWhere([
             'user_id' => auth('user')->user()->id
-        ]);
+        ],['id']);
 
         if ($tutor_application) {
 
@@ -65,11 +65,13 @@ class TutorApplicationController extends Controller
                     'tutor_application_id' => $tutor_application->id,
                 ])->last();
 
+
             if ($tutor_application_submission &&
-                $tutor_application_submission->status === TutorApplicationSubmissionRepository::ACTIVE) {
+                (int) $tutor_application_submission->status === TutorApplicationSubmissionRepository::ACTIVE) {
                 return view('shop::user.tutor_application.under_review')
                     ->with(compact('tutor_application_submission'));
             }
+
             return view($this->_config['view'])->with(compact('tutor_application'));
         }
 

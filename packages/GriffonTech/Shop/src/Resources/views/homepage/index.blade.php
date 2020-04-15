@@ -3,10 +3,12 @@
 @section('title')
     Homepage
 @stop
+@section('css')
+    <link href="{{ asset('assets/unpkg.com/aos%402.3.1/dist/aos.css') }}" rel="stylesheet">
+@stop
 
 @section('content')
 
-    <link href="{{ asset('assets/unpkg.com/aos%402.3.1/dist/aos.css') }}" rel="stylesheet">
 
     <div class="home-banner text-white mb-4">
         <div class="container page__container">
@@ -332,11 +334,14 @@
         </div>
 
     </div>
+@endsection
 
+
+
+@section('footer-scripts')
     <script src="{{ asset('assets/unpkg.com/aos%402.3.1/dist/aos.js') }}"></script>
 
     <script>
         AOS.init();
     </script>
-
 @endsection

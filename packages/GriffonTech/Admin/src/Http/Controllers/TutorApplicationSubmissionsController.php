@@ -56,17 +56,18 @@ class TutorApplicationSubmissionsController extends Controller
 
     public function show($id)
     {
-        $tutor_application = $this->tutorApplicationSubmissionRepository
-            ->with(['tutor_application.tutor_application_courses'])
+        $tutor_application_submission = $this->tutorApplicationSubmissionRepository
+            ->with(['tutor_application'])
             ->find($id);
 
         $tutor_agreement = $this->tutorAgreementRepository
-            ->findOneByField('tutor_application_id', $tutor_application->id);
+            ->findOneByField('tutor_application_id', $tutor_application_submission->tutor_application_id);
+
 
         $agreement_attributes = $this->tutorAgreementAttributeRepository->get();
 
         return view($this->_config['view'])
-            ->with(compact('tutor_application', 'agreement_attributes', 'tutor_agreement'));
+            ->with(compact('tutor_application_submission', 'agreement_attributes', 'tutor_agreement'));
     }
 
     public function reject($id)

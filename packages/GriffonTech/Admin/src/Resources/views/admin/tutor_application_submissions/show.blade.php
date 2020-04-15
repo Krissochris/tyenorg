@@ -25,23 +25,25 @@
                     <table class="table table-bordered">
                         <tr>
                             <td>Name</td>
-                            <td>{{ $tutor_application->tutor_application->name }}</td>
+                            <td>{{ $tutor_application_submission->tutor_application->name }}</td>
                         </tr>
                         <tr>
                             <td>Title</td>
-                            <td>{{ $tutor_application->tutor_application->title }}</td>
+                            <td>{{ $tutor_application_submission->tutor_application->title }}</td>
                         </tr>
                         <tr>
                             <td>Phone Number</td>
-                            <td>{{ $tutor_application->tutor_application->phone }}</td>
+                            <td>{{ $tutor_application_submission->tutor_application->phone }}</td>
                         </tr>
                         <tr>
                             <td>Description</td>
-                            <td>{{ $tutor_application->tutor_application->description }}</td>
+                            <td>{{ $tutor_application_submission->tutor_application->description }}</td>
                         </tr>
                     </table>
 
-                    <h4> Courses To Tutor </h4>
+
+
+                  {{--  <h4> Courses To Tutor </h4>
                     @if($tutor_application->tutor_application->tutor_application_courses)
 
                         @foreach($tutor_application->tutor_application->tutor_application_courses as $course)
@@ -73,6 +75,10 @@
                             </table>
                         @endforeach
                     @endif
+--}}
+
+
+
 
                     <div>
                         <h5> Tutor Agreement </h5>
@@ -89,7 +95,7 @@
 
                                             <td>
                                                 @if($tutor_agreement[$attribute->code])
-                                                    {{ $attribute->options()->pluck('admin_name', 'id')->toArray()[$tutor_agreement[$attribute->code]] }}
+                                                    {{ @$attribute->options()->pluck('admin_name', 'id')->toArray()[$tutor_agreement[$attribute->code]] }}
                                                 @else
                                                     {{ 'Not option selected' }}
                                                 @endif
@@ -105,10 +111,10 @@
                     </div>
 
                     <div>
-                        <form method="POST" id="approve" action="{{ route('admin.tutor_application_submissions.approve', $tutor_application->id) }}">
+                        <form method="POST" id="approve" action="{{ route('admin.tutor_application_submissions.approve', $tutor_application_submission->id) }}">
                             @csrf
                         </form>
-                        <form method="POST" id="reject" action="{{ route('admin.tutor_application_submissions.reject', $tutor_application->id) }}">
+                        <form method="POST" id="reject" action="{{ route('admin.tutor_application_submissions.reject', $tutor_application_submission->id) }}">
                             @csrf
                         </form>
                         <button onclick="event.preventDefault();

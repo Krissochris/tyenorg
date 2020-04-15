@@ -94,7 +94,7 @@ class CourseController extends Controller
             'summary' => 'required',
             'description' => 'required',
             'total_no_of_users_in_batch' => 'required',
-            'photo' => 'required|mimes:jpeg,png,jpg,gif,svg|max:1048'
+            'photo' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $data = $request->except(['status', 'approved_on', 'active']);
@@ -161,7 +161,7 @@ class CourseController extends Controller
             'course_category_id' => 'required',
             'summary' => 'required',
             'description' => 'required',
-            'photo' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:1048'
+            'photo' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         try {

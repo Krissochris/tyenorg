@@ -78,7 +78,8 @@ class CoursesController extends Controller
             'course_category_id' => 'required',
             'tutor_id' => 'required',
             'type' => 'required',
-            'total_no_of_users_in_batch'
+            'total_no_of_users_in_batch',
+            'photo' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         $data = $request->input();
 
@@ -149,7 +150,7 @@ class CoursesController extends Controller
             'tutor_id' => 'required',
             'type' => 'required',
             'total_no_of_users_in_batch' => 'required',
-            'photo' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:1048'
+            'photo' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $course = $this->courseRepository->findOrFail($id);
