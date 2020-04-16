@@ -45,10 +45,10 @@
                                         {{ __('Published') }}
                                         @break
                                         @case(0)
-                                            {{ __('UnPublished') }}
+                                        {{ __('UnPublished') }}
                                         @break
                                         @default
-                                            {{ __('Unknown') }}
+                                        {{ __('Unknown') }}
                                     @endswitch
                                 </td>
                                 <td>{{$blog->created_at}}</td>

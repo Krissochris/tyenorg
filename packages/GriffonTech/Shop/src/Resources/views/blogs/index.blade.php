@@ -13,7 +13,7 @@
     </div>
 
 
-    <div class="d-flex justify-content-around pb-4">
+    <div class="container">
         <div class="row">
             @if($blogs)
                 @foreach($blogs as $post)
@@ -72,54 +72,54 @@
     </div>
 
 
-{{--
+    {{--
 
-    <!-- ========================== Latest Blog Area Start ========================== -->
-    <div class="latest_blog_news_area blog section_padding_100">
-        <div class="container">
+        <!-- ========================== Latest Blog Area Start ========================== -->
+        <div class="latest_blog_news_area blog section_padding_100">
+            <div class="container">
 
-            @if(count($blogs) > 0)
-                <div class="row">
-                    @foreach($blogs as $blog)
+                @if(count($blogs) > 0)
+                    <div class="row">
+                        @foreach($blogs as $blog)
 
-                        <div class="col-md-6 col-lg-4">
-                            <div class="single_latest_news_area">
-                                <!-- single latest news thumb -->
-                                <div class="single_latest_news_img_area">
-                                    <img src="{{ $blog->photo }}" alt="">
-                                    <!-- single latest news published date -->
-                                    <div class="published_date">
-                                        <p class="date">{{ $blog->created_at->format('d') }}</p>
-                                        <p class="month">{{ $blog->created_at->format('M') }}</p>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="single_latest_news_area">
+                                    <!-- single latest news thumb -->
+                                    <div class="single_latest_news_img_area">
+                                        <img src="{{ $blog->photo }}" alt="">
+                                        <!-- single latest news published date -->
+                                        <div class="published_date">
+                                            <p class="date">{{ $blog->created_at->format('d') }}</p>
+                                            <p class="month">{{ $blog->created_at->format('M') }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="single_latest_news_text_area">
-                                    <!-- single latest news title -->
-                                    <div class="news_title">
-                                        <a href="{{route('blog.posts.show', $blog->url_key)}}">{{$blog->title}}</a>
-                                    </div>
-                                    <!-- single latest news excerp -->
-                                    <div class="news_content">
-                                        <p>
-                                            {!! (strlen($blog->body) > 70) ? substr($blog->body, 0, 70)."<b> (&hellip;)</b>  <br> " : $blog->body !!}
-                                        </p>
-                                        <a href="{{route('blog.posts.show', $blog->url_key)}}" class="btn blog-btn">Read More <i class="fa fa-angle-right"></i></a>
+                                    <div class="single_latest_news_text_area">
+                                        <!-- single latest news title -->
+                                        <div class="news_title">
+                                            <a href="{{route('blog.posts.show', $blog->url_key)}}">{{$blog->title}}</a>
+                                        </div>
+                                        <!-- single latest news excerp -->
+                                        <div class="news_content">
+                                            <p>
+                                                {!! (strlen($blog->body) > 70) ? substr($blog->body, 0, 70)."<b> (&hellip;)</b>  <br> " : $blog->body !!}
+                                            </p>
+                                            <a href="{{route('blog.posts.show', $blog->url_key)}}" class="btn blog-btn">Read More <i class="fa fa-angle-right"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
-            @else
-                <div class="alert alert-info col-sm-6">
-                    No Blog post created yet!
-                </div>
-            @endif
+                        @endforeach
+                    </div>
+                @else
+                    <div class="alert alert-info col-sm-6">
+                        No Blog post created yet!
+                    </div>
+                @endif
 
-        <br>
-        {{$blogs->links()}}
-    </div>
-    </div>
-    <!-- ========================== Latest Blog Area End ========================== -->
---}}
+            <br>
+            {{$blogs->links()}}
+        </div>
+        </div>
+        <!-- ========================== Latest Blog Area End ========================== -->
+    --}}
 @endsection

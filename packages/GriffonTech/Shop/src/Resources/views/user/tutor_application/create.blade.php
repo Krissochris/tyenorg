@@ -7,7 +7,7 @@
 @section('content')
     <div class="container p-30">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12"><br>
                 <div class="card">
                     <div class="card-header">
                         <h3 class="float-left"> Tutor Application Form </h3>

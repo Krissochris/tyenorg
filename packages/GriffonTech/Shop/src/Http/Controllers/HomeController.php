@@ -52,7 +52,7 @@ class HomeController extends Controller {
             ->getModel()
             ->latest()
             ->where('status', 1)
-            ->limit(4)
+            ->limit(3)
             ->get()
             ->map(function($row){
                 $row->course_average_rating =
@@ -66,11 +66,11 @@ class HomeController extends Controller {
             ->getModel()
             ->with(['user:id,name'])
             ->latest()
-            ->limit(4)->get();
+            ->limit(3)->get();
 
         $blogPosts = $this->blogRepository->getModel()
             ->latest()
-            ->limit(4)
+            ->limit(3)
             ->get();
 
         $userCounts = $this->userRepository->count();
