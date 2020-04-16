@@ -263,11 +263,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="p-3 text-center">
+                                {{--<div class="p-3 text-center">
                                     <p>
                                         {!! (strlen($post->body) > 70) ? substr($post->body, 0, 70)."<b> (&hellip;)</b>  <br> " : $post->body !!}
                                     </p>
-                                </div>
+                                </div>--}}
                             </div>
                         </div>
                     @endforeach
