@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container">
         <div class="m-4 p-4">
             <h2 class="bold mb-1 text-center">Features &amp; Highlights</h2>
             <p class="lead text-muted text-center">
@@ -157,8 +157,7 @@
             </p>
         </div>
         <h2 class="bold m-4 text-center p-4">Available Trainings </h2>
-        <div class="container">
-            <div class="row">
+        <div class="row">
                 @if($courses)
                     @foreach($courses as $course)
                         <div class="col-md-4">
@@ -213,15 +212,13 @@
 
                 @endif
             </div>
-        </div>
         <div class="m-4 p-4">
             <h2 class="bold mb-1 text-center"> Our Blog Post</h2>
             <p class="lead text-muted text-center">
                 <strong> Entrepreneurs sharing awesome ideas - check them out, learn and air your view in comment</strong>
             </p>
         </div>
-        <div class="container">
-            <div class="row">
+        <div class="row">
                 @if($blogPosts)
                     @foreach($blogPosts as $post)
                         <div class="col-md-4">
@@ -273,13 +270,11 @@
                     @endforeach
                 @endif
             </div>
-        </div>
 
         <div class="m-4 p-4">
             <h2 class="bold mb-1 text-center"> Our Members Testimonies </h2>
         </div>
-        <div class="container">
-            <div class="row">
+        <div class="row">
                 @if(!$testimonies->isEmpty())
                 @foreach($testimonies as $testimony)
                     <div class="col-md-4">
@@ -304,7 +299,6 @@
                 @endforeach
                 @endif
             </div>
-        </div>
         <div class="bg-soft-primary card-body mb-4">
             <div class="row p-4">
                 <div class="col-md-6 offset-md-3">
@@ -323,7 +317,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 
