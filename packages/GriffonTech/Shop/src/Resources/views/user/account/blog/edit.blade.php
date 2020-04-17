@@ -31,6 +31,11 @@
                             {!! Form::textarea('body', $blog->body, ['class' => 'form-control tinymce_editor', 'cols' => 30, 'rows' => 10]) !!}
                         </div>
 
+                            <div class="form-group">
+                                <label for="body"> Summary </label>
+                                {!! Form::textarea('summary', null, ['class' => 'form-control', 'rows' => 5]) !!}
+                            </div>
+
                         <div class="custom-file" >
                             {!! Form::file('photo', ['class' => 'custom-file']) !!}
                         </div>

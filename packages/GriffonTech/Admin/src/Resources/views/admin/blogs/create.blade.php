@@ -37,6 +37,17 @@
                 <label for="body">Blog body</label>
                 {!! Form::textarea('body', null, ['class' => 'form-control summernote', 'rows' => 10, 'placeholder' => 'Blog body...']) !!}
             </div>
+
+            <div class="form-group">
+                <label for="body"> Summary </label>
+                {!! Form::textarea('summary', null, ['class' => 'form-control', 'rows' => 5]) !!}
+            </div>
+
+            <div class="form-group">
+                <label for="">Status</label>
+                {!! Form::select('status', ['1' => 'Publish', '0' => 'UnPublish'], $blog->status, ['class' => 'form-control']) !!}
+            </div>
+
             <div class="form-group">
                 <input type="submit" class="btn btn-dark" name="submit" value="Create Blog">
             </div>

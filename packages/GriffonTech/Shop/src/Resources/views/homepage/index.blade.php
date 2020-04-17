@@ -3,6 +3,11 @@
 @section('title')
     Homepage
 @stop
+
+@section('css')
+    <link href="{{ asset('assets/unpkg.com/aos%402.3.1/dist/aos.css') }}" rel="stylesheet">
+@stop
+
 @section('content')
 
 
@@ -263,11 +268,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{--<div class="p-3 text-center">
+                                <div class="p-3 text-center">
                                     <p>
-                                        {!! (strlen($post->body) > 70) ? substr($post->body, 0, 70)."<b> (&hellip;)</b>  <br> " : $post->body !!}
+                                        {{ (strlen($post->summary) > 70) ? substr($post->summary, 0, 70)."<b> (&hellip;)</b>  <br> " : $post->summary }}
                                     </p>
-                                </div>--}}
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -331,7 +336,6 @@
 
 @section('footer-scripts')
     <script src="{{ asset('assets/unpkg.com/aos%402.3.1/dist/aos.js') }}"></script>
-
     <script>
         AOS.init();
     </script>

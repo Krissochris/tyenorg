@@ -15,7 +15,8 @@ class Blog extends Model implements BlogContract {
         'url_key',
         'status',
         'photo',
-        'blog_category_id'
+        'blog_category_id',
+        'summary'
     ];
 
 
