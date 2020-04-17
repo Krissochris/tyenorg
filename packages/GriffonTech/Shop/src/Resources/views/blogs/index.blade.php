@@ -60,7 +60,7 @@
                             </div>
                             <div class="p-3 text-center">
                                 <p>
-                                    {!! (strlen($post->body) > 70) ? substr($post->body, 0, 70)."<b> (&hellip;)</b>  <br> " : $post->body !!}
+                                    {!! (strlen($post->summary) > 70) ? substr($post->summary, 0, 70)."<b> (&hellip;)</b>  <br> " : $post->summary !!}
                                 </p>
                             </div>
                         </div>
