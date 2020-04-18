@@ -18,13 +18,16 @@ class RavePaymentController extends Controller
 
     protected $userPaymentRepository;
 
+
     public function __construct(
         UserPaymentRepository $userPaymentRepository
     )
     {
-        $this->_publicKey = 'FLWPUBK_TEST-3009a70205553a445c3d826adfa87982-X';
+        $config = config('rave_payment');
 
-        $this->_secretKey = '';
+        $this->_publicKey = $config['public_key'];
+
+        $this->_secretKey = $config['secret_key'];
 
         $this->userPaymentRepository = $userPaymentRepository;
     }
