@@ -49,14 +49,23 @@ class TutorApplicationController extends Controller
         $this->tutorAgreementRepository = $tutorAgreementRepository;
 
         $this->tutorAgreementAttributeValueRepository = $tutorAgreementAttributeValueRepository;
+
     }
 
+    protected function isTutor()
+    {
+        return (bool) auth('user')->user()->tutor_id;
+    }
 
     public function create()
     {
+        if ($this->isTutor()) {
+            return redirect()->route('tutor.dashboard.index');
+        }
+
         $tutor_application = $this->tutorApplicationRepository->findOneWhere([
             'user_id' => auth('user')->user()->id
-        ],['id']);
+        ]);
 
         if ($tutor_application) {
 
@@ -85,6 +94,7 @@ class TutorApplicationController extends Controller
             'name' => 'required',
             'title' => 'required',
             'phone' => 'required',
+            'description' => ['required','min:50']
         ]);
 
         $tutorApplication = $this->tutorApplicationRepository->firstOrCreate([
@@ -92,7 +102,7 @@ class TutorApplicationController extends Controller
         ]);
 
         $tutorApplication->forceFill($request->only(['name' , 'title',
-            'phone', 'description', 'state_of_residence_id']));
+            'phone', 'description']));
 
         if ($tutorApplication->update()) {
             session()->flash('success', 'Your information was successfully saved');

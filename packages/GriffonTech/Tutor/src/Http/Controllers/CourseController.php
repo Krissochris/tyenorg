@@ -66,7 +66,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses = $this->courseRepository
-            ->findTutorCourses(auth('user')->user()->id);
+            ->findTutorCourses(auth('user')->user()->tutor_id);
         return view($this->_config['view'])->with(compact('courses'));
     }
 
@@ -92,18 +92,21 @@ class CourseController extends Controller
             'name' => 'required',
             'course_category_id' => 'required',
             'summary' => 'required',
+            'type' => 'required',
             'description' => 'required',
+            'learning_url' => 'required|max:150',
             'total_no_of_users_in_batch' => 'required',
             'photo' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $data = $request->except(['status', 'approved_on', 'active']);
 
-        $data['tutor_id'] = auth('user')->user()->id;
+        $data['tutor_id'] = auth('user')->user()->tutor_id;
 
+        $data['number_of_batches'] = $request->input('number_of_batch');
         // process the image
-        $image = $request->file('photo');
 
+        $image = $request->file('photo');
         if ($image) {
 
             if ($fileUploaded = (new FileManager())->upload($image, 'courses')) {
@@ -118,9 +121,9 @@ class CourseController extends Controller
         $course = $this->courseRepository->create($data);
 
         if ($course) {
-            if ((int)$request->input('number_of_batch') > 0) {
+            /*if ((int)$request->input('number_of_batch') > 0) {
                 $this->courseBatchRepository->createBatches($request->input('number_of_batch'), $course);
-            }
+            }*/
             session()->flash('success', 'Your course was successfully created');
         } else {
             session()->flash('error', 'Course could not be created. Please try again');
@@ -154,10 +157,11 @@ class CourseController extends Controller
             'categories', 'course', 'courseTypes', 'courseStatus'));
     }
 
+
     public function update(Request $request, $slug)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => ['required', 'max:100'],
             'course_category_id' => 'required',
             'summary' => 'required',
             'description' => 'required',
@@ -172,6 +176,8 @@ class CourseController extends Controller
             session()->flash('error', 'Course does not exist!');
             return redirect()->route($this->_config['redirect']);
         }
+
+        $courseUpdate = $request->except(['status', 'approved_on', 'active', 'photo']);
 
         if ($request->file('photo')) {
             $image = $request->file('photo');
@@ -199,7 +205,7 @@ class CourseController extends Controller
                session()->flash('error', $exception->getMessage());
             }*/
         }
-        $course =  $course->update($request->except(['status', 'approved_on', 'active']));
+        $course =  $course->update($courseUpdate);
 
         if ($course) {
             session()->flash('success', 'Course was successfully updated!');

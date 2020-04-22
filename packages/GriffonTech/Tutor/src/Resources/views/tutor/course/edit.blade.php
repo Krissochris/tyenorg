@@ -84,7 +84,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="video_url">Course Feature Video Url</label>
+                            <label for="video_url">Course Feature Video Url (Either Youtube or Vimeo Link )</label>
                             {!! Form::text('video_url', null, ['class' => 'form-control']) !!}
                         </div>
 

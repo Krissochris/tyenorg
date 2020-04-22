@@ -88,9 +88,9 @@ class FileManager {
                 }
             }
         } catch ( \Exception $exception) {
-            return false;
+            return true;
         }
-        return false;
+        return true;
 
     }
 

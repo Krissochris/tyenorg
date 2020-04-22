@@ -7,8 +7,8 @@
 @section('content')
 
     <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox ">
+        <div class="col-lg-12" style="margin-bottom: 10px;">
+            <div class="ibox">
                 <div class="ibox-title">
                     <h5>New Tutor Application Details</h5>
                     <div class="ibox-tools">

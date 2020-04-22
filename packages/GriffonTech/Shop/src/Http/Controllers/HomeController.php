@@ -48,19 +48,7 @@ class HomeController extends Controller {
 
     public function index()
     {
-        $courses = $this->courseRepository
-            ->getModel()
-            ->latest()
-            ->where('status', 1)
-            ->limit(3)
-            ->get()
-            ->map(function($row){
-                $row->course_average_rating =
-                    $row->course_reviews->average('rating');
-                $row->total_reviews = $row->course_reviews->count();
-                return $row;
-            });
-
+        $courses = $this->courseRepository->getAllCourses();
 
         $testimonies = $this->testimonyRepository
             ->getModel()

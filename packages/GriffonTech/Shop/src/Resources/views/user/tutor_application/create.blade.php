@@ -32,7 +32,7 @@
                             {!! Form::text('phone', null, ['class' => 'form-control']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('description', 'Description') !!}
+                            {!! Form::label('description', 'About Me') !!}
                             {!! Form::textarea('description', null, ['rows' => 5, 'class' => 'form-control']) !!}
                         </div>
 

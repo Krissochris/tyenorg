@@ -44,7 +44,7 @@
                                 <a href="{{ route('pages.view', 'page_values_to_expect') }}">Values we give</a>
                             </li>
                             <li class="">
-                                <a href="{{ route('pages.view', 'page_join_forum') }}">Join Forum</a>
+                                <a href="{{ route('pages.view', 'page_join_forum') }}">Join Business Forum</a>
                             </li>
                             <li class="">
                                 <a href="{{ route('pages.view', 'page_join_tyen_club') }}">Join TYEN Club</a>

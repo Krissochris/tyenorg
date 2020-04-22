@@ -81,6 +81,7 @@ class UserController extends Controller {
             'name' => 'string',
             'last_name' => 'string',
             'email' => 'email|unique:users,email,'.$id,
+            'phone_number' => 'nullable|numeric',
             'old_password' => 'required_with:password',
             'password' => 'nullable:confirmed|min:6'
         ]);

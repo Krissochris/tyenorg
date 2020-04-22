@@ -120,7 +120,7 @@ class User extends Authenticatable implements UserContract
                     ]);
                 if ($userReferral) {
                     $userReferralUpdated = $userReferral->update([
-                        'referral_bonus' => $userReferral->referral_bonus + (setting('pro_membership_fee') * 0.10),
+                        'referral_bonus' => $userReferral->referral_bonus + (setting('pro_membership_fee') * 0.1),
                         'available_referral' => $userReferral->available_referral + 1
                     ]);
 

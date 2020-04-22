@@ -26,7 +26,7 @@
 
         @include('admin::layouts.header.index')
 
-        <div class="wrapper wrapper-content">
+        <div class="wrapper wrapper-content" style="padding-bottom: 100px;">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

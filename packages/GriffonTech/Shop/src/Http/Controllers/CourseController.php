@@ -72,82 +72,9 @@ class CourseController extends Controller
 
     public function index()
     {
-        $courseCategories = $this->courseCategoryRepository->all(['id', 'name', 'url_key']);
+        $courses = $this->courseRepository->getAllCourses(6);
 
-        // get free courses
-        if (auth('user')->guest() || (auth('user')->check() && !auth('user')->user()->is_pro_user)) {
-            if (request()->input('_q')) {
-                $query = request()->input('_q');
-                try {
-                    /*$category = $this->courseCategoryRepository
-                        ->fin
-                        ->findBySlugOrFail($category_slug);*/
-                    $courses = $this->courseRepository->getModel()
-                        ->query()
-                        ->where([
-                            ['type', CourseRepository::FREE],
-                            ['name','LIKE', "%{$query}%"],
-                            ['status', 1]
-                        ])->paginate(20);
-
-                } catch (ModelNotFoundException $exception) {
-                    $courses = $this->courseRepository->getModel()
-                        ->query()
-                        ->where([
-                            ['type', CourseRepository::FREE],
-                            ['status', 1]
-                        ])
-                        ->paginate(20);
-                }
-            } else {
-
-                $courses = $this->courseRepository->getModel()
-                    ->query()
-                    ->where([
-                        ['type', CourseRepository::FREE],
-                        ['status', 1]
-                    ])
-                    ->paginate(20);
-            }
-
-        } else if (auth('user')->check() && auth('user')->user()->is_pro_user) {
-            if (request()->input('_q')) {
-                //$category_slug = request()->input('category_slug');
-                $query = request()->input('_q');
-                try {
-                    //$category = $this->courseCategoryRepository->findBySlugOrFail($category_slug);
-                    $courses = $this->courseRepository->getModel()
-                        ->query()
-                        ->where([
-                            ['name','LIKE', "%{$query}%"],
-                            ['status', 1]
-                        ])->paginate(20);
-                } catch (ModelNotFoundException $exception) {
-                    $courses = $this->courseRepository
-                        ->getModel()
-                        ->findWhere('status', 1)
-                        ->paginate(20);
-                }
-            } else {
-                $courses = $this->courseRepository
-                    ->getModel()
-                    ->where('status', 1)
-                    ->paginate(20);
-            }
-        }
-
-        if ($courses->count()) {
-            $courses->map(function($row){
-                $row->course_average_rating =
-                    $row->course_reviews->average('rating');
-                $row->total_reviews = $row->course_reviews->count();
-                return $row;
-            });
-        }
-        // if the user is pro member // get all course
-
-        // if the category_slug is set
-        return view($this->_config['view'])->with(compact('courses', 'courseCategories'));
+        return view($this->_config['view'])->with(compact('courses'));
     }
 
 

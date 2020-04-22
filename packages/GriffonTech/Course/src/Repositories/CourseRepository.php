@@ -5,6 +5,7 @@ namespace GriffonTech\Course\Repositories;
 
 use GriffonTech\Core\Eloquent\Repository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * Course Repository
@@ -86,9 +87,11 @@ class CourseRepository extends Repository
 
     public function create(array $attributes)
     {
-        $attributes['url_key'] = str_slug($attributes['name']);
+        $attributes['url_key'] =
+            uniqid().'-'.str_slug($attributes['name']);
         return parent::create($attributes);
     }
+
 
     public function update(array $attributes, $id)
     {
@@ -109,5 +112,58 @@ class CourseRepository extends Repository
         return parent::update($attributes, $id);
     }
 
+    public function getAllCourses($limit = null, $order_by = 'desc')
+    {
+        $query = request()->input('_q');
+        if (auth('user')->guest() || (auth('user')->check() && !auth('user')->user()->is_pro_user)) {
+            $courses = $this->getModel()
+                ->query()
+                ->has('tutor')
+                ->where([
+                    ['type', static::FREE],
+                    ['status', 1]
+                ])
+                ->orderBy('created_at', $order_by);
+            if (isset($query) && !empty($query)) {
+                $courses->where('name', 'LIKE', "%{$query}%");
+            }
+            if (!is_null($limit)) {
+                $courses->limit($limit);
+            }
+
+            $courses = $courses->paginate(20);
+
+        } else if (auth('user')->check() && auth('user')->user()->is_pro_user) {
+
+            $courses = $this->getModel()
+                ->query()
+                ->where([
+                    ['name','LIKE', "%{$query}%"],
+                    ['status', 1]
+                ])
+                ->orderBy('created_at', $order_by);
+
+            if (isset($query) && !empty($query)) {
+                $courses->where('name','LIKE', "%{$query}%");
+            }
+            if (!is_null($limit)) {
+                $courses->limit($limit);
+            }
+
+            $courses = $courses->paginate(20);
+        }
+
+        if (isset($courses) && !$courses->isEmpty()) {
+            $courses->map(function($row){
+                $row->course_average_rating =
+                    $row->course_reviews->average('rating');
+                $row->total_reviews = $row->course_reviews->count();
+                return $row;
+            });
+            return $courses;
+        }
+
+        return new LengthAwarePaginator([], 0, 20, 0 );
+    }
 
 }

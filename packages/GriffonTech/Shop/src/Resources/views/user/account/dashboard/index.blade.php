@@ -11,7 +11,7 @@
             <div>
 
                 <h1 class="m-0"> {{ auth('user')->user()->name }} </h1>
-                <p class="text-muted m-0"> <strong>Welcome to TYEN - Lets Grow Together</strong> </p>
+                <p class="text-muted m-0">Welcome to TYEN -<strong> Lets</strong> Grow Together </p>
             </div>
         </div>
     </div>
@@ -44,10 +44,10 @@
 --}}
 
 
-                            <a href="#" class="btn btn-facebook btn-sm"><i class="fab fa-facebook"></i></a>
+                           {{-- <a href="#" class="btn btn-facebook btn-sm"><i class="fab fa-facebook"></i></a>
                             <a href="#" class="btn btn-twitter btn-sm"><i class="fab fa-twitter"></i></a>
                             <a href="#" class="btn btn-light btn-sm"><i class="fab fa-github"></i></a>
-
+--}}
                         </div>
                     </div>
 
@@ -129,7 +129,16 @@
                 </div>
 
                 @if($userCoupon)
-                    <p> Your user coupon code : {{ $userCoupon->coupon_code }} </p>
+                    <table class="table">
+                        <tr>
+                            <th>User Coupon Code : </th>
+                            <td>{{  $userCoupon->coupon_code }}</td>
+                        </tr>
+                        <tr>
+                            <th>Is Used :</th>
+                            <td> {{ ($userCoupon->is_used) ? 'Yes' : 'No' }} </td>
+                        </tr>
+                    </table>
                 @endif
             </div>
         </div>

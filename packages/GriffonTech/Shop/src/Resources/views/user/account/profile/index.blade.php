@@ -19,28 +19,28 @@
                     <div class="card-body">
                         {!! Form::model($user, ['route' => 'user.profile.edit']) !!}
                             <div class="form-group row">
-                                <label class="col-sm-2">Full Name: </label>
+                                <label class="col-sm-3">Full Name: </label>
                                 <div class="col-sm-7">
                                     {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Full Name']) !!}
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2">Username: </label>
+                                <label class="col-sm-3">Username: </label>
                                 <div class="col-sm-7">
                                     {!! Form::text('username', null, ['class' => 'form-control', 'readonly' => true]) !!}
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2">Email: </label>
+                                <label class="col-sm-3">Email: </label>
                                 <div class="col-sm-7">
-                                    {!! Form::email('email', null, ['class' => 'form-control']) !!}
+                                    {!! Form::email('email', null, ['class' => 'form-control', 'disabled'=>true]) !!}
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2">Phone: </label>
+                                <label class="col-sm-3">Phone: </label>
                                 <div class="col-sm-7">
                                     {!! Form::text('phone_number', null, ['class' => 'form-control']) !!}
                                 </div>

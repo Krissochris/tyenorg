@@ -81,7 +81,8 @@ class CoursesController extends Controller
             'total_no_of_users_in_batch',
             'photo' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-        $data = $request->input();
+        $data = $request->except(['photo']);
+        $data['number_of_batches'] = $request->input('number_of_batches');
 
         $image = $request->file('photo');
 
@@ -155,7 +156,7 @@ class CoursesController extends Controller
 
         $course = $this->courseRepository->findOrFail($id);
 
-        $updateData = $request->input();
+        $updateData = $request->except(['photo','_method']);
 
         if ($request->file('photo')) {
             $image = $request->file('photo');
@@ -164,7 +165,6 @@ class CoursesController extends Controller
                 $updateData['photo'] = $updated;
 
             } else {
-
                 session()->flash('error', 'Photo could not be updated.');
             }
         }

@@ -35,7 +35,7 @@
                             <tr>
                                 <td> {{ $course_batch->id }}</td>
                                 <td> {{ $course_batch->course->name }} </td>
-                                <td> {{ $course_batch->tutor->name }} </td>
+                                <td> {{ @$course_batch->tutor->name }} </td>
                                 <td> {{ $course_batch->no_of_users }} </td>
                                 <td> {{ $course_batch->maximum_number_of_users }} </td>
                                 <td> {{ ($course_batch->entry_status) ? 'Yes' : 'No' }} </td>

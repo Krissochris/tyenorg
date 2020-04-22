@@ -35,10 +35,10 @@
                         <tbody>
                         @foreach($courses as $course)
                             <tr>
-                                <td> {{ $course->id }}</td>
-                                <td> {{ $course->name }} </td>
-                                <td> {{ $course->tutor->name }} </td>
-                                <td> {{ $course->type }} </td>
+                                <td> {{ @$course->id }}</td>
+                                <td> {{ @$course->name }} </td>
+                                <td> {{ @$course->tutor->name }} </td>
+                                <td> {{ @$course->type }} </td>
                                 <td><img src="{{ $course->photo }}" alt="course image" width="70" height="70"> </td>
                                 <td> {{ $course->created_at }} </td>
                                 <td> {{ $course->updated_at }} </td>

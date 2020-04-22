@@ -87,6 +87,11 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="total_no_of_users_in_batch">Number of Batches to Create</label>
+                                    {!! Form::number('number_of_batches', null, ['class' => 'form-control']) !!}
+                                </div>
+
+                                <div class="form-group">
                                     <input type="hidden" name="approved_on" value="0">
                                     <label for="approved_on">
                                         <input id="approved_on" type="checkbox" name="approved_on" value="1" {{ ($course->approved_on ? 'checked' : '') }}>
