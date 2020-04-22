@@ -82,6 +82,7 @@ class CoursesController extends Controller
             'photo' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         $data = $request->except(['photo']);
+
         $data['number_of_batches'] = $request->input('number_of_batches');
 
         $image = $request->file('photo');
