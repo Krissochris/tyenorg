@@ -17,7 +17,7 @@
                         <tr>
                             <th>S/N</th>
                             <th> Course Name </th>
-                            <th>Teacher name </th>
+                            <th> Tutor name </th>
                             <th> No of Users </th>
                             <th> Maximum no of users</th>
                             <th> Entry Status </th>

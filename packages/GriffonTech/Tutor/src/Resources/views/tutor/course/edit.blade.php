@@ -23,14 +23,14 @@
                     {!! Form::model($course, ['route' => ['tutor.courses.edit', $course->url_key],'enctype' => 'multipart/form-data' ]) !!}
                     <div class="card-form__body card-body">
 
-                        <div class="form-group">
+                        <div class="form-group required">
                             <label for="fname">Slug (URL)</label>
                             <div class="help-block my-1 p-1 text-muted bg-light border rounded">
                                 /{{ $course->url_key }}
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group required">
                             <label for="course_category_id">Category</label>
                             {!! Form::select('course_category_id', $categories, null, ['class' => 'form-control']) !!}
                         </div>
@@ -41,7 +41,7 @@
                         </div>
 
                         @if(!$course->active)
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="type">Course Type </label>
                                 {!! Form::select('type', $courseTypes, null, ['class' => 'form-control', 'id' => 'course_type']) !!}
                             </div>
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group required">
                                 <label for="name"> Learning Link </label>
                                 {!! Form::text('learning_url', null, ['class' => 'form-control', 'placeholder' => 'Learning Url']) !!}
                             </div>
@@ -68,17 +68,17 @@
                             </div>
                         @endif
 
-                        <div class="form-group">
+                        <div class="form-group required">
                             <label for="name"> Summary </label>
                             {!! Form::textarea('summary', null, ['rows' => 3, 'class' => 'form-control' ]) !!}
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group required">
                             <label for="description">Description</label>
                             {!! Form::textarea('description', null, ['class' => 'form-control tinymce_editor']) !!}
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group required">
                             <label for="photo">Course Feature Photo</label>
                             {!! Form::file('photo') !!}
                         </div>
@@ -96,6 +96,33 @@
 
                     {!! Form::close() !!}
 
+                </div>
+            </div>
+            <div class="col-md-4">
+
+                <!-- Lessons -->
+                <div class="card">
+                    <div class="card-header card-header-large bg-light d-flex align-items-center">
+                        <div class="flex">
+                            <h4 class="card-header__title">Course Creation Rules</h4>
+                        </div>
+                    </div>
+
+                    <ul class="list-group list-group-fit">
+                        <li class="list-group-item">
+                            <div class="media">
+                                <div class="media-body">
+                                    <ol>
+                                        <li> You must enter a descriptive course name</li>
+                                        <li><span style="color: red">*</span> inputs are required.</li>
+                                        <li>The video url must be either youtube or vimeo.</li>
+                                        <li>The learning link is the platform that will be used for the teaching.
+                                            it could be WhatsApp ot Telegram </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
 

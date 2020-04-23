@@ -73,8 +73,10 @@
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <a class="dropdown-item" href="{{ route('tutor.courses.edit', [ 'slug' => $course->url_key]) }}">Edit Course</a>
                                                     <a class="dropdown-item" href="{{ route('tutor.courses.course_batch.index', $course->id) }}"> Batches</a>
+                                                    <a class="dropdown-item" href="{{ route('tutor.courses.show', [ 'slug' => $course->url_key]) }}">Comments</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger" href="{{ route('tutor.courses.show', [ 'slug' => $course->url_key]) }}">Comments</a>
+                                                    <a class="dropdown-item text-danger" href="{{ route('tutor.courses.delete', $course->url_key) }}"> Delete</a>
+
                                                 </div>
                                             </div>
                                         </div>

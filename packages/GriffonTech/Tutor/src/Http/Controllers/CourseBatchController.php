@@ -24,9 +24,6 @@ class CourseBatchController extends Controller
         CourseBatchRepository $courseBatchRepository,
         CourseRepository $courseRepository,
         CourseRegistrationRepository $courseRegistrationRepository
-
-        // confirm that the course_id belongs to the tutor before proceeding with the
-        // action please .
     )
     {
         $this->_config = request('_config');
@@ -38,27 +35,35 @@ class CourseBatchController extends Controller
         $this->courseRegistrationRepository = $courseRegistrationRepository;
     }
 
-    public function index($course_id)
+
+    public function index($course_slug)
     {
-        $course = $this->courseRepository->with(['course_batches'])
-            ->find($course_id, ['id','name']);
+        $course = $this->courseRepository
+            ->with(['course_batches'])
+            ->findBySlugOrFail($course_slug, ['id', 'name']);
+
+        if ($course->tutor_id !== auth('user')->tutor_id) {
+            abort(403);
+        }
 
         return view($this->_config['view'])->with(compact('course'));
     }
 
 
-    public function create($course_id)
+    public function create($course_slug)
     {
+        $course = $this->courseRepository
+            ->findBySlugOrFail($course_slug, ['id']);
 
-        $course = $this->courseRepository->find($course_id);
         return view($this->_config['view'], compact('course'));
     }
 
 
 
-    public function store(Request $request, $course_id)
+    public function store(Request $request, $course_slug)
     {
-        $course = $this->courseRepository->find($course_id);
+        $course = $this->courseRepository
+            ->findBySlugOrFail($course_slug);
 
         $coursesCreated = false;
 
@@ -68,7 +73,7 @@ class CourseBatchController extends Controller
 
                 $this->courseBatchRepository->create([
                     'course_id' => $course->id,
-                    'tutor_id' => auth('user')->user()->id,
+                    'tutor_id' => $course->tutor_id,
                     'maximum_number_of_users' => $request->input('maximum_number_of_users')
                 ]);
 
@@ -106,10 +111,11 @@ class CourseBatchController extends Controller
             $postData['time_completed'] = now();
         }
 
-        $courseBatchUpdated = $this->courseBatchRepository
-            ->update($postData, $id);
+        $course_batch = $this->courseBatchRepository->find($id);
 
-        if ($courseBatchUpdated) {
+        $course_batch = $course_batch->update($postData);
+
+        if ($course_batch) {
             session()->flash('success', 'Course batch was successfully updated!');
         } else {
             session()->flash('error', 'Course batch could not be successfully updated.');

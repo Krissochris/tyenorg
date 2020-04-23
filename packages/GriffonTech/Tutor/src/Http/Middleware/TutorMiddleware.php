@@ -24,7 +24,7 @@ class TutorMiddleware
             return redirect()->route('user.session.create');
         }
 
-        /*if (\auth('user')->user()->tutor_id) {
+        if (\auth('user')->user()->tutor_id) {
             $tutor_profile = app(TutorProfileRepository::class)
                 ->find(\auth('user')->user()->tutor_id, ['id','status']);
 
@@ -32,7 +32,7 @@ class TutorMiddleware
 
                 return redirect()->route('tutor.account_blocked');
             }
-        }*/
+        }
         //$this->checkIfAuthorized($request);
         return $next($request);
     }

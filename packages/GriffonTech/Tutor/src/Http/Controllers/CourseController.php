@@ -87,17 +87,32 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => 'required',
             'course_category_id' => 'required',
-            'summary' => 'required',
             'type' => 'required',
+            'summary' => 'required',
             'description' => 'required',
             'learning_url' => 'required|max:150',
             'total_no_of_users_in_batch' => 'required',
             'photo' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+
+
+        if (!in_array($request->input('type'),
+            array_keys($this->courseRepository::TYPE) )) {
+            session()->flash('error', sprintf('The select type %s is unknown', $request->input('type')));
+            return back();
+        }
+
+        if (!empty($request->input('video_url'))) {
+            if (!preg_match('/(youtube|vimeo)/i', $request->input('video_url'))) {
+                session()->flash('error',
+                    sprintf('The video url must be either youtube or vimeo, you entered %s .',
+                        $request->input('video_url')));
+                return back();
+            }
+        }
 
         $data = $request->except(['status', 'approved_on', 'active']);
 
@@ -114,16 +129,13 @@ class CourseController extends Controller
                 $data['photo'] = $fileUploaded;
 
             } else {
-                session()->flash('error', 'Photo could not be uploaded');
+                session()->flash('warning', 'Photo could not be uploaded');
             }
         }
 
         $course = $this->courseRepository->create($data);
 
         if ($course) {
-            /*if ((int)$request->input('number_of_batch') > 0) {
-                $this->courseBatchRepository->createBatches($request->input('number_of_batch'), $course);
-            }*/
             session()->flash('success', 'Your course was successfully created');
         } else {
             session()->flash('error', 'Course could not be created. Please try again');
@@ -147,6 +159,12 @@ class CourseController extends Controller
     {
         try {
             $course = $this->courseRepository->findBySlugOrFail($slug);
+
+            if ($course->tutor_id !== auth('user')->user()->tutor_id) {
+
+                abort(403);
+            }
+
         } catch (ModelNotFoundException $modelNotFoundException) {
             // handle error
         }
@@ -171,6 +189,10 @@ class CourseController extends Controller
         try {
             $course = $this->courseRepository->findBySlugOrFail($slug);
 
+            if ($course->tutor_id !== auth('user')->user()->tutor_id) {
+
+                abort(403);
+            }
         } catch (ModelNotFoundException $modelNotFoundException) {
 
             session()->flash('error', 'Course does not exist!');
@@ -188,22 +210,6 @@ class CourseController extends Controller
             } else {
                 session()->flash('error', 'Photo could not be updated.');
             }
-
-            /*$input = null;
-            $input['photo_name'] = time().'.'.$image->getClientOriginalExtension();
-            $input['photo_url_part'] = 'storage/images/courses';
-            try {
-                $input['photo_url'] = asset($input['photo_url_part']) .'/'. $input['photo_name'];
-                $image->storeAs('public/images/courses/', $input['photo_name']);
-                if ($course->photo) {
-                    Storage::delete($course->photo);
-                }
-
-                $course->forceFill(['photo' => $input['photo_url']]);
-            } catch ( \Exception $exception) {
-
-               session()->flash('error', $exception->getMessage());
-            }*/
         }
         $course =  $course->update($courseUpdate);
 
@@ -217,22 +223,57 @@ class CourseController extends Controller
     }
 
 
+    public function delete($slug)
+    {
+        try {
+            $course = $this->courseRepository->findBySlugOrFail($slug);
+
+            if ($course->tutor_id !== auth('user')->user()->tutor_id) {
+
+                abort(403);
+            }
+
+            return view($this->_config['view'])
+                ->with(compact('course'));
+
+        } catch (ModelNotFoundException $modelNotFoundException) {
+
+            session()->flash('error', 'Course does not exist!');
+            return redirect()->route($this->_config['redirect']);
+        }
+    }
+
     /**
-     *
+     * @param $slug
      */
-    public function destroy()
+    public function destroy($slug)
     {
+        try {
+            $course = $this->courseRepository->findBySlugOrFail($slug);
+
+            if ($course->tutor_id !== auth('user')->user()->tutor_id) {
+
+                abort(403);
+            }
+
+            if (!$course->course_registrations->isEmpty()) {
+                session()->flash('error', 'You can not delete this course at this time. Please contact the admin to perform this action');
+                return back();
+            }
+
+            if ($this->courseRepository->delete($course->id)) {
+                session()->flash('success', 'Course was successfully deleted!');
+            } else {
+                session()->flash('error', 'Course could not be deleted');
+            }
+
+            return redirect()->route('tutor.courses.index');
+
+        } catch (ModelNotFoundException $modelNotFoundException) {
+
+            session()->flash('error', 'Course does not exist!');
+            return redirect()->route($this->_config['redirect']);
+        }
 
     }
-
-    public function review()
-    {
-
-    }
-
-    public function course_batch()
-    {
-
-    }
-
 }

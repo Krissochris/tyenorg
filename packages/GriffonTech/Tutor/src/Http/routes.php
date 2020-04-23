@@ -62,23 +62,30 @@ Route::group(['middleware' => ['web', 'user']], function() {
                 'view' => 'tutor::tutor.course.show',
             ])->name('tutor.courses.show');
 
+            Route::get('courses/delete/{slug}', 'GriffonTech\Tutor\Http\Controllers\CourseController@delete')->defaults('_config', [
+                'view' => 'tutor::tutor.course.delete',
+            ])->name('tutor.courses.delete');
+
+            Route::delete('courses/destroy/{slug}', 'GriffonTech\Tutor\Http\Controllers\CourseController@destroy')->defaults('_config', [
+                'redirect' => 'tutor.courses.index',
+            ])->name('tutor.courses.destroy');
 
 
 
-            Route::get('courses/{course_id}/course_batch/index', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@index')->defaults('_config', [
-                'view' => 'tutor::tutor.course.course_batch.index',
+            Route::get('courses/{course_slug}/course_batch/index', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@index')->defaults('_config', [
+                'view' => 'tutor::tutor.course_batch.index',
             ])->name('tutor.courses.course_batch.index');
 
-            Route::get('courses/{course_id}/course_batch/create', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@create')->defaults('_config', [
-                'view' => 'tutor::tutor.course.course_batch.create',
+            Route::get('courses/{course_slug}/course_batch/create', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@create')->defaults('_config', [
+                'view' => 'tutor::tutor.course_batch.create',
             ])->name('tutor.courses.course_batch.create');
 
-            Route::post('courses/{course_id}/course_batch/create', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@store')->defaults('_config', [
+            Route::post('courses/{course_slug}/course_batch/create', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@store')->defaults('_config', [
                 'redirect' => 'tutor.courses.course_batch.index',
             ])->name('tutor.courses.course_batch.create');
 
             Route::get('courses/course_batch/edit/{id}', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@edit')->defaults('_config', [
-                'view' => 'tutor::tutor.course.course_batch.edit',
+                'view' => 'tutor::tutor.course_batch.edit',
             ])->name('tutor.courses.course_batch.edit');
 
             Route::post('courses/course_batch/edit/{id}', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@update')->defaults('_config', [
@@ -86,8 +93,9 @@ Route::group(['middleware' => ['web', 'user']], function() {
             ])->name('tutor.courses.course_batch.edit');
 
             Route::get('courses/course_batch/show/{id}', 'GriffonTech\Tutor\Http\Controllers\CourseBatchController@show')->defaults('_config', [
-                'view' => 'tutor::tutor.course.course_batch.show',
+                'view' => 'tutor::tutor.course_batch.show',
             ])->name('tutor.courses.course_batch.show');
+
 
 
             // Dashboard view

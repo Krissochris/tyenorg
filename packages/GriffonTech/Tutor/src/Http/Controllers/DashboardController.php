@@ -64,7 +64,7 @@ class DashboardController extends Controller {
     {
 
         // count tutor courses
-        $tutorCourses = $this->courseRepository->findTutorCourses(auth('user')->user()->id);
+        $tutorCourses = $this->courseRepository->findTutorCourses(auth('user')->user()->tutor_id);
 
 
         $active_course_batches =

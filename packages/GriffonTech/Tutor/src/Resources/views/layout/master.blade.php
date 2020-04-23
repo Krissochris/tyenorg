@@ -29,6 +29,12 @@
     <!-- ion Range Slider -->
     <link type="text/css" href="{{ asset('assets/css/vendor-ion-rangeslider.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('assets/css/vendor-ion-rangeslider.rtl.css') }}" rel="stylesheet">
+    <style>
+        form .required label::after {
+            content: '*';
+            color: red;
+        }
+    </style>
 </head>
 
 <body class="layout-default">
@@ -44,11 +50,59 @@
     <div class="mdk-header-layout__content">
 
         <div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
+
             <div class="mdk-drawer-layout__content page">
+                <div class="container page__container">
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger mt-2">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if(Session::has('success'))
+                        <div class="alert alert-soft-success d-flex  align-items-center mt-2" role="alert">
+                            <i class="material-icons mr-3">check_circle</i>
+                            <div class="text-body"><strong>Success:</strong>
+                                {{ Session::get('success') }}
+                            </div>
+                        </div>
+                    @endif
+
+                    @if(Session::has('warning'))
+                        <div class="alert alert-soft-warning d-flex  align-items-center m-0 mt-2" role="alert">
+                            <i class="material-icons mr-3">error_outline</i>
+                            <div class="text-body"><strong>warning</strong>
+                                {{ Session::get('warning') }}
+                            </div>
+                        </div>
+                    @endif
+
+                    @if(Session::has('info'))
+                        <div class="alert alert-soft-info d-flex align-items-center mt-2" role="alert">
+                            <i class="material-icons mr-3">info_outline</i>
+                            <div class="text-body"><strong>Info - </strong>
+                                {{ Session::get('info') }}
+                            </div>
+                        </div>
+                    @endif
+                    @if(Session::has('error'))
+                        <div class="alert alert-soft-danger d-flex align-items-center mt-2" role="alert">
+                            <i class="material-icons mr-3">error_outline</i>
+                            <div class="text-body"><strong>Error - </strong>
+                                {{ Session::get('error') }}
+                            </div>
+                        </div>
+                    @endif
+                </div>
 
                 @yield('content')
 
             </div>
+
             <!-- // END drawer-layout__content -->
 
             @include('tutor::layout.sidebar.index')
@@ -77,10 +131,6 @@
 
 <!-- MDK -->
 <script src="{{ asset('assets/vendor/material-design-kit.js') }}"></script>
-
-<!-- Range Slider -->
-<script src="{{ asset('assets/vendor/ion.rangeSlider.min.js') }}"></script>
-<script src="{{ asset('assets/js/ion-rangeslider.js') }}"></script>
 
 <!-- App -->
 <script src="{{ asset('assets/js/toggle-check-all.js') }}"></script>

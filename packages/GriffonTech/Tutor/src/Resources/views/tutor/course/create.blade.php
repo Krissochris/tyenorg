@@ -23,17 +23,17 @@
 
                     <div class="card-form__body card-body">
 
-                        <div class="form-group">
+                        <div class="form-group required">
                             <label for="course_category_id">Category</label>
                             {!! Form::select('course_category_id', $categories, null, ['class' => 'form-control']) !!}
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group required">
                             <label for="name"> Name</label>
                             {!! Form::text('name',null, ['class' => 'form-control',  'placeholder' => 'Course Name']) !!}
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group required">
                             <label for="type">Course Type </label>
                             {!! Form::select('type', $courseTypes, null, ['class' => 'form-control', 'id' => 'course_type']) !!}
                         </div>
@@ -49,7 +49,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group required">
                             <label for="name"> Learning Url 1 </label>
                             {!! Form::text('learning_url', null, ['class' => 'form-control', 'placeholder' => 'Learning Url']) !!}
                         </div>
@@ -59,16 +59,16 @@
                             {!! Form::text('learning_url_2', null, ['class' => 'form-control', 'placeholder' => 'Learning Url']) !!}
                         </div>
 
-                        <div class="form-group">
-                            <label for="name"> Course Summary </label>
+                        <div class="form-group required">
+                            <label for="name"> Course Summary (Make it brief) </label>
                             {!! Form::textarea('summary', null, [
-                            'rows' => 3,
+                            'rows' => 5,
                              'class' => 'form-control',
                              'placeholder' => 'Please summarize your course details here'
                               ]) !!}
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group required">
                             <label for="description">Description</label>
                             {!! Form::textarea('description', null, [
                             'class' => 'form-control tinymce_editor',
@@ -76,7 +76,7 @@
                             'placeholder' => 'Please enter the description']) !!}
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group required">
                             <label for="photo">Course Feature Photo</label>
                             {!! Form::file('photo') !!}
                         </div>
@@ -86,11 +86,11 @@
                             {!! Form::text('video_url', null, ['class' => 'form-control']) !!}
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group required">
                             <label for="total_no_of_users_in_batch">Maximum Number of Users in a Batch</label>
                             {!! Form::number('total_no_of_users_in_batch', null, ['class' => 'form-control']) !!}
                         </div>
-                        <div class="form-group">
+                        <div class="form-group required">
                             <label for="name"> Number of Batches To Create </label>
                             {!! Form::text('number_of_batch', null, ['class' => 'form-control', 'placeholder' => 'Number of Batch']) !!}
                         </div>
@@ -143,7 +143,13 @@
                         <li class="list-group-item">
                             <div class="media">
                                 <div class="media-body">
-                                    <p>1. You must enter a descriptive course name</p>
+                                    <ol>
+                                        <li> You must enter a descriptive course name</li>
+                                        <li><span style="color: red">*</span> inputs are required.</li>
+                                        <li>The video url must be either youtube or vimeo.</li>
+                                        <li>The learning link is the platform that will be used for the teaching.
+                                            it could be WhatsApp ot Telegram </li>
+                                    </ol>
                                 </div>
                             </div>
                         </li>

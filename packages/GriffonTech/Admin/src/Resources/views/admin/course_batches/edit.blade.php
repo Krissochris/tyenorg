@@ -1,5 +1,9 @@
 @extends("admin::layouts.master")
 
+@section('title')
+    {{ __('Edit Course Batch' ) }}
+@stop
+
 @section("content")
     <div class="container">
         <div class="row">
@@ -23,7 +27,7 @@
                                 <div class="form-group">
                                     <label for="tutor_id"> Tutor </label>
                                     <select name="tutor_id" id="tutor_id" class="form-control">
-                                        <option value="{{ $course_batch->tutor_id }}">{{ $course_batch->tutor->name }}</option>
+                                        <option value="{{ $course_batch->course->tutor_id }}">{{ $course_batch->course->tutor->name }}</option>
                                     </select>
                                 </div>
 

@@ -6,6 +6,7 @@ namespace GriffonTech\Admin\Http\Controllers;
 
 use GriffonTech\Course\Repositories\CourseBatchRepository;
 use GriffonTech\Course\Repositories\CourseRepository;
+use GriffonTech\Tutor\Repositories\TutorProfileRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use GriffonTech\Tutor\Repositories\TutorPaymentRepository;
@@ -17,11 +18,13 @@ class CourseBatchesController extends Controller
     protected $courseBatchRepository;
     protected $courseRepository;
     protected $tutorPaymentRepository;
+    protected $tutorProfileRepository;
 
     public function __construct(
         CourseBatchRepository $courseBatchRepository,
         CourseRepository $courseRepository,
-        TutorPaymentRepository $tutorPaymentRepository
+        TutorPaymentRepository $tutorPaymentRepository,
+        TutorProfileRepository $tutorProfileRepository
     )
     {
         $this->_config = request('_config');
@@ -29,11 +32,13 @@ class CourseBatchesController extends Controller
         $this->courseBatchRepository = $courseBatchRepository;
         $this->courseRepository = $courseRepository;
         $this->tutorPaymentRepository = $tutorPaymentRepository;
+        $this->tutorProfileRepository = $tutorProfileRepository;
     }
 
     public function index()
     {
         $course_batches = $this->courseBatchRepository
+            ->with(['course', 'tutor'])
             ->get();
 
         return view($this->_config['view'])
@@ -105,9 +110,10 @@ class CourseBatchesController extends Controller
             ->with(['course', 'tutor'])
             ->findOrFail($id);
 
-        return view($this->_config['view'])
-            ->with(compact('course_batch'));
+        $tutors = $this->tutorProfileRepository->getList();
 
+        return view($this->_config['view'])
+            ->with(compact('course_batch', 'tutors'));
     }
 
     public function update(Request $request, $id)
