@@ -117,7 +117,7 @@
                                         <li><span style="color: red">*</span> inputs are required.</li>
                                         <li>The video url must be either youtube or vimeo.</li>
                                         <li>The learning link is the platform that will be used for the teaching.
-                                            it could be WhatsApp ot Telegram </li>
+                                            it could be WhatsApp or Telegram </li>
                                     </ol>
                                 </div>
                             </div>

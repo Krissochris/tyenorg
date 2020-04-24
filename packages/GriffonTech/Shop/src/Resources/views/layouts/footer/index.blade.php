@@ -15,7 +15,7 @@
                                 <a href="{{ route('pages.view', 'page_about_us') }}">About Us</a>
                             </li>
                             <li class="">
-                                <a href="{{ route('pages.view', 'how_it_works') }}">How it Works</a>
+                                <a href="{{ route('pages.view', 'page_how_it_works') }}">How it Works</a>
                             </li>
                             <li class="">
                                 <a href="{{ route('faqs.index') }}">Faqs</a>
@@ -38,13 +38,13 @@
                                 <a href="{{ route('pages.view', 'page_privacy_policy') }}">Privacy Policy</a>
                             </li>
                             <li class="">
-                                <a href="{{ route('pages.view', 'page_become_an_affiliate') }}">Become and Affiliate</a>
+                                <a href="{{ route('pages.view', 'page_become_an_affiliate') }}">Become an Affiliate</a>
                             </li>
                             <li class="">
                                 <a href="{{ route('pages.view', 'page_values_to_expect') }}">Values we give</a>
                             </li>
                             <li class="">
-                                <a href="{{ route('pages.view', 'page_join_forum') }}">Join Business Forum</a>
+                                <a href="{{ route('pages.view', 'page_join_forum') }}">Join Business Forums</a>
                             </li>
                             <li class="">
                                 <a href="{{ route('pages.view', 'page_join_tyen_club') }}">Join TYEN Club</a>
