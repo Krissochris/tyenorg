@@ -107,6 +107,16 @@ Route::group(['middleware' => ['web']], function (){
                 'redirect' => 'admin.tutors.index'
             ])->name('admin.tutors.deactivate');
 
+            Route::get('tutors/delete/{id}', 'GriffonTech\Admin\Http\Controllers\TutorsController@delete')->defaults('_config', [
+                'view' => 'admin::admin.tutors.delete'
+            ])->name('admin.tutors.delete');
+
+
+            Route::delete('tutors/destroy/{id}', 'GriffonTech\Admin\Http\Controllers\TutorsController@destroy')->defaults('_config', [
+                'redirect' => 'admin.tutors.index'
+            ])->name('admin.tutors.destroy');
+
+
 
 
             // Tutor Agreement Attribute

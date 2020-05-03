@@ -11,8 +11,16 @@
                         <h4>Verify your account </h4>
                     </div>
                     <div class="card-body">
-                        To continue, Please click <a class="text-primary" href="{{ route('user.resend.verification-email', auth('user')->user()->email) }}">Here</a> verify the email you registered in your account.
-                        <p> Please check the spam folder in your email if you couldn't find it in inbox. </p>
+                        We've sent an email verifications link to your mail. If you didn't receive the email after few minutes,
+                        click
+                        <a class="text-primary" href="{{ route('user.resend.verification-email', auth('user')->user()->email) }}">
+                            Resend verification</a> for a new link.
+
+                        Please, check your spam folder and other email folders too for the link before clicking to resend a new link.
+
+                        Use this box below to update your email, if you previously used the wrong email during registration.
+                        Then hit
+                        <a class="text-primary" href="{{ route('user.resend.verification-email', auth('user')->user()->email) }}">Resend verification</a>
 
                         <div class="row" style="margin-top: 20px;">
                             <div class="col-sm-6">

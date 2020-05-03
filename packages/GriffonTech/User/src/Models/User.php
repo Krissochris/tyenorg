@@ -155,4 +155,9 @@ class User extends Authenticatable implements UserContract
     }
 
 
+    public function isProUser()
+    {
+        return $this->is_pro_user;
+    }
+
 }

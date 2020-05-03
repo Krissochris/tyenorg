@@ -12,6 +12,7 @@ use GriffonTech\Tutor\Repositories\TutorAgreementRepository;
 use GriffonTech\Tutor\Repositories\TutorProfileRepository;
 use GriffonTech\User\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TutorsController extends Controller
 {
@@ -139,10 +140,6 @@ class TutorsController extends Controller
     }
 
 
-    public function destroy()
-    {
-        return view($this->_config['view']);
-    }
 
 
     public function changeTutorProfileStatus(Request $request, $id)
@@ -167,5 +164,35 @@ class TutorsController extends Controller
 
 
         return redirect()->route($this->_config['redirect']);
+    }
+
+
+    public function delete($id)
+    {
+        $tutorProfile = $this->tutorProfileRepository->find($id);
+
+        return view($this->_config['view'])
+            ->with(compact('tutorProfile'));
+    }
+
+
+    public function destroy($id)
+    {
+        try {
+            $tutor_profile = $this->tutorProfileRepository->find($id);
+
+            if ($tutor_profile->delete()) {
+                $tutor_profile->user->update(['tutor_id' => null]);
+                session()->flash('success', 'Tutor was successfully deleted');
+            } else {
+                session()->flash('error', 'Tutor profile could not be deleted!. Please try again');
+                return back();
+            }
+
+        } catch ( \Exception $exception) {
+            session()->flash('error', 'Tutor profile could not be deleted. Please try again.');
+            return back();
+        }
+        return redirect()->route('admin.tutors.index');
     }
 }

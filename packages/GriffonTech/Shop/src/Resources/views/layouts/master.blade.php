@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Title -->
-    <title>TYEN - @yield('title') </title>
+    <title> {{ setting('application_name', '') }} - @yield('title') </title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('images/logo.png') }}">
@@ -32,8 +32,12 @@
     <link type="text/css" href="{{ asset('assets/css/vendor-ion-rangeslider.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('assets/css/vendor-ion-rangeslider.rtl.css') }}" rel="stylesheet">
     @yield('css')
-    {{ setting('head_scripts') }}
-
+    {!! setting('head_scripts') !!}
+    <style>
+        .page__heading-container {
+            margin-top: 60px;
+        }
+    </style>
 </head>
 
 <body class="layout-fixed layout-sticky-subnav">
@@ -53,54 +57,56 @@
 
         @include('shop::layouts.header.navs.index')
 
-        <div class="container page__container">
+        <div style="{{ (request()->route()->getName() === "user.home.index") ? 'margin-top: 40px;' : 'margin-top: 60px;'  }} ">
+            <div class="container page__container">
 
-            @if ($errors->any())
-                <div class="alert alert-danger mt-2">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            @if(Session::has('success'))
+                @if ($errors->any())
+                    <div class="alert alert-danger mt-2">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if(Session::has('success'))
                     <div class="alert alert-soft-success d-flex  align-items-center mt-2" role="alert">
                         <i class="material-icons mr-3">check_circle</i>
                         <div class="text-body"><strong>Success:</strong>
                             {{ Session::get('success') }}
                         </div>
                     </div>
-            @endif
+                @endif
 
-            @if(Session::has('warning'))
+                @if(Session::has('warning'))
                     <div class="alert alert-soft-warning d-flex  align-items-center m-0 mt-2" role="alert">
                         <i class="material-icons mr-3">error_outline</i>
                         <div class="text-body"><strong>warning</strong>
                             {{ Session::get('warning') }}
                         </div>
                     </div>
-            @endif
+                @endif
 
-            @if(Session::has('info'))
+                @if(Session::has('info'))
                     <div class="alert alert-soft-info d-flex align-items-center mt-2" role="alert">
                         <i class="material-icons mr-3">info_outline</i>
                         <div class="text-body"><strong>Info - </strong>
                             {{ Session::get('info') }}
                         </div>
                     </div>
-            @endif
-            @if(Session::has('error'))
+                @endif
+                @if(Session::has('error'))
                     <div class="alert alert-soft-danger d-flex align-items-center mt-2" role="alert">
                         <i class="material-icons mr-3">error_outline</i>
                         <div class="text-body"><strong>Error - </strong>
                             {{ Session::get('error') }}
                         </div>
                     </div>
-            @endif
-        </div>
+                @endif
+            </div>
 
-        @yield('content')
+            @yield('content')
+        </div>
 
         @include('shop::layouts.footer.index')
     </div>

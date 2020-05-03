@@ -34,6 +34,15 @@
                                         <label class="col-sm-2"> Title </label>
                                         <div class="col-sm-7">
                                             <input type="text" class="form-control"
+                                                   placeholder="Eg. John Deo" name="name"
+                                                   value="{{ (old('name')) ? old('name') : $tutor->name }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2"> Title </label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control"
                                                    placeholder="Eg. Social Media Marketer" name="title"
                                                    value="{{ (old('title')) ? old('title') : $tutor->title }}">
                                         </div>
@@ -90,7 +99,7 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-2"> Summary </label>
+                                        <label class="col-sm-2"> About Me </label>
                                         <div class="col-sm-7">
                                             <textarea name="description" id="" class="form-control"
                                                       rows="5">{{ (old('description')) ? old('description') : $tutor->description }}</textarea>

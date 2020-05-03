@@ -46,7 +46,7 @@
 
                         <p class="mt-4">
                             <strong>Step 2: (VERY IMPORTANT - PLEASE DO THIS IMMEDIATELY AFTER MAKING PAYMENT)</strong>
-                            Send the following information to <a class="text-primary" mailto="payment@tyen.club">Payment@tyen.club</a>
+                            Send the following information to <a class="text-primary" mailto="payment@tyenorg.com">Payment@tyenorg.com</a>
 
                         </p>
                         <ol>
@@ -58,7 +58,7 @@
                                 payment very fast.</li>
                             <li> Clear Evidence of payment (Receipt) </li>
                             <li>
-                                Purpose of payment (E.g Payment for TYEN E-Learn, Free Donation, e.t.c)
+                                Purpose of payment (E.g Payment for TYEN Academy, Free Donation, e.t.c)
                             </li>
                         </ol>
 

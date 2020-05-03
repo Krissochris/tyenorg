@@ -20,9 +20,12 @@ class PagesController extends Controller
         'page_privacy_policy' => 'Privacy Policy',
         'page_become_an_affiliate' => 'Become an Affiliate',
         'page_values_to_expect' => 'Values to Expect',
+        'page_values_we_give' => 'Values We Give',
         'page_join_forum' => 'Join Forum',
         'page_join_tyen_club' => 'Join TYEN Club',
         'page_how_it_works' => 'How it works',
+        'page_volunteer' => 'Volunteer',
+        'page_donate' => 'Donate',
     ];
 
     public function __construct()

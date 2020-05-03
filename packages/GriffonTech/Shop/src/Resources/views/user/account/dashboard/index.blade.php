@@ -11,7 +11,7 @@
             <div>
 
                 <h1 class="m-0"> {{ auth('user')->user()->name }} </h1>
-                <p class="text-muted m-0">Welcome to TYEN -<strong> Lets</strong> Grow Together </p>
+                <p class="text-muted m-0">Welcome to <strong> {{ setting('application_name') }} </strong>  - Lets Grow Together </p>
             </div>
         </div>
     </div>

@@ -38,6 +38,7 @@
                                 <td>
                                     <a class="btn btn-success btn-sm" href="{{route('admin.tutors.show', $tutor->id)}}"> View</a>
                                     <a class="btn btn-primary btn-sm" href="{{route('admin.tutors.edit', $tutor->id)}}"> Edit </a>
+                                    <a class="btn btn-danger btn-sm" href="{{route('admin.tutors.delete', $tutor->id)}}"> Delete </a>
 {{--
                                     <a class="btn btn-danger btn-sm" href="#" onclick="event.preventDefault(); alert('This action is not active')"> Delete</a>
 --}}

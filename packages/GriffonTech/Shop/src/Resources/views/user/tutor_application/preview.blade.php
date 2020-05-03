@@ -29,7 +29,7 @@
                                 <td> {{ $tutorApplication->phone }} </td>
                             </tr>
                             <tr>
-                                <td> Description </td>
+                                <td> About Me </td>
                                 <td> {{ $tutorApplication->description }} </td>
                             </tr>
                         </table>
@@ -68,7 +68,7 @@
 --}}
 
                         <div style="margin: 30px 0;">
-                            <h5>My Agreement </h5>
+                            <h5>My Tutor Agreement </h5>
                             @if(isset($tutor_agreement))
                                 <table class="table table-bordered">
                                     @foreach($attributes as $attribute)

@@ -41,13 +41,19 @@
                                 <a href="{{ route('pages.view', 'page_become_an_affiliate') }}">Become an Affiliate</a>
                             </li>
                             <li class="">
-                                <a href="{{ route('pages.view', 'page_values_to_expect') }}">Values we give</a>
+                                <a href="{{ route('pages.view', 'page_values_we_give') }}">Values We Give</a>
                             </li>
                             <li class="">
                                 <a href="{{ route('pages.view', 'page_join_forum') }}">Join Business Forums</a>
                             </li>
                             <li class="">
                                 <a href="{{ route('pages.view', 'page_join_tyen_club') }}">Join TYEN Club</a>
+                            </li>
+                            <li class="">
+                                <a href="{{ route('pages.view', 'page_volunteer') }}">Volunteer</a>
+                            </li>
+                            <li class="">
+                                <a href="{{ route('pages.view', 'page_donate') }}">Donate</a>
                             </li>
                         </ul>
                     </div>

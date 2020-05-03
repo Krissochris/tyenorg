@@ -6,8 +6,9 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <!-- Title -->
-    <title>TYEN - @yield('title') </title>
+    <title> {{ setting('application_name', '') }} - @yield('title') </title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('images/logo.png') }}">

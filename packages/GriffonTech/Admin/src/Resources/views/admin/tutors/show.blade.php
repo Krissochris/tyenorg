@@ -49,7 +49,7 @@
                                     <td> {{ $tutor->phone }} </td>
                                 </tr>
                                 <tr>
-                                    <td> Description :</td>
+                                    <td> About Me :</td>
                                     <td> {{ $tutor->description }} </td>
                                 </tr>
 

@@ -36,7 +36,7 @@
                             <td>{{ $tutor_application_submission->tutor_application->phone }}</td>
                         </tr>
                         <tr>
-                            <td>Description</td>
+                            <td>About Me</td>
                             <td>{{ $tutor_application_submission->tutor_application->description }}</td>
                         </tr>
                     </table>

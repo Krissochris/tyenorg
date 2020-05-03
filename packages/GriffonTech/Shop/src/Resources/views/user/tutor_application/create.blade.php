@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <div class="container p-30">
+    <div class="container p-30 page__heading-container">
         <div class="row">
             <div class="col-sm-12"><br>
                 <div class="card">

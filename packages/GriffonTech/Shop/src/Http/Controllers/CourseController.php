@@ -115,6 +115,13 @@ class CourseController extends Controller
     {
         $course = $this->courseRepository->findBySlugOrFail($slug);
 
+        // check if the user is a pro user
+        if ( in_array($course->type,[CourseRepository::PRO_USER_FREE, CourseRepository::PRO_MEMBER_PAID]) &&  !auth('user')->user()->isProUser()) {
+
+            session()->flash('error','You have to be a pro member to join this course');
+            return redirect()->route('user.pro_user');
+        }
+
         // check if the user is register to the course
         $courseRegistered = $this->courseRegistrationRepository->findOneWhere([
             'course_id' => $course->id,
@@ -138,11 +145,15 @@ class CourseController extends Controller
 
     public function checkout($slug)
     {
-        try {
-            $course = $this->courseRepository->findBySlugOrFail($slug);
-        } catch (ModelNotFoundException $exception) {
-            abort(404);
+        $course = $this->courseRepository->findBySlugOrFail($slug);
+
+        // check if the user is a pro user
+        if ( in_array($course->type,[CourseRepository::PRO_USER_FREE, CourseRepository::PRO_MEMBER_PAID]) &&  !auth('user')->user()->isProUser()) {
+
+            session()->flash('error','You have to be a pro member to join this course');
+            return redirect()->route('user.pro_user');
         }
+
         request()->session()->put('payment', [
             'amount' => $course->price,
             'user_id' => auth('user')->user()->id,
