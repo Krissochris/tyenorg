@@ -86,39 +86,32 @@
 <!-- jQuery UI -->
 <script src="{{ asset('admin/js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('admin/js/fileinput.min.js') }}"></script>
-<script src="{{ asset('admin/js/plugins/summernote/summernote-bs4.js') }}"></script>
+<script src="{{ asset('assets/vendor/tinymice/tinymce.min.js') }}"></script>
 @yield('footer-scripts')
-<script>
-    $(document).ready(function(){
-
-        $('.summernote').summernote();
-
-    });
-    $(document).ready(function(){
-        $('#data-table').DataTable({
-            pageLength: 25,
-            responsive: true,
-            dom: '<"html5buttons"B>lTfgitp',
-            buttons: [
-                /*{ extend: 'copy'},
-                {extend: 'csv'},
-                {extend: 'excel', title: 'ExampleFile'},
-                {extend: 'pdf', title: 'ExampleFile'},
-
-                {extend: 'print',
-                    customize: function (win){
-                        $(win.document.body).addClass('white-bg');
-                        $(win.document.body).css('font-size', '10px');
-
-                        $(win.document.body).find('table')
-                            .addClass('compact')
-                            .css('font-size', 'inherit');
-                    }
-                }*/
-            ]
-
-        });
-
+<script>tinymce.init({
+        selector:'.tinymce_editor',
+        images_dataimg_filter: function(img) {
+            return img.hasAttribute('internal-blob');
+        },
+        height: 200,
+        theme: 'modern',
+        plugins: [
+            'advlist autolink lists link image jbimages charmap print preview hr anchor pagebreak',
+            'searchreplace wordcount visualblocks visualchars code fullscreen',
+            'insertdatetime media nonbreaking save table contextmenu directionality',
+            'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help'
+        ],
+        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image |  jbimages',
+        toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
+        image_advtab: true,
+        templates: [
+            { title: 'Test template 1', content: 'Test 1' },
+            { title: 'Test template 2', content: 'Test 2' }
+        ],
+        content_css: [
+            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+            '//www.tinymce.com/css/codepen.min.css'
+        ]
     });
 </script>
 </body>
