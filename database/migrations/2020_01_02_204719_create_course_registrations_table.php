@@ -16,7 +16,7 @@ class CreateCourseRegistrationsTable extends Migration
         Schema::create('course_registrations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('course_id');
+            $table->unsignedInteger('course_id');
             $table->integer('batch_id');
             $table->integer('access_type')->unsigned()->nullable();
             $table->string('status')->default(1);
