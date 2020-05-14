@@ -89,7 +89,7 @@
 <script src="{{ asset('assets/vendor/tinymice/tinymce.min.js') }}"></script>
 @yield('footer-scripts')
 <script>tinymce.init({
-        selector:'.tinymce_editor',
+        selector:'.summernote',
         images_dataimg_filter: function(img) {
             return img.hasAttribute('internal-blob');
         },
