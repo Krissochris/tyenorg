@@ -4,6 +4,9 @@
    Course Purchase Checkout
 @stop
 @section('content')
+    <script>
+        fbq('track', 'AddPaymentInfo');
+    </script>
     <div class="container col-sm-9">
         <div class="py-5 text-center">
             <h2>Checkout form</h2>
