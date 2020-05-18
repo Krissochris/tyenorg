@@ -23,6 +23,7 @@
             'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '237023990956129');
         fbq('track', 'PageView');
+        @yield('fb_pixel_script')
     </script>
     <noscript>
         <img height="1" width="1"

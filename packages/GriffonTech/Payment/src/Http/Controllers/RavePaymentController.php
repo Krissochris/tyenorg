@@ -139,7 +139,7 @@ class RavePaymentController extends Controller
                     session()->flash('success', 'Account was successfully upgraded to pro user.');
                 }
 
-                return redirect()->route('payment.success');
+                return redirect()->route('payment.success', ['amount' => $payment_details['amount']]);
                 // transaction was successful...
                 // please check other things like whether you already gave value for this ref
                 // if the email matches the customer who owns the product etc

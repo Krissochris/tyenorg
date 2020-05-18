@@ -156,7 +156,7 @@ class PayPalPaymentController extends Controller
                 session()->flash('success', 'Account was successfully upgraded to pro user.');
             }
 
-            return redirect()->route('payment.success');
+            return redirect()->route('payment.success', ['amount' => $payment_details['amount']]);
 
         }
         session()->flash('error', 'Payment failed');

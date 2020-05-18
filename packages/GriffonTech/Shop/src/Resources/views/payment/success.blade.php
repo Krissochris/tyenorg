@@ -1,5 +1,9 @@
 @extends("shop::layouts.master")
 
+@section('fb_pixel_script')
+    fbq('track', 'Purchase', {value: {{ request()->get('amount') }} , currency: 'USD'});
+@stop
+
 @section("content")
     <div class="container">
         <div class="row">
