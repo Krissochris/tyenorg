@@ -4,6 +4,9 @@
     User Registration
 @stop
 
+@section('fb_pixel_script')
+    fbq('track', 'CompleteRegistration');
+@stop
 
 @section('content')
 
