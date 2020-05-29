@@ -34,10 +34,11 @@
                                 <td> {{ ($user->is_pro_user) ? 'Yes' : 'No' }} </td>
                                 <td> {{ ($user->tutor_id) ? 'Yes' : 'No' }} </td>
                                 <td> {{ $user->created_at }} </td>
-                                <td>
-                                    <a href="{{route('admin.users.show', $user->id)}}">view</a>&nbsp;&nbsp;
-                                    <a href="{{route('admin.users.edit', $user->id)}}"> edit </a>&nbsp;&nbsp;
-                                    <a href="#"><i class="fa fa-trash text-danger grow" title="delete"></i></a>
+                                <td class="btn-group-sm">
+                                    <a href="{{route('admin.users.show', $user->id)}}" class="btn btn-success">view</a>&nbsp;&nbsp;
+                                    <a href="{{route('admin.users.edit', $user->id)}}" class="btn btn-info"> edit </a>&nbsp;&nbsp;
+                                    <a href="#" class="btn btn-danger"><i class="fa fa-trash" title="delete"></i> delete</a>
+                                    <a href="{{route('admin.users.resend_verification_email', $user->id)}}" class="btn btn-primary">send verification</a>
                                 </td>
                             </tr>
                         @endforeach

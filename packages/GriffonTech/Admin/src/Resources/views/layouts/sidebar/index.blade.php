@@ -52,6 +52,7 @@
 
                         <a href="{{ route('admin.users.index') }}">Users</a>
                         <a href="{{ route('admin.user_withdrawals.index') }}">User Bonus Withdrawals</a>
+                        <a href="{{ route('admin.users.email_subscriptions') }}">Email Subscribers</a>
                     </li>
                 </ul>
             </li>
