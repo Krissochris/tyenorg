@@ -6,9 +6,11 @@ namespace GriffonTech\Admin\Http\Controllers;
 
 use GriffonTech\Tutor\Repositories\TutorProfileRepository;
 use GriffonTech\User\Contracts\User;
+use GriffonTech\User\Mail\VerificationEmail;
 use GriffonTech\User\Repositories\UserPaymentDetailRepository;
 use GriffonTech\User\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UsersController extends Controller
 {
@@ -146,5 +148,28 @@ class UsersController extends Controller
             session()->flash('error', 'User payment details could not be updated.');
         }
         return back();
+    }
+
+
+    public function resendVerificationEmail(User $user)
+    {
+        $verificationData['email'] = $user['email'];
+        $verificationData['token'] = md5(uniqid(rand(), true));
+        $data['token'] = $verificationData['token'];
+
+        try {
+            Mail::queue(new VerificationEmail($verificationData));
+            session()->flash('success', 'Verification email was successfully sent');
+        } catch (\Exception $e) {
+            session()->flash('info', 'Verification email could not be sent. Please try again');
+        }
+        $user->update($data);
+        return back();
+    }
+
+
+    public function emailSubscriptions()
+    {
+        return view($this->_config['view']);
     }
 }

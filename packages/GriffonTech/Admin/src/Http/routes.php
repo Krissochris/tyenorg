@@ -70,6 +70,16 @@ Route::group(['middleware' => ['web']], function (){
                 'redirect' => 'admin.users.edit'
             ])->name('admin.users.update_payment_detail');
 
+            Route::get('users/resend_verification_email/{id}', 'GriffonTech\Admin\Http\Controllers\UsersController@resendVerificationEmail')->defaults('_config', [
+                'redirect' => 'admin.users.index'
+            ])->name('admin.users.resend_verification_email');
+
+
+
+            // Email Subscriptions
+            Route::get('users/email_subscriptions', 'GriffonTech\Admin\Http\Controllers\UsersController@emailSubscriptions')->defaults('_config', [
+                'view' => 'admin::admin.email_subscriptions.index'
+            ])->name('admin.users.email_subscriptions');
 
 
             // Tutors

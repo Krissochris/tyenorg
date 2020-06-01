@@ -2,6 +2,7 @@
 
 namespace GriffonTech\User\Providers;
 
+use GriffonTech\User\Models\EmailSubscription;
 use GriffonTech\User\Models\Referral;
 use GriffonTech\User\Models\UserPayment;
 use GriffonTech\User\Models\UserPaymentDetail;
@@ -18,6 +19,7 @@ class ModuleServiceProvider extends BaseModuleServiceProvider
         UserReferral::class,
         Referral::class,
         UserPaymentDetail::class,
-        UserWithdrawal::class
+        UserWithdrawal::class,
+        EmailSubscription::class
     ];
 }

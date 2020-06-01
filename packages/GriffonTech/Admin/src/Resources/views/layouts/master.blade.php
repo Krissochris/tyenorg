@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title> {{ setting('application_name', '') }} - @yield('title') </title>
+    <title> {{ setting('application_name', 'Tyen') }} - @yield('title') </title>
 
 
     <!-- Facebook Pixel Code -->

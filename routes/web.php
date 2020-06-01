@@ -81,7 +81,7 @@ Route::get('/purchase-history', 'UsersController@mypurchases')->name('purchase-h
 
 Route::get('/dat-tables', 'UsersController@tutortable')->name('tutor-table');
 Route::get('/user-profile', 'UsersController@profile')->name('profile');
-//For Looged in Tutors
+//For Logged in Tutors
 Route::get('/tutor-profile', 'UsersController@tutor_profile')->name('tutor-profile');
 Route::get('/tutor-courses', 'UsersController@tutor_courses')->name('tutor-courses');
 Route::get('/create-course', 'UsersController@create_course')->name('create-course');
