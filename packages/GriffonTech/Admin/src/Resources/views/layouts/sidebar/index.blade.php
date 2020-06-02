@@ -87,6 +87,10 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('admin.testimonies.index') }}"><i class="fa fa-envelope"></i> <span class="nav-label">Email Subscribers </span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('admin.faqs.index') }}"><i class="fa fa-blogger-b"></i> <span class="nav-label">FAQs</span>
                 </a>
             </li>

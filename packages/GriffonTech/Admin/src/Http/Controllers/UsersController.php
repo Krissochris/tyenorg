@@ -166,10 +166,4 @@ class UsersController extends Controller
         $user->update($data);
         return back();
     }
-
-
-    public function emailSubscriptions()
-    {
-        return view($this->_config['view']);
-    }
 }
