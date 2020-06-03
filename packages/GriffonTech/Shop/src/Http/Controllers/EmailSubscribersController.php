@@ -27,14 +27,14 @@ class EmailSubscribersController extends Controller
         if ($email_subscriber) {
             if ($request->ajax()) {
                 return response()->json([
-                    'message' => 'success'
+                    'message' => '<p class="text-success"> Your email was successful saved! </p>'
                 ]);
             }
             session()->flash('success', 'Your email was successful saved!');
         } else {
             if ($request->ajax()) {
                 return response()->json([
-                    'message' => 'error'
+                    'message' => '<p> Your email could not be saved. Please try again.</p>'
                 ]);
             }
             session()->flash('error', 'Your email could not be saved. Please try again.');

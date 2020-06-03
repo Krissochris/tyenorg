@@ -41,7 +41,8 @@ class UsersController extends Controller
 
     public function index()
     {
-        $users = $this->userRepository->paginate(30);
+        //$users = $this->userRepository->paginate(30);
+        $users = $this->userRepository->paginate(1000);
         return view($this->_config['view'])->with(compact('users'));
     }
 

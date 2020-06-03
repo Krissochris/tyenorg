@@ -430,10 +430,20 @@
                         <p class="text-center text-muted">No spam. Only releases, updates and discounts</p>
                     </div>
                     <div class="d-flex">
+                        <div id="email-subscription-response">
 
-                        <form action="#" class="form-inline">
-                            <input type="text" class="form-control" placeholder="Your email address">
-                            <button class="btn btn-secondary ml-2" data-aos="flip-left" data-aos-duration="800" data-aos-delay="150">SUBSCRIBE</button>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <form method="POST" id="email-subscription-form" action="{{ route('email_subscribers.create') }}" class="form-inline">
+                            @csrf
+                            <input type="email" name="email" class="form-control" placeholder="Your email address">
+                            <button
+                                type="submit"
+                                class="btn btn-secondary ml-2"
+                                data-aos="flip-left"
+                                data-aos-duration="800"
+                                data-aos-delay="150">SUBSCRIBE</button>
                         </form>
                     </div>
                 </div>
@@ -445,6 +455,20 @@
 
 
 @section('footer-scripts')
+    <script>
+        $(document).ready(function() {
+            $('#email-subscription-form').on("submit", function(event) {
+                event.preventDefault();
+
+               var post_data = $(this).serialize();
+               $.post(this.action, post_data, function(data) {
+                   if (data.message !== undefined) {
+                       $('#email-subscription-response').html(data.message);
+                   }
+               });
+            });
+        });
+    </script>
     <script src="{{ asset('assets/unpkg.com/aos%402.3.1/dist/aos.js') }}"></script>
     <script>
         AOS.init();

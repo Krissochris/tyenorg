@@ -8,9 +8,8 @@ Route::group(['middleware' => ['web']], function(){
         'view' => 'shop::homepage.index'
     ])->name('user.home.index');
 
-    Route::get('/', 'GriffonTech\Shop\Http\Controllers\HomeController@index')->defaults('_config', [
-        'view' => 'shop::homepage.index'
-    ])->name('user.home.index');
+    Route::post('/email_subscribers/create', 'GriffonTech\Shop\Http\Controllers\EmailSubscribersController@store')->defaults('_config', [
+    ])->name('email_subscribers.create');
 
 
 

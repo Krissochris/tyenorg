@@ -11,7 +11,7 @@
 
     <!-- Facebook Pixel Code -->
 
-    <script>
+    {{--<script>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -22,12 +22,12 @@
             'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '237023990956129');
         fbq('track', 'PageView');
-    </script>
-    <noscript>
+    </script>--}}
+    {{--<noscript>
         <img height="1" width="1"
              src="https://www.facebook.com/tr?id=237023990956129&ev=PageView
              &noscript=1"/>
-    </noscript>
+    </noscript>--}}
 
     <!-- End Facebook Pixel Code -->
 
@@ -39,9 +39,8 @@
     <link href="{{ asset('admin/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
-
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
-
+    @yield('header-includes')
 </head>
 
 <body>
@@ -100,6 +99,8 @@
 <script src="{{ asset('admin/js/bootstrap.js') }}"></script>
 <script src="{{ asset('admin/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
 <script src="{{ asset('admin/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+<!-- Date range use moment.js same as full calendar plugin -->
+<script src="{{ asset('admin/js/plugins/fullcalendar/moment.min.js') }}"></script>
 
 <script src="{{ asset('admin/js/plugins/dataTables/datatables.min.js') }}"></script>
 <script src="{{ asset('admin/js/plugins/dataTables/dataTables.bootstrap4.min.js') }}"></script>
@@ -113,7 +114,9 @@
 <script src="{{ asset('admin/js/fileinput.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/tinymice/tinymce.min.js') }}"></script>
 @yield('footer-scripts')
-<script>tinymce.init({
+<script>
+    $('#data-table').dataTable();
+    tinymce.init({
         selector:'.summernote',
         images_dataimg_filter: function(img) {
             return img.hasAttribute('internal-blob');

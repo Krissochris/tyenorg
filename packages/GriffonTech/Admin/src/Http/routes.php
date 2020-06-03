@@ -82,6 +82,12 @@ Route::group(['middleware' => ['web']], function (){
             ])->name('admin.email_subscribers.index');
 
 
+            Route::post('email_subscribers/download', 'GriffonTech\Admin\Http\Controllers\EmailSubscribersController@generateCSV')->defaults('_config', [
+                'redirect' => 'admin.email_subscribers.index'
+            ])->name('admin.email_subscribers.download');
+
+
+
             // Tutors
             Route::get('tutors/index', 'GriffonTech\Admin\Http\Controllers\TutorsController@index')->defaults('_config', [
                 'view' => 'admin::admin.tutors.index'
