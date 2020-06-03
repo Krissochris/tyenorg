@@ -31,7 +31,7 @@ class RegistrationEmail extends Mailable
     public function build()
     {
        return $this->to($this->data['email'])
-                ->from(env('SHOP_MAIL_FROM'))
+                ->from(env('SHOP_MAIL_FROM'), env('MAIL_FROM_NAME'))
                 ->subject(trans('shop::app.mail.user.registration.customer-registration'))
                 ->view('shop::emails.user.registration')->with('data', $this->data);
     }

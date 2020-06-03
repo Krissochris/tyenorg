@@ -31,7 +31,7 @@ class VerificationEmail extends Mailable
     public function build()
     {
         return $this->to($this->verificationData['email'])
-            ->from(env('SHOP_MAIL_FROM'))
+            ->from(env('SHOP_MAIL_FROM'), env('MAIL_FROM_NAME'))
             ->subject(trans('shop::app.mail.user.verification.subject'))
             ->view('shop::emails.user.verification-email')->with('data', ['email' => $this->verificationData['email'], 'token' => $this->verificationData['token']]);
     }
