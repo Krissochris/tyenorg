@@ -38,7 +38,9 @@
                                     <a href="{{route('admin.users.show', $user->id)}}" class="btn btn-success">view</a>&nbsp;&nbsp;
                                     <a href="{{route('admin.users.edit', $user->id)}}" class="btn btn-info"> edit </a>&nbsp;&nbsp;
                                     <a href="#" class="btn btn-danger"><i class="fa fa-trash" title="delete"></i> delete</a>
+                                    @if (!$user->is_verified)
                                     <a href="{{route('admin.users.resend_verification_email', $user->id)}}" class="btn btn-primary">send verification</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
