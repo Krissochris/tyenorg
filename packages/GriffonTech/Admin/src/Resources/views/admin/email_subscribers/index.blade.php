@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5> Users </h5>
+                    <h5> Email Subscribers </h5>
                 </div>
                 <div class="ibox-content table-responsive">
                     <div style="margin-bottom: 20px;">
@@ -18,14 +18,12 @@
                         <tr>
                             <th>#</th>
                             <th>Email</th>
-                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>1</td>
                             <td>example@example.com</td>
-                            <td></td>
                         </tr>
                         </tbody>
                     </table>

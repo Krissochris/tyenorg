@@ -8,27 +8,14 @@
         </div>
 
         <div  style="font-size:16px; color:#242424; font-weight:600; margin-top: 60px; margin-bottom: 15px">
-            TYEN Academy - Email Verification
+            {{ setting('application_name', 'Tyen') }}
         </div>
 
         <div>
-            <p>
-                This mail is to verify that the email address you entered on Tyenorg.com belongs to you.
-            </p>
-            <p>
-                Kindly click the "Verify Your Account" button below to verify your account.
-            </p>
-        </div>
+            <p>This mail is to verify that the email address you entered on Tyenorg.com belongs to you. </p>
+            <p>Kindly click the "Verify Your Account" button below to verify your account.</p>
 
-
-        <div  style="margin-top: 40px; text-align: center">
-            <a href="{{ route('user.verify', $data['token']) }}" style="font-size: 16px;
-            color: #FFFFFF; text-align: center; background: #0031F0; padding: 10px 100px;text-decoration: none;">
-                {!! __('shop::app.mail.user.verification.verify') !!}
-            </a>
-        </div>
-        <div>
-            <h6> ALTERNATIVE METHOD </h6>
+            <b> ALTERNATIVE METHOD </b>
             <p>
                 Long press the button, copy the attached link and paste directly on your logged in Chrome browser to verify.
             </p>
@@ -45,8 +32,13 @@
                 Tap the "Verification button" Now!
             </p>
         </div>
-
-
+        <div  style="margin-top: 40px; text-align: center">
+            <a href="{{ route('user.verify', $data['token']) }}" style="font-size: 16px;
+>>>>>>> 8fdb3c4649110f865c5ce5395f714c9f4113009c
+            color: #FFFFFF; text-align: center; background: #0031F0; padding: 10px 100px;text-decoration: none;">
+                {!! __('shop::app.mail.user.verification.verify') !!}
+            </a>
+        </div>
     </div>
 
 @endcomponent

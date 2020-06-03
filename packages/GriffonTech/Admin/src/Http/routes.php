@@ -77,9 +77,9 @@ Route::group(['middleware' => ['web']], function (){
 
 
             // Email Subscriptions
-            Route::get('users/email_subscriptions', 'GriffonTech\Admin\Http\Controllers\UsersController@emailSubscriptions')->defaults('_config', [
-                'view' => 'admin::admin.email_subscriptions.index'
-            ])->name('admin.users.email_subscriptions');
+            Route::get('email_subscribers/index', 'GriffonTech\Admin\Http\Controllers\EmailSubscribersController@index')->defaults('_config', [
+                'view' => 'admin::admin.email_subscribers.index'
+            ])->name('admin.email_subscribers.index');
 
 
             // Tutors
