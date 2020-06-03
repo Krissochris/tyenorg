@@ -26,7 +26,8 @@ class EmailSubscribersController extends Controller
         // get all email subscribers
         // within the specified date
         // and also ability to export all in csv file.
-        return view($this->_config['view']);
+        $emailSubscribers = $this->emailSubscriptionRepository->all();
+        return view($this->_config['view'])->with(compact('emailSubscribers'));
     }
 
 }
